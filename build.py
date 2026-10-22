@@ -113,6 +113,13 @@ h1 .dot {{ color: var(--accent); }}
   display:inline-block; margin-top:7px; font-size:12px; color:var(--accent);
   text-decoration:none; letter-spacing:.3px;
 }}
+.note {{
+  margin-top:9px; padding:8px 11px;
+  border-left:2px solid var(--accent);
+  background: var(--card);
+  font-size:12.5px; line-height:1.68; color:var(--muted);
+}}
+.note b {{ color:var(--accent); font-weight:500; }}
 .item .more:active {{ opacity:.6; }}
 
 footer {{
@@ -191,8 +198,11 @@ GROUP_T = """      <div class="group">
 
 ITEM_T = """        <div class="item">
           <h3>{t}</h3>
-          <p>{d}</p>{more}
+          <p>{d}</p>{note}{more}
         </div>"""
+
+NOTE_T = """
+          <div class="note"><b>注</b> {n}</div>"""
 
 MORE_T = """
           <a class="more" href="{u}" target="_blank" rel="noopener">原文 ↗</a>"""
@@ -226,7 +236,8 @@ def build(data_path=None, out_path=None):
             items = []
             for i in g["items"]:
                 more = MORE_T.format(u=i["u"]) if i.get("u") else ""
-                items.append(ITEM_T.format(t=i["t"], d=i["d"], more=more))
+                note = NOTE_T.format(n=i["note"]) if i.get("note") else ""
+                items.append(ITEM_T.format(t=i["t"], d=i["d"], note=note, more=more))
             body.append(GROUP_T.format(name=g["name"], items="\n".join(items)))
         panels.append('    <section class="panel" data-id="%s">\n%s\n    </section>' % (t["id"], "\n".join(body)))
 
