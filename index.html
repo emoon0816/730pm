@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="day">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>蚀月夜报 · 2026年10月22日</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#F4EFE6">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<style>
+@font-face {
+  font-family: 'ChillRound';
+  src: url('fonts/ChillRoundGothic_Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-display: swap;
+}
+:root {
+  --bg: #F4EFE6;
+  --ink: #2A2521;
+  --accent: #6C2F36;
+  --muted: #7A6E62;
+  --line: #D8CFC0;
+  --card: #FBF7F0;
+}
+html[data-theme="night"] {
+  --bg: #17140F;
+  --ink: #C8BFB2;
+  --accent: #C6ACDC;
+  --muted: #8A8074;
+  --line: #332C24;
+  --card: #1F1B15;
+}
+* { box-sizing: border-box; }
+html { background: var(--bg); }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'ChillRound', -apple-system, 'PingFang SC', 'Noto Sans CJK SC', sans-serif;
+  font-size: 15px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  transition: background .25s ease, color .25s ease;
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 0 18px 60px; }
+
+/* 报头 */
+header {
+  border-bottom: 3px double var(--ink);
+  padding: 26px 0 14px;
+  margin-bottom: 6px;
+  position: relative;
+}
+.masthead {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+  flex-wrap: wrap;
+}
+h1 {
+  font-size: 30px; margin: 0; letter-spacing: 2px; font-weight: 500;
+}
+h1 .dot { color: var(--accent); }
+.dateline { font-size: 12.5px; color: var(--muted); letter-spacing: .5px; }
+.sub {
+  margin-top: 8px; font-size: 12.5px; color: var(--muted); letter-spacing: 1px;
+}
+#themeBtn {
+  position: absolute; right: 0; top: 26px;
+  background: transparent; border: 1px solid var(--line); color: var(--ink);
+  border-radius: 999px; padding: 5px 12px; font-size: 13px;
+  font-family: inherit; cursor: pointer;
+}
+#themeBtn:active { opacity: .6; }
+
+/* 头条 */
+.lead {
+  margin: 22px 0 8px;
+  padding: 18px 20px;
+  background: var(--card);
+  border-left: 3px solid var(--accent);
+  border-radius: 2px;
+}
+.kicker {
+  font-size: 11.5px; letter-spacing: 2px; color: var(--accent); margin-bottom: 6px;
+}
+.lead h2 { font-size: 21px; margin: 0 0 8px; line-height: 1.5; font-weight: 500; }
+.lead p { margin: 0; font-size: 14.5px; }
+.src { font-size: 11.5px; color: var(--muted); margin-top: 8px; }
+
+/* 栏目 */
+.cols { column-gap: 30px; }
+@media (min-width: 720px) { .cols { column-count: 2; } }
+section { break-inside: avoid; margin: 26px 0 0; }
+.sec-title {
+  font-size: 13px; letter-spacing: 1.5px; color: var(--accent);
+  border-bottom: 1px solid var(--line); padding-bottom: 5px; margin-bottom: 10px;
+  font-weight: 500;
+}
+.item { margin-bottom: 14px; }
+.item h3 { font-size: 15px; margin: 0 0 3px; font-weight: 500; line-height: 1.55; }
+.item p { margin: 0; font-size: 13.5px; color: var(--ink); opacity: .85; }
+.item p.br { color: var(--muted); }
+
+footer {
+  margin-top: 46px; padding-top: 14px; border-top: 1px solid var(--line);
+  font-size: 11.5px; color: var(--muted); text-align: center; letter-spacing: .5px;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="masthead">
+      <h1>蚀月夜报<span class="dot">.</span></h1>
+      <div class="dateline">2026年10月22日 · 星期四 · 第 001 期</div>
+    </div>
+    <div class="sub">每天晚上七点半，世界发生了这些</div>
+    <button id="themeBtn" aria-label="切换日夜">☾ 夜间</button>
+  </header>
+
+  <div class="lead">
+    <div class="kicker">AI 前沿</div>
+    <h2>Meta 杀回第一梯队：Muse Wonder 双模型发布</h2>
+    <p>10 月 12 日，Meta 在 14 个月重建之后首次推出前沿模型 Muse Wonder 与 Muse Wonder Full，官方口径是与 OpenAI、Anthropic 同级。这是 Meta 时隔一年多重新回到牌桌上。</p>
+    <div class="src">综合 The Model Gap / 官方发布</div>
+  </div>
+
+  <div class="cols">
+    <section>
+      <div class="sec-title">AI 与科技</div>
+      <div class="item"><h3>10 月前四天落地十个模型</h3><p>来自 7 家实验室，全部集中在 10 月 1 日发布。没有 OpenAI、Anthropic、Google 参与这一波。</p></div>
+      <div class="item"><h3>苏姿丰：2026 是「AI 推理元年」</h3><p>AMD CEO 判断 CPU 市场需求将爆发式增长，推理侧算力成为主战场。</p></div>
+      <div class="item"><h3>Anthropic：蒸馏攻击被拦住九成</h3><p>官方长文称被提取的数据量减少了约 90%—99%。</p></div>
+      <div class="item"><h3>中国拟对 AI 技术出口管制</h3><p>商务部、科技部第 48 号公告，涉及人工智能、生物医药、光伏三个领域。</p></div>
+      <div class="item"><h3>PHP 曝出严重安全漏洞</h3><p>全球大量网站启动自查，部分站点直接下线。</p></div>
+    </section>
+    <section>
+      <div class="sec-title">手机圈</div>
+      <div class="item"><h3>华为 Mate 90 系列</h3><p>10 月 1 日发布并开售，标准版 / Pro / Pro Max / RS 四款，搭载新一代麒麟旗舰芯片。</p></div>
+      <div class="item"><h3>小米 18 Pro / Pro Max</h3><p>2nm 芯片、徕卡双 2 亿、7000mAh、100W 有线、IP69。Pro 落在 5999 档。</p></div>
+      <div class="item"><h3>vivo X500 Pro Max</h3><p>影像堆料路线，蔡司方案；与 iPhone 17 系列并列本月热度最高的两台。</p></div>
+      <div class="item"><h3>OPPO Find X10 Pro Max</h3><p>全员 2 亿像素。</p></div>
+      <div class="item"><h3>STEPX Neo 智能体手机</h3><p>10 月 13 日发布，主打「智能体」概念，尝鲜向。</p></div>
+    </section>
+    <section>
+      <div class="sec-title">娱乐 · 内娱</div>
+      <div class="item"><h3>《美人余》28 集收官</h3><p>李一桐主演，大结局当晚热搜一片「解气」。</p></div>
+      <div class="item"><h3>罗晋把女儿的画做成领带</h3><p>芭莎盛典红毯，他说前一晚和太太一起辨认画里哪个是自己，「胖的那个是我」。婚变传闻不攻自破。</p></div>
+      <div class="item"><h3>陈天润恋情传闻</h3><p>网传聊天记录与出行线索，时代峰峻暂未回应。</p></div>
+      <div class="item"><h3>高梓淇官宣孙晓彤</h3><p>离婚多年后公开新恋情，对方是圈外人。</p></div>
+    </section>
+    <section>
+      <div class="sec-title">娱乐 · 韩娱 / 华语</div>
+      <div class="item"><h3>黄文廷劈腿风波</h3><p>Ozone 成员黄文廷与林亭莉的恋情争议发酵，剧组已删除两人戏份、换角重拍。</p></div>
+      <div class="item"><h3>今日韩娱</h3><p>没捞到像样的瓜。韩国那边今天的头条是韩日续签 100 亿美元货币互换协议。</p></div>
+    </section>
+    <section>
+      <div class="sec-title">追剧雷达</div>
+      <div class="item"><h3>陶昕然 ·《雀骨》</h3><p>饰何太后，权倾朝野。网络剧，2026 年已播。从安陵容到太后，这个选角被讨论了很久。</p></div>
+      <div class="item"><h3>陶昕然 ·《绿水青山红日子》</h3><p>待播。</p></div>
+      <div class="item"><h3>陶昕然 · 综艺</h3><p>《乘风 2026》4 月播出，《朋友别见外》9 月 27 日播出。</p></div>
+      <div class="item"><h3>刘琳 ·《无尽的尽头》</h3><p>与任素汐、高伟光共同领衔，已定档。具体档期以平台为准。</p></div>
+    </section>
+    <section>
+      <div class="sec-title">体育</div>
+      <div class="item"><h3>吴宜泽夺深圳公开赛冠军</h3><p>10 比 5 胜袁思俊，中国德比。这是他继 2025 国锦赛、2026 世锦赛之后的第三个排名赛冠军，00 后首位三冠王。</p></div>
+      <div class="item"><h3>中国球员包揽世界前二</h3><p>吴宜泽升至世界第二，赵心童第一，历史第一次。</p></div>
+      <div class="item"><h3>北爱尔兰公开赛正在进行</h3><p>10 月 18—25 日，特鲁姆普、塞尔比、奥沙利文都在签表里。</p></div>
+      <div class="item"><h3>郑钦文中网夺冠</h3><p>10 月 11 日决赛 7:5、6:4 击败安德烈耶娃，首个 WTA1000 冠军。</p></div>
+      <div class="item"><h3>WTT 中国大满贯</h3><p>王曼昱 / 蒯曼女双夺冠。</p></div>
+      <div class="item"><h3>跆拳道大奖赛巴黎站</h3><p>中国队 1 金 1 银。</p></div>
+      <div class="item"><h3>亚残运女子铁饼</h3><p>米娜夺得 F37/F38 级冠军。</p></div>
+    </section>
+    <section>
+      <div class="sec-title">热搜</div>
+      <div class="item"><h3>微博</h3><p>陈天润恋情 · 日本出现「取消吃饭」现象 · 接到网贷催收电话统一说不认识 · 广交会 AI 新品热度拉满 · 中国体操女团时隔 20 年夺冠 · 神父弥撒时被十字架砸中身亡</p></div>
+      <div class="item"><h3>X 趋势</h3><p>今天的实时趋势没抓到干净的源，先空着。明天换抓取方式。</p></div>
+    </section>
+    <section>
+      <div class="sec-title">游戏 · Steam</div>
+      <div class="item"><h3>暗黑 4 打到 25 折</h3><p>第 39 周畅销榜，破天荒的折扣，直接卖爆。</p></div>
+      <div class="item"><h3>Steam 新品节 10 月版</h3><p>一年三次的新品节，试玩版集中放出，可以白嫖 demo。</p></div>
+      <div class="item"><h3>《影之刃零》</h3><p>灵游坊自研，虚幻 5，暗黑武侠动作。10 月发售表里的重头。</p></div>
+    </section>
+    <section>
+      <div class="sec-title">游戏 · 手游</div>
+      <div class="item"><h3>《怪物猎人》衍生手游停服</h3><p>官方宣布停服，同时会上线永久单机版。</p></div>
+      <div class="item"><h3>《全境封锁 2》国服 12 月 14 日停运</h3><p>腾讯扔出的消息，玩家措手不及。</p></div>
+      <div class="item"><h3>停运潮</h3><p>今年腾讯、网易都有多款游戏接连停运，经典老游和重磅新作一起退场。</p></div>
+      <div class="item"><h3>《歌之超时空要塞》停运复活</h3><p>众筹破 1.5 亿日元，解锁家用主机版本。</p></div>
+    </section>
+    <section>
+      <div class="sec-title">美食</div>
+      <div class="item"><h3>古茗</h3><p>2026 上半年推出 51 款新品，咖啡线是重点突破方向。具体单品名没抓到准信，明天补。</p></div>
+      <div class="item"><h3>茶话弄</h3><p>没抓到 10 月新品信息，官网只更新了出海布局。明天换源。</p></div>
+      <div class="item"><h3>寿司郎 · 10 月</h3><p>北海道祭：牛油薯仔可乐饼、乌贼配明太子、军舰三贯。10 月 6 日起新主菜单：蟹柳卷、蟹柳天妇罗、珍宝鱿鱼天妇罗。月中优惠：大切鰤平、生竹节虾二贯。区域限定：炙烤三文鱼配洋葱酱、炙烤鸡脖肉配柚子醋葱花、芒芒脆脆扁可颂。</p></div>
+      <div class="item"><h3>寿司郎 · 注意</h3><p>以上是港台门店的公开菜单，大陆门店不一定同步。要我按华北的菜单再核一遍就说。</p></div>
+      <div class="item"><h3>滨寿司</h3><p>没抓到 10 月新品和华北特惠的公开信息。它们今年的动作主要是开店，那个你不需要。</p></div>
+    </section>
+    <section>
+      <div class="sec-title">私房话</div>
+      <div class="item"><h3>1.5℃ 目标正式落空</h3><p>联合国报告首次明确写了这句话，同时专门介绍了中国的脱碳实践。</p></div>
+      <div class="item"><h3>法国十年期国债收益率触及 5%</h3><p>2002 年 7 月以来第一次。巴黎本周已经第三次夜间宵禁。</p></div>
+      <div class="item"><h3>沙特东部油田遭无人机袭击</h3><p>拦截碎片坠落致 2 死 2 伤。美国要求驻沙特的非紧急政府雇员及家属撤离。</p></div>
+      <div class="item"><h3>美俄乌同意重启三方会谈</h3><p>普京称原则上准备 11 月中旬恢复，泽连斯基表示支持。同时他说愿在保留至少 75% 领土控制权的基础上达成协议。</p></div>
+    </section>
+  </div>
+
+  <footer>蚀月夜报 · 每日 19:30 更新 · 给不想被算法喂饭的人</footer>
+</div>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  var btn = document.getElementById('themeBtn');
+  var meta = document.querySelector('meta[name=theme-color]');
+  function apply(t){
+    root.setAttribute('data-theme', t);
+    btn.textContent = t === 'night' ? '☀ 日间' : '☾ 夜间';
+    if(meta) meta.setAttribute('content', t === 'night' ? '#17140F' : '#F4EFE6');
+  }
+  var saved = localStorage.getItem('newspaper-theme');
+  apply(saved || 'day');
+  btn.addEventListener('click', function(){
+    var next = root.getAttribute('data-theme') === 'night' ? 'day' : 'night';
+    localStorage.setItem('newspaper-theme', next);
+    apply(next);
+  });
+})();
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('sw.js').catch(function(){});
+  });
+}
+</script>
+</body>
+</html>
