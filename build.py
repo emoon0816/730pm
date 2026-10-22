@@ -148,6 +148,10 @@ h1 .dot {{ color: var(--accent); }}
 .reading {{ margin-top: 22px; }}
 .rtitle {{ font-size: 25px; margin:0 0 5px; font-weight:500; letter-spacing:1px; line-height:1.4; }}
 .rby {{ font-size: 11.5px; color: var(--accent); letter-spacing:2px; margin-bottom: 20px; }}
+.rwhy {{ margin:0 0 26px; padding:12px 15px; background:var(--card); border-left:2px solid var(--accent); }}
+.rwhy p {{ margin:0 0 9px; font-size:12.8px; line-height:1.88; opacity:.92; }}
+.rwhy p:last-child {{ margin-bottom:0; }}
+.rwhy b {{ color:var(--accent); font-weight:500; margin-right:7px; letter-spacing:1px; }}
 .rbody p {{ margin:0 0 15px; font-size:15.5px; line-height:2.05; text-indent:2em; }}
 .rtrans {{ margin:24px 0 0; padding:14px 16px; background:var(--card); border-left:2px solid var(--line); }}
 .rlabel {{ font-size:10.5px; letter-spacing:2.4px; color:var(--accent); margin-bottom:9px; }}
@@ -303,6 +307,7 @@ MORE_T = """
 READING_T = """      <article class="reading">
         <h2 class="rtitle">{title}</h2>
         <div class="rby">{byline}</div>
+        {why}
         <div class="rbody">{body}</div>
         {trans}
         <div class="rfoot"><p><b>作者</b>{author}</p><p><b>出处</b>{source}</p></div>
@@ -340,8 +345,16 @@ def build(data_path=None, out_path=None):
             if r.get("trans"):
                 tp = "".join("<p>%s</p>" % x for x in r["trans"])
                 trans = '<div class="rtrans"><div class="rlabel">白 话</div>%s</div>' % tp
+            why = ""
+            if r.get("why") or r.get("after"):
+                rows = []
+                if r.get("why"):
+                    rows.append("<p><b>为什么是这篇</b>%s</p>" % r["why"])
+                if r.get("after"):
+                    rows.append("<p><b>读后</b>%s</p>" % r["after"])
+                why = '<div class="rwhy">%s</div>' % "".join(rows)
             body.append(READING_T.format(title=r["title"], byline=r.get("byline", ""),
-                                         body=rb, trans=trans,
+                                         body=rb, trans=trans, why=why,
                                          author=r.get("author", ""), source=r.get("source", "")))
         for g in t.get("groups", []):
             items = []
