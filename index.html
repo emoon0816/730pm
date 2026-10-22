@@ -124,6 +124,18 @@ h1 .dot { color: var(--accent); }
 }
 .note b { color:var(--accent); font-weight:500; }
 .item .more:active { opacity:.6; }
+.irow { display:flex; align-items:center; gap:10px; margin-top:7px; }
+.irow .more { margin-top:0; }
+.save, .del {
+  background:transparent; border:1px solid var(--line); color:var(--muted);
+  font-family:inherit; font-size:11.5px; padding:2px 10px; border-radius:999px; cursor:pointer;
+  transition: all .16s ease;
+}
+.save.on { border-color:var(--accent); color:var(--accent); }
+.save:active, .del:active { opacity:.55; }
+.del { }
+.sdate { font-size:11px; color:var(--muted); margin-left:auto; }
+.empty { color:var(--muted); font-size:13.5px; padding:26px 0; text-align:center; }
 
 footer {
   margin-top: 40px; padding-top: 13px; border-top: 1px solid var(--line);
@@ -142,12 +154,16 @@ footer {
   </header>
 
   <nav class="tabs" id="tabs"><button class="tab" data-id="head">头条</button>
+    <button class="tab" data-id="politics">时政</button>
     <button class="tab" data-id="tech">科技</button>
+    <button class="tab" data-id="science">科学</button>
     <button class="tab" data-id="ent">娱乐</button>
     <button class="tab" data-id="sport">体育</button>
     <button class="tab" data-id="hot">热搜</button>
     <button class="tab" data-id="game">游戏</button>
-    <button class="tab" data-id="food">美食</button></nav>
+    <button class="tab" data-id="food">美食</button>
+    <button class="tab" data-id="trivia">冷知识</button>
+    <button class="tab" data-id="today">那年今日</button><button class="tab" data-id="saved">书报架</button></nav>
 
   <main id="main">
     <section class="panel" data-id="head">
@@ -163,22 +179,72 @@ footer {
           <h3>1.5℃ 目标正式落空</h3>
           <p>联合国报告首次明确写了这句话。同一份报告里专门介绍了中国的脱碳实践——这在以前不常见。</p>
           <div class="note"><b>注</b> 1.5℃ 是巴黎协定画的那条线，指全球平均气温比工业化前高多少。「落空」的意思是，按现在的排放路径，这条线守不住了。</div>
-          <a class="more" href="https://www.thepaper.cn/list_25429" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://www.thepaper.cn/list_25429" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
         <div class="item">
           <h3>法国十年期国债收益率触及 5%</h3>
           <p>2002 年 7 月以来第一次。巴黎本周已经第三次夜间宵禁，马克龙说外部势力在利用骚乱做政治宣传。</p>
-          <a class="more" href="https://www.yicai.com/news/103403337.html" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://www.yicai.com/news/103403337.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
         <div class="item">
           <h3>沙特东部油田遭无人机袭击</h3>
           <p>拦截碎片坠落致 2 死 2 伤。美国要求驻沙特的非紧急政府雇员及家属撤离，油价跟着走高。</p>
-          <a class="more" href="https://www.voachinese.com/a/voa-today-20261021/8213815.html" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://www.voachinese.com/a/voa-today-20261021/8213815.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
         <div class="item">
           <h3>美俄乌同意重启三方会谈</h3>
           <p>普京称原则上准备 11 月中旬恢复，泽连斯基表示支持。他同时说，愿在保留至少 75% 领土控制权的基础上达成协议——这个数字比之前的口风松。</p>
-          <a class="more" href="https://www.yicai.com/news/103403337.html" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://www.yicai.com/news/103403337.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+        </div>
+      </div>
+    </section>
+    <section class="panel" data-id="politics">
+      <div class="group">
+        <div class="gname">周边</div>
+        <div class="item">
+          <h3>中菲互指撞船后，美军舰驶入南沙仙宾礁附近</h3>
+          <p>美军「查尔斯顿号」濒海战斗舰驶入仙宾礁附近海域，解放军南部战区组织兵力跟踪监视，并批评美方侵犯主权。菲军方回应称美舰没有进入中国领海。</p>
+          <div class="note"><b>注</b> 这事的关键不在船，在时间点。中菲刚互指撞船，美舰就进来，是在给马尼拉看「我在」。但真打起来，这种航行自由的表演一分钱不值。</div>
+          <div class="irow">
+          <a class="more" href="https://www.zaobao.com.sg/specials/cn/daily-brief/20261021" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+        </div>
+        <div class="item">
+          <h3>美日启动「利剑2027」联合军演</h3>
+          <p>规模是历年最大的一次，涵盖岛屿防卫与反舰科目。解放军全程跟监美军舰，同期有军机越过台海中线。</p>
+          <div class="note"><b>注</b> 「利剑」两年一次，这次赶在日本新防务预算落地之后。演习科目比参演人数更值得看。</div>
+          <div class="irow">
+          <a class="more" href="https://www.voachinese.com/a/voatoday-20261021/8213405.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+        </div>
+      </div>
+      <div class="group">
+        <div class="gname">欧洲与中东</div>
+        <div class="item">
+          <h3>特朗普称俄乌「是时候达成协议了」</h3>
+          <p>同时卢比奥表示美中俄三方军控对话「完全正常且必要」。这是华盛顿近期第一次把停战和军控放在同一句话里说。</p>
+          <div class="note"><b>注</b> 把「停战」和「军控」绑在一起谈，意思是：仗可以停，但核武库得先上桌。这不是给乌克兰的条件，是给俄罗斯的交换。</div>
+          <div class="irow">
+          <a class="more" href="https://www.voachinese.com/a/voatoday-20261021/8213405.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+        </div>
+        <div class="item">
+          <h3>法国暴动，各界对责任归属陷入分歧</h3>
+          <p>骚乱进入第二周，左右两派各自指向对方，中间派要求「先恢复秩序」。</p>
+          <div class="note"><b>注</b> 法国这类事每次的剧本都一样：先吵谁该负责，再吵谁该道歉，最后靠预算摆平。真正的问题——为什么年年烧——没人碰。</div>
+          <div class="irow">
+          <a class="more" href="https://www.bbc.com/zhongwen/topics/c83plve5vmjt/simp" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+        </div>
+      </div>
+      <div class="group">
+        <div class="gname">其他</div>
+        <div class="item">
+          <h3>韩国部分撤出驻乌克兰外交人员</h3>
+          <p>朝方派兵援俄之后，首尔方面的动作。撤的是「部分」，不是全部，留了人。</p>
+          <div class="note"><b>注</b> 撤一半留一半，是表态不是撤离。真要走，大使馆会先烧文件。</div>
+          <div class="irow">
+          <a class="more" href="https://english.news.cn/20261021/e7196340abf54675a0a35043691495ff/c.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
       </div>
     </section>
@@ -189,28 +255,33 @@ footer {
           <h3>10 月前四天落地十款模型</h3>
           <p>来自 7 家实验室，全部挤在 10 月 1 日发布。有意思的是这一波里没有 OpenAI、Anthropic、Google——三家头部都在憋下一个月。</p>
           <div class="note"><b>注</b> 这波全是中小厂在抢窗口。三家头部不发，不是没动作，是在等自己的节奏——大厂发一次要配齐 API、定价、安全策略，不是把权重扔出来就算完。</div>
-          <a class="more" href="https://capitalandcompute.net/blog/new-ai-models-october-2026" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://capitalandcompute.net/blog/new-ai-models-october-2026" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
         <div class="item">
           <h3>苏姿丰：2026 是「AI 推理元年」</h3>
           <p>AMD CEO 的原话是「推理需求会爆发式增长」，CPU 市场跟着起飞。她的判断依据是：训练是一次性的，推理是每天都要付的账。</p>
           <div class="note"><b>注</b> 训练是一次性的资本开支，推理是每天都在烧的运营成本。她说的「元年」，指的是后者开始压过前者。</div>
-          <a class="more" href="https://163.com/dy/article/L9826HFG0531G0IB.html" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://163.com/dy/article/L9826HFG0531G0IB.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
         <div class="item">
           <h3>Anthropic：蒸馏攻击被拦住九成</h3>
           <p>官方长文披露，针对模型蒸馏的防御升级之后，被提取出去的数据量减少了 90% 到 99%。换句话说，靠套话把模型能力搬走的成本变高了。</p>
-          <a class="more" href="https://www.anthropic.com/news" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://www.anthropic.com/news" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
         <div class="item">
           <h3>中国拟对 AI 技术出口管制</h3>
           <p>商务部、科技部第 48 号公告，涉及人工智能、生物医药、光伏三个领域。这一条震动的是全球供应链，不只是模型圈。</p>
-          <a class="more" href="https://news.sina.com.cn/c/2026-10-21/doc-inivyaaw4863018.shtml" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://news.sina.com.cn/c/2026-10-21/doc-inivyaaw4863018.shtml" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
         <div class="item">
           <h3>PHP 曝出严重安全漏洞</h3>
           <p>全球大量网站启动自查，部分站点直接下线。PHP 撑着互联网一大半的老网站，这次波及面不会小。</p>
-          <a class="more" href="https://flash.jin10.com/detail/20261022063240025800" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://flash.jin10.com/detail/20261022063240025800" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
       </div>
       <div class="group">
@@ -218,28 +289,62 @@ footer {
         <div class="item">
           <h3>华为 Mate 90 系列</h3>
           <p>10 月 1 日发布当天开售，标准版、Pro、Pro Max、RS 四款，搭载新一代麒麟旗舰芯片。选在国庆发布，是冲着换机潮去的。</p>
-          <a class="more" href="https://news.qq.com/rain/a/20260930A072L700" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://news.qq.com/rain/a/20260930A072L700" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
         <div class="item">
           <h3>小米 18 Pro / Pro Max</h3>
           <p>2nm 芯片、徕卡双 2 亿、7000mAh、100W 有线、IP69。Pro 落在 5999 这一档，参数表上没有明显短板。</p>
           <div class="note"><b>注</b> 2nm 说的是制程节点，数字越小，同样面积能塞进更多晶体管，同样性能下更省电。手机上最直接的体感是发热和续航。</div>
-          <a class="more" href="https://pad.zol.com.cn/1257/12570494.html" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://pad.zol.com.cn/1257/12570494.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
         <div class="item">
           <h3>vivo X500 Pro Max</h3>
           <p>继续走影像堆料路线，蔡司方案。这个月和 iPhone 17 系列并列热度最高的两台机器，也是线下店问得最多的。</p>
-          <a class="more" href="https://cj.sina.cn/articles/view/7879849863/1d5acf78706801wxyw" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://cj.sina.cn/articles/view/7879849863/1d5acf78706801wxyw" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
         <div class="item">
           <h3>OPPO Find X10 Pro Max</h3>
           <p>全员 2 亿像素，四摄没有一颗凑数的。这条路走到现在，拼的已经不是像素数，是算法压不压得住。</p>
-          <a class="more" href="https://www.sohu.com/a/1083326714_100173824" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://www.sohu.com/a/1083326714_100173824" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
         <div class="item">
           <h3>STEPX Neo 智能体手机</h3>
           <p>10 月 13 日发布，主打「智能体」概念。新生代品牌，尝鲜向，稳定性要等第一批用户反馈。</p>
-          <a class="more" href="https://cj.sina.cn/articles/view/7879849863/1d5acf78706801wxyw" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://cj.sina.cn/articles/view/7879849863/1d5acf78706801wxyw" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+        </div>
+      </div>
+    </section>
+    <section class="panel" data-id="science">
+      <div class="group">
+        <div class="gname">生命科学</div>
+        <div class="item">
+          <h3>科学家把遗传字母表又扩了两位</h3>
+          <p>UCSD 团队让细胞能稳定复制含多余合成碱基的 DNA，且不排斥。这是「人造生命用另一套字母写」这条路上的一步。</p>
+          <div class="note"><b>注</b> 现在的 DNA 只有 A、T、C、G 四个字母。加两个，等于给生命开了两个新抽屉。短期没什么用，长期说不定是新的药。</div>
+          <div class="irow">
+          <a class="more" href="https://today.ucsd.edu/story/breakthrough-helps-expand-genetic-alphabet" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+        </div>
+        <div class="item">
+          <h3>中山大学团队揭示脑膜血管栓塞对胶质母细胞瘤的免疫激活</h3>
+          <p>成果发在 Cell。方向是让免疫系统能看见脑里的肿瘤——这类肿瘤最难的地方就是免疫细胞进不去。</p>
+          <div class="note"><b>注</b> 胶质母细胞瘤的中位生存期只有一年多。这个研究不是治愈，是让原本进不了脑的免疫细胞找到门。</div>
+          <div class="irow">
+          <a class="more" href="https://research.sysu.edu.cn/" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+        </div>
+      </div>
+      <div class="group">
+        <div class="gname">地球与气候</div>
+        <div class="item">
+          <h3>厄尔尼诺正在同时改写两边天气</h3>
+          <p>华东台风偏强，印尼野火偏烈，两件事指向同一个环流异常。今年太平洋的海温分布是 2016 年以来最典型的厄尔尼诺型。</p>
+          <div class="note"><b>注</b> 一个环流错位，一头涝一头烧。气候这事最反直觉的地方是：远处的海温，决定你头顶下不下雨。</div>
+          <div class="irow">
+          <a class="more" href="https://www.bbc.com/zhongwen/topics/c83plve5vmjt/simp" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
       </div>
     </section>
@@ -249,22 +354,26 @@ footer {
         <div class="item">
           <h3>《美人余》28 集收官</h3>
           <p>李一桐主演，大结局当晚热搜一片「解气」。这部剧播到后半段口碑一路往上走，收官夜讨论量是开播时的三倍。</p>
-          <a class="more" href="https://news.abt-claw.com/entertainment/20261022/" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://news.abt-claw.com/entertainment/20261022/" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
         <div class="item">
           <h3>罗晋把女儿的画做成领带</h3>
           <p>芭莎盛典红毯，他说前一晚和太太一起辨认画里哪个是自己，「胖的那个是我」。这句话被当成婚变传闻的正面回应——比发声明管用。</p>
-          <a class="more" href="https://ent.sina.cn/2026-10-22/detail-iniwaezr5206928.d.html?vt=4" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://ent.sina.cn/2026-10-22/detail-iniwaezr5206928.d.html?vt=4" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
         <div class="item">
           <h3>陈天润恋情传闻</h3>
           <p>网传聊天记录和出行线索，说他和女生打车往返日照北京、还被带回家见父母。时代峰峻暂未回应，粉丝在等公司口径。</p>
-          <a class="more" href="https://www.sina.cn/news/detail/5356611494483041.html" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://www.sina.cn/news/detail/5356611494483041.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
         <div class="item">
           <h3>高梓淇官宣孙晓彤</h3>
           <p>离婚多年之后公开新恋情，对方是圈外人。他自己发的内容很克制，没有合照，只有一句「往后一起走」。</p>
-          <a class="more" href="https://ent.sina.cn/2026-10-22/detail-inivziwc6086554.d.html?vt=4" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://ent.sina.cn/2026-10-22/detail-inivziwc6086554.d.html?vt=4" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
       </div>
       <div class="group">
@@ -272,12 +381,14 @@ footer {
         <div class="item">
           <h3>黄文廷劈腿风波</h3>
           <p>Ozone 成员黄文廷与林亭莉的恋情争议发酵，剧组已经删掉两人戏份、换角重拍。这是这一周华语圈最实的一条瓜。</p>
-          <a class="more" href="https://news.videoland.com.tw/article/82a8444a-21a7-4ed0-89c2-c83fa2a0e45b.html" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://news.videoland.com.tw/article/82a8444a-21a7-4ed0-89c2-c83fa2a0e45b.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
         <div class="item">
           <h3>今日韩娱</h3>
           <p>没捞到像样的瓜。韩国那边今天的头条是韩日续签 100 亿美元货币互换协议——财经版热闹，娱乐版安静。</p>
-          <a class="more" href="https://cn.yna.co.kr/view/MYH20261016007200881" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://cn.yna.co.kr/view/MYH20261016007200881" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
       </div>
       <div class="group">
@@ -285,22 +396,26 @@ footer {
         <div class="item">
           <h3>陶昕然 ·《雀骨》</h3>
           <p>饰何太后，权倾朝野。网络剧，2026 年已播。从安陵容到太后，这个选角被讨论了整整一个月。</p>
-          <a class="more" href="https://ent.sina.cn/2026-07-10/detail-inihifyc5176047.d.html" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://ent.sina.cn/2026-07-10/detail-inihifyc5176047.d.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
         <div class="item">
           <h3>陶昕然 ·《绿水青山红日子》</h3>
           <p>待播。目前只有备案信息，没有定档消息。</p>
-          <a class="more" href="https://zh.wikipedia.org/zh-hans/%E9%99%B6%E6%98%95%E7%84%B6" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://zh.wikipedia.org/zh-hans/%E9%99%B6%E6%98%95%E7%84%B6" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
         <div class="item">
           <h3>陶昕然 · 综艺</h3>
           <p>《乘风 2026》4 月播出，一公小考跳《彩虹的微笑》，反差感拉满；《朋友别见外》9 月 27 日播出。</p>
-          <a class="more" href="https://m.thecover.cn/video_details.html?eid=wSVHt3qXbJGH90qSdq8Jkw==" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://m.thecover.cn/video_details.html?eid=wSVHt3qXbJGH90qSdq8Jkw==" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
         <div class="item">
           <h3>刘琳 ·《无尽的尽头》</h3>
           <p>与任素汐、高伟光共同领衔，已定档。具体档期以平台为准，这条我会盯着更新。</p>
-          <a class="more" href="https://m.thecover.cn/news_details.html?from=web&eid=nmED8oPVaESH90qSdq8Jkw==" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://m.thecover.cn/news_details.html?from=web&eid=nmED8oPVaESH90qSdq8Jkw==" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
       </div>
     </section>
@@ -311,17 +426,20 @@ footer {
           <h3>吴宜泽夺深圳公开赛冠军</h3>
           <p>决赛 10 比 5 胜袁思俊，一场中国德比。这是他继 2025 国锦赛、2026 世锦赛之后的第三个排名赛冠军，也是 00 后球员里第一个三冠王。</p>
           <div class="note"><b>注</b> 排名赛冠军和世锦赛冠军不是一个量级。他今年拿的是世锦赛，那是斯诺克的天花板，所以「三冠王」这三个字才有人提。</div>
-          <a class="more" href="https://www.sport.gov.cn/n20001280/n20067662/n20067613/c30096078/content.html" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://www.sport.gov.cn/n20001280/n20067662/n20067613/c30096078/content.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
         <div class="item">
           <h3>中国球员包揽世界前二</h3>
           <p>吴宜泽夺冠后升到世界第二，赵心童第一。这是历史上第一次由中国球员占住前两名。</p>
-          <a class="more" href="https://rankings.snooker.org/res/index.asp?season=2026&template=22" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://rankings.snooker.org/res/index.asp?season=2026&template=22" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
         <div class="item">
           <h3>北爱尔兰公开赛正在进行</h3>
           <p>10 月 18 到 25 日，特鲁姆普、塞尔比、奥沙利文都在签表里，吴宜泽也参赛。这站打完，世界前二的位置可能有变化。</p>
-          <a class="more" href="https://www.tntsports.co.uk/snooker/betvictor-northern-ireland-open/2026/ronnie-osullivan-judd-trump-wu-yize-mark-selby-mark-allen-schedule-results-scores-live-how-to-watch_sto23346190/story.shtml" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://www.tntsports.co.uk/snooker/betvictor-northern-ireland-open/2026/ronnie-osullivan-judd-trump-wu-yize-mark-selby-mark-allen-schedule-results-scores-live-how-to-watch_sto23346190/story.shtml" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
       </div>
       <div class="group">
@@ -329,22 +447,26 @@ footer {
         <div class="item">
           <h3>郑钦文中网夺冠</h3>
           <p>10 月 11 日决赛 7:5、6:4 击败今年法网冠军安德烈耶娃，拿到职业生涯第一个 WTA1000 冠军，也是中网女单历史上第一个中国冠军。</p>
-          <a class="more" href="https://www.chinanews.com.cn/ty/2026/10-12/10711158.shtml" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://www.chinanews.com.cn/ty/2026/10-12/10711158.shtml" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
         <div class="item">
           <h3>WTT 中国大满贯</h3>
           <p>王曼昱 / 蒯曼女双夺冠。</p>
-          <a class="more" href="https://www.chinanews.com.cn/ty/2026/10-10/10710797.shtml" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://www.chinanews.com.cn/ty/2026/10-10/10710797.shtml" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
         <div class="item">
           <h3>跆拳道大奖赛巴黎站</h3>
           <p>中国队 1 金 1 银。</p>
-          <a class="more" href="http://xinhuanet.com/sports/20261012/be90ffbcd4ec48f59c973926fb0f0cc5/c.html" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="http://xinhuanet.com/sports/20261012/be90ffbcd4ec48f59c973926fb0f0cc5/c.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
         <div class="item">
           <h3>亚残运女子铁饼</h3>
           <p>米娜夺得 F37/F38 级冠军。</p>
-          <a class="more" href="https://www.news.cn/sports/20261020/fb77c5bfa6504b39981f4e511471ec52/c.html" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://www.news.cn/sports/20261020/fb77c5bfa6504b39981f4e511471ec52/c.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
       </div>
     </section>
@@ -354,7 +476,8 @@ footer {
         <div class="item">
           <h3>今天挂在上面的事</h3>
           <p>陈天润恋情 · 日本出现「取消吃饭」现象 · 接到网贷催收电话统一说不认识 · 广交会 AI 新品热度拉满 · 中国体操女团时隔 20 年夺冠 · 神父弥撒时被十字架砸中身亡</p>
-          <a class="more" href="https://tophub.today/n/KqndgxeLl9" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://tophub.today/n/KqndgxeLl9" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
       </div>
       <div class="group">
@@ -362,7 +485,8 @@ footer {
         <div class="item">
           <h3>今天没抓到干净的源</h3>
           <p>X 的趋势接口要登录态，今天先空着。明天换一个抓法，抓到了补上。</p>
-          <a class="more" href="https://twitr.sh/twitter-trends" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://twitr.sh/twitter-trends" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
       </div>
     </section>
@@ -372,17 +496,20 @@ footer {
         <div class="item">
           <h3>暗黑 4 打到 25 折</h3>
           <p>第 39 周畅销榜直接卖爆。这个折扣是破天荒的，暴雪在用价格换回流玩家。</p>
-          <a class="more" href="https://store.steampowered.com/specials?l=schinese" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://store.steampowered.com/specials?l=schinese" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
         <div class="item">
           <h3>Steam 新品节 10 月版</h3>
           <p>一年三次的新品节，试玩版集中放出。想白嫖 demo 的这几天最划算。</p>
-          <a class="more" href="https://store.steampowered.com/" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://store.steampowered.com/" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
         <div class="item">
           <h3>《影之刃零》</h3>
           <p>灵游坊自研，虚幻 5，暗黑武侠动作。主角心脏受创，只剩六十六天寿命，一路逃亡。10 月发售表里的重头。</p>
-          <a class="more" href="https://ku.gamersky.com/release/" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://ku.gamersky.com/release/" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
       </div>
       <div class="group">
@@ -390,23 +517,27 @@ footer {
         <div class="item">
           <h3>《怪物猎人》衍生手游停服</h3>
           <p>官方宣布停服，同时会上线永久单机版。停服前会把数据做成离线可玩，算是给玩家一个交代。</p>
-          <a class="more" href="https://news.17173.com/content/10192026/155924550.shtml" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://news.17173.com/content/10192026/155924550.shtml" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
         <div class="item">
           <h3>《全境封锁 2》国服 12 月 14 日停运</h3>
           <p>腾讯发的公告，玩家措手不及。这是今年最突然的一条停运消息。</p>
           <div class="note"><b>注</b> 国服停运多半是代理合同到期、续约成本谈不拢。玩家数据能不能转，要看运营方最后怎么处理。</div>
-          <a class="more" href="https://news.17173.com/content/10172026/080051237.shtml" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://news.17173.com/content/10172026/080051237.shtml" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
         <div class="item">
           <h3>停运潮</h3>
           <p>今年腾讯、网易都有多款游戏接连停运，经典老游和重磅新作一起退场。17173 专门做了一期盘点。</p>
-          <a class="more" href="https://news.17173.com/content/10172026/080051237.shtml" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://news.17173.com/content/10172026/080051237.shtml" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
         <div class="item">
           <h3>《歌之超时空要塞》停运复活</h3>
           <p>众筹破 1.5 亿日元，解锁家用主机版本。停运的游戏靠玩家众筹活过来，这两年不多见。</p>
-          <a class="more" href="https://news.17173.com/content/10212026/133819505.shtml" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://news.17173.com/content/10212026/133819505.shtml" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
       </div>
     </section>
@@ -416,7 +547,8 @@ footer {
         <div class="item">
           <h3>上半年推了 51 款新品</h3>
           <p>2026 中期业绩：营收 74.7 亿，同比增 31.9%。咖啡线是重点突破方向，具体 10 月单品名没抓到准信，明天补。</p>
-          <a class="more" href="https://finance.sina.com.cn/tech/shenji/2026-08-27/doc-iniptnux9008810.shtml" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://finance.sina.com.cn/tech/shenji/2026-08-27/doc-iniptnux9008810.shtml" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
       </div>
       <div class="group">
@@ -424,7 +556,8 @@ footer {
         <div class="item">
           <h3>10 月新品没抓到</h3>
           <p>官网只更新了出海布局（美国、加拿大、英国、澳洲、新西兰）。门店菜单要去小程序看，明天换源。</p>
-          <a class="more" href="https://www.chahuanong.com/" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://www.chahuanong.com/" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
       </div>
       <div class="group">
@@ -432,11 +565,13 @@ footer {
         <div class="item">
           <h3>大陆 10 月菜单：没抓到公开信息</h3>
           <p>寿司郎大陆门店的菜单只在微信公众号和门店小程序里更新，网页上搜到的全是香港和台湾的，那些不是你要的，我一条都没放。明天开始我换抓取路径试公众号。</p>
+          <div class="irow"><button class="save" type="button">存</button></div>
         </div>
         <div class="item">
           <h3>已知的大陆价位参考</h3>
           <p>大陆门店一盘从 8 元到 28 元，走的是「小奢」定位，不是日本那种平价回转。这是今年 10 月的媒体探店数据。</p>
-          <a class="more" href="https://gourmet-times.com/restaurant-chain/trend-20261004-111527-ce3c.html" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://gourmet-times.com/restaurant-chain/trend-20261004-111527-ce3c.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
       </div>
       <div class="group">
@@ -444,10 +579,132 @@ footer {
         <div class="item">
           <h3>10 月新品没抓到公开信息</h3>
           <p>它们今年的动作主要是开店（2026 财年计划新开 100 家以上），那个你不需要。华北特惠要去门店小程序看。</p>
-          <a class="more" href="https://www.sina.cn/news/detail/5350798036832304.html" target="_blank" rel="noopener">原文 ↗</a>
+          <div class="irow">
+          <a class="more" href="https://www.sina.cn/news/detail/5350798036832304.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
         </div>
       </div>
     </section>
+    <section class="panel" data-id="trivia">
+      <div class="group">
+        <div class="gname">今天三条</div>
+        <div class="item">
+          <h3>飞机的窗户为什么必须是圆的</h3>
+          <p>1954 年，德哈维兰彗星号接连两次在空中解体，调查发现裂纹都起自方形舷窗的四个角。机身在空中反复增压减压，压力会在直角处集中，几万个起落之后那道角就开始裂。后来的客机全改成圆角，不是好看，是保命。</p>
+          <div class="note"><b>注</b> 这是工程史上最贵的一课：一个形状，两架飞机，几十条命。</div>
+          <div class="irow">
+          <a class="more" href="https://zh.wikipedia.org/wiki/%E5%BE%B7%E5%93%88%E7%B6%AD%E8%98%AD%E5%BD%96%E6%98%9F%E8%99%9F" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+        </div>
+        <div class="item">
+          <h3>罗马混凝土泡在水里会自己长回去</h3>
+          <p>现代混凝土靠水泥水化硬化，裂缝只会越裂越大。罗马混凝土里混着未完全消解的生石灰块，海水渗进裂缝后，石灰块溶解再结晶，把缝填死。2000 年后的今天，罗马港口的混凝土还在变强。</p>
+          <div class="note"><b>注</b> 我们造的东西怕水，他们造的越泡越结实。不是技术退步，是我们追求快，他们追求久。</div>
+          <div class="irow">
+          <a class="more" href="https://www.science.org/doi/10.1126/sciadv.add1602" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+        </div>
+        <div class="item">
+          <h3>两颗葡萄放进微波炉会冒火</h3>
+          <p>不是炸，是等离子体。两颗葡萄靠得很近时，微波在接触点聚集，局部电场强到把空气电离。同样的事用两颗蓝莓、甚至两段葡萄大小的水凝胶球都能做出来。2019 年有篇 PNAS 论文专门算过这个。</p>
+          <div class="note"><b>注</b> 别试。真的会烧起来。</div>
+          <div class="irow">
+          <a class="more" href="https://www.pnas.org/doi/10.1073/pnas.1818350116" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+        </div>
+      </div>
+    </section>
+    <section class="panel" data-id="today">
+      <div class="group">
+        <div class="gname">10 月 22 日的节日</div>
+        <div class="item">
+          <h3>世界传统医药日</h3>
+          <p>1991 年 12 月，42 个国家和地区的代表在北京开国际传统医药大会，把开幕日 10 月 22 日定为这个日子，写进了《北京宣言》。</p>
+          <div class="irow">
+          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8822%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+        </div>
+        <div class="item">
+          <h3>国际口吃日</h3>
+          <p>1998 年首次在英国和爱尔兰举办，之后每年这天，全球的口吃者互助组织会开线上会议，一直开到 22 号。</p>
+          <div class="irow">
+          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8822%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+        </div>
+      </div>
+      <div class="group">
+        <div class="gname">历史上的今天</div>
+        <div class="item">
+          <h3>794 年 · 日本迁都平安京</h3>
+          <p>桓武天皇把都城从长冈京迁到平安京，也就是今天的京都。此后一千年，京都一直是日本天皇所在，直到 1868 年明治维新。</p>
+          <div class="note"><b>注</b> 一座城做一千年首都。长安和洛阳加起来也没这么久。</div>
+          <div class="irow">
+          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8822%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+        </div>
+        <div class="item">
+          <h3>1633 年 · 明朝水师击败荷兰舰队</h3>
+          <p>福建沿海，郑芝龙部下的明朝水师在崇祯明荷海战中击退荷兰东印度公司舰队。荷兰人当时想靠封锁逼明朝开放贸易。</p>
+          <div class="note"><b>注</b> 明朝末期，水师还能赢欧洲列强。十几年后，这个王朝就没了。</div>
+          <div class="irow">
+          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8822%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+        </div>
+        <div class="item">
+          <h3>1797 年 · 人类第一次成功跳伞</h3>
+          <p>法国人加纳林在巴黎从气球上跳下，用的伞没有任何排气口，落地时剧烈摇晃，还吐了。但他活着落地了。</p>
+          <div class="note"><b>注</b> 现代降落伞的排气口，就是被这种摇晃逼出来的。</div>
+          <div class="irow">
+          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8822%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+        </div>
+        <div class="item">
+          <h3>1879 年 · 爱迪生的灯泡亮了 13 小时</h3>
+          <p>用碳丝做灯丝，连续点亮 13 个小时。这个数字在今天看来很短，但当时意味着「电灯可以过夜」。</p>
+          <div class="note"><b>注</b> 灯泡不是爱迪生发明的，能卖出去的灯泡才是。</div>
+          <div class="irow">
+          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8822%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+        </div>
+        <div class="item">
+          <h3>1883 年 · 纽约大都会歌剧院首演</h3>
+          <p>首演剧目是古诺的《浮士德》。这座剧院后来成了全球歌剧的顶配舞台之一。</p>
+          <div class="irow">
+          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8822%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+        </div>
+        <div class="item">
+          <h3>1935 年 · 红一方面军长征结束</h3>
+          <p>中共中央在陕北吴起镇召开扩大会议，宣告红一方面军长征胜利结束。从江西出发时八万多人，到陕北不足八千人。</p>
+          <div class="note"><b>注</b> 数字最狠：出发八万，到达八千。</div>
+          <div class="irow">
+          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8822%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+        </div>
+        <div class="item">
+          <h3>1944 年 · 莱特湾海战爆发</h3>
+          <p>人类历史上规模最大的一次海战，美日双方投入 200 多艘军舰。日本海军在此役后基本失去作战能力，神风特攻也从这个月开始。</p>
+          <div class="note"><b>注</b> 这是海战史的句号。之后再没有这种规模的舰队对决。</div>
+          <div class="irow">
+          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8822%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+        </div>
+        <div class="item">
+          <h3>1949 年 · 苏联试爆第一颗原子弹</h3>
+          <p>在哈萨克斯坦塞米巴拉金斯克试验场，苏联成功试爆 RDS-1，成为第二个拥有核武器的国家。美国垄断核武的四年就此结束。</p>
+          <div class="note"><b>注</b> 四年。美国以为能垄断二十年。</div>
+          <div class="irow">
+          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8822%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+        </div>
+        <div class="item">
+          <h3>1962 年 · 古巴导弹危机</h3>
+          <p>肯尼迪发表电视讲话，宣布对古巴实行海上封锁，要求苏联撤走部署在古巴的导弹。接下来六天，世界离核战最近。</p>
+          <div class="note"><b>注</b> 那六天里，两边都有军官主张开火。最后没打，靠的是两个人各退一步。</div>
+          <div class="irow">
+          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8822%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+        </div>
+        <div class="item">
+          <h3>1964 年 · 萨特拒绝诺贝尔文学奖</h3>
+          <p>诺贝尔委员会宣布把当年的文学奖颁给萨特，他随后公开拒绝，理由是「作家不该被变成机构」。他是史上第一个主动拒领的人。</p>
+          <div class="note"><b>注</b> 拒奖比领奖更难。领了是荣耀，拒了是立场。</div>
+          <div class="irow">
+          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8822%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+        </div>
+      </div>
+    </section>
+      <div class="panel" data-id="saved">
+        <div class="group">
+          <div class="gname">存下来的</div>
+          <div id="savedList"></div>
+        </div>
+      </div>
   </main>
 
   <footer>730pm · 每日 19:30 更新 · 给不想被算法喂饭的人</footer>
@@ -468,12 +725,62 @@ footer {
     localStorage.setItem('np-theme',n); apply(n);
   });
 
+  var TODAY="2026年10月22日", SKEY='np-saved';
+  function getSaved(){ try{ var a=JSON.parse(localStorage.getItem(SKEY)||'[]'); return Array.isArray(a)?a:[]; }catch(e){ return []; } }
+  function setSaved(a){ try{ localStorage.setItem(SKEY, JSON.stringify(a)); }catch(e){} }
+  function esc(s){ return String(s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  function renderSaved(){
+    var el=document.getElementById('savedList'); if(!el) return;
+    var arr=getSaved();
+    if(!arr.length){ el.innerHTML='<p class="empty">还没有存过东西。<br>每条新闻下面有个「存」，点了就留在这儿，明天换版也带不走它。</p>'; return; }
+    el.innerHTML=arr.map(function(x,i){
+      return '<div class="item"><h3>'+esc(x.t)+'</h3><p>'+esc(x.d)+'</p>'
+        +(x.note?'<div class="note"><b>注</b> '+esc(x.note)+'</div>':'')
+        +'<div class="irow">'+(x.u?'<a class="more" href="'+esc(x.u)+'" target="_blank" rel="noopener">原文</a>':'')
+        +'<span class="sdate">'+esc(x.ts||'')+'</span>'
+        +'<button class="del" type="button" data-i="'+i+'">删</button></div></div>';
+    }).join('');
+  }
+  (function markSaved(){
+    var arr=getSaved(); if(!arr.length) return;
+    [].forEach.call(document.querySelectorAll('.panel:not([data-id=saved]) .item'), function(it){
+      var h=it.querySelector('h3'); if(!h) return;
+      var a=it.querySelector('.more');
+      var t=h.textContent, u=a?a.getAttribute('href'):'';
+      if(arr.some(function(x){ return x.t===t && x.u===u; })){
+        var b=it.querySelector('.save'); if(b){ b.classList.add('on'); b.textContent='已存'; }
+      }
+    });
+  })();
+  document.addEventListener('click', function(e){
+    var b=e.target.closest('.save');
+    if(b){
+      var it=b.closest('.item'); if(!it) return;
+      var h=it.querySelector('h3'), pp=it.querySelector('p');
+      var a=it.querySelector('.more'), nn=it.querySelector('.note');
+      var obj={t:h?h.textContent:'', d:pp?pp.textContent:'', u:a?a.getAttribute('href'):'',
+               note:nn?nn.textContent.replace(/^注/,'').trim():'', ts:TODAY};
+      var arr=getSaved();
+      var idx=-1; for(var i=0;i<arr.length;i++){ if(arr[i].t===obj.t && arr[i].u===obj.u){ idx=i; break; } }
+      if(idx>=0){ arr.splice(idx,1); b.classList.remove('on'); b.textContent='存'; }
+      else { arr.unshift(obj); b.classList.add('on'); b.textContent='已存'; }
+      setSaved(arr); renderSaved(); return;
+    }
+    var d=e.target.closest('.del');
+    if(d){
+      var k=parseInt(d.getAttribute('data-i'),10);
+      var arr2=getSaved(); if(!isNaN(k)) arr2.splice(k,1);
+      setSaved(arr2); renderSaved();
+    }
+  });
+
   var tabs=[].slice.call(document.querySelectorAll('.tab'));
   var panels=[].slice.call(document.querySelectorAll('.panel'));
   function show(id){
     tabs.forEach(function(b){ b.classList.toggle('on', b.dataset.id===id); });
     panels.forEach(function(p){ p.classList.toggle('on', p.dataset.id===id); });
     localStorage.setItem('np-tab',id);
+    if(id==='saved') renderSaved();
     var on=document.querySelector('.tab.on');
     if(on && on.scrollIntoView) on.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'});
     window.scrollTo({top:0,behavior:'smooth'});

@@ -131,6 +131,18 @@ h1 .dot {{ color: var(--accent); }}
 }}
 .note b {{ color:var(--accent); font-weight:500; }}
 .item .more:active {{ opacity:.6; }}
+.irow {{ display:flex; align-items:center; gap:10px; margin-top:7px; }}
+.irow .more {{ margin-top:0; }}
+.save, .del {{
+  background:transparent; border:1px solid var(--line); color:var(--muted);
+  font-family:inherit; font-size:11.5px; padding:2px 10px; border-radius:999px; cursor:pointer;
+  transition: all .16s ease;
+}}
+.save.on {{ border-color:var(--accent); color:var(--accent); }}
+.save:active, .del:active {{ opacity:.55; }}
+.del {{ }}
+.sdate {{ font-size:11px; color:var(--muted); margin-left:auto; }}
+.empty {{ color:var(--muted); font-size:13.5px; padding:26px 0; text-align:center; }}
 
 footer {{
   margin-top: 40px; padding-top: 13px; border-top: 1px solid var(--line);
@@ -148,10 +160,16 @@ footer {{
     <div class="dateline">{date} · {weekday} · {issue}</div>
   </header>
 
-  <nav class="tabs" id="tabs">{tab_buttons}</nav>
+  <nav class="tabs" id="tabs">{tab_buttons}<button class="tab" data-id="saved">书报架</button></nav>
 
   <main id="main">
 {panels}
+      <div class="panel" data-id="saved">
+        <div class="group">
+          <div class="gname">存下来的</div>
+          <div id="savedList"></div>
+        </div>
+      </div>
   </main>
 
   <footer>730pm · 每日 19:30 更新 · 给不想被算法喂饭的人</footer>
@@ -172,12 +190,62 @@ footer {{
     localStorage.setItem('np-theme',n); apply(n);
   }});
 
+  var TODAY="{date}", SKEY='np-saved';
+  function getSaved(){{ try{{ var a=JSON.parse(localStorage.getItem(SKEY)||'[]'); return Array.isArray(a)?a:[]; }}catch(e){{ return []; }} }}
+  function setSaved(a){{ try{{ localStorage.setItem(SKEY, JSON.stringify(a)); }}catch(e){{}} }}
+  function esc(s){{ return String(s||'').replace(/[&<>"]/g,function(c){{return {{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}}[c];}}); }}
+  function renderSaved(){{
+    var el=document.getElementById('savedList'); if(!el) return;
+    var arr=getSaved();
+    if(!arr.length){{ el.innerHTML='<p class="empty">还没有存过东西。<br>每条新闻下面有个「存」，点了就留在这儿，明天换版也带不走它。</p>'; return; }}
+    el.innerHTML=arr.map(function(x,i){{
+      return '<div class="item"><h3>'+esc(x.t)+'</h3><p>'+esc(x.d)+'</p>'
+        +(x.note?'<div class="note"><b>注</b> '+esc(x.note)+'</div>':'')
+        +'<div class="irow">'+(x.u?'<a class="more" href="'+esc(x.u)+'" target="_blank" rel="noopener">原文</a>':'')
+        +'<span class="sdate">'+esc(x.ts||'')+'</span>'
+        +'<button class="del" type="button" data-i="'+i+'">删</button></div></div>';
+    }}).join('');
+  }}
+  (function markSaved(){{
+    var arr=getSaved(); if(!arr.length) return;
+    [].forEach.call(document.querySelectorAll('.panel:not([data-id=saved]) .item'), function(it){{
+      var h=it.querySelector('h3'); if(!h) return;
+      var a=it.querySelector('.more');
+      var t=h.textContent, u=a?a.getAttribute('href'):'';
+      if(arr.some(function(x){{ return x.t===t && x.u===u; }})){{
+        var b=it.querySelector('.save'); if(b){{ b.classList.add('on'); b.textContent='已存'; }}
+      }}
+    }});
+  }})();
+  document.addEventListener('click', function(e){{
+    var b=e.target.closest('.save');
+    if(b){{
+      var it=b.closest('.item'); if(!it) return;
+      var h=it.querySelector('h3'), pp=it.querySelector('p');
+      var a=it.querySelector('.more'), nn=it.querySelector('.note');
+      var obj={{t:h?h.textContent:'', d:pp?pp.textContent:'', u:a?a.getAttribute('href'):'',
+               note:nn?nn.textContent.replace(/^注/,'').trim():'', ts:TODAY}};
+      var arr=getSaved();
+      var idx=-1; for(var i=0;i<arr.length;i++){{ if(arr[i].t===obj.t && arr[i].u===obj.u){{ idx=i; break; }} }}
+      if(idx>=0){{ arr.splice(idx,1); b.classList.remove('on'); b.textContent='存'; }}
+      else {{ arr.unshift(obj); b.classList.add('on'); b.textContent='已存'; }}
+      setSaved(arr); renderSaved(); return;
+    }}
+    var d=e.target.closest('.del');
+    if(d){{
+      var k=parseInt(d.getAttribute('data-i'),10);
+      var arr2=getSaved(); if(!isNaN(k)) arr2.splice(k,1);
+      setSaved(arr2); renderSaved();
+    }}
+  }});
+
   var tabs=[].slice.call(document.querySelectorAll('.tab'));
   var panels=[].slice.call(document.querySelectorAll('.panel'));
   function show(id){{
     tabs.forEach(function(b){{ b.classList.toggle('on', b.dataset.id===id); }});
     panels.forEach(function(p){{ p.classList.toggle('on', p.dataset.id===id); }});
     localStorage.setItem('np-tab',id);
+    if(id==='saved') renderSaved();
     var on=document.querySelector('.tab.on');
     if(on && on.scrollIntoView) on.scrollIntoView({{inline:'center',block:'nearest',behavior:'smooth'}});
     window.scrollTo({{top:0,behavior:'smooth'}});
@@ -208,7 +276,8 @@ GROUP_T = """      <div class="group">
 
 ITEM_T = """        <div class="item">
           <h3>{t}</h3>
-          <p>{d}</p>{note}{more}
+          <p>{d}</p>{note}
+          <div class="irow">{more}<button class="save" type="button">存</button></div>
         </div>"""
 
 NOTE_T = """
