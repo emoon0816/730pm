@@ -1,13 +1,11 @@
 // 蚀月夜报 service worker
-const CACHE = '730pm-v2';
+const CACHE = '730pm-v3';
 const ASSETS = [
   './',
   './index.html',
   './manifest.json',
   './fonts/ChillRoundGothic_Medium.ttf',
-  './icon-192.png',
-  './icon-512.png',
-  './apple-touch-icon.png'
+  './favicon.ico'
 ];
 
 self.addEventListener('install', e => {
