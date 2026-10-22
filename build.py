@@ -23,6 +23,12 @@ TEMPLATE = """<!DOCTYPE html>
   font-weight: 500;
   font-display: swap;
 }}
+@font-face {{
+  font-family: 'BarlowCond';
+  src: url('fonts/BarlowCondensed-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+}}
 :root {{
   --bg: #F4EFE6;
   --ink: #2A2521;
@@ -55,13 +61,14 @@ body {{
 /* 报头 */
 header {{ padding: 22px 0 12px; position: relative; }}
 .masthead {{ display:flex; align-items:baseline; justify-content:space-between; gap:10px; }}
-h1 {{ font-size: 27px; margin:0; letter-spacing:1px; font-weight:500; }}
+h1 {{ font-size: 34px; margin:0; letter-spacing:.5px; font-weight:700;
+     font-family:'BarlowCond','ChillRound',sans-serif; line-height:1; }}
 h1 .dot {{ color: var(--accent); }}
-.dateline {{ font-size: 11.5px; color: var(--muted); letter-spacing:.4px; }}
+.dateline {{ font-size: 11.5px; color: var(--muted); letter-spacing:.4px; margin-top:7px; }}
 #themeBtn {{
-  position:absolute; right:0; top:24px;
   background:transparent; border:1px solid var(--line); color:var(--muted);
   border-radius:999px; padding:4px 11px; font-size:12px; font-family:inherit; cursor:pointer;
+  align-self:center;
 }}
 #themeBtn:active {{ opacity:.6; }}
 
@@ -133,9 +140,9 @@ footer {{
   <header>
     <div class="masthead">
       <h1>730pm<span class="dot">.</span></h1>
-      <div class="dateline">{date} · {weekday} · {issue}</div>
+      <button id="themeBtn" aria-label="切换日夜">夜间</button>
     </div>
-    <button id="themeBtn" aria-label="切换日夜">夜间</button>
+    <div class="dateline">{date} · {weekday} · {issue}</div>
   </header>
 
   <nav class="tabs" id="tabs">{tab_buttons}</nav>
