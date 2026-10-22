@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>蚀月夜报 · 2026年10月22日</title>
+<title>730pm · 2026年10月22日</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#F4EFE6">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -111,7 +111,7 @@ footer {
 <div class="wrap">
   <header>
     <div class="masthead">
-      <h1>蚀月夜报<span class="dot">.</span></h1>
+      <h1>730pm<span class="dot">.</span></h1>
       <div class="dateline">2026年10月22日 · 星期四 · 第 001 期</div>
     </div>
     <div class="sub">每天晚上七点半，世界发生了这些</div>
@@ -206,7 +206,7 @@ footer {
     </section>
   </div>
 
-  <footer>蚀月夜报 · 每日 19:30 更新 · 给不想被算法喂饭的人</footer>
+  <footer>730pm · 每日 19:30 更新 · 给不想被算法喂饭的人</footer>
 </div>
 
 <script>
@@ -216,7 +216,7 @@ footer {
   var meta = document.querySelector('meta[name=theme-color]');
   function apply(t){
     root.setAttribute('data-theme', t);
-    btn.textContent = t === 'night' ? '☀ 日间' : '☾ 夜间';
+    btn.textContent = t === 'night' ? '日间' : '夜间';
     if(meta) meta.setAttribute('content', t === 'night' ? '#17140F' : '#F4EFE6');
   }
   var saved = localStorage.getItem('newspaper-theme');

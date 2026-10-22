@@ -1,6 +1,6 @@
 {
-  "name": "蚀月夜报",
-  "short_name": "夜报",
+  "name": "730pm",
+  "short_name": "730",
   "description": "每天晚上七点半，世界发生了这些",
   "start_url": "./",
   "scope": "./",

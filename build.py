@@ -10,7 +10,7 @@ TEMPLATE = """<!DOCTYPE html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>蚀月夜报 · {date}</title>
+<title>730pm · {date}</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#F4EFE6">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -118,7 +118,7 @@ footer {{
 <div class="wrap">
   <header>
     <div class="masthead">
-      <h1>蚀月夜报<span class="dot">.</span></h1>
+      <h1>730pm<span class="dot">.</span></h1>
       <div class="dateline">{date} · {weekday} · {issue}</div>
     </div>
     <div class="sub">每天晚上七点半，世界发生了这些</div>
@@ -136,7 +136,7 @@ footer {{
 {sections}
   </div>
 
-  <footer>蚀月夜报 · 每日 19:30 更新 · 给不想被算法喂饭的人</footer>
+  <footer>730pm · 每日 19:30 更新 · 给不想被算法喂饭的人</footer>
 </div>
 
 <script>
