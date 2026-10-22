@@ -144,6 +144,20 @@ h1 .dot {{ color: var(--accent); }}
 .sdate {{ font-size:11px; color:var(--muted); margin-left:auto; }}
 .empty {{ color:var(--muted); font-size:13.5px; padding:26px 0; text-align:center; }}
 
+/* 阅读 */
+.reading {{ margin-top: 22px; }}
+.rtitle {{ font-size: 25px; margin:0 0 5px; font-weight:500; letter-spacing:1px; line-height:1.4; }}
+.rby {{ font-size: 11.5px; color: var(--accent); letter-spacing:2px; margin-bottom: 20px; }}
+.rbody p {{ margin:0 0 15px; font-size:15.5px; line-height:2.05; text-indent:2em; }}
+.rtrans {{ margin:24px 0 0; padding:14px 16px; background:var(--card); border-left:2px solid var(--line); }}
+.rlabel {{ font-size:10.5px; letter-spacing:2.4px; color:var(--accent); margin-bottom:9px; }}
+.rtrans p {{ margin:0 0 11px; font-size:13px; line-height:1.95; color:var(--muted); text-indent:2em; }}
+.rtrans p:last-child {{ margin-bottom:0; }}
+.rfoot {{ margin-top:26px; padding-top:15px; border-top:1px solid var(--line);
+  font-size:12px; color:var(--muted); line-height:1.9; }}
+.rfoot p {{ margin:0 0 6px; }}
+.rfoot b {{ color:var(--accent); font-weight:500; margin-right:7px; letter-spacing:1px; }}
+
 footer {{
   margin-top: 40px; padding-top: 13px; border-top: 1px solid var(--line);
   font-size: 11px; color: var(--muted); text-align:center; letter-spacing:.4px;
@@ -286,6 +300,14 @@ NOTE_T = """
 MORE_T = """
           <a class="more" href="{u}" target="_blank" rel="noopener">原文 ↗</a>"""
 
+READING_T = """      <article class="reading">
+        <h2 class="rtitle">{title}</h2>
+        <div class="rby">{byline}</div>
+        <div class="rbody">{body}</div>
+        {trans}
+        <div class="rfoot"><p><b>作者</b>{author}</p><p><b>出处</b>{source}</p></div>
+      </article>"""
+
 LEAD_T = """    <div class="lead">
       <div class="kicker">{kicker}</div>
       <h2>{title}</h2>
@@ -311,7 +333,17 @@ def build(data_path=None, out_path=None):
             link = (' · <a href="%s" target="_blank" rel="noopener">原文 ↗</a>' % l["u"]) if l.get("u") else ""
             body.append(LEAD_T.format(kicker=l["kicker"], title=l["title"], body=l["body"],
                                       source=l.get("source", ""), link=link))
-        for g in t["groups"]:
+        if "reading" in t:
+            r = t["reading"]
+            rb = "".join("<p>%s</p>" % x for x in r["body"])
+            trans = ""
+            if r.get("trans"):
+                tp = "".join("<p>%s</p>" % x for x in r["trans"])
+                trans = '<div class="rtrans"><div class="rlabel">白 话</div>%s</div>' % tp
+            body.append(READING_T.format(title=r["title"], byline=r.get("byline", ""),
+                                         body=rb, trans=trans,
+                                         author=r.get("author", ""), source=r.get("source", "")))
+        for g in t.get("groups", []):
             items = []
             for i in g["items"]:
                 more = MORE_T.format(u=i["u"]) if i.get("u") else ""
