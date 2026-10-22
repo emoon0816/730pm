@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""蚀月夜报 · 生成器：读 data.json -> index.html"""
-import json, sys, os, datetime
+"""730pm · 生成器：读 data.json -> index.html（分 tab 版）"""
+import json, os
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 
@@ -12,9 +12,10 @@ TEMPLATE = """<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>730pm · {date}</title>
 <link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#F4EFE6">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="robots" content="noindex, nofollow">
 <style>
 @font-face {{
   font-family: 'ChillRound';
@@ -27,8 +28,9 @@ TEMPLATE = """<!DOCTYPE html>
   --ink: #2A2521;
   --accent: #6C2F36;
   --muted: #7A6E62;
-  --line: #D8CFC0;
+  --line: #DCD3C4;
   --card: #FBF7F0;
+  --tabbar: rgba(244,239,230,.93);
 }}
 html[data-theme="night"] {{
   --bg: #17140F;
@@ -37,80 +39,85 @@ html[data-theme="night"] {{
   --muted: #8A8074;
   --line: #332C24;
   --card: #1F1B15;
+  --tabbar: rgba(23,20,15,.93);
 }}
-* {{ box-sizing: border-box; }}
-html {{ background: var(--bg); }}
+* {{ box-sizing: border-box; -webkit-tap-highlight-color: transparent; }}
+html, body {{ background: var(--bg); }}
 body {{
-  margin: 0;
-  background: var(--bg);
-  color: var(--ink);
+  margin: 0; color: var(--ink);
   font-family: 'ChillRound', -apple-system, 'PingFang SC', 'Noto Sans CJK SC', sans-serif;
-  font-size: 15px;
-  line-height: 1.75;
+  font-size: 15px; line-height: 1.72;
   -webkit-font-smoothing: antialiased;
   transition: background .25s ease, color .25s ease;
 }}
-.wrap {{ max-width: 880px; margin: 0 auto; padding: 0 18px 60px; }}
+.wrap {{ max-width: 720px; margin: 0 auto; padding: 0 16px 70px; }}
 
 /* 报头 */
-header {{
-  border-bottom: 3px double var(--ink);
-  padding: 26px 0 14px;
-  margin-bottom: 6px;
-  position: relative;
-}}
-.masthead {{
-  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
-  flex-wrap: wrap;
-}}
-h1 {{
-  font-size: 30px; margin: 0; letter-spacing: 2px; font-weight: 500;
-}}
+header {{ padding: 22px 0 12px; position: relative; }}
+.masthead {{ display:flex; align-items:baseline; justify-content:space-between; gap:10px; }}
+h1 {{ font-size: 27px; margin:0; letter-spacing:1px; font-weight:500; }}
 h1 .dot {{ color: var(--accent); }}
-.dateline {{ font-size: 12.5px; color: var(--muted); letter-spacing: .5px; }}
-.sub {{
-  margin-top: 8px; font-size: 12.5px; color: var(--muted); letter-spacing: 1px;
-}}
+.dateline {{ font-size: 11.5px; color: var(--muted); letter-spacing:.4px; }}
 #themeBtn {{
-  position: absolute; right: 0; top: 26px;
-  background: transparent; border: 1px solid var(--line); color: var(--ink);
-  border-radius: 999px; padding: 5px 12px; font-size: 13px;
-  font-family: inherit; cursor: pointer;
+  position:absolute; right:0; top:24px;
+  background:transparent; border:1px solid var(--line); color:var(--muted);
+  border-radius:999px; padding:4px 11px; font-size:12px; font-family:inherit; cursor:pointer;
 }}
-#themeBtn:active {{ opacity: .6; }}
+#themeBtn:active {{ opacity:.6; }}
+
+/* tab bar */
+.tabs {{
+  position: sticky; top: 0; z-index: 20;
+  display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none;
+  margin: 0 -16px; padding: 10px 16px;
+  background: var(--tabbar);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}}
+.tabs::-webkit-scrollbar {{ display: none; }}
+.tab {{
+  flex: 0 0 auto; border: 1px solid var(--line); background: transparent;
+  color: var(--muted); font-family: inherit; font-size: 13.5px;
+  padding: 6px 15px; border-radius: 999px; cursor: pointer;
+  transition: all .18s ease; white-space: nowrap;
+}}
+.tab.on {{ background: var(--accent); border-color: var(--accent); color: var(--bg); }}
+
+/* 面板 */
+.panel {{ display: none; animation: fade .22s ease; }}
+.panel.on {{ display: block; }}
+@keyframes fade {{ from {{ opacity:0; transform: translateY(4px); }} to {{ opacity:1; transform:none; }} }}
 
 /* 头条 */
 .lead {{
-  margin: 22px 0 8px;
-  padding: 18px 20px;
-  background: var(--card);
-  border-left: 3px solid var(--accent);
-  border-radius: 2px;
+  margin: 18px 0 6px; padding: 16px 17px;
+  background: var(--card); border-left: 3px solid var(--accent);
 }}
-.kicker {{
-  font-size: 11.5px; letter-spacing: 2px; color: var(--accent); margin-bottom: 6px;
-}}
-.lead h2 {{ font-size: 21px; margin: 0 0 8px; line-height: 1.5; font-weight: 500; }}
-.lead p {{ margin: 0; font-size: 14.5px; }}
-.src {{ font-size: 11.5px; color: var(--muted); margin-top: 8px; }}
+.kicker {{ font-size: 11px; letter-spacing:1.6px; color: var(--accent); margin-bottom:5px; }}
+.lead h2 {{ font-size: 19px; margin:0 0 8px; line-height:1.5; font-weight:500; }}
+.lead p {{ margin:0; font-size:14px; }}
+.lead .src {{ font-size:11.5px; color:var(--muted); margin-top:8px; }}
+.lead .src a {{ color:var(--accent); text-decoration:none; }}
 
-/* 栏目 */
-.cols {{ column-gap: 30px; }}
-@media (min-width: 720px) {{ .cols {{ column-count: 2; }} }}
-section {{ break-inside: avoid; margin: 26px 0 0; }}
-.sec-title {{
-  font-size: 13px; letter-spacing: 1.5px; color: var(--accent);
-  border-bottom: 1px solid var(--line); padding-bottom: 5px; margin-bottom: 10px;
-  font-weight: 500;
+/* 分组 */
+.group {{ margin: 22px 0 0; }}
+.gname {{
+  font-size: 12.5px; letter-spacing:1.4px; color: var(--accent);
+  border-bottom: 1px solid var(--line); padding-bottom: 5px; margin-bottom: 12px;
 }}
-.item {{ margin-bottom: 14px; }}
-.item h3 {{ font-size: 15px; margin: 0 0 3px; font-weight: 500; line-height: 1.55; }}
-.item p {{ margin: 0; font-size: 13.5px; color: var(--ink); opacity: .85; }}
-.item p.br {{ color: var(--muted); }}
+.item {{ padding: 12px 0 13px; border-bottom: 1px dashed var(--line); }}
+.item:last-child {{ border-bottom: none; }}
+.item h3 {{ font-size: 15px; margin:0 0 5px; font-weight:500; line-height:1.55; }}
+.item p {{ margin:0; font-size:13.5px; opacity:.86; }}
+.item .more {{
+  display:inline-block; margin-top:7px; font-size:12px; color:var(--accent);
+  text-decoration:none; letter-spacing:.3px;
+}}
+.item .more:active {{ opacity:.6; }}
 
 footer {{
-  margin-top: 46px; padding-top: 14px; border-top: 1px solid var(--line);
-  font-size: 11.5px; color: var(--muted); text-align: center; letter-spacing: .5px;
+  margin-top: 40px; padding-top: 13px; border-top: 1px solid var(--line);
+  font-size: 11px; color: var(--muted); text-align:center; letter-spacing:.4px;
 }}
 </style>
 </head>
@@ -121,46 +128,52 @@ footer {{
       <h1>730pm<span class="dot">.</span></h1>
       <div class="dateline">{date} · {weekday} · {issue}</div>
     </div>
-    <div class="sub">每天晚上七点半，世界发生了这些</div>
-    <button id="themeBtn" aria-label="切换日夜">☾ 夜间</button>
+    <button id="themeBtn" aria-label="切换日夜">夜间</button>
   </header>
 
-  <div class="lead">
-    <div class="kicker">{lead_kicker}</div>
-    <h2>{lead_title}</h2>
-    <p>{lead_body}</p>
-    <div class="src">{lead_source}</div>
-  </div>
+  <nav class="tabs" id="tabs">{tab_buttons}</nav>
 
-  <div class="cols">
-{sections}
-  </div>
+  <main id="main">
+{panels}
+  </main>
 
   <footer>730pm · 每日 19:30 更新 · 给不想被算法喂饭的人</footer>
 </div>
 
 <script>
 (function(){{
-  var root = document.documentElement;
-  var btn = document.getElementById('themeBtn');
-  var meta = document.querySelector('meta[name=theme-color]');
+  var root=document.documentElement, btn=document.getElementById('themeBtn');
+  var meta=document.querySelector('meta[name=theme-color]');
   function apply(t){{
-    root.setAttribute('data-theme', t);
-    btn.textContent = t === 'night' ? '日间' : '夜间';
-    if(meta) meta.setAttribute('content', t === 'night' ? '#17140F' : '#F4EFE6');
+    root.setAttribute('data-theme',t);
+    btn.textContent = t==='night' ? '日间' : '夜间';
+    if(meta) meta.setAttribute('content', t==='night' ? '#17140F' : '#F4EFE6');
   }}
-  var saved = localStorage.getItem('newspaper-theme');
-  apply(saved || 'day');
-  btn.addEventListener('click', function(){{
-    var next = root.getAttribute('data-theme') === 'night' ? 'day' : 'night';
-    localStorage.setItem('newspaper-theme', next);
-    apply(next);
+  apply(localStorage.getItem('np-theme')||'day');
+  btn.addEventListener('click',function(){{
+    var n = root.getAttribute('data-theme')==='night'?'day':'night';
+    localStorage.setItem('np-theme',n); apply(n);
   }});
+
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  var panels=[].slice.call(document.querySelectorAll('.panel'));
+  function show(id){{
+    tabs.forEach(function(b){{ b.classList.toggle('on', b.dataset.id===id); }});
+    panels.forEach(function(p){{ p.classList.toggle('on', p.dataset.id===id); }});
+    localStorage.setItem('np-tab',id);
+    var on=document.querySelector('.tab.on');
+    if(on && on.scrollIntoView) on.scrollIntoView({{inline:'center',block:'nearest',behavior:'smooth'}});
+    window.scrollTo({{top:0,behavior:'smooth'}});
+  }}
+  tabs.forEach(function(b){{ b.addEventListener('click',function(){{ show(b.dataset.id); }}); }});
+  var start=localStorage.getItem('np-tab');
+  if(!start || !document.querySelector('.panel[data-id="'+start+'"]')) start=tabs[0].dataset.id;
+  show(start);
 }})();
 </script>
 <script>
-if ('serviceWorker' in navigator) {{
-  window.addEventListener('load', function(){{
+if('serviceWorker' in navigator){{
+  window.addEventListener('load',function(){{
     navigator.serviceWorker.register('sw.js').catch(function(){{}});
   }});
 }}
@@ -169,12 +182,27 @@ if ('serviceWorker' in navigator) {{
 </html>
 """
 
-SEC_T = """    <section>
-      <div class="sec-title">{name}</div>
-{items}
-    </section>"""
+TAB_BTN = '<button class="tab" data-id="{id}">{name}</button>'
 
-ITEM_T = """      <div class="item"><h3>{t}</h3><p>{d}</p></div>"""
+GROUP_T = """      <div class="group">
+        <div class="gname">{name}</div>
+{items}
+      </div>"""
+
+ITEM_T = """        <div class="item">
+          <h3>{t}</h3>
+          <p>{d}</p>{more}
+        </div>"""
+
+MORE_T = """
+          <a class="more" href="{u}" target="_blank" rel="noopener">原文 ↗</a>"""
+
+LEAD_T = """    <div class="lead">
+      <div class="kicker">{kicker}</div>
+      <h2>{title}</h2>
+      <p>{body}</p>
+      <div class="src">{source}{link}</div>
+    </div>"""
 
 
 def build(data_path=None, out_path=None):
@@ -183,16 +211,28 @@ def build(data_path=None, out_path=None):
     with open(data_path, encoding="utf-8") as f:
         d = json.load(f)
 
-    secs = []
-    for s in d["sections"]:
-        items = "\n".join(ITEM_T.format(t=i["t"], d=i["d"]) for i in s["items"])
-        secs.append(SEC_T.format(name=s["name"], items=items))
+    tabs = d["tabs"]
+    tab_buttons = "\n    ".join(TAB_BTN.format(id=t["id"], name=t["name"]) for t in tabs)
+
+    panels = []
+    for t in tabs:
+        body = []
+        if t["id"] == "head":
+            l = d["lead"]
+            link = (' · <a href="%s" target="_blank" rel="noopener">原文 ↗</a>' % l["u"]) if l.get("u") else ""
+            body.append(LEAD_T.format(kicker=l["kicker"], title=l["title"], body=l["body"],
+                                      source=l.get("source", ""), link=link))
+        for g in t["groups"]:
+            items = []
+            for i in g["items"]:
+                more = MORE_T.format(u=i["u"]) if i.get("u") else ""
+                items.append(ITEM_T.format(t=i["t"], d=i["d"], more=more))
+            body.append(GROUP_T.format(name=g["name"], items="\n".join(items)))
+        panels.append('    <section class="panel" data-id="%s">\n%s\n    </section>' % (t["id"], "\n".join(body)))
 
     html = TEMPLATE.format(
         date=d["date"], weekday=d["weekday"], issue=d.get("issue", ""),
-        lead_kicker=d["lead"]["kicker"], lead_title=d["lead"]["title"],
-        lead_body=d["lead"]["body"], lead_source=d["lead"].get("source", ""),
-        sections="\n".join(secs),
+        tab_buttons=tab_buttons, panels="\n".join(panels),
     )
     with open(out_path, "w", encoding="utf-8") as f:
         f.write(html)
