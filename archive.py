@@ -81,11 +81,12 @@ def rebuild_index(prune=True):
 
     if prune:
         for key in drop:
-            try:
-                os.remove(os.path.join(ISSUES, f"{key}.json"))
-                print(f"移出窗口 {key}")
-            except OSError:
-                pass
+            for ext in ("json", "html"):
+                try:
+                    os.remove(os.path.join(ISSUES, f"{key}.{ext}"))
+                except OSError:
+                    pass
+            print(f"移出窗口 {key}")
     print(f"索引 {len(entries)} 期" + (f" · 移出 {len(drop)} 期" if drop else ""))
     return entries
 

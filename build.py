@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """730pm · 生成器：读 data.json -> index.html（分 tab 版）"""
-import json, os
+import json, os, re
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 
@@ -11,8 +11,8 @@ TEMPLATE = """<!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>730pm · {date}</title>
-<link rel="manifest" href="manifest.json">
-<link rel="icon" href="favicon.ico?v=3" sizes="any">
+<link rel="manifest" href="{up}manifest.json">
+<link rel="icon" href="{up}favicon.ico?v=3" sizes="any">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=3">
 <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=3">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=3">
@@ -22,13 +22,13 @@ TEMPLATE = """<!DOCTYPE html>
 <style>
 @font-face {{
   font-family: 'ChillRound';
-  src: url('fonts/ChillRoundGothic_Medium.ttf') format('truetype');
+  src: url('{up}fonts/ChillRoundGothic_Medium.ttf') format('truetype');
   font-weight: 500;
   font-display: swap;
 }}
 @font-face {{
   font-family: 'BarlowCond';
-  src: url('fonts/BarlowCondensed-Bold.ttf') format('truetype');
+  src: url('{up}fonts/BarlowCondensed-Bold.ttf') format('truetype');
   font-weight: 700;
   font-display: swap;
 }}
@@ -277,6 +277,7 @@ footer {{
 var TODAY="{date}", WEEKDAY="{weekday}", ISSUE="{issue}", TODAY_ISO="{today_iso}";
 var ALL_TABS={all_tabs};
 var ISSUE_ITEMS={issue_json};
+var ARCHIVE={archive_json};
 (function(){{
   var root=document.documentElement, btn=document.getElementById('themeBtn');
   var meta=document.querySelector('meta[name=theme-color]');
@@ -404,44 +405,28 @@ var ISSUE_ITEMS={issue_json};
     var b=e.target.closest('.cell'); if(!b) return;
     var id=b.getAttribute('data-id');
     closeDD();
-    if(id==='archive'){{ location.href='issues.html'; return; }}
     document.getElementById('q').value='';
     document.getElementById('searchbx').classList.remove('has');
     document.body.classList.remove('searching');
     activate(id);
   }});
 
-  /* ---- 往期窄条 ---- */
-  var archLoaded=false;
-  function pad(n){{ return (n<10?'0':'')+n; }}
+  /* ---- 往期窄条（整份索引已内嵌，不用再请求）---- */
   function loadArchive(){{
-    if(archLoaded) return;
-    archLoaded=true;
-    fetch('issues/index.json',{{cache:'no-store'}}).then(function(r){{ return r.json(); }}).then(function(d){{
-      var list=d.issues||[];
-      var head='<div class="dh"><div class="l1"><span class="d">'+esc(TODAY)+'</span><span class="cv">▴</span></div>'
-             + '<div class="l2">'+esc(WEEKDAY)+' · '+esc(ISSUE)+'</div></div>';
-      if(!list.length){{ datePanel.innerHTML=head+'<div class="smore">还没有往期</div>'; return; }}
-      datePanel.innerHTML = head + list.map(function(it){{
-        var no=(it.issue||'').replace(/[^0-9]/g,'');
-        var cur=(it.date===TODAY_ISO);
-        var label=(it.label||it.date);
-        if(label.length>4 && label.charAt(4)==='年') label=label.slice(5);
-        if(cur) label += ' · 今天';
-        return '<div class="srow'+(cur?' cur':'')+'" data-d="'+esc(it.date)+'">'
-             + '<span class="no">'+esc(no)+'</span><span class="dt">'+esc(label)+'</span>'
-             + '<span class="ct">'+esc(it.count)+'</span></div>';
-      }}).join('') + '<div class="smore">点任意一期翻看</div>';
-    }}).catch(function(){{
-      datePanel.innerHTML='<div class="smore">往期索引还没生成</div>';
-    }});
+    var head='<div class="dh"><div class="l1"><span class="d">'+esc(TODAY)+'</span><span class="cv">▴</span></div>'
+           + '<div class="l2">'+esc(WEEKDAY)+' · '+esc(ISSUE)+'</div></div>';
+    if(!ARCHIVE.length){{ datePanel.innerHTML=head+'<div class="smore">还没有往期</div>'; return; }}
+    datePanel.innerHTML = head + ARCHIVE.map(function(it){{
+      return '<div class="srow'+(it.cur?' cur':'')+'" data-href="'+esc(it.href)+'">'
+           + '<span class="no">'+esc(it.no)+'</span><span class="dt">'+esc(it.label)+'</span>'
+           + '<span class="ct">'+esc(it.count)+'</span></div>';
+    }}).join('') + '<div class="smore">点任意一期翻看</div>';
   }}
   datePanel.addEventListener('click', function(e){{
     var r=e.target.closest('.srow'); if(!r) return;
-    var d=r.getAttribute('data-d');
+    var h=r.getAttribute('data-href');
     closeDD();
-    if(d===TODAY_ISO) return;
-    location.href='issues.html#'+d;
+    if(h) location.href=h;
   }});
 
   /* ---- 搜索本期 ---- */
@@ -533,7 +518,7 @@ var ISSUE_ITEMS={issue_json};
 <script>
 if('serviceWorker' in navigator){{
   window.addEventListener('load',function(){{
-    navigator.serviceWorker.register('sw.js').catch(function(){{}});
+    navigator.serviceWorker.register('{up}sw.js',{{scope:'{up}'}}).catch(function(){{}});
   }});
 }}
 </script>
@@ -577,11 +562,47 @@ LEAD_T = """    <div class="lead">
     </div>"""
 
 
-def build(data_path=None, out_path=None):
-    data_path = data_path or os.path.join(BASE, "data.json")
-    out_path = out_path or os.path.join(BASE, "index.html")
-    with open(data_path, encoding="utf-8") as f:
-        d = json.load(f)
+def load_index():
+    p = os.path.join(BASE, "issues", "index.json")
+    if not os.path.exists(p):
+        return {"issues": []}
+    with open(p, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def iso_of(d):
+    m = re.search(r"(\d{4})年(\d{1,2})月(\d{1,2})日", d.get("date", ""))
+    return "%s-%02d-%02d" % (m.group(1), int(m.group(2)), int(m.group(3))) if m else ""
+
+
+def short_label(label):
+    return label[5:] if len(label) > 5 and label[4] == "年" else label
+
+
+def archive_rows(page_iso, in_issues_dir, today_iso):
+    """窄条里的一行一行。href 为空 = 当前页。"""
+    rows = []
+    for it in load_index().get("issues", []):
+        dt = it.get("date", "")
+        if dt == page_iso:
+            href = ""
+        elif dt == today_iso and not in_issues_dir:
+            href = ""
+        elif dt == today_iso:
+            href = "../index.html"
+        elif in_issues_dir:
+            href = dt + ".html"
+        else:
+            href = "issues/" + dt + ".html"
+        label = short_label(it.get("label", dt))
+        if dt == today_iso:
+            label += " · 今天"
+        rows.append({"no": re.sub(r"\D", "", it.get("issue", "")), "label": label,
+                     "count": str(it.get("count", "")), "href": href, "cur": dt == page_iso})
+    return rows
+
+
+def render_html(d, page_iso, in_issues_dir):
 
     tabs = d["tabs"]
     tab_buttons = "\n    ".join(TAB_BTN.format(id=t["id"], name=t["name"]) for t in tabs)
@@ -622,13 +643,9 @@ def build(data_path=None, out_path=None):
         panels.append('    <section class="panel" data-id="%s">\n%s\n    </section>' % (t["id"], "\n".join(body)))
 
     # 全部面板的格子：内容栏目（今日阅读挪到第二位）+ 书报架 + 往期
-    rest = [t for t in tabs if t["id"] != "reading"]
-    reading = [t for t in tabs if t["id"] == "reading"]
-    if reading:
-        rest.insert(1, reading[0])
-    all_tabs = [{"id": t["id"], "name": ("今日阅读" if t["id"] == "reading" else t["name"])} for t in rest]
+    skip = {"head", "reading"}
+    all_tabs = [{"id": t["id"], "name": t["name"]} for t in tabs if t["id"] not in skip]
     all_tabs.append({"id": "saved", "name": "书报架", "fn": True})
-    all_tabs.append({"id": "archive", "name": "往期", "fn": True})
 
     # 搜索用的本期索引
     searchable = []
@@ -644,22 +661,52 @@ def build(data_path=None, out_path=None):
             for i in g["items"]:
                 searchable.append({"tab": t["name"], "t": i["t"], "d": i.get("d", ""), "u": i.get("u", "")})
 
-    import re as _re
-    m = _re.search(r"(\d{4})年(\d{1,2})月(\d{1,2})日", d["date"])
-    today_iso = "%s-%02d-%02d" % (m.group(1), int(m.group(2)), int(m.group(3))) if m else ""
+    today_iso = iso_of(json.load(open(os.path.join(BASE, "data.json"), encoding="utf-8"))) \
+        if os.path.exists(os.path.join(BASE, "data.json")) else ""
+    rows = archive_rows(page_iso, in_issues_dir, today_iso)
 
-    html = TEMPLATE.format(
+    return TEMPLATE.format(
+        up=("../" if in_issues_dir else ""),
         date=d["date"], weekday=d["weekday"], issue=d.get("issue", ""),
         tab_buttons=tab_buttons, panels="\n".join(panels),
-        today_iso=today_iso,
+        today_iso=page_iso,
         all_tabs=json.dumps(all_tabs, ensure_ascii=False, separators=(",", ":")),
         issue_json=json.dumps(searchable, ensure_ascii=False, separators=(",", ":")),
+        archive_json=json.dumps(rows, ensure_ascii=False, separators=(",", ":")),
     )
-    with open(out_path, "w", encoding="utf-8") as f:
+
+
+def build():
+    with open(os.path.join(BASE, "data.json"), encoding="utf-8") as f:
+        d = json.load(f)
+    html = render_html(d, iso_of(d), False)
+    out = os.path.join(BASE, "index.html")
+    with open(out, "w", encoding="utf-8") as f:
         f.write(html)
-    return out_path
+    return out
+
+
+def build_archives():
+    """每一期生成一张独立页面，和今天那页结构完全一样。"""
+    idx = load_index()
+    out_dir = os.path.join(BASE, "issues")
+    made = []
+    for it in idx.get("issues", []):
+        dt = it.get("date")
+        src = os.path.join(out_dir, dt + ".json")
+        if not dt or not os.path.exists(src):
+            continue
+        with open(src, encoding="utf-8") as f:
+            d = json.load(f)
+        out = os.path.join(out_dir, dt + ".html")
+        with open(out, "w", encoding="utf-8") as f:
+            f.write(render_html(d, dt, True))
+        made.append(out)
+    return made
 
 
 if __name__ == "__main__":
     p = build()
     print("built:", p, os.path.getsize(p), "bytes")
+    for q in build_archives():
+        print("built:", q, os.path.getsize(q), "bytes")
