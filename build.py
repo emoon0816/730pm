@@ -67,7 +67,13 @@ header {{ padding: 22px 0 12px; position: relative; }}
 h1 {{ font-size: 34px; margin:0; letter-spacing:.5px; font-weight:700;
      font-family:'BarlowCond','ChillRound',sans-serif; line-height:1; }}
 h1 .dot {{ color: var(--accent); }}
-.dateline {{ font-size: 11.5px; color: var(--muted); letter-spacing:.4px; margin-top:7px; }}
+.dateline {{ font-size: 11.5px; color: var(--muted); letter-spacing:.4px; margin-top:7px;
+  display: inline-flex; align-items: center; gap: 5px; cursor: pointer; }}
+.dateline .pick {{ border-bottom: 1px dotted var(--line); padding-bottom: 1px; }}
+.dateline .cv {{ font-size: 9px; opacity:.75; }}
+.dateline.act {{ color: var(--accent); }}
+.dateline.act .cv, .dateline.act .pick {{ color: var(--accent); }}
+.dateline.act .pick {{ border-bottom: 1px solid var(--accent); }}
 #themeBtn {{
   background:transparent; border:1px solid var(--line); color:var(--muted);
   border-radius:999px; padding:4px 11px; font-size:12px; font-family:inherit; cursor:pointer;
@@ -75,24 +81,85 @@ h1 .dot {{ color: var(--accent); }}
 }}
 #themeBtn:active {{ opacity:.6; }}
 
-/* tab bar */
-.tabs {{
+/* 顶部一行：两个栏目 + 全部 + 搜索 */
+.navrow {{
   position: sticky; top: 0; z-index: 20;
-  display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none;
-  margin: 0 -16px; padding: 10px 16px;
+  display: flex; gap: 7px; align-items: center;
+  margin: 0 -16px; padding: 9px 16px;
   background: var(--tabbar);
   -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
 }}
-.tabs::-webkit-scrollbar {{ display: none; }}
-.tab {{
+.chip {{
   flex: 0 0 auto; border: 1px solid var(--line); background: transparent;
-  color: var(--muted); font-family: inherit; font-size: 13.5px;
-  padding: 6px 15px; border-radius: 999px; cursor: pointer;
-  transition: all .18s ease; white-space: nowrap;
+  color: var(--muted); font-family: inherit; font-size: 13px;
+  padding: 6px 13px; border-radius: 999px; cursor: pointer;
+  transition: all .16s ease; white-space: nowrap;
 }}
-.tab.on {{ background: var(--accent); border-color: var(--accent); color: var(--bg); }}
-.tlink {{ text-decoration: none; display: inline-block; }}
+.chip.on {{ background: var(--accent); border-color: var(--accent); color: var(--bg); }}
+.chip.act {{ border-color: var(--accent); color: var(--accent); }}
+.searchbx {{
+  flex: 1; min-width: 0; display: flex; align-items: center; gap: 6px;
+  border: 1px solid var(--line); border-radius: 999px; padding: 5px 11px;
+  transition: border-color .16s ease;
+}}
+.searchbx input {{
+  flex: 1; min-width: 0; border: none; background: transparent; outline: none;
+  font-family: inherit; font-size: 12.5px; color: var(--ink);
+}}
+.searchbx input::placeholder {{ color: var(--muted); opacity: .85; }}
+.searchbx .mag {{ font-size: 12px; color: var(--muted); }}
+.searchbx .clr {{
+  display: none; border: none; background: transparent; color: var(--muted);
+  font-size: 13px; line-height: 1; cursor: pointer; padding: 0 1px;
+}}
+.searchbx.has .clr {{ display: block; }}
+body.searching .navrow .chip {{ display: none; }}
+body.searching .searchbx {{ border-color: var(--accent); }}
+
+/* 下拉：只包住触发物，圆角小 */
+.dd {{
+  display: none; position: absolute; z-index: 40;
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 6px; box-shadow: 0 2px 7px rgba(0,0,0,.07); overflow: hidden;
+}}
+.dd.on {{ display: block; }}
+#allPanel {{ right: 10px; top: 136px; width: 262px; }}
+#allPanel .grid {{ display: grid; grid-template-columns: repeat(3,1fr); gap: 5px; padding: 9px; }}
+.cell {{
+  text-align: center; font-size: 12px; padding: 8px 0; border-radius: 6px;
+  background: transparent; border: 1px solid var(--line); color: var(--ink);
+  font-family: inherit; cursor: pointer;
+}}
+.cell.on {{ background: var(--accent); color: var(--bg); border-color: var(--accent); }}
+.cell.fn {{ color: var(--muted); border-style: dashed; }}
+
+#datePanel {{ left: 10px; top: 56px; width: 236px; }}
+#datePanel .dh {{ padding: 5px 12px 6px; border-bottom: 1px solid var(--line); }}
+#datePanel .dh .l1 {{ display: flex; align-items: center; justify-content: space-between; gap: 6px; }}
+#datePanel .dh .d {{ font-size: 12px; color: var(--accent); }}
+#datePanel .dh .l2 {{ font-size: 10.5px; color: var(--muted); margin-top: 1px; }}
+#datePanel .cv {{ font-size: 9px; color: var(--accent); }}
+.srow {{
+  display: flex; align-items: center; gap: 7px; padding: 8px 12px;
+  font-size: 12.5px; border-bottom: 1px solid var(--line); cursor: pointer;
+}}
+.srow:last-child {{ border-bottom: none; }}
+.srow .no {{ color: var(--accent); font-size: 11.5px; min-width: 24px; }}
+.srow .dt {{ flex: 1; }}
+.srow .ct {{ font-size: 10.5px; color: var(--muted); }}
+.srow.cur {{ background: rgba(108,47,54,.05); }}
+.smore {{ font-size: 10.5px; color: var(--muted); text-align: center; padding: 7px; }}
+
+/* 搜索结果 */
+.scount {{ font-size: 11.5px; color: var(--muted); letter-spacing: .5px; margin: 14px 0 2px; }}
+.scount b {{ color: var(--accent); font-weight: 500; }}
+.sitem {{ padding: 12px 0 13px; border-bottom: 1px dashed var(--line); }}
+.sitem .where {{ font-size: 10.5px; letter-spacing: 1.2px; color: var(--muted); margin-bottom: 3px; }}
+.sitem h3 {{ font-size: 15px; margin: 0 0 4px; font-weight: 500; line-height: 1.55; }}
+.sitem p {{ margin: 0; font-size: 13.5px; opacity: .86; }}
+mark {{ background: rgba(108,47,54,.10); color: var(--accent); font-weight: 500; border-radius:2px; padding:0 1px; }}
+html[data-theme="night"] mark {{ background: rgba(198,172,220,.16); }}
 
 /* 面板 */
 .panel {{ display: none; animation: fade .22s ease; }}
@@ -176,13 +243,22 @@ footer {{
       <h1>730pm<span class="dot">.</span></h1>
       <button id="themeBtn" aria-label="切换日夜">夜间</button>
     </div>
-    <div class="dateline">{date} · {weekday} · {issue}</div>
+    <div class="dateline" id="dateBtn"><span class="pick">{date} · {weekday} · {issue}</span><span class="cv">▾</span></div>
   </header>
 
-  <nav class="tabs" id="tabs">{tab_buttons}<button class="tab" data-id="saved">书报架</button><a class="tab tlink" href="issues.html">往期</a></nav>
+  <nav class="navrow" id="navrow">
+    <button class="chip" type="button" data-id="head">头条</button>
+    <button class="chip" type="button" data-id="reading">今日阅读</button>
+    <button class="chip" type="button" id="allBtn">全部 <span class="cv">▾</span></button>
+    <label class="searchbx" id="searchbx"><span class="mag">⌕</span><input id="q" type="search" placeholder="搜索本期" autocomplete="off"><button class="clr" id="qclr" type="button">✕</button></label>
+  </nav>
+
+  <div class="dd" id="allPanel"></div>
+  <div class="dd" id="datePanel"></div>
 
   <main id="main">
 {panels}
+      <section class="panel" data-id="search"><div id="searchResults"></div></section>
       <div class="panel" data-id="saved">
         <div class="group">
           <div class="gname">存下来的</div>
@@ -195,6 +271,9 @@ footer {{
 </div>
 
 <script>
+var TODAY="{date}", WEEKDAY="{weekday}", ISSUE="{issue}", TODAY_ISO="{today_iso}";
+var ALL_TABS={all_tabs};
+var ISSUE_ITEMS={issue_json};
 (function(){{
   var root=document.documentElement, btn=document.getElementById('themeBtn');
   var meta=document.querySelector('meta[name=theme-color]');
@@ -258,21 +337,175 @@ footer {{
     }}
   }});
 
-  var tabs=[].slice.call(document.querySelectorAll('.tab[data-id]'));
+  var tabs=[].slice.call(document.querySelectorAll('.chip[data-id]'));
   var panels=[].slice.call(document.querySelectorAll('.panel'));
-  function show(id){{
+  var lastTab='head';
+
+  function activate(id){{
+    lastTab=id;
     tabs.forEach(function(b){{ b.classList.toggle('on', b.dataset.id===id); }});
     panels.forEach(function(p){{ p.classList.toggle('on', p.dataset.id===id); }});
-    localStorage.setItem('np-tab',id);
     if(id==='saved') renderSaved();
-    var on=document.querySelector('.tab.on');
-    if(on && on.scrollIntoView) on.scrollIntoView({{inline:'center',block:'nearest',behavior:'smooth'}});
     window.scrollTo({{top:0,behavior:'smooth'}});
   }}
-  tabs.forEach(function(b){{ b.addEventListener('click',function(){{ show(b.dataset.id); }}); }});
+
+  /* ---- 下拉：同时只开一个 ---- */
+  var allPanel=document.getElementById('allPanel'), datePanel=document.getElementById('datePanel');
+  var allBtn=document.getElementById('allBtn'), dateBtn=document.getElementById('dateBtn');
+  function closeDD(){{
+    allPanel.classList.remove('on'); datePanel.classList.remove('on');
+    allBtn.classList.remove('act'); dateBtn.classList.remove('act');
+  }}
+  function openDD(which){{
+    var wasOpen = (which==='all' ? allPanel.classList.contains('on') : datePanel.classList.contains('on'));
+    closeDD();
+    if(wasOpen) return;                    // 再点一次就收
+    if(which==='all'){{
+      allPanel.classList.add('on'); allBtn.classList.add('act');
+      [].forEach.call(allPanel.querySelectorAll('.cell'), function(c){{
+        c.classList.toggle('on', c.getAttribute('data-id')===lastTab);
+      }});
+    }}
+    else {{ datePanel.classList.add('on'); dateBtn.classList.add('act'); loadArchive(); }}
+  }}
+  allBtn.addEventListener('click', function(e){{ e.stopPropagation(); openDD('all'); }});
+  dateBtn.addEventListener('click', function(e){{ e.stopPropagation(); openDD('date'); }});
+  allPanel.addEventListener('click', function(e){{ e.stopPropagation(); }});
+  datePanel.addEventListener('click', function(e){{ e.stopPropagation(); }});
+  document.addEventListener('click', function(){{ closeDD(); }});
+
+  /* ---- 全部栏目 ---- */
+  allPanel.innerHTML = '<div class="grid">' + ALL_TABS.map(function(t){{
+    return '<button class="cell'+(t.fn?' fn':'')+'" type="button" data-id="'+t.id+'">'+t.name+'</button>';
+  }}).join('') + '</div>';
+  allPanel.addEventListener('click', function(e){{
+    var b=e.target.closest('.cell'); if(!b) return;
+    var id=b.getAttribute('data-id');
+    closeDD();
+    if(id==='archive'){{ location.href='issues.html'; return; }}
+    document.getElementById('q').value='';
+    document.getElementById('searchbx').classList.remove('has');
+    document.body.classList.remove('searching');
+    activate(id);
+  }});
+
+  /* ---- 往期窄条 ---- */
+  var archLoaded=false;
+  function pad(n){{ return (n<10?'0':'')+n; }}
+  function loadArchive(){{
+    if(archLoaded) return;
+    archLoaded=true;
+    fetch('issues/index.json',{{cache:'no-store'}}).then(function(r){{ return r.json(); }}).then(function(d){{
+      var list=d.issues||[];
+      var head='<div class="dh"><div class="l1"><span class="d">'+esc(TODAY)+'</span><span class="cv">▴</span></div>'
+             + '<div class="l2">'+esc(WEEKDAY)+' · '+esc(ISSUE)+'</div></div>';
+      if(!list.length){{ datePanel.innerHTML=head+'<div class="smore">还没有往期</div>'; return; }}
+      datePanel.innerHTML = head + list.map(function(it){{
+        var no=(it.issue||'').replace(/[^0-9]/g,'');
+        var cur=(it.date===TODAY_ISO);
+        var label=(it.label||it.date);
+        if(label.length>4 && label.charAt(4)==='年') label=label.slice(5);
+        if(cur) label += ' · 今天';
+        return '<div class="srow'+(cur?' cur':'')+'" data-d="'+esc(it.date)+'">'
+             + '<span class="no">'+esc(no)+'</span><span class="dt">'+esc(label)+'</span>'
+             + '<span class="ct">'+esc(it.count)+'</span></div>';
+      }}).join('') + '<div class="smore">点任意一期翻看</div>';
+    }}).catch(function(){{
+      datePanel.innerHTML='<div class="smore">往期索引还没生成</div>';
+    }});
+  }}
+  datePanel.addEventListener('click', function(e){{
+    var r=e.target.closest('.srow'); if(!r) return;
+    var d=r.getAttribute('data-d');
+    closeDD();
+    if(d===TODAY_ISO) return;
+    location.href='issues.html#'+d;
+  }});
+
+  /* ---- 搜索本期 ---- */
+  var q=document.getElementById('q'), clr=document.getElementById('qclr');
+  var sres=document.getElementById('searchResults'), sbx=document.getElementById('searchbx');
+  function hl(safe, kws){{
+    var out=safe;
+    kws.forEach(function(k){{
+      if(!k) return;
+      var lower=out.toLowerCase(), kl=k.toLowerCase();
+      var pos=0, res='', found=false;
+      while(true){{
+        var i=lower.indexOf(kl,pos);
+        if(i<0) break;
+        res += out.slice(pos,i) + '<mark>' + out.slice(i,i+k.length) + '</mark>';
+        pos = i + k.length; found = true;
+      }}
+      if(found) out = res + out.slice(pos);
+    }});
+    return out;
+  }}
+  function score(kw,text){{
+    var k=kw.toLowerCase(), t=(text||'').toLowerCase();
+    if(!k||!t) return 0;
+    if(t.indexOf(k)>=0) return 1;
+    if(k.length<2) return 0;
+    var hit=0, total=k.length-1;
+    for(var i=0;i<total;i++){{ if(t.indexOf(k.substr(i,2))>=0) hit++; }}
+    return hit/total;
+  }}
+  function runSearch(){{
+    var raw=q.value.trim();
+    sbx.classList.toggle('has', raw.length>0);
+    if(!raw){{
+      document.body.classList.remove('searching');
+      activate(lastTab||'head');
+      return;
+    }}
+    document.body.classList.add('searching');
+    closeDD();
+    var kws=raw.split(' ').filter(Boolean).slice(0,12);
+    var hits=[];
+    ISSUE_ITEMS.forEach(function(it){{
+      var best=0;
+      kws.forEach(function(k){{
+        var s=Math.max(score(k,it.t), score(k,it.d)*0.95);
+        if(s>best) best=s;
+      }});
+      if(best>=0.6) hits.push({{it:it,s:best}});
+    }});
+    hits.sort(function(a,b){{ return b.s-a.s; }});
+    if(!hits.length){{
+      sres.innerHTML='<div class="empty">本期没找到「'+esc(raw)+'」。<br>换个词，或者点日期翻往期。</div>';
+    }} else {{
+      sres.innerHTML='<div class="scount">本期匹配 <b>'+hits.length+'</b> 条 · 关键字 <b>'+esc(kws.join(' '))+'</b></div>'
+        + hits.map(function(h){{
+            var it=h.it;
+            var link=it.u?'<a class="more" href="'+esc(it.u)+'" target="_blank" rel="noopener">原文 ↗</a>':'';
+            return '<div class="sitem"><div class="where">'+esc(it.tab)+'</div>'
+              + '<h3>'+hl(esc(it.t),kws)+'</h3>'
+              + (it.d?'<p>'+hl(esc(it.d),kws)+'</p>':'')
+              + (link?'<div class="irow">'+link+'</div>':'') + '</div>';
+          }}).join('');
+    }}
+    tabs.forEach(function(b){{ b.classList.remove('on'); }});
+    panels.forEach(function(p){{ p.classList.toggle('on', p.dataset.id==='search'); }});
+  }}
+  var qtimer=null;
+  q.addEventListener('input', function(){{
+    clearTimeout(qtimer);
+    qtimer=setTimeout(runSearch,120);
+  }});
+  q.addEventListener('focus', function(){{ closeDD(); }});
+  clr.addEventListener('click', function(e){{
+    e.preventDefault(); e.stopPropagation();
+    q.value=''; q.focus(); runSearch();
+  }});
+
+  tabs.forEach(function(b){{ b.addEventListener('click',function(){{
+    q.value=''; sbx.classList.remove('has'); document.body.classList.remove('searching');
+    activate(b.dataset.id);
+  }}); }});
+
   var start=localStorage.getItem('np-tab');
-  if(!start || !document.querySelector('.panel[data-id="'+start+'"]')) start=tabs[0].dataset.id;
-  show(start);
+  if(!start || !document.querySelector('.panel[data-id="'+start+'"]')) start='head';
+  activate(start);
 }})();
 </script>
 <script>
@@ -366,9 +599,39 @@ def build(data_path=None, out_path=None):
             body.append(GROUP_T.format(name=g["name"], items="\n".join(items)))
         panels.append('    <section class="panel" data-id="%s">\n%s\n    </section>' % (t["id"], "\n".join(body)))
 
+    # 全部面板的格子：内容栏目（今日阅读挪到第二位）+ 书报架 + 往期
+    rest = [t for t in tabs if t["id"] != "reading"]
+    reading = [t for t in tabs if t["id"] == "reading"]
+    if reading:
+        rest.insert(1, reading[0])
+    all_tabs = [{"id": t["id"], "name": ("今日阅读" if t["id"] == "reading" else t["name"])} for t in rest]
+    all_tabs.append({"id": "saved", "name": "书报架", "fn": True})
+    all_tabs.append({"id": "archive", "name": "往期", "fn": True})
+
+    # 搜索用的本期索引
+    searchable = []
+    for t in tabs:
+        if t["id"] == "head":
+            l = d["lead"]
+            searchable.append({"tab": t["name"], "t": l["title"], "d": l.get("body", ""), "u": l.get("u", "")})
+        if "reading" in t:
+            r = t["reading"]
+            searchable.append({"tab": "今日阅读", "t": r["title"],
+                               "d": " ".join(r.get("body", []))[:500], "u": ""})
+        for g in t.get("groups", []):
+            for i in g["items"]:
+                searchable.append({"tab": t["name"], "t": i["t"], "d": i.get("d", ""), "u": i.get("u", "")})
+
+    import re as _re
+    m = _re.search(r"(\d{4})年(\d{1,2})月(\d{1,2})日", d["date"])
+    today_iso = "%s-%02d-%02d" % (m.group(1), int(m.group(2)), int(m.group(3))) if m else ""
+
     html = TEMPLATE.format(
         date=d["date"], weekday=d["weekday"], issue=d.get("issue", ""),
         tab_buttons=tab_buttons, panels="\n".join(panels),
+        today_iso=today_iso,
+        all_tabs=json.dumps(all_tabs, ensure_ascii=False, separators=(",", ":")),
+        issue_json=json.dumps(searchable, ensure_ascii=False, separators=(",", ":")),
     )
     with open(out_path, "w", encoding="utf-8") as f:
         f.write(html)
