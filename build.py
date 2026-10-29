@@ -396,6 +396,18 @@ html[data-theme="night"] .oil em.dn {{ color:#8FBF9F; }}
 .book .bmeta {{ font-size:11.5px; color:var(--muted); letter-spacing:.3px; margin-bottom:9px; }}
 .book .bintro {{ margin:0; font-size:calc(var(--fs) * .93); line-height:1.82; }}
 .book .bmore {{ display:inline-block; margin-top:10px; font-size:12px; color:var(--accent); text-decoration:none; }}
+
+/* ===== 每日识物 ===== */
+.thing {{ margin:6px 0 0; }}
+.thing .tkicker {{ font-size:11px; letter-spacing:1.4px; color:var(--accent); margin-bottom:8px; }}
+.thing .ttitle {{ font-size:calc(var(--fs) * 1.6); line-height:1.45; margin:0 0 14px; font-weight:500; }}
+.thing .tbody p {{ margin:0 0 15px; font-size:calc(var(--fs) * 1.02); line-height:1.9; }}
+.thing .tfl {{ margin:18px 0 0; padding:12px 14px; border-left:2px solid var(--accent);
+  background:var(--soft); border-radius:0 4px 4px 0; display:flex; flex-direction:column; gap:6px; }}
+.thing .tfl-lab {{ font-size:10px; letter-spacing:2.4px; color:var(--accent); margin-bottom:3px; }}
+.thing .tf {{ font-size:calc(var(--fs) * .88); color:var(--muted); line-height:1.6; }}
+.thing .tf b {{ color:var(--ink); font-weight:500; margin-right:8px; letter-spacing:.5px; }}
+.thing .tmore {{ display:inline-block; margin-top:14px; font-size:12px; color:var(--accent); text-decoration:none; }}
 </style>
 </head>
 <body>
@@ -976,6 +988,13 @@ MORE_T = """
 SHARE_BTN = """
           <button class="share" type="button" data-si="{si}">分享</button>"""
 
+THING_T = """      <article class="thing">
+        <div class="tkicker">{kicker}</div>
+        <h2 class="ttitle">{title}</h2>
+        <div class="tbody">{body}</div>
+        <div class="tfacts">{facts}</div>{link}
+      </article>"""
+
 OIL_T = """      <div class="oil">{cells}<span class="od">{date}{delta}</span>{link}</div>"""
 
 BOOK_T = """        <div class="book">
@@ -1113,6 +1132,17 @@ def render_html(d, page_iso, in_issues_dir):
                 body.append(BOOK_T.format(title=bk["title"],
                                           meta=" · ".join([x for x in meta if x]),
                                           intro=bk.get("intro", ""), link=bl))
+        if "thing" in t:
+            th = t["thing"]
+            tb = "".join("<p>%s</p>" % x for x in th.get("body", []))
+            facts = ""
+            fl = th.get("facts") or []
+            if fl:
+                facts = '<div class="tfl"><div class="tfl-lab">小 资 料</div>' + "".join(
+                    '<span class="tf"><b>%s</b>%s</span>' % (x.get("k", ""), x.get("v", "")) for x in fl) + "</div>"
+            tlink = ('<a class="tmore" href="%s" target="_blank" rel="noopener">来源 ↗</a>' % th["u"]) if th.get("u") else ""
+            body.append(THING_T.format(kicker=th.get("kicker", ""), title=th.get("title", ""),
+                                       body=tb, facts=facts, link=tlink))
         for g in t.get("groups", []):
             items = []
             for i in g["items"]:

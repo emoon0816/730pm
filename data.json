@@ -363,6 +363,17 @@
    ]
   },
   {
+   "id": "thing",
+   "name": "每日识物",
+   "thing": {
+    "title": "",
+    "kicker": "",
+    "body": [],
+    "facts": [],
+    "u": ""
+   }
+  },
+  {
    "id": "today",
    "name": "那年今日",
    "groups": [
