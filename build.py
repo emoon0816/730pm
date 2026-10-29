@@ -376,6 +376,26 @@ html[data-theme="night"] .drawer .ch .sq .a {{ background:var(--na); }}
 .drawer .note {{ font-size:11px; color:var(--muted); opacity:.9; padding-top:2px; }}
 .drawer .foot {{ margin-top:auto; font-size:10.5px; color:var(--muted); opacity:.75;
   letter-spacing:.4px; border-top:1px solid var(--line); padding:13px 0 2px; }}
+
+/* ===== 油价 ===== */
+.oil {{ display:flex; flex-wrap:wrap; align-items:baseline; gap:14px; margin:14px 0 0;
+  padding-top:10px; border-top:1px solid var(--line); font-size:12.5px; color:var(--muted); }}
+.oil .olab {{ font-size:10.5px; letter-spacing:2.2px; color:var(--accent); }}
+.oil .oi b {{ color:var(--ink); font-weight:500; margin-right:3px; letter-spacing:.3px; }}
+.oil .od {{ font-size:11.5px; }}
+.oil em {{ font-style:normal; }}
+.oil em.up {{ color:#B0463F; }}
+.oil em.dn {{ color:#3F7A57; }}
+html[data-theme="night"] .oil em.up {{ color:#D98A82; }}
+html[data-theme="night"] .oil em.dn {{ color:#8FBF9F; }}
+
+/* ===== 另荐一本 ===== */
+.book {{ margin:34px 0 0; padding:18px 0 2px; border-top:1px solid var(--line); }}
+.book .blabel {{ font-size:11px; font-weight:500; letter-spacing:3px; color:var(--accent); margin-bottom:11px; }}
+.book .btitle {{ font-size:calc(var(--fs) * 1.13); margin:0 0 6px; font-weight:500; line-height:1.5; }}
+.book .bmeta {{ font-size:11.5px; color:var(--muted); letter-spacing:.3px; margin-bottom:9px; }}
+.book .bintro {{ margin:0; font-size:calc(var(--fs) * .93); line-height:1.82; }}
+.book .bmore {{ display:inline-block; margin-top:10px; font-size:12px; color:var(--accent); text-decoration:none; }}
 </style>
 </head>
 <body>
@@ -956,6 +976,15 @@ MORE_T = """
 SHARE_BTN = """
           <button class="share" type="button" data-si="{si}">分享</button>"""
 
+OIL_T = """      <div class="oil">{cells}<span class="od">{date}{delta}</span>{link}</div>"""
+
+BOOK_T = """        <div class="book">
+          <div class="blabel">另 荐 一 本</div>
+          <h3 class="btitle">{title}</h3>
+          <div class="bmeta">{meta}</div>
+          <p class="bintro">{intro}</p>{link}
+        </div>"""
+
 READING_T = """      <article class="reading">
         <h2 class="rtitle">{title}</h2>
         <div class="rby">{byline}</div>
@@ -1018,6 +1047,22 @@ def render_html(d, page_iso, in_issues_dir):
     tabs = d["tabs"]
     tab_buttons = "\n    ".join(TAB_BTN.format(id=t["id"], name=t["name"]) for t in tabs)
 
+    # 油价：头条底下固定一行
+    oil_html = ""
+    o = d.get("oil")
+    if isinstance(o, dict) and (o.get("n92") or o.get("n95")):
+        cells = []
+        for k, lab in (("n92", "92#"), ("n95", "95#"), ("n0", "0#柴油")):
+            if o.get(k):
+                cells.append('<span class="oi"><b>%s</b> %s</span>' % (lab, o[k]))
+        delta = o.get("delta", "")
+        if delta:
+            cls = "up" if delta.startswith("+") or "涨" in delta else ("dn" if delta.startswith("-") or "跌" in delta else "")
+            delta = ' <em class="%s">%s</em>' % (cls, delta)
+        olink = (' <a href="%s" target="_blank" rel="noopener">来源</a>' % o["u"]) if o.get("u") else ""
+        oil_html = OIL_T.format(cells='<span class="olab">油价</span>' + "".join(cells),
+                                  date=o.get("date", ""), delta=delta, link=olink)
+
     # 分享数据：标题 + 正文 + 原文链接（不含批注）
     share = []
     def sid(title, body, url):
@@ -1035,6 +1080,8 @@ def render_html(d, page_iso, in_issues_dir):
             body.append(LEAD_T.format(kicker=l["kicker"], title=l["title"], body=l["body"],
                                       source=l.get("source", ""), link=link,
                                       share=SHARE_BTN.format(si=sid(l["title"], l["body"], l.get("u", "")))))
+            if oil_html:
+                body.append(oil_html)
         if "reading" in t:
             r = t["reading"]
             rb = "".join("<p>%s</p>" % x for x in r["body"])
@@ -1053,6 +1100,19 @@ def render_html(d, page_iso, in_issues_dir):
             body.append(READING_T.format(title=r["title"], byline=r.get("byline", ""),
                                          body=rb, trans=trans, why=why,
                                          author=r.get("author", ""), source=r.get("source", "")))
+            bk = r.get("book")
+            if isinstance(bk, dict) and bk.get("title"):
+                meta = [bk.get("author", "")]
+                if bk.get("trans"):
+                    meta.append("译 " + bk["trans"])
+                if bk.get("words"):
+                    meta.append(bk["words"])
+                if bk.get("hours"):
+                    meta.append(bk["hours"])
+                bl = ('<a class="bmore" href="%s" target="_blank" rel="noopener">书目页 ↗</a>' % bk["u"]) if bk.get("u") else ""
+                body.append(BOOK_T.format(title=bk["title"],
+                                          meta=" · ".join([x for x in meta if x]),
+                                          intro=bk.get("intro", ""), link=bl))
         for g in t.get("groups", []):
             items = []
             for i in g["items"]:

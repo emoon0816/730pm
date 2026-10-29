@@ -1,5 +1,5 @@
 // 蚀月夜报 service worker
-const CACHE = '730pm-v13';
+const CACHE = '730pm-v14';
 const ASSETS = [
   './',
   './index.html',
