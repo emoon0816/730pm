@@ -25,6 +25,12 @@
   font-weight: 700;
   font-display: swap;
 }
+@font-face {
+  font-family: 'JinghuaSong';
+  src: url('../fonts/KingHwa_OldSong.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
 :root {
   --bg: #F4EFE6;
   --ink: #2A2521;
@@ -33,6 +39,9 @@
   --line: #DCD3C4;
   --card: #FBF7F0;
   --tabbar: rgba(244,239,230,.93);
+  --soft: rgba(108,47,54,.10);
+  --body-font: 'ChillRound';
+  --fs: 15px;
 }
 html[data-theme="night"] {
   --bg: #17140F;
@@ -47,8 +56,8 @@ html[data-theme="night"] {
 html, body { background: var(--bg); }
 body {
   margin: 0; color: var(--ink);
-  font-family: 'ChillRound', -apple-system, 'PingFang SC', 'Noto Sans CJK SC', sans-serif;
-  font-size: 15px; line-height: 1.72;
+  font-family: var(--body-font, 'ChillRound'), -apple-system, 'PingFang SC', 'Noto Sans CJK SC', sans-serif;
+  font-size: var(--fs, 15px); line-height: 1.72;
   -webkit-font-smoothing: antialiased;
   transition: background .25s ease, color .25s ease;
 }
@@ -67,12 +76,12 @@ h1 .dot { color: var(--accent); }
 .dateline.act { color: var(--accent); }
 .dateline.act .cv, .dateline.act .pick { color: var(--accent); }
 .dateline.act .pick { border-bottom: 1px solid var(--accent); }
-#themeBtn {
+#setBtn {
   background:transparent; border:1px solid var(--line); color:var(--muted);
-  border-radius:999px; padding:4px 11px; font-size:12px; font-family:inherit; cursor:pointer;
+  border-radius:999px; padding:4px 12px; font-size:12px; font-family:inherit; cursor:pointer;
   align-self:center;
 }
-#themeBtn:active { opacity:.6; }
+#setBtn:active { opacity:.6; }
 
 /* 顶部一行：两个栏目 + 全部 + 搜索 */
 .navrow {
@@ -151,8 +160,8 @@ body.searching .searchbx { border-color: var(--accent); }
 .scount b { color: var(--accent); font-weight: 500; }
 .sitem { padding: 12px 0 13px; border-bottom: 1px dashed var(--line); }
 .sitem .where { font-size: 10.5px; letter-spacing: 1.2px; color: var(--muted); margin-bottom: 3px; }
-.sitem h3 { font-size: 16.5px; margin: 0 0 5px; font-weight: 500; line-height: 1.55; }
-.sitem p { margin: 0; font-size: 14px; line-height: 1.78; opacity: .88;
+.sitem h3 { font-size: calc(var(--fs) * 1.1); margin: 0 0 5px; font-weight: 500; line-height: 1.55; }
+.sitem p { margin: 0; font-size: calc(var(--fs) * .93); line-height: 1.78; opacity: .88;
   display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; }
 mark { background: rgba(108,47,54,.14); color: var(--accent); font-weight: 500; border-radius:2px; padding:0 1.5px; }
 html[data-theme="night"] mark { background: rgba(198,172,220,.20); }
@@ -168,8 +177,8 @@ html[data-theme="night"] mark { background: rgba(198,172,220,.20); }
   background: var(--card); border-left: 3px solid var(--accent);
 }
 .kicker { font-size: 11px; letter-spacing:1.6px; color: var(--accent); margin-bottom:5px; }
-.lead h2 { font-size: 19px; margin:0 0 8px; line-height:1.5; font-weight:500; }
-.lead p { margin:0; font-size:14px; }
+.lead h2 { font-size: calc(var(--fs) * 1.27); margin:0 0 8px; line-height:1.5; font-weight:500; }
+.lead p { margin:0; font-size: calc(var(--fs) * .93); }
 .lead .src { font-size:11.5px; color:var(--muted); margin-top:8px; }
 .lead .src a { color:var(--accent); text-decoration:none; }
 
@@ -181,8 +190,8 @@ html[data-theme="night"] mark { background: rgba(198,172,220,.20); }
 }
 .item { padding: 12px 0 13px; border-bottom: 1px dashed var(--line); }
 .item:last-child { border-bottom: none; }
-.item h3 { font-size: 15px; margin:0 0 5px; font-weight:500; line-height:1.55; }
-.item p { margin:0; font-size:13.5px; opacity:.86; }
+.item h3 { font-size: var(--fs); margin:0 0 5px; font-weight:500; line-height:1.55; }
+.item p { margin:0; font-size: calc(var(--fs) * .9); opacity:.86; }
 .item .more {
   display:inline-block; margin-top:7px; font-size:12px; color:var(--accent);
   text-decoration:none; letter-spacing:.3px;
@@ -210,16 +219,16 @@ html[data-theme="night"] mark { background: rgba(198,172,220,.20); }
 
 /* 阅读 */
 .reading { margin-top: 22px; }
-.rtitle { font-size: 25px; margin:0 0 5px; font-weight:500; letter-spacing:1px; line-height:1.4; }
+.rtitle { font-size: calc(var(--fs) * 1.67); margin:0 0 5px; font-weight:500; letter-spacing:1px; line-height:1.4; }
 .rby { font-size: 11.5px; color: var(--accent); letter-spacing:2px; margin-bottom: 20px; }
 .rwhy { margin:0 0 26px; padding:12px 15px; background:var(--card); border-left:2px solid var(--accent); }
-.rwhy p { margin:0 0 9px; font-size:12.8px; line-height:1.88; opacity:.92; }
+.rwhy p { margin:0 0 9px; font-size: calc(var(--fs) * .85); line-height:1.88; opacity:.92; }
 .rwhy p:last-child { margin-bottom:0; }
 .rwhy b { color:var(--accent); font-weight:500; margin-right:7px; letter-spacing:1px; }
-.rbody p { margin:0 0 15px; font-size:15.5px; line-height:2.05; text-indent:2em; }
+.rbody p { margin:0 0 15px; font-size: calc(var(--fs) * 1.03); line-height:2.05; text-indent:2em; }
 .rtrans { margin:24px 0 0; padding:14px 16px; background:var(--card); border-left:2px solid var(--line); }
 .rlabel { font-size:10.5px; letter-spacing:2.4px; color:var(--accent); margin-bottom:9px; }
-.rtrans p { margin:0 0 11px; font-size:13px; line-height:1.95; color:var(--muted); text-indent:2em; }
+.rtrans p { margin:0 0 11px; font-size: calc(var(--fs) * .87); line-height:1.95; color:var(--muted); text-indent:2em; }
 .rtrans p:last-child { margin-bottom:0; }
 .rfoot { margin-top:26px; padding-top:15px; border-top:1px solid var(--line);
   font-size:12px; color:var(--muted); line-height:1.9; }
@@ -230,6 +239,101 @@ footer {
   margin-top: 40px; padding-top: 13px; border-top: 1px solid var(--line);
   font-size: 11px; color: var(--muted); text-align:center; letter-spacing:.4px;
 }
+
+/* ===== 设置抽屉 ===== */
+.scrim {
+  position:fixed; inset:0; z-index:60; background:rgba(20,16,12,.30);
+  opacity:0; pointer-events:none; transition:opacity .22s ease;
+}
+.scrim.on { opacity:1; pointer-events:auto; }
+.drawer {
+  position:fixed; top:0; right:0; bottom:0; z-index:61; width:320px; max-width:88vw;
+  background:var(--card); border-left:1px solid var(--line);
+  box-shadow:-6px 0 24px rgba(40,30,20,.12);
+  display:flex; flex-direction:column;
+  transform:translateX(102%); transition:transform .26s cubic-bezier(.3,.8,.3,1);
+}
+.drawer.on { transform:translateX(0); }
+.drawer .dh { display:flex; align-items:center; justify-content:space-between;
+  padding:16px 18px 13px; border-bottom:1px solid var(--line); }
+.drawer .dh b { font-size:15px; font-weight:500; letter-spacing:.5px; }
+.drawer .dh .x { width:26px; height:26px; border:1px solid var(--line); background:transparent;
+  color:var(--muted); border-radius:999px; font-size:12px; line-height:1; font-family:inherit; cursor:pointer; }
+.drawer .dbody { flex:1; overflow-y:auto; padding:4px 18px 22px; display:flex; flex-direction:column; }
+.drawer section { padding:16px 0; border-bottom:1px solid var(--line); }
+.drawer section:last-of-type { border-bottom:none; }
+.drawer .cap { display:flex; justify-content:space-between; align-items:baseline;
+  font-size:10.5px; letter-spacing:1.6px; color:var(--muted); margin-bottom:9px; }
+.drawer .cap .r { letter-spacing:.4px; font-family:'BarlowCond',ui-monospace,monospace; font-size:11px; color:var(--accent); }
+
+.drawer .sel { width:100%; display:flex; align-items:center; justify-content:space-between; gap:8px;
+  border:1px solid var(--line); background:transparent; color:var(--ink);
+  font-family:inherit; font-size:13px; padding:9px 11px; border-radius:6px; cursor:pointer; text-align:left; }
+.drawer .sel.open { border-color:var(--accent); }
+.drawer .sel .cv { font-size:9px; color:var(--muted); transition:transform .15s; }
+.drawer .sel.open .cv { transform:rotate(180deg); }
+.drawer .menu { display:none; margin-top:7px; border:1px solid var(--line); border-radius:6px; overflow:hidden; }
+.drawer .menu.show { display:block; }
+.drawer .fi { width:100%; display:flex; align-items:center; gap:9px; border:none;
+  border-bottom:1px solid var(--line); background:transparent; color:var(--ink);
+  font-family:inherit; font-size:12.5px; padding:8px 11px; cursor:pointer; text-align:left; }
+.drawer .fi:last-child { border-bottom:none; }
+.drawer .fi .g { font-size:16px; line-height:1; width:18px; text-align:center; opacity:.9; }
+.drawer .fi .nm { flex:1; }
+.drawer .fi .ck { display:none; font-size:12px; color:var(--accent); }
+.drawer .fi.on .ck { display:inline; }
+.drawer .fi .tag { font-size:9.5px; color:var(--muted); border:1px solid var(--line);
+  border-radius:999px; padding:1px 6px; letter-spacing:.3px; }
+.drawer .fi.on { background:var(--soft); color:var(--accent); }
+.drawer .fi.on .tag { border-color:var(--accent); color:var(--accent); }
+.drawer .now { font-size:11px; color:var(--muted); margin-top:8px; }
+.drawer .now em { font-style:normal; color:var(--accent); }
+.drawer .prev { margin-top:10px; border:1px solid var(--line); border-radius:6px;
+  background:var(--bg); padding:10px 12px; white-space:pre-wrap; word-break:break-word;
+  line-height:1.9; font-size:15px; }
+
+.drawer .sizerow { display:flex; align-items:center; gap:10px; }
+.drawer .pm { width:30px; height:30px; flex:0 0 auto; border:1px solid var(--line); background:transparent;
+  color:var(--ink); border-radius:6px; font-family:inherit; font-size:15px; line-height:1; cursor:pointer; }
+.drawer .pm:active { background:var(--soft); }
+.drawer input[type=range] { -webkit-appearance:none; appearance:none; flex:1; height:2px;
+  background:var(--line); border-radius:2px; outline:none; margin:0; }
+.drawer input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:16px; height:16px;
+  border-radius:50%; background:var(--accent); box-shadow:0 1px 3px rgba(0,0,0,.22); cursor:pointer; }
+.drawer .sizes { display:flex; gap:6px; margin-top:11px; }
+.drawer .sz { flex:1; border:1px solid var(--line); background:transparent; color:var(--muted);
+  font-family:inherit; border-radius:6px; padding:6px 0 5px; font-size:12.5px; cursor:pointer; line-height:1.35; }
+.drawer .sz .px { display:block; font-size:9.5px; opacity:.75;
+  font-family:'BarlowCond',monospace; letter-spacing:.3px; }
+.drawer .sz.on { border-color:var(--accent); color:var(--accent); background:var(--soft); }
+
+.drawer .choc { display:grid; grid-template-columns:repeat(4,1fr); gap:7px; }
+.drawer .ch { border:none; padding:0; background:transparent; cursor:pointer; }
+.drawer .ch .sq { height:50px; border-radius:5px; border:1px solid rgba(0,0,0,.10);
+  overflow:hidden; display:flex; flex-direction:column; }
+.drawer .ch .sq .b { flex:1; background:var(--b); }
+.drawer .ch .sq .a { height:13px; background:var(--a); }
+.drawer .ch .nm { display:block; font-size:10.5px; color:var(--muted); margin-top:4px; letter-spacing:.3px; }
+.drawer .ch.on .sq { outline:1.5px solid var(--accent); outline-offset:1.5px; }
+.drawer .ch.on .nm { color:var(--accent); }
+html[data-theme="night"] .drawer .ch .sq .b { background:var(--nb); }
+html[data-theme="night"] .drawer .ch .sq .a { background:var(--na); }
+.drawer .detail { margin-top:10px; display:flex; align-items:center; gap:7px;
+  font-size:11px; color:var(--muted); font-family:'BarlowCond',ui-monospace,monospace; letter-spacing:.4px; }
+.drawer .detail .sw2 { width:11px; height:11px; border-radius:2px; border:1px solid rgba(0,0,0,.12); }
+
+.drawer .row { display:flex; align-items:center; justify-content:space-between; padding:9px 0; font-size:13.5px; }
+.drawer .sw { position:relative; width:40px; height:23px; border-radius:999px; background:var(--line);
+  flex:0 0 auto; cursor:pointer; transition:background .2s; }
+.drawer .sw i { position:absolute; top:2.5px; left:2.5px; width:18px; height:18px; border-radius:999px;
+  background:#fff; box-shadow:0 1px 2px rgba(0,0,0,.18); transition:.2s; }
+.drawer .sw.on { background:var(--accent); }
+.drawer .sw.on i { left:19.5px; }
+.drawer .row.dis { opacity:.4; }
+.drawer .row.dis .sw { cursor:default; }
+.drawer .note { font-size:11px; color:var(--muted); opacity:.9; padding-top:2px; }
+.drawer .foot { margin-top:auto; font-size:10.5px; color:var(--muted); opacity:.75;
+  letter-spacing:.4px; border-top:1px solid var(--line); padding:13px 0 2px; }
 </style>
 </head>
 <body>
@@ -237,7 +341,7 @@ footer {
   <header>
     <div class="masthead">
       <h1>730pm<span class="dot">.</span></h1>
-      <button id="themeBtn" aria-label="切换日夜">夜间</button>
+      <button id="setBtn" aria-label="设置">设置</button>
     </div>
     <div class="dateline" id="dateBtn"><span class="pick">2026年10月25日 · 星期日 · 第 004 期</span><span class="cv">▾</span></div>
   </header>
@@ -700,24 +804,218 @@ footer {
   <footer>730pm · 每日 19:30 更新 · 给不想被算法喂饭的人</footer>
 </div>
 
+<div class="scrim" id="scrim"></div>
+
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <div class="dh"><b>设置</b><button class="x" id="drawerX" aria-label="关闭">✕</button></div>
+  <div class="dbody">
+
+    <section>
+      <div class="cap">字体</div>
+      <button class="sel" id="fontSel"><span id="fontNow">寒蝉圆黑体</span><span class="cv">▾</span></button>
+      <div class="menu" id="fontMenu">
+        <button class="fi on" data-f="chill"><span class="g" style="font-family:'ChillRound'">永</span><span class="nm">寒蝉圆黑体</span><span class="ck">✓</span><span class="tag">内置</span></button>
+        <button class="fi" data-f="jinghua"><span class="g" style="font-family:'JinghuaSong',serif">永</span><span class="nm">京华老宋体</span><span class="ck">✓</span><span class="tag">内置</span></button>
+        <button class="fi" data-f="hei"><span class="g" style="font-family:-apple-system,'PingFang SC',sans-serif">永</span><span class="nm">系统黑体</span><span class="ck">✓</span><span class="tag">系统</span></button>
+        <button class="fi" data-f="song"><span class="g" style="font-family:'Songti SC',serif">永</span><span class="nm">系统宋体</span><span class="ck">✓</span><span class="tag">系统</span></button>
+      </div>
+      <div class="now">当前字体：<em id="fontTxt">寒蝉圆黑体</em></div>
+      <div class="prev" id="prev">ABCDEFGHIJKLMNOPQRSTUVWXYZ
+abcdefghijklmnopqrstuvwxyz
+1234567890
+
+%+-/:=*#￥_，。？！“”……、：；~（）～
+
+世界之心是以我为中心的。</div>
+    </section>
+
+    <section>
+      <div class="cap"><span>字号</span><span class="r" id="pxNow">15 px</span></div>
+      <div class="sizerow">
+        <button class="pm" id="minus" aria-label="减小">−</button>
+        <input type="range" id="rng" min="12" max="46" step="1" value="15">
+        <button class="pm" id="plus" aria-label="增大">＋</button>
+      </div>
+      <div class="sizes" id="quick">
+        <button class="sz" data-v="13">小<span class="px">13px</span></button>
+        <button class="sz on" data-v="15">标准<span class="px">15px</span></button>
+        <button class="sz" data-v="18">大<span class="px">18px</span></button>
+        <button class="sz" data-v="22">特大<span class="px">22px</span></button>
+      </div>
+    </section>
+
+    <section>
+      <div class="cap"><span>配色</span><span class="r" id="palHint">白天这套</span></div>
+      <div class="choc" id="choc"></div>
+      <div class="detail"><span class="sw2" id="swB"></span><span id="hexB"></span><span class="sw2" id="swA" style="margin-left:5px"></span><span id="hexA"></span></div>
+    </section>
+
+    <section>
+      <div class="row" id="rowNight"><span>夜间模式</span><span class="sw" id="swNight"><i></i></span></div>
+      <div class="row" id="rowAuto"><span>夜间模式跟随系统</span><span class="sw" id="swAuto"><i></i></span></div>
+      <div class="note" id="note">跟着系统走时，上面那个手动开关就不作数了。</div>
+    </section>
+
+    <div class="foot">改动即时生效 · 只存在这台设备上</div>
+  </div>
+</aside>
+
+
 <script>
 var TODAY="2026年10月25日", WEEKDAY="星期日", ISSUE="第 004 期", TODAY_ISO="2026-10-25";
 var ALL_TABS=[{"id":"politics","name":"时政"},{"id":"tech","name":"科技"},{"id":"science","name":"科学"},{"id":"ent","name":"娱乐"},{"id":"sport","name":"体育"},{"id":"hot","name":"热搜"},{"id":"game","name":"游戏"},{"id":"food","name":"美食"},{"id":"trivia","name":"冷知识"},{"id":"today","name":"那年今日"},{"id":"saved","name":"书报架","fn":true}];
 var ISSUE_ITEMS=[{"tab":"头条","t":"第一个只用耳朵学会说话的模型，能跑在你的笔记本上","d":"10 月 23 日，杰克·多尔西旗下的 Block 发布语音模型 Dessa。它不是把语音先转成文字再念回来，而是语音进、语音出，全双工，一边说话一边听，还会在你停顿的时候插一句「嗯」。训练也全在语音上——没有任何文本、没有预训练模型，只用了单组英伟达 GB200 NVL72 机架。官方称它能原生听出讽刺、笑声、叹气，和声音里那种快要哭出来的抖；推理快于实时，M4 Max 以上的 MacBook 可以本地跑。Block 说这是「语音领域的 GPT-3 时刻」，但同时不给公开试用，只先发给安全研究者，重点测它骗人的场景。","u":"http://k.sina.com.cn/article_5953189932_162d6782c067051y68.html"},{"tab":"头条","t":"英国掏 1 亿英镑建 AI 生物安全实验室","d":"10 月 25 日消息，英国宣布出资 1 亿英镑（约 1.34 亿美元）建设 AI 生物安全实验室，由 OpenAI、Anthropic 和谷歌 DeepMind 提供支持。其中 OpenAI 与 Anthropic 将提供最高 2 亿英镑额度的模型算力，实验室还会与 DeepMind、生命科学企业 Basecamp Research 合作。","u":"https://www.cnfin.com/hg-lb/detail/20261025/4485968_1.html"},{"tab":"头条","t":"韩国今年发的新模型，近一半建在中国基座上","d":"《韩国时报》10 月 25 日报道，智库 Rockbridge Network Korea 统计：今年 1 至 8 月韩国本土账号在 Hugging Face 发布的 1845 个模型中，49.3% 基于中国模型，35.9% 基于美国模型，14.9% 基于韩国自研。用得最多的是阿里 Qwen，占 46.8%（864 个）；其后是谷歌 Gemma 14.7%、Meta Llama 13.8%。","u":"https://k.sina.com.cn/article_7857201856_1d45362c001908se40.html?from=tech"},{"tab":"头条","t":"AWS 的产能，已经卖到 2028 年","d":"亚马逊 CEO 安迪·贾西 10 月 25 日表态，AWS 的大部分算力产能已被预订至 2028 年，未来几年的大额产能基本见顶。同一天的另一组数据是：本周沪深两市股票型与跨境型 ETF 合计净流入 1580.77 亿元，机器人相关 ETF 被资金看好，半导体设备、煤炭相关 ETF 被抛售。","u":"https://www.cnfin.com/hg-lb/detail/20261025/4485968_1.html"},{"tab":"时政","t":"美国撤走部分中东外交人员，13 国旅行警告集体上调","d":"彭博 10 月 24 日援引美国官员消息，因伊朗与也门胡塞武装威胁，美方已下令撤离部分外交人员，并调整中东各领事馆的人员配置；23 日晚把巴林、伊朗、伊拉克、以色列、约旦、科威特、黎巴嫩、阿曼、卡塔尔、沙特、叙利亚、阿联酋、也门 13 国的旅行警告全部提到第三级「重新考虑前往」以上。23 日收盘，布伦特原油涨 3.14% 至 116.72 美元，WTI 涨 3.8% 报 103.27 美元，重新站上 100 美元，布油一周累计涨 6%。","u":"https://www.zaobao.com.sg/finance/world/story20261025-9891800"},{"tab":"时政","t":"联军连续空袭萨那与穆哈，穆哈一天挨了近 20 次","d":"胡塞武装控制的马西拉电视台 10 月 24 日称，沙特主导的多国联军连续空袭也门首都萨那和红海港口城市穆哈。萨那西部阿斯尔区一栋房屋被击中，3 人死亡、多人受伤；西北部哈姆丹区一座水泥厂遭袭。当天上午以来穆哈遭近 20 次空袭——它靠近曼德海峡。同日联军发言人称，已拦截并摧毁胡塞射向利雅得的一枚弹道导弹。","u":"https://www.cnfin.com/yw-lb/detail/20261025/4485991_1.html"},{"tab":"时政","t":"奥列什基人道行动：俄乌 27 日同一时刻停火","d":"俄人权事务专员兰特拉托娃 10 月 24 日说，双方按已达成的约定推进赫尔松地区奥列什基的人道主义行动，并为此在当地同步停火。乌方首席谈判代表卢比涅茨称，乌军自基辅时间 10 月 27 日 4 时停火，与俄军一致；俄总参谋长格拉西莫夫 23 日已宣布俄军自莫斯科时间 27 日 4 时进入「静默」状态。白宫称该市仍有 1700 至 2000 人留守，多为无法离开的老人，另有约 50 名儿童。","u":"https://www.cnfin.com/hg-lb/detail/20261025/4485975_1.html"},{"tab":"时政","t":"巴西今天投票：首轮输的那个人，正试着翻盘","d":"巴西总统选举第二轮决选 10 月 25 日投票，约 1.59 亿选民。10 月 4 日首轮，弗拉维奥·博索纳罗以 47.31% 领先卢拉的 44.83%，两人进入决选。24 日里约科帕卡巴纳海滩涌进大批红衣支持者，市政府估计约 110 万人到场；卢拉当天下午又在圣保罗保利斯塔大道办了一场更大的。自 1980 年代巴西恢复民主以来，还没有首轮落败者在决选中翻盘。","u":"https://www.rfi.fr/cn/%E7%BE%8E%E6%B4%B2/20261021-%E5%B7%B4%E8%A5%BF%E6%80%BB%E7%BB%9F%E9%80%89%E4%B8%BE%E8%A7%92%E9%80%90%E7%99%BD%E7%83%AD%E5%8C%96%EF%BC%8C%E4%B8%A4%E7%AB%9E%E9%80%89%E4%BA%BA%E6%8F%90%E8%AF%B7%E5%8F%96%E6%B6%88%E5%AF%B9%E6%96%B9%E5%8F%82%E9%80%89%E8%B5%84%E6%A0%BC"},{"tab":"时政","t":"法国 41 万人上街，约千人被捕","d":"法国内政部统计，10 月 24 日全国约 41 万人参与示威，工会方面称约 80 万人；政府部署 7 万名警察和宪兵，截至当晚约 1000 人被捕。巴黎、马赛、里昂、斯特拉斯堡、图卢兹等地出现冲撞治安部队，马赛多间商铺被劫掠或打砸。上一轮 10 月 17 日的示威中，全国至少 3000 家商铺被砸；部分工会与学生组织把下一次全国抗议定在 11 月 5 日。","u":"https://www.cnfin.com/yw-lb/detail/20261025/4485979_1.html"},{"tab":"科技","t":"讯飞星火医疗大模型 V3.7：全国产算力，语义影像语音一起看","d":"10 月 22 日，科大讯飞在全球 1024 开发者节主论坛（北京国家会议中心）发布星火医疗大模型 V3.7，基于全国产算力底座，做医学语义、影像、语音的深度融合。同场发布 AI 患者管理 3.0 并启动行业标准共建；讯飞晓医同步升级多份医学报告综合解读、健康风险洞察、中医舌面体质辨识等能力。","u":"https://k.sina.com.cn/article_7857201856_1d45362c001908sd0e.html?from=tech"},{"tab":"科技","t":"Anthropic 明天公开递表，2 万亿的价码正在往下掉","d":"据 IFR 与《华尔街日报》10 月 24 日报道，Anthropic 计划 10 月 26 日向 SEC 公开递交 IPO 文件，11 月 9 日当周启动路演，目标 11 月中旬挂牌，估值最高喊到 2 万亿美元——超过 SpaceX 今年 1.77 万亿的纪录。但它三季度收入 168 亿美元、环比增速从 140% 以上降到 45%，老股平台报价隐含估值约 1.7 万亿，部分机构已预期承销指导价低于 1.5 万亿。","u":"https://www.ifre.com/equities/2499407/anthropic-pushes-ahead-with-mid-november-ipo"},{"tab":"科技","t":"Lava Aura Curve：背面还挂了一块副屏，23999 卢比","d":"10 月 25 日，印度品牌 Lava 在印度发布 Aura Curve。6.67 英寸 AMOLED 曲面屏，6000mAh 电池配 45W 快充，背面首创一块副屏，显示通知与电量；天玑 7100 芯片，安兔兔跑分超 80 万，6GB+128GB；后置 5000 万像素 IMX752 主摄、前置 1300 万，屏下指纹、IP64、原生 Android 16，承诺 2 个大版本更新与 3 年安全更新。售价 23999 卢比。","u":"https://www.donews.com/news/detail/8/6752844.html"},{"tab":"科技","t":"Mate 90 系列开放 24 期免息，国补价 5499 元起","d":"10 月 24 日华为官网上线 Mate 90、Mate 90 Pro、Mate 90 Pro Max 的 24 期免息分期，京东等平台同步，国补价 5499 元起。这代 10 月 1 日发布：标准版麒麟 9030（CPU +13%、GPU +54%、NPU +13%），Pro 首发麒麟 9035（NPU +51%），Pro Max 典藏版与 RS 用首款逻辑折叠 τ 芯片麒麟 9050 Pro，9 核 16 线程，NPU 提升 140%，配 6800mAh 电池，10999 元起。","u":"https://www.163.com/dy/article/LA0BFP320511B8LM.html"},{"tab":"科学","t":"IUCN：96% 的浅水珊瑚礁，2075 年前面临极高崩溃风险","d":"世界自然保护联盟（IUCN）在两年一度的联合国生物多样性峰会上公布评估：至少 96% 的浅水珊瑚礁生态系统到 2075 年面临极高的崩溃风险，其余因数据不足未评估，但可能同样脆弱。该预测基于「中间路线」的温和减排情景。研究同时指出，珊瑚每十年只形成约 0.1°C 的额外耐热性——一旦五年内遭三次以上白化，就没有恢复时间。珊瑚礁只占海洋面积 1%，却支撑 25% 的海洋物种，约 10 亿人依赖它捕鱼和挡浪。","u":"https://news.sciencenet.cn/htmlnews/2026/10/573562.shtm"},{"tab":"科学","t":"一个正电子，被关在陷阱里好几个月","d":"美国西北大学 Gerald Gabrielse 团队把单个正电子捕获并稳定维持数月。办法是先用放射性钠源产生正电子，经特殊制冷机与钨晶体两级减速，再导入排空其他粒子的冷藏腔室，用电磁场做「隐形壁」约束，并把它推到最低能量态、再用微波脉冲在最低两态间驱动量子跃迁。10 月 21 日发表于《物理评论快报》。目标是测正电子的磁矩，与电子比对——标准模型说两者应当相同，可那样宇宙早该正反物质等量湮灭、什么都不剩。","u":"https://news.sciencenet.cn/htmlnews/2026/10/573561.shtm"},{"tab":"科学","t":"实验室里造出一颗微型「太阳耀斑」，温度翻倍","d":"中国原子能科学研究院 Wei Sun 团队向微小塑料靶打四束强激光，造出直径约 2 毫米的等离子体。用平面靶时稳定；换成表面呈波浪状的靶，等离子体失稳、磁场重排，产生一个纳米耀斑，温度冲到 799726°C，几乎是平面靶的近两倍。10 月 20 日发表于《物理评论快报》。这给「日冕为什么比太阳表面热几千倍」添了一个候选解释，但鲁汶大学 Rony Keppens 认为还没到结案。","u":"https://news.sciencenet.cn/htmlnews/2026/10/573560.shtm"},{"tab":"科学","t":"4Hb-TaS₂ 那条「平带」，只在表面上存在","d":"中国科大陈仙辉、何俊峰团队用空间分辨角分辨光电子能谱，分别测了 4Hb-TaS₂ 单晶两种解理面的电子结构。理论预言的费米能级附近平带确实存在，但只出现在平移对称性破缺的表面 1T-TaS₂ 层；内部那一层空穴掺杂更高，平带远高于费米能，撑不起电子关联。也就是说，流行理论只能解释表面，解释不了体材料。10 月 21 日发表于《美国国家科学院院刊》。","u":"https://news.sciencenet.cn/htmlnews/2026/10/573543.shtm"},{"tab":"娱乐","t":"《唐诡》第五、六季套拍 80 集，今天在剑门关开机","d":"10 月 25 日，《唐朝诡事录之蜀道》在四川广元剑门关开机，监制兼总编剧郭靖宇在开机现场宣布：第五、六季一次性套拍，共 80 集。原班人马全到——杨旭文（卢凌风）、杨志刚（苏无名）、郜思雯（裴喜君）、陈创（费鸡师）、孙雪宁（褚樱桃）。魏风华编剧，巨兴茂、郭世民执导，爱奇艺独播。整体拍摄约 180 天，先在剑门关、翠云廊拍外景，再转横店棚内，预计 2027 年上半年杀青。故事沿古蜀道从长安往成都走，三星堆、巴蜀巫傩、三国遗迹都进案件。","u":"https://ent.sina.cn/2026-10-25/detail-iniwmtkt3154687.d.html?vt=4"},{"tab":"娱乐","t":"《尚公主》第二天热度破 2.4 万，浴缸花絮比剧情先出圈","d":"10 月 23 日开播后站内热度破 24000，开播前预约量破 550 万。10 月 25 日冲上热搜的是「孟子义质疑尚公主浴缸戏」——花絮里暮晚摇要言尚伺候沐浴，言尚拿「伤口未结痂不能泡水」劝，公主坚持要擦洗。片场孟子义顺手戳李昀锐酒窝，后来枕在他手上闭眼装睡，李昀锐盯了几秒才发现不对，当场笑场。这个话题今天挂到 18 万热度。","u":"https://k.sina.com.cn/article_7879776328_1d5abd84806802et1i.html?from=ent"},{"tab":"娱乐","t":"刘琳新剧《峨眉》：央视八套＋优酷，10 月 18 日官宣全阵容","d":"国风悬疑剧《峨眉》5 月 26 日在峨眉山开机，8 月中杀青，10 月 18 日官宣全阵容，央视八套与优酷播出。徐纪周（《狂飙》）、裘仲维执导，杨夏编剧兼制片，美术王竞、造型陈同勋。取材峨眉山 29 座古建殿宇，国内第一部「古建拟人化」剧集，六个单元探案，讲殿神息心从云端坠进红尘。吴俊霆、章时安领衔，刘琳饰白襄，石兆琪、陈妍希、李健、吴樾、高叶在列。尚未定档。","u":"https://www.163.com/dy/article/L9H1MMNP05563X2Z.html"},{"tab":"娱乐","t":"LISA 首张 EP 首日 827 万播放，今年 K-pop solo 最高","d":"10 月 23 日 LISA 通过 LLOUD／RCA 发行六首歌的 EP《Press Play》，主打《Tarantino》，MV 走塔伦蒂诺式的酒店闯关路子。首日 Spotify 播放 8,272,000 次，是 2026 年 K-pop solo 歌手最高的首日成绩，同时登顶全球 iTunes 专辑榜。先行曲《SaWaDiKa》进 Billboard Hot 100 第 69，是她个人在榜单上的最好名次。EP 另外五首是 V12、Cobra、Cut U Off、Sweat 和同名单曲。11 月 12 日起拉斯维加斯六场驻场。","u":"https://www.koreaherald.com/article/10913443"},{"tab":"娱乐","t":"NMIXX《Gin Sowon》升到 Melon 第 5，出道以来最高","d":"10 月 22 日带新单《Gin Sowon》上《M Countdown》，正式开打歌。Melon Top 100 首日进第 34，随后升到第 5，是她们出道以来最高名次；多个地区 iTunes 登顶，MV 播放破 1300 万。","u":"https://www.chosun.com/english/kpop-culture-en/2026/10/22/2ELQDXFNNNCWPN3PTYYIX3PTNU/"},{"tab":"娱乐","t":"RIIZE 明天发《EMOTIION》","d":"新专 10 月 26 日上线。这个月韩娱排得满：月初是 YESUNG、ONEW、TEEN TOP、N.Flying，中段 IVE、PLAVE、Xdinary Heroes、NMIXX，月末轮到 RIIZE 和 ILLIT。RIIZE 这张是本月最后一个大团动作。","u":"https://www.harpersbazaar.com.sg/lifestyle/upcoming-k-pop-comebacks"},{"tab":"娱乐","t":"Jisoo 10 月 30 日发单曲《ADDICTED》，预告昨天放出","d":"BLACKPINK 的 Jisoo 放出《ADDICTED》动态预告，定 10 月 30 日发数字单曲。距 LISA 那张 EP 一周，BLACKPINK 两个人的个人活动撞在同一个月。","u":"http://www.kpopfizz.com/news/watch-blackpink-s-jisoo-drops-motion-teaser-for-digital-sing/"},{"tab":"体育","t":"北爱决赛今晚 21 点：威尔逊对杰克·琼斯，两人半决赛都 6 比 5","d":"10 月 25 日凌晨两场半决赛，都是决胜局。凯伦·威尔逊 3 比 5 落后连赢三局，6 比 5 淘汰萨姆·克雷吉（克雷吉打出单杆 100）；马克·威廉姆斯 5 比 4 领先杰克·琼斯，被琼斯连拿两局，5 比 6 出局。决赛 17 局 9 胜，北京时间今晚 21 点开杆。威廉姆斯上一轮刚说想拿第 28 个排名赛冠军追平戴维斯，这个任务现在归别人了。","u":"https://wpbsacn.com/tournament-details/?id=b4533c9e-8d2c-4ecc-8dfd-c6b284705578"},{"tab":"体育","t":"张家玮 4 比 0 横扫宾汉姆，第二天就没了","d":"世界排名 110 的张家玮在本届打出最好的一场：第二轮 4 比 0 横扫第 19 的宾汉姆，一局没让，但也只走到这里——第三轮 2 比 4 输给吉尔伯特。同轮高阳 3 比 4 负吉尔伯特，徐思 3 比 4 负克雷吉，庞俊旭决胜局 3 比 4 负威尔逊。中国 15 人参赛，最好成绩止步 16 强；种子里的赵心童、肖国栋、吴宜泽、斯佳辉全在头两轮出局。","u":"https://aimgeometry.com/zh/snooker/events/northern-ireland-open-2026/"},{"tab":"体育","t":"亚锦赛收官日：男双冠亚军已锁定，另外三项都要打日本","d":"10 月 25 日塔什干。男双半决赛林诗栋/黄友政 3 比 0 胜新加坡冯耀恩/郭勇，温瑞博/袁励岑 3 比 1 胜香港黄镇廷/陈颢桦，决赛变成内战，冠军提前落袋。女双蒯曼/王艺迪 3 比 0 胜大藤沙月/长崎美柚进决赛，对手是张本美和/早田希娜——另一对国乒陈熠/姜依依 1 比 3 输给同一对组合。女单陈熠 3 比 0 胜王艺迪进决赛；蒯曼 11-7、13-11 先下两局，随后 5-11、9-11、10-12 连丢三局，被张本美和翻盘。男单李天阳打满五局 3 比 2 逆转中国台北郭冠宏进决赛，温瑞博 0 比 3 负张本智和。此前男团冠军、女团亚军、混双亚军（黄友政/陈熠 2 比 3 负松岛辉空/张本美和）。","u":"https://www.163.com/dy/article/LA3NUPHB05299KEO.html"},{"tab":"体育","t":"徐嘉余 22 秒 03，50 米仰泳短池世界纪录","d":"10 月 24 日晚，全国游泳锦标赛（短池）男女 4×50 米混合泳接力决赛，浙江队第一棒徐嘉余游出 22 秒 03，超过男子 50 米仰泳短池世界纪录——原纪录是南非的科策 10 月 9 日在游泳世界杯上刚游出的。同一场比赛里他先在 100 米仰泳以 48 秒 77 夺金，刷新自己保持的亚洲纪录。","u":"http://www.xinhuanet.com/20261025/3442f5eaaa264922ad2d12b9eefbe9c4/c.html"},{"tab":"热搜","t":"傍晚的榜：洗头、张雪、抗震救灾","d":"18 点 55 分：再也不去理发店去洗头了 177.9 万 · 县委书记拒绝张雪为家乡打广告 93 万 · 致敬抗震救灾中的救援力量 75.2 万 · 人造黄金会不会击穿金价 46.6 万 · 央视曝 AI 人哭着卖惨带货 45 万 · 王者荣耀 2026 共创之夜好多人 33.3 万 · 多名女性被发色情软件都接触过同一人 30.3 万 · TES 与 AL 多人缺席 S16 29.2 万 · 羊年央视春晚总导演于蕾 29.1 万 · 蒯曼连救 4 赛点仍遭让二追三 28.9 万。全天峰值最高的其实是「全国总人口面临跌破 14 亿」，209.5 万，一天里 44 次上榜。","u":"https://hot.eeeun.com/board.php?pkey=weibo"},{"tab":"热搜","t":"张雪的水上漂破了吉尼斯，证书和车留在了家乡","d":"机车博主「张雪」的挑战成功，刷新水上漂吉尼斯世界纪录，现场开香槟。同一天两条相关话题一起上：县委书记拒绝在他直播里插广告；他把证书和车留在麻阳，叮嘱别挂闲鱼卖。今天这两个话题分别在榜上挂到 93 万和 13 万。","u":"https://www.jinrikan.com/daily"},{"tab":"热搜","t":"世界榜被日本赛马和泰语音乐剧占着","d":"现在前五：ロブチェン、#菊花賞（日本三冠最后一关，每年十月下旬在京都跑）、ダノンヒストリー、#รักแห่งสยามTheMusical（泰语音乐剧《暹罗之恋》）、ゴーイントゥスカイ。按发帖量排，最大的是巴西的 #HojeEuVotoLula，其后 #SRICHANDSASIMOONRISE、#StopSoonerWithMIchelin。前五里没有一条中文话题。","u":"https://whatstrends.com"},{"tab":"游戏","t":"今天架上：古墓丽影一折，维多利亚 3 七折","d":"国区实时价：《古墓丽影：暗影》决定版 90%，19.6 元（原 196）；《古墓丽影：崛起》90%，14.7 元；《维多利亚 3》70%，59.4 元；《黎明杀机》60%，37.5 元；《猎人：荒野的召唤》80%，14 元；《死亡细胞》50%，40 元；《边缘世界》20%，102.4 元；《雾锁王国》10%，124.2 元。上一批还在：《赛博朋克 2077》七折 89.4 元、《往日之影》89.4 元、《生化危机 4》49.5 元、GTA V 增强版 74.5 元、《行尸走肉》Telltale 合集 16.8 元。","u":"https://store.steampowered.com/search/?specials=1&l=schinese&cc=cn"},{"tab":"游戏","t":"王者荣耀共创之夜今晚开场，KPL 十周年一起过","d":"10 月 24 到 25 日，深圳国际会展中心 1、2 号馆和南广场办嘉年华暨 KPL 十周年奇妙日；共创之夜 10 月 25 日 18 点 30 分在深圳市体育中心体育馆，线上 19 点开播。「2026 共创之夜节目单」今天冲到热搜第 2、峰值 86.2 万，「王者荣耀 2026 共创之夜好多人」33.3 万。KPL 奇妙日本来定在广州，因原场馆收回档期改到深圳，两场庆生就撞在了一起。","u":"https://news.17173.com/content/08222026/232652597.shtml"},{"tab":"游戏","t":"《原神》7.2 定档 11 月 4 日，PV 里带着「至冬」","d":"版本前瞻 10 月 23 日晚 20 点播出，版本 PV《坏灭肇始之时》随后上线，定档 11 月 4 日。官方 PV 的标签里带着「原神至冬」——主线第一次明确往至冬推。同期《绝区零》先导预告上线。","u":"https://www.bilibili.com/video/BV1z9nt6aE5H/"},{"tab":"美食","t":"榴莲系列 10 月 22 日全国上新，一杯里放一瓣榴莲","d":"官方微博 10 月 21 日预告，次日起全国门店上「猫山王榴莲拿铁」和「猫山王榴莲椰椰」。原料写的是马来西亚猫山王配泰国金枕，100% 真实果肉、0 香精，每杯果肉约等于一瓣完整榴莲。公告里没写价格，只说全国上新。","u":"https://www.sina.cn/news/detail/5356471084647568.html"},{"tab":"美食","t":"姜黄被骂到连夜改配方，老品摆出两个版本","d":"这轮果蔬茶古茗选了姜黄，新品「大橘姜黄」被大量吐槽像洗洁精、洗衣粉；更麻烦的是回归的「爆汁粒粒大橘」今年被悄悄加了姜黄，老客直接反弹。门店当晚接到通知改配方，小程序上把姜黄版和纯橘子版并列，让人自己选。","u":"https://www.gafei.com/kafeibiji-149875"},{"tab":"美食","t":"今天没抓到","d":"官网首页最近更新只写到出海和门店数，产品页还是桂花引、南山烟雨那几只常驻。十月新品窗口应该在小程序里，网页端翻不到；公众号也没搜到近一周的推送。","u":""},{"tab":"美食","t":"今天没抓到","d":"大陆这边十月还是「老品回归」那一批：8 元大切生三文鱼、10 元炙烧焦糖鹅肝，昨天已经写过。今天搜到的十月优惠全是香港、台湾门店的——寿司总选举、北海道祭，按规矩一条都没放。","u":""},{"tab":"美食","t":"今天没抓到","d":"泉膳中国的滨寿司页面只有品牌介绍，没有菜单；能搜到的「十月新品」是食客自己写的点单帖，不是官方菜单。华北门店的特惠没有公开页，只能到店看海报。","u":""},{"tab":"冷知识","t":"一场只打了三十八分钟的战争，死伤五百人","d":"1896 年 8 月 27 日，桑给巴尔。亲英的苏丹刚死，德国支持的哈立德抢先进了宫，英国下最后通牒。上午 9 时 02 分英舰开炮，9 时 40 分宫殿停火，全程 38 分钟，常被算作史上最短的战争。英方一人受伤；桑方约 500 人伤亡，苏丹的皇家游艇格拉斯哥号被击沉。炮声停下之后，英国扶了另一位苏丹上位。","u":"https://zh.wikipedia.org/wiki/%E8%8B%B1%E6%A1%91%E6%88%98%E4%BA%89"},{"tab":"冷知识","t":"澳大利亚派军队打鸸鹋，平均十发子弹换一只","d":"1932 年，西澳农民被鸸鹋踩坏麦田、啄穿围栏，要求军方带机枪来。马里帝兹少校带两名士兵、两挺路易士机枪、一万发子弹进场。鸸鹋不结阵，散成小群跑，机枪架上卡车追不上，颠得也打不准。第一次行动六天耗掉 2500 发，战果说不清。12 月 10 日他交报告：用掉 9860 发，打死 986 只。","u":"https://zh.wikipedia.org/wiki/%E9%B8%B8%E9%B9%8B%E6%88%98%E4%BA%89"},{"tab":"冷知识","t":"一个不会老死的物种，是被船带到全世界的","d":"灯塔水母只有 4 到 5 毫米，身体透明，能直接看见红色的消化系统。别的种类水母产卵之后就会死，它性成熟之后还能退回水螅型，重新长一遍——学名叫分化转移，理论上没有次数上限。它原产加勒比海，如今在别的海域也被捞到，靠的是远洋船舶排的压舱水。靠返老还童活下来的东西，扩散靠的是一船一船被抽进去的海水。","u":"https://zh.wikipedia.org/wiki/%E7%81%AF%E5%A1%94%E6%B0%B4%E6%AF%8D"},{"tab":"那年今日","t":"抗美援朝纪念日","d":"1950 年 10 月 25 日，中国人民志愿军跨过鸭绿江出国作战，同一天与朝鲜人民军发起第一次战役。这一天后来被定为志愿军抗美援朝纪念日。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8825%E6%97%A5"},{"tab":"那年今日","t":"台湾光复节","d":"1945 年 10 月 25 日，台北公会堂举行受降典礼，在台日军向同盟国投降，日本对台湾五十年的统治在这一天结束。这天后来成为光复节。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8825%E6%97%A5"},{"tab":"那年今日","t":"世界意大利面日","d":"维基的节日栏里只有这一行字，没写发起年份，也没写发起机构。大概没人认领——是吃面的人自己过的。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8825%E6%97%A5"},{"tab":"那年今日","t":"1147 年 · 里斯本围了四个月，然后破了","d":"葡萄牙国王阿方索一世的军队围攻四个月后，从摩尔人手里夺取里斯本。这是第二次十字军东征期间基督教世界为数不多的胜利之一。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8825%E6%97%A5"},{"tab":"那年今日","t":"1415 年 · 阿金库尔战役","d":"英格兰国王亨利五世率领步兵和弓兵，在阿金库尔击败法国骑兵部队。这场仗后来被反复讲，多半是因为那支弓兵。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8825%E6%97%A5"},{"tab":"那年今日","t":"1860 年 · 中法《北京条约》签订","d":"恭亲王奕訢与法国驻华公使葛罗签订条约。这是第二次鸦片战争的收尾文件之一，同年圆明园已被烧。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8825%E6%97%A5"},{"tab":"那年今日","t":"1915 年 · 孙中山与宋庆龄在东京结婚","d":"两人在日本东京登记结婚。那年孙中山四十八岁，宋庆龄二十二岁，相差二十七岁，这桩婚事在她家里掀起过不小的风波。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8825%E6%97%A5"},{"tab":"那年今日","t":"1936 年 · 柏林—罗马轴心成立","d":"德国和意大利的代表在柏林签订同盟条约，柏林-罗马轴心由此建立。三年后这份关系被写进更硬的条约里。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8825%E6%97%A5"},{"tab":"那年今日","t":"1938 年 · 武汉沦陷，武汉会战结束","d":"武汉失守，武汉会战到此结束。这是抗日战争中规模最大的一场局部战争，此前四个月里，长江两岸一直在打。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8825%E6%97%A5"},{"tab":"那年今日","t":"1945 年 · 台北公会堂的受降典礼","d":"在台日军依照盟军最高统帅麦克阿瑟的第一号命令，向同盟国投降，受降代表是陈仪。典礼在台北公会堂举行，台湾的日本统治时期在这一天收尾。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8825%E6%97%A5"},{"tab":"那年今日","t":"1950 年 · 志愿军出国作战","d":"中国人民志愿军跨过鸭绿江参加朝鲜战争，同一天与朝鲜人民军发动抗美援朝第一次战役。这一天也是后来纪念日的由来。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8825%E6%97%A5"},{"tab":"那年今日","t":"1971 年 · 联大通过 2758 号决议","d":"联合国大会通过第 2758 号决议，由中华人民共和国取代中华民国，取得中国在联合国的席位。同一天，1950 年志愿军过江。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8825%E6%97%A5"},{"tab":"那年今日","t":"2001 年 · Windows XP 在纽约发布","d":"微软在纽约向全球正式发布 Windows XP。那条蓝色任务栏和「蓝天白云」桌面，此后十几年一直待在办公室和家里的电脑上。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8825%E6%97%A5"},{"tab":"今日阅读","t":"项脊轩志","d":"项脊轩，旧南阁子也。室仅方丈，可容一人居。百年老屋，尘泥渗漉，雨泽下注，每移案，顾视无可置者。又北向，不能得日，日过午已昏。余稍为修葺，使不上漏；前辟四窗，垣墙周庭，以当南日；日影反照，室始洞然。又杂植兰桂竹木于庭，旧时栏楯，亦遂增胜。借书满架，偃仰啸歌，冥然兀坐，万籁有声；而庭阶寂寂，小鸟时来啄食，人至不去。三五之夜，明月半墙，桂影斑驳，风移影动，珊珊可爱。 然余居于此，多可喜，亦多可悲。先是，庭中通南北为一，迨诸父异爨，内外多置小门墙，往往而是。东犬西吠，客逾庖而宴，鸡栖于厅。庭中始为篱，已为墙，凡再变矣。家有老妪，尝居于此。妪，先大母婢也，乳二世，先妣抚之甚厚。室西连于中闺，先妣尝一至。妪每谓余曰：「某所，而母立于兹。」妪又曰：「汝姊在吾怀，呱呱而泣；娘以指叩门扉曰：『儿寒乎？欲食乎？』吾从板外相为应答。」语未毕，余泣，妪亦泣。余自束发读书轩中，一日，大母过余曰：「吾儿，久不见若影，何竟日默默在此，大类女郎也！」比去，以手阖门，自语曰：「吾家读书久不效，儿之成，则可待乎？」顷之，持一象笏至，曰：「此吾祖太常公宣德间执此以朝，他日汝当用之。」瞻顾遗迹，如在昨日，令人长号不自禁。 轩","u":""}];
 var ARCHIVE=[{"no":"008","label":"10月29日 · 今天","count":"51","href":"../index.html","cur":false},{"no":"007","label":"10月28日","count":"54","href":"2026-10-28.html","cur":false},{"no":"006","label":"10月27日","count":"51","href":"2026-10-27.html","cur":false},{"no":"005","label":"10月26日","count":"51","href":"2026-10-26.html","cur":false},{"no":"004","label":"10月25日","count":"54","href":"","cur":true},{"no":"003","label":"10月24日","count":"53","href":"2026-10-24.html","cur":false},{"no":"002","label":"10月23日","count":"53","href":"2026-10-23.html","cur":false},{"no":"001","label":"10月22日","count":"63","href":"2026-10-22.html","cur":false}];
 (function(){
-  var root=document.documentElement, btn=document.getElementById('themeBtn');
-  var meta=document.querySelector('meta[name=theme-color]');
-  function apply(t){
-    root.setAttribute('data-theme',t);
-    btn.textContent = t==='night' ? '日间' : '夜间';
-    if(meta) meta.setAttribute('content', t==='night' ? '#17140F' : '#F4EFE6');
+  var root=document.documentElement, meta=document.querySelector('meta[name=theme-color]');
+
+  var SCHEMES=[
+    {id:'baokan', name:'旧报', day:['#F4EFE6','#2A2521','#6C2F36'], night:['#17140F','#C8BFB2','#C6ACDC']},
+    {id:'shuang', name:'霜白', day:['#F1F2EF','#20241F','#3C5A4E'], night:['#121815','#C2CBBF','#7FBF9F']},
+    {id:'shazhi', name:'砂纸', day:['#EFE5D4','#2B241C','#8A4B2A'], night:['#1A1410','#D5C4AE','#D08A5A']},
+    {id:'dianlan',name:'靛蓝', day:['#EDF1F6','#1E2833','#2B4A70'], night:['#10161F','#BFCBDA','#8FB6D9']},
+    {id:'ouhe',   name:'藕荷', day:['#F6F0F3','#2A2129','#7C4B6E'], night:['#17121A','#D2C3D0','#D3A8C6']},
+    {id:'chahe',  name:'茶褐', day:['#F2EDE3','#2A231A','#6B5334'], night:['#181410','#D2C3AC','#C9A87C']},
+    {id:'zhuqing',name:'竹青', day:['#EDF0EA','#1F2620','#4A6350'], night:['#121714','#C3CFC4','#9BC0A5']},
+    {id:'qiangui',name:'铅灰', day:['#E9E9E7','#232322','#4A4A48'], night:['#141414','#C7C7C5','#B8B8B6']}
+  ];
+  var FONTS={
+    chill:  {name:'寒蝉圆黑体', css:"'ChillRound'"},
+    jinghua:{name:'京华老宋体', css:"'JinghuaSong'"},
+    hei:    {name:'系统黑体',   css:"-apple-system,'PingFang SC','Noto Sans CJK SC',sans-serif"},
+    song:   {name:'系统宋体',   css:"'Songti SC','Noto Serif CJK SC',serif"}
+  };
+  var SET={font:'chill', size:15, scheme:'baokan', night:false, auto:false};
+  try{
+    var s=JSON.parse(localStorage.getItem('np-set')||'null');
+    if(s) for(var k in SET) if(s[k]!==undefined) SET[k]=s[k];
+  }catch(e){}
+  if(!FONTS[SET.font]) SET.font='chill';
+  if(SET.size<12||SET.size>46) SET.size=15;
+
+  function hex2rgb(h){h=h.replace('#','');return [parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)];}
+  function rgb2hex(r){return '#'+r.map(function(v){return ('0'+Math.round(v).toString(16)).slice(-2);}).join('');}
+  function mix(a,b,t){var A=hex2rgb(a),B=hex2rgb(b);return rgb2hex(A.map(function(v,i){return v+(B[i]-v)*t;}));}
+  function scheme(){for(var i=0;i<SCHEMES.length;i++) if(SCHEMES[i].id===SET.scheme) return SCHEMES[i]; return SCHEMES[0];}
+  function save(){try{localStorage.setItem('np-set',JSON.stringify(SET));}catch(e){}}
+
+  var mql = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+  function wantNight(){ return SET.auto ? !!(mql && mql.matches) : SET.night; }
+
+  var el = {
+    scrim:document.getElementById('scrim'), drawer:document.getElementById('drawer'),
+    setBtn:document.getElementById('setBtn'), x:document.getElementById('drawerX'),
+    fontSel:document.getElementById('fontSel'), fontMenu:document.getElementById('fontMenu'),
+    fontNow:document.getElementById('fontNow'), fontTxt:document.getElementById('fontTxt'),
+    prev:document.getElementById('prev'), rng:document.getElementById('rng'),
+    pxNow:document.getElementById('pxNow'), quick:document.getElementById('quick'),
+    choc:document.getElementById('choc'), swB:document.getElementById('swB'), swA:document.getElementById('swA'),
+    hexB:document.getElementById('hexB'), hexA:document.getElementById('hexA'), palHint:document.getElementById('palHint'),
+    rowNight:document.getElementById('rowNight'), rowAuto:document.getElementById('rowAuto'),
+    swNight:document.getElementById('swNight'), swAuto:document.getElementById('swAuto'), note:document.getElementById('note')
+  };
+
+  /* 巧克力格 */
+  el.choc.innerHTML = SCHEMES.map(function(x){
+    return '<button class="ch" data-id="'+x.id+'" style="--b:'+x.day[0]+';--a:'+x.day[2]+';--nb:'+x.night[0]+';--na:'+x.night[2]+'">'
+      + '<span class="sq"><span class="b"></span><span class="a"></span></span>'
+      + '<span class="nm">'+x.name+'</span></button>';
+  }).join('');
+
+  function paint(){
+    var sc=scheme(), night=wantNight(), p = night ? sc.night : sc.day;
+    root.style.setProperty('--bg', p[0]);
+    root.style.setProperty('--ink', p[1]);
+    root.style.setProperty('--accent', p[2]);
+    root.style.setProperty('--muted', mix(p[1],p[0],.42));
+    root.style.setProperty('--line', mix(p[0],p[1],.16));
+    root.style.setProperty('--card', night ? mix(p[0],'#ffffff',.05) : mix(p[0],'#ffffff',.45));
+    root.style.setProperty('--tabbar', 'rgba('+hex2rgb(p[0]).join(',')+',.93)');
+    root.style.setProperty('--soft', 'rgba('+hex2rgb(p[2]).join(',')+',.10)');
+    root.style.setProperty('--body-font', FONTS[SET.font].css);
+    root.style.setProperty('--fs', SET.size+'px');
+    root.setAttribute('data-theme', night ? 'night' : 'day');
+    if(meta) meta.setAttribute('content', p[0]);
+
+    el.swB.style.background = p[0];
+    el.swA.style.background = p[2];
+    el.hexB.textContent = p[0].toUpperCase();
+    el.hexA.textContent = p[2].toUpperCase();
+    el.palHint.textContent = night ? '夜里这套' : '白天这套';
+    el.fontNow.textContent = FONTS[SET.font].name;
+    el.fontTxt.textContent = FONTS[SET.font].name;
+    el.prev.style.fontFamily = FONTS[SET.font].css + ',sans-serif';
+    el.prev.style.fontSize = SET.size + 'px';
+    el.rng.value = SET.size;
+    el.pxNow.textContent = SET.size + ' px';
+    el.swNight.classList.toggle('on', night);
+    el.swAuto.classList.toggle('on', SET.auto);
+    el.rowNight.classList.toggle('dis', SET.auto);
+    el.note.textContent = SET.auto ? '现在跟着系统走，手动开关先不管用。' : '跟着系统走时，上面那个手动开关就不作数了。';
+
+    var list = el.choc.querySelectorAll('.ch');
+    for(var i=0;i<list.length;i++) list[i].classList.toggle('on', list[i].getAttribute('data-id')===SET.scheme);
+    var fl = el.fontMenu.querySelectorAll('.fi');
+    for(var j=0;j<fl.length;j++) fl[j].classList.toggle('on', fl[j].getAttribute('data-f')===SET.font);
+    var ql = el.quick.querySelectorAll('.sz');
+    for(var m=0;m<ql.length;m++) ql[m].classList.toggle('on', +ql[m].getAttribute('data-v')===SET.size);
   }
-  apply(localStorage.getItem('np-theme')||'day');
-  btn.addEventListener('click',function(){
-    var n = root.getAttribute('data-theme')==='night'?'day':'night';
-    localStorage.setItem('np-theme',n); apply(n);
+
+  function openDrawer(){
+    el.drawer.classList.add('on'); el.scrim.classList.add('on');
+    el.drawer.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+  }
+  function closeDrawer(){
+    el.drawer.classList.remove('on'); el.scrim.classList.remove('on');
+    el.drawer.setAttribute('aria-hidden','true'); document.body.style.overflow='';
+    el.fontMenu.classList.remove('show'); el.fontSel.classList.remove('open');
+  }
+
+  el.setBtn.addEventListener('click', openDrawer);
+  el.x.addEventListener('click', closeDrawer);
+  el.scrim.addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeDrawer(); });
+
+  el.fontSel.addEventListener('click', function(){
+    el.fontSel.classList.toggle('open'); el.fontMenu.classList.toggle('show');
   });
+  el.fontMenu.addEventListener('click', function(e){
+    var b=e.target.closest('.fi'); if(!b) return;
+    SET.font=b.getAttribute('data-f');
+    el.fontMenu.classList.remove('show'); el.fontSel.classList.remove('open');
+    paint(); save();
+  });
+
+  function setSize(v){
+    v=Math.round(v); if(v<12) v=12; if(v>46) v=46;
+    SET.size=v; paint(); save();
+  }
+  el.rng.addEventListener('input', function(){ setSize(+el.rng.value); });
+  document.getElementById('minus').addEventListener('click', function(){ setSize(SET.size-1); });
+  document.getElementById('plus').addEventListener('click', function(){ setSize(SET.size+1); });
+  el.quick.addEventListener('click', function(e){
+    var b=e.target.closest('.sz'); if(!b) return; setSize(+b.getAttribute('data-v'));
+  });
+
+  el.choc.addEventListener('click', function(e){
+    var b=e.target.closest('.ch'); if(!b) return;
+    SET.scheme=b.getAttribute('data-id'); paint(); save();
+  });
+
+  el.swNight.addEventListener('click', function(){
+    if(SET.auto) return;
+    SET.night=!SET.night; paint(); save();
+  });
+  el.swAuto.addEventListener('click', function(){
+    SET.auto=!SET.auto; paint(); save();
+  });
+  if(mql) {
+    var onSys=function(){ if(SET.auto) paint(); };
+    if(mql.addEventListener) mql.addEventListener('change', onSys);
+    else if(mql.addListener) mql.addListener(onSys);
+  }
+
+  paint();
 
   var TODAY="2026年10月25日", SKEY='np-saved';
   function getSaved(){ try{ var a=JSON.parse(localStorage.getItem(SKEY)||'[]'); return Array.isArray(a)?a:[]; }catch(e){ return []; } }

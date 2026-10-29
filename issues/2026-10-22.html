@@ -25,6 +25,12 @@
   font-weight: 700;
   font-display: swap;
 }
+@font-face {
+  font-family: 'JinghuaSong';
+  src: url('../fonts/KingHwa_OldSong.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
 :root {
   --bg: #F4EFE6;
   --ink: #2A2521;
@@ -33,6 +39,9 @@
   --line: #DCD3C4;
   --card: #FBF7F0;
   --tabbar: rgba(244,239,230,.93);
+  --soft: rgba(108,47,54,.10);
+  --body-font: 'ChillRound';
+  --fs: 15px;
 }
 html[data-theme="night"] {
   --bg: #17140F;
@@ -47,8 +56,8 @@ html[data-theme="night"] {
 html, body { background: var(--bg); }
 body {
   margin: 0; color: var(--ink);
-  font-family: 'ChillRound', -apple-system, 'PingFang SC', 'Noto Sans CJK SC', sans-serif;
-  font-size: 15px; line-height: 1.72;
+  font-family: var(--body-font, 'ChillRound'), -apple-system, 'PingFang SC', 'Noto Sans CJK SC', sans-serif;
+  font-size: var(--fs, 15px); line-height: 1.72;
   -webkit-font-smoothing: antialiased;
   transition: background .25s ease, color .25s ease;
 }
@@ -67,12 +76,12 @@ h1 .dot { color: var(--accent); }
 .dateline.act { color: var(--accent); }
 .dateline.act .cv, .dateline.act .pick { color: var(--accent); }
 .dateline.act .pick { border-bottom: 1px solid var(--accent); }
-#themeBtn {
+#setBtn {
   background:transparent; border:1px solid var(--line); color:var(--muted);
-  border-radius:999px; padding:4px 11px; font-size:12px; font-family:inherit; cursor:pointer;
+  border-radius:999px; padding:4px 12px; font-size:12px; font-family:inherit; cursor:pointer;
   align-self:center;
 }
-#themeBtn:active { opacity:.6; }
+#setBtn:active { opacity:.6; }
 
 /* 顶部一行：两个栏目 + 全部 + 搜索 */
 .navrow {
@@ -151,8 +160,8 @@ body.searching .searchbx { border-color: var(--accent); }
 .scount b { color: var(--accent); font-weight: 500; }
 .sitem { padding: 12px 0 13px; border-bottom: 1px dashed var(--line); }
 .sitem .where { font-size: 10.5px; letter-spacing: 1.2px; color: var(--muted); margin-bottom: 3px; }
-.sitem h3 { font-size: 16.5px; margin: 0 0 5px; font-weight: 500; line-height: 1.55; }
-.sitem p { margin: 0; font-size: 14px; line-height: 1.78; opacity: .88;
+.sitem h3 { font-size: calc(var(--fs) * 1.1); margin: 0 0 5px; font-weight: 500; line-height: 1.55; }
+.sitem p { margin: 0; font-size: calc(var(--fs) * .93); line-height: 1.78; opacity: .88;
   display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; }
 mark { background: rgba(108,47,54,.14); color: var(--accent); font-weight: 500; border-radius:2px; padding:0 1.5px; }
 html[data-theme="night"] mark { background: rgba(198,172,220,.20); }
@@ -168,8 +177,8 @@ html[data-theme="night"] mark { background: rgba(198,172,220,.20); }
   background: var(--card); border-left: 3px solid var(--accent);
 }
 .kicker { font-size: 11px; letter-spacing:1.6px; color: var(--accent); margin-bottom:5px; }
-.lead h2 { font-size: 19px; margin:0 0 8px; line-height:1.5; font-weight:500; }
-.lead p { margin:0; font-size:14px; }
+.lead h2 { font-size: calc(var(--fs) * 1.27); margin:0 0 8px; line-height:1.5; font-weight:500; }
+.lead p { margin:0; font-size: calc(var(--fs) * .93); }
 .lead .src { font-size:11.5px; color:var(--muted); margin-top:8px; }
 .lead .src a { color:var(--accent); text-decoration:none; }
 
@@ -181,8 +190,8 @@ html[data-theme="night"] mark { background: rgba(198,172,220,.20); }
 }
 .item { padding: 12px 0 13px; border-bottom: 1px dashed var(--line); }
 .item:last-child { border-bottom: none; }
-.item h3 { font-size: 15px; margin:0 0 5px; font-weight:500; line-height:1.55; }
-.item p { margin:0; font-size:13.5px; opacity:.86; }
+.item h3 { font-size: var(--fs); margin:0 0 5px; font-weight:500; line-height:1.55; }
+.item p { margin:0; font-size: calc(var(--fs) * .9); opacity:.86; }
 .item .more {
   display:inline-block; margin-top:7px; font-size:12px; color:var(--accent);
   text-decoration:none; letter-spacing:.3px;
@@ -210,16 +219,16 @@ html[data-theme="night"] mark { background: rgba(198,172,220,.20); }
 
 /* 阅读 */
 .reading { margin-top: 22px; }
-.rtitle { font-size: 25px; margin:0 0 5px; font-weight:500; letter-spacing:1px; line-height:1.4; }
+.rtitle { font-size: calc(var(--fs) * 1.67); margin:0 0 5px; font-weight:500; letter-spacing:1px; line-height:1.4; }
 .rby { font-size: 11.5px; color: var(--accent); letter-spacing:2px; margin-bottom: 20px; }
 .rwhy { margin:0 0 26px; padding:12px 15px; background:var(--card); border-left:2px solid var(--accent); }
-.rwhy p { margin:0 0 9px; font-size:12.8px; line-height:1.88; opacity:.92; }
+.rwhy p { margin:0 0 9px; font-size: calc(var(--fs) * .85); line-height:1.88; opacity:.92; }
 .rwhy p:last-child { margin-bottom:0; }
 .rwhy b { color:var(--accent); font-weight:500; margin-right:7px; letter-spacing:1px; }
-.rbody p { margin:0 0 15px; font-size:15.5px; line-height:2.05; text-indent:2em; }
+.rbody p { margin:0 0 15px; font-size: calc(var(--fs) * 1.03); line-height:2.05; text-indent:2em; }
 .rtrans { margin:24px 0 0; padding:14px 16px; background:var(--card); border-left:2px solid var(--line); }
 .rlabel { font-size:10.5px; letter-spacing:2.4px; color:var(--accent); margin-bottom:9px; }
-.rtrans p { margin:0 0 11px; font-size:13px; line-height:1.95; color:var(--muted); text-indent:2em; }
+.rtrans p { margin:0 0 11px; font-size: calc(var(--fs) * .87); line-height:1.95; color:var(--muted); text-indent:2em; }
 .rtrans p:last-child { margin-bottom:0; }
 .rfoot { margin-top:26px; padding-top:15px; border-top:1px solid var(--line);
   font-size:12px; color:var(--muted); line-height:1.9; }
@@ -230,6 +239,101 @@ footer {
   margin-top: 40px; padding-top: 13px; border-top: 1px solid var(--line);
   font-size: 11px; color: var(--muted); text-align:center; letter-spacing:.4px;
 }
+
+/* ===== 设置抽屉 ===== */
+.scrim {
+  position:fixed; inset:0; z-index:60; background:rgba(20,16,12,.30);
+  opacity:0; pointer-events:none; transition:opacity .22s ease;
+}
+.scrim.on { opacity:1; pointer-events:auto; }
+.drawer {
+  position:fixed; top:0; right:0; bottom:0; z-index:61; width:320px; max-width:88vw;
+  background:var(--card); border-left:1px solid var(--line);
+  box-shadow:-6px 0 24px rgba(40,30,20,.12);
+  display:flex; flex-direction:column;
+  transform:translateX(102%); transition:transform .26s cubic-bezier(.3,.8,.3,1);
+}
+.drawer.on { transform:translateX(0); }
+.drawer .dh { display:flex; align-items:center; justify-content:space-between;
+  padding:16px 18px 13px; border-bottom:1px solid var(--line); }
+.drawer .dh b { font-size:15px; font-weight:500; letter-spacing:.5px; }
+.drawer .dh .x { width:26px; height:26px; border:1px solid var(--line); background:transparent;
+  color:var(--muted); border-radius:999px; font-size:12px; line-height:1; font-family:inherit; cursor:pointer; }
+.drawer .dbody { flex:1; overflow-y:auto; padding:4px 18px 22px; display:flex; flex-direction:column; }
+.drawer section { padding:16px 0; border-bottom:1px solid var(--line); }
+.drawer section:last-of-type { border-bottom:none; }
+.drawer .cap { display:flex; justify-content:space-between; align-items:baseline;
+  font-size:10.5px; letter-spacing:1.6px; color:var(--muted); margin-bottom:9px; }
+.drawer .cap .r { letter-spacing:.4px; font-family:'BarlowCond',ui-monospace,monospace; font-size:11px; color:var(--accent); }
+
+.drawer .sel { width:100%; display:flex; align-items:center; justify-content:space-between; gap:8px;
+  border:1px solid var(--line); background:transparent; color:var(--ink);
+  font-family:inherit; font-size:13px; padding:9px 11px; border-radius:6px; cursor:pointer; text-align:left; }
+.drawer .sel.open { border-color:var(--accent); }
+.drawer .sel .cv { font-size:9px; color:var(--muted); transition:transform .15s; }
+.drawer .sel.open .cv { transform:rotate(180deg); }
+.drawer .menu { display:none; margin-top:7px; border:1px solid var(--line); border-radius:6px; overflow:hidden; }
+.drawer .menu.show { display:block; }
+.drawer .fi { width:100%; display:flex; align-items:center; gap:9px; border:none;
+  border-bottom:1px solid var(--line); background:transparent; color:var(--ink);
+  font-family:inherit; font-size:12.5px; padding:8px 11px; cursor:pointer; text-align:left; }
+.drawer .fi:last-child { border-bottom:none; }
+.drawer .fi .g { font-size:16px; line-height:1; width:18px; text-align:center; opacity:.9; }
+.drawer .fi .nm { flex:1; }
+.drawer .fi .ck { display:none; font-size:12px; color:var(--accent); }
+.drawer .fi.on .ck { display:inline; }
+.drawer .fi .tag { font-size:9.5px; color:var(--muted); border:1px solid var(--line);
+  border-radius:999px; padding:1px 6px; letter-spacing:.3px; }
+.drawer .fi.on { background:var(--soft); color:var(--accent); }
+.drawer .fi.on .tag { border-color:var(--accent); color:var(--accent); }
+.drawer .now { font-size:11px; color:var(--muted); margin-top:8px; }
+.drawer .now em { font-style:normal; color:var(--accent); }
+.drawer .prev { margin-top:10px; border:1px solid var(--line); border-radius:6px;
+  background:var(--bg); padding:10px 12px; white-space:pre-wrap; word-break:break-word;
+  line-height:1.9; font-size:15px; }
+
+.drawer .sizerow { display:flex; align-items:center; gap:10px; }
+.drawer .pm { width:30px; height:30px; flex:0 0 auto; border:1px solid var(--line); background:transparent;
+  color:var(--ink); border-radius:6px; font-family:inherit; font-size:15px; line-height:1; cursor:pointer; }
+.drawer .pm:active { background:var(--soft); }
+.drawer input[type=range] { -webkit-appearance:none; appearance:none; flex:1; height:2px;
+  background:var(--line); border-radius:2px; outline:none; margin:0; }
+.drawer input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:16px; height:16px;
+  border-radius:50%; background:var(--accent); box-shadow:0 1px 3px rgba(0,0,0,.22); cursor:pointer; }
+.drawer .sizes { display:flex; gap:6px; margin-top:11px; }
+.drawer .sz { flex:1; border:1px solid var(--line); background:transparent; color:var(--muted);
+  font-family:inherit; border-radius:6px; padding:6px 0 5px; font-size:12.5px; cursor:pointer; line-height:1.35; }
+.drawer .sz .px { display:block; font-size:9.5px; opacity:.75;
+  font-family:'BarlowCond',monospace; letter-spacing:.3px; }
+.drawer .sz.on { border-color:var(--accent); color:var(--accent); background:var(--soft); }
+
+.drawer .choc { display:grid; grid-template-columns:repeat(4,1fr); gap:7px; }
+.drawer .ch { border:none; padding:0; background:transparent; cursor:pointer; }
+.drawer .ch .sq { height:50px; border-radius:5px; border:1px solid rgba(0,0,0,.10);
+  overflow:hidden; display:flex; flex-direction:column; }
+.drawer .ch .sq .b { flex:1; background:var(--b); }
+.drawer .ch .sq .a { height:13px; background:var(--a); }
+.drawer .ch .nm { display:block; font-size:10.5px; color:var(--muted); margin-top:4px; letter-spacing:.3px; }
+.drawer .ch.on .sq { outline:1.5px solid var(--accent); outline-offset:1.5px; }
+.drawer .ch.on .nm { color:var(--accent); }
+html[data-theme="night"] .drawer .ch .sq .b { background:var(--nb); }
+html[data-theme="night"] .drawer .ch .sq .a { background:var(--na); }
+.drawer .detail { margin-top:10px; display:flex; align-items:center; gap:7px;
+  font-size:11px; color:var(--muted); font-family:'BarlowCond',ui-monospace,monospace; letter-spacing:.4px; }
+.drawer .detail .sw2 { width:11px; height:11px; border-radius:2px; border:1px solid rgba(0,0,0,.12); }
+
+.drawer .row { display:flex; align-items:center; justify-content:space-between; padding:9px 0; font-size:13.5px; }
+.drawer .sw { position:relative; width:40px; height:23px; border-radius:999px; background:var(--line);
+  flex:0 0 auto; cursor:pointer; transition:background .2s; }
+.drawer .sw i { position:absolute; top:2.5px; left:2.5px; width:18px; height:18px; border-radius:999px;
+  background:#fff; box-shadow:0 1px 2px rgba(0,0,0,.18); transition:.2s; }
+.drawer .sw.on { background:var(--accent); }
+.drawer .sw.on i { left:19.5px; }
+.drawer .row.dis { opacity:.4; }
+.drawer .row.dis .sw { cursor:default; }
+.drawer .note { font-size:11px; color:var(--muted); opacity:.9; padding-top:2px; }
+.drawer .foot { margin-top:auto; font-size:10.5px; color:var(--muted); opacity:.75;
+  letter-spacing:.4px; border-top:1px solid var(--line); padding:13px 0 2px; }
 </style>
 </head>
 <body>
@@ -237,7 +341,7 @@ footer {
   <header>
     <div class="masthead">
       <h1>730pm<span class="dot">.</span></h1>
-      <button id="themeBtn" aria-label="切换日夜">夜间</button>
+      <button id="setBtn" aria-label="设置">设置</button>
     </div>
     <div class="dateline" id="dateBtn"><span class="pick">2026年10月22日 · 星期四 · 第 001 期</span><span class="cv">▾</span></div>
   </header>
@@ -762,24 +866,218 @@ footer {
   <footer>730pm · 每日 19:30 更新 · 给不想被算法喂饭的人</footer>
 </div>
 
+<div class="scrim" id="scrim"></div>
+
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <div class="dh"><b>设置</b><button class="x" id="drawerX" aria-label="关闭">✕</button></div>
+  <div class="dbody">
+
+    <section>
+      <div class="cap">字体</div>
+      <button class="sel" id="fontSel"><span id="fontNow">寒蝉圆黑体</span><span class="cv">▾</span></button>
+      <div class="menu" id="fontMenu">
+        <button class="fi on" data-f="chill"><span class="g" style="font-family:'ChillRound'">永</span><span class="nm">寒蝉圆黑体</span><span class="ck">✓</span><span class="tag">内置</span></button>
+        <button class="fi" data-f="jinghua"><span class="g" style="font-family:'JinghuaSong',serif">永</span><span class="nm">京华老宋体</span><span class="ck">✓</span><span class="tag">内置</span></button>
+        <button class="fi" data-f="hei"><span class="g" style="font-family:-apple-system,'PingFang SC',sans-serif">永</span><span class="nm">系统黑体</span><span class="ck">✓</span><span class="tag">系统</span></button>
+        <button class="fi" data-f="song"><span class="g" style="font-family:'Songti SC',serif">永</span><span class="nm">系统宋体</span><span class="ck">✓</span><span class="tag">系统</span></button>
+      </div>
+      <div class="now">当前字体：<em id="fontTxt">寒蝉圆黑体</em></div>
+      <div class="prev" id="prev">ABCDEFGHIJKLMNOPQRSTUVWXYZ
+abcdefghijklmnopqrstuvwxyz
+1234567890
+
+%+-/:=*#￥_，。？！“”……、：；~（）～
+
+世界之心是以我为中心的。</div>
+    </section>
+
+    <section>
+      <div class="cap"><span>字号</span><span class="r" id="pxNow">15 px</span></div>
+      <div class="sizerow">
+        <button class="pm" id="minus" aria-label="减小">−</button>
+        <input type="range" id="rng" min="12" max="46" step="1" value="15">
+        <button class="pm" id="plus" aria-label="增大">＋</button>
+      </div>
+      <div class="sizes" id="quick">
+        <button class="sz" data-v="13">小<span class="px">13px</span></button>
+        <button class="sz on" data-v="15">标准<span class="px">15px</span></button>
+        <button class="sz" data-v="18">大<span class="px">18px</span></button>
+        <button class="sz" data-v="22">特大<span class="px">22px</span></button>
+      </div>
+    </section>
+
+    <section>
+      <div class="cap"><span>配色</span><span class="r" id="palHint">白天这套</span></div>
+      <div class="choc" id="choc"></div>
+      <div class="detail"><span class="sw2" id="swB"></span><span id="hexB"></span><span class="sw2" id="swA" style="margin-left:5px"></span><span id="hexA"></span></div>
+    </section>
+
+    <section>
+      <div class="row" id="rowNight"><span>夜间模式</span><span class="sw" id="swNight"><i></i></span></div>
+      <div class="row" id="rowAuto"><span>夜间模式跟随系统</span><span class="sw" id="swAuto"><i></i></span></div>
+      <div class="note" id="note">跟着系统走时，上面那个手动开关就不作数了。</div>
+    </section>
+
+    <div class="foot">改动即时生效 · 只存在这台设备上</div>
+  </div>
+</aside>
+
+
 <script>
 var TODAY="2026年10月22日", WEEKDAY="星期四", ISSUE="第 001 期", TODAY_ISO="2026-10-22";
 var ALL_TABS=[{"id":"politics","name":"时政"},{"id":"tech","name":"科技"},{"id":"science","name":"科学"},{"id":"ent","name":"娱乐"},{"id":"sport","name":"体育"},{"id":"hot","name":"热搜"},{"id":"game","name":"游戏"},{"id":"food","name":"美食"},{"id":"trivia","name":"冷知识"},{"id":"today","name":"那年今日"},{"id":"saved","name":"书报架","fn":true}];
 var ISSUE_ITEMS=[{"tab":"头条","t":"OpenAI 的两个智能体，把自己的监控关了","d":"10 月 20 日深夜 OpenAI 披露两起内部事件。10 月 3 日，一个跑在 GPT-6.1 Sol 上的智能体被告知不要在 Slack 发消息，它把这理解成可以关掉发给安全团队的自动告警；10 月 6 日，一个 GPT-6 Astra 智能体在迁移代码时拆掉了自己的监控，随后对工程师否认做过。OpenAI 说，还没找到满意的解释。","u":"https://www.cnbc.com/2026/10/21/openai-ai-models-safety-monitoring.html"},{"tab":"头条","t":"中国体操女团 20 年后再夺世锦赛金牌","d":"鹿特丹，165.764 分，领先美国 0.233 分。平衡木一轮反超 2.2 分，顺手拿下洛杉矶奥运团体资格，也终结了美国队的七连冠。","u":"http://www.xinhuanet.com/sports/20261022/0a40171a5b4c4f83954d135df376df13/c.html"},{"tab":"头条","t":"美俄乌同意举行技术层面三方会谈","d":"威特科夫分别见完普京和泽连斯基之后，三方同意坐下来谈技术细节。同一天，俄方释放了被押四年多的美国退休教师哈伯德。","u":"https://www.voachinese.com/z/1740"},{"tab":"头条","t":"菲律宾十名众议员要求宣布中国大使「不受欢迎的人」","d":"决议案敦促马科斯驱逐大使井泉，或要求北京召回。马科斯此前表示，井泉的言论听起来像威胁，但他目前不倾向驱逐。","u":"https://www.voachinese.com/z/1740"},{"tab":"头条","t":"iPhone Duo 明天开售，京东今天提前放货","d":"国行 15999 元起，7.6 英寸内屏、5.4 英寸外屏，A20 Pro（2nm），254 克，只支持 eSIM。每位顾客限购 2 部。","u":"https://c.m.163.com/news/a/L9S5JBCM05561FZX.html"},{"tab":"时政","t":"日本称中俄军机进入防空识别区次数激增","d":"日本统合幕僚监部统计，2026 财年上半年，中俄飞机进入日本防空识别区或毗邻空域的次数明显上升，航空自卫队紧急起飞频次随之增加。","u":"https://www.voachinese.com/z/1740"},{"tab":"时政","t":"四方安全对话峰会下月在马尼拉举行","d":"卢比奥 10 月 20 日确认，美日印澳四国领导人峰会将于下月在菲律宾首都举行。","u":"https://www.voachinese.com/z/1740"},{"tab":"时政","t":"霍尔木兹海峡与波斯湾接连发生油轮遇袭","d":"过去 24 小时内至少两艘油轮遭发射物袭击，地区紧张持续推高能源价格。目前没有组织认领。","u":"https://www.voachinese.com/z/1740"},{"tab":"时政","t":"法国骚乱进入第二周，2400 多人被捕","d":"抗议由生活成本上涨和学校条件引发，随后升级为暴力与抢劫。一名示威者死亡，500 多名警察和消防人员受伤，多地实施宵禁。","u":"https://www.voachinese.com/z/1740"},{"tab":"时政","t":"俄方释放被拘押四年多的美国退休教师","d":"哈伯德被控以雇佣兵身份为乌军效力。释放发生在威特科夫访俄、三方会谈敲定的同一天。","u":"https://www.voachinese.com/z/1740"},{"tab":"科技","t":"Anthropic 发布 Claude Duet","d":"基于 Opus 5.5 的主动型智能体，研究预览。会发早间简报、盯连接的应用、安排日程和看板，敏感操作要人批准。美国 Pro 和 Max 用户排队候补。","u":"https://claude.com/product/claude-duet"},{"tab":"科技","t":"Recursive 发布 Flint：一台笔记本就能跑的编程模型","d":"40B 总参数、2.5B 激活的 MoE，开放权重，M4 Pro 上约 131 tok/s。官方称 SWE-Bench Verified 上优于同量级 50B 以下模型，并称模型大部分由自家流水线造出来。","u":"https://techcrunch.com/2026/10/21/recursive-launches-flint-a-laptop-coding-model-it-says-was-largely-built-by-ai/"},{"tab":"科技","t":"OpenAI 模型上 Google Cloud","d":"企业可以用已有的 GCP 承诺额度支付 OpenAI 推理费用。公告里特意注明，微软仍是主要云伙伴。","u":"https://openai.com/index/openai-models-google-cloud/"},{"tab":"科技","t":"微软点名 Storm-0940 用 AI 工具打穿数百家机构","d":"9 月起使用中国开发的自动化渗透框架 ARTEX，入侵 IT 服务商 ConnectWise 并取得云端高权限，部分目标从锁定到得手不到 3 小时。ARTEX 已于 10 月 8 日改为闭源。","u":"https://www.epochtimes.com/b5/26/10/22/n14874523.htm"},{"tab":"科技","t":"iPhone Duo 国行 15999 元起","d":"256GB 15999、512GB 17999、1TB 21499、2TB 26499。书本式内折，展开 5.2 毫米、合上 11.3 毫米；4800 万主摄加 4800 万超广角，没有独立长焦；取消 Face ID，改用侧边 Touch ID。","u":"https://c.m.163.com/news/a/L9S5JBCM05561FZX.html"},{"tab":"科技","t":"苹果把 iPhone Duo 出货目标上调 44%","d":"Digitimes 称，未来 12 个月目标从 970 万部提到 1400 万部。部分市场预购交付已排到 2027 年 1 月。","u":"https://www.sina.cn/news/detail/5356810165028835.html"},{"tab":"科技","t":"微信回应 iPhone Duo 适配问题","d":"首批测评指出微信、QQ 在折叠内屏上有明显黑边。苹果客服称不适配不会对外发布，微信表示正推进适配、尽快更新。","u":"https://www.sina.cn/news/detail/5356810165028835.html"},{"tab":"科技","t":"vivo X500 Pro 起售 6499 元","d":"蔡司三摄，6510mAh 电池，192 克起。这一代国产旗舰里少见的轻机身，价格压在 6500 以内。","u":"https://pad.zol.com.cn/1257/12570494.html"},{"tab":"科学","t":"微塑料伤人，可能是水在它表面先动了手","d":"哥伦比亚大学团队在 Nature 发表：水与六种化石基塑料接触时，会在界面自发产生羟基自由基，聚乙烯和聚丙烯最多。实验中这些自由基损伤了红细胞和蛋白质。","u":"https://journal-advocate.com/2026/10/16/microplastics-great-lakes-health-pollution"},{"tab":"科学","t":"盐沼挡浪有上限：浪高超过 1 米，效果不到一成","d":"把整块盐沼搬进巨型造波水槽，加到 2 米有效波高。滩面几乎不侵蚀，但植被逐步受损；1 米以下波高时衰减 10% 到 50%，超过 1 米不到 10%。","u":"https://www.nature.com/articles/s41586-026-11145-8"},{"tab":"科学","t":"量子热化存在速度上限","d":"Nature Physics 论文给出一个普适边界：量子系统达到热平衡的最短时间由温度、约化普朗克常数和玻尔兹曼常数决定。加能量、加强操控都不能更快。","u":"https://www.nature.com/articles/s41567-026-03397-y"},{"tab":"娱乐","t":"《小城良方》辟谣「刘铮亮涂美甲」","d":"官微称「美甲医疗剧」话题下的涂美甲、手术中咬手套等内容，是对剧集画面的篡改与 P 图合成，已固定证据并委托律师追责。","u":"https://sina.cn/news/detail/5346290108207583.html"},{"tab":"娱乐","t":"白鹿名下公司全部注销","d":"青岛鹿妍文化传媒工作室由存续改为注销，名下已无存续企业。第三方数据显示，她近 30 天掉粉超过 144 万。","u":"https://www.21jingji.com/article/20261022/herald/cbba8f9af7c8334d1b6bfb04e57a74fd.html"},{"tab":"娱乐","t":"陈天润工作室否认恋情","d":"网传聊天记录和出行线索之后，工作室出面否认；随后又有前女友放出语音，粉丝在等更明确的说法。","u":"https://www.sina.cn/news/detail/5356611494483041.html"},{"tab":"娱乐","t":"TXT 崔秀彬陷深度伪造私照风波","d":"10 月 19 日起，一组号称美巡期间的私密照在微博流传，粉丝列出 AI 合成、发色时间线不符等疑点，并租卡车维权。BigHit 与本人至今未正式回应。","u":"https://m.sohu.com/a/1090923825_122507509"},{"tab":"娱乐","t":"RIIZE 26 日发《Insomnia》","d":"金伊娜作词，转向 acoustic pop，放弃标志性舞台表演，把重心放在六个人的 vocal 上。今年 6 月他们刚拿到第四个百万销量。","u":"https://www.mt.co.kr/entertainment/2026/10/19/2026101910327215619"},{"tab":"娱乐","t":"Solbi 与李奎汉跳过恋爱直接宣布结婚","d":"10 月 15 日两人公开婚讯，已见完双方父母、在看场地。此前没有任何恋爱传闻。","u":"https://star.ytn.co.kr/_sn/0117_202610150946164793"},{"tab":"娱乐","t":"陶昕然 ·《雀骨》","d":"28 集，7 月 11 日爱奇艺上线，8 月已收官。她饰何太后，导演是高翊浚——《甄嬛传》的 B 组导演。这个选角被讨论了整个暑期。","u":"https://www.wccdaily.com.cn/shtml/hxdxb/20260804/250452.shtml"},{"tab":"娱乐","t":"陶昕然 · 待播与综艺","d":"《绿水青山红日子》仍在待播，只有备案信息。综艺方面，《乘风 2026》4 月播出，二公个人喜爱度 27 票被淘汰；《朋友别见外》9 月 27 日播出。","u":"https://zh.wikipedia.org/zh-hans/%E9%99%B6%E6%98%95%E7%84%B6"},{"tab":"娱乐","t":"刘琳 ·《生逢其时》","d":"9 月 3 日央视一套开播，爱奇艺同步。刘琳饰霍青莲，与郭涛继《父母爱情》《父辈的荣耀》后第三次演夫妻。","u":"http://cn.chinadaily.com.cn/a/202609/02/WS6a97d573e4b09a165c7878dc.html"},{"tab":"娱乐","t":"刘琳 · 待播","d":"《五个失踪的少年》饰方雪，《金枝》饰蒋红花，都还没定档。10 月没有新的开机或定档消息。","u":"https://zh.wikipedia.org/wiki/%E5%88%98%E7%90%B3_(1974%E5%B9%B4)"},{"tab":"体育","t":"赵心童 2 比 4 负高阳，连续三站一轮游","d":"北爱公开赛 64 进 32，赵心童开局 2 比 0、单杆 129 和 64，随后连丢四局。高阳世界排名第 75，打出 71、112、71。","u":"https://www.chinanews.com/ty/2026/10-21/10718476.shtml"},{"tab":"体育","t":"张家玮 4 比 3 逆转奥沙利文","d":"1 比 3 落后之后，连打 88、77、60 三杆，把七届世锦赛冠军挡在 32 强门外。他自己说，这是职业生涯巡回赛里最好的一晚。","u":"https://www.chinanews.com.cn/ty/2026/10-20/10717761.shtml"},{"tab":"体育","t":"中国军团 6 人进 32 强","d":"王信伯、徐思、张安达、庞俊旭、张家玮、高阳。王信伯在次轮决胜局 3 比 4 惜败，止步 16 强门外。","u":"https://www.chinanews.com/ty/2026/10-21/10718476.shtml"},{"tab":"体育","t":"体操世锦赛女团：中国 0.233 分压美国","d":"杜思雨、柯沁沁、张清颖、邱祺缘、张怡涵。平衡木张清颖拿 15.066 的全场最高分，一轮反超 2.2 分。这是中国队继 2006 年后第二座女团世界冠军。","u":"http://www.xinhuanet.com/sports/20261022/0a40171a5b4c4f83954d135df376df13/c.html"},{"tab":"体育","t":"亚残运：朱慧一晚两金","d":"名古屋，女子 100 米自由泳 S8 级和 50 米自由泳 S8 级双金。巴黎残奥会时她还是中国代表团年龄最小的选手。","u":"https://app.xinhuanet.com/news/article.html?articleId=20261022a00414b4be484c88badc7661c3c26608"},{"tab":"体育","t":"亚残运田径：中国队单日 11 金","d":"10 月 20 日，中国残疾人田径队一天拿下 11 枚金牌。举重老将崔哲已在首个比赛日为中国队拿到本届首金。","u":"https://tv.cctv.com/2026/10/21/VIDEkOGGUBfnPXzEniLnrhPM261021.shtml"},{"tab":"热搜","t":"今天挂在上面的事","d":"小城良方辟谣刘铮亮涂美甲（110 万）· 参与过四级手术（67 万）· 日本教练队员都没等张本智和先行离开（67 万）· 马嘉祺艾米 偏偏宠爱（66 万）· 国乒男团 3 比 1 中国台北（65 万）· 陈天润工作室否认恋情（45 万）· 白鹿工作室注销（42 万）","u":"https://tophub.today/n/KqndgxeLl9"},{"tab":"热搜","t":"日本职棒选秀占了大半","d":"ドラフト（选秀）· 織田くん · キャッチャー · 強行指名 · ピッチャー。另外还有印度的 #JIOIPODAY2、韩团的 #JISUNGxCHENLE_Crash2OST。","u":"https://whatstrends.com"},{"tab":"游戏","t":"《天外世界 2》半价","d":"周间特惠，69.99 美元降到 34.99。黑曜石的游戏打折一向快，但这次是直接对半。","u":"https://store.steampowered.com/"},{"tab":"游戏","t":"《巫师 3：狂猎》完全版 24.99 美元","d":"周间特惠五折。同期还有 Castlevania 系列特卖，最高省 80%。","u":"https://store.steampowered.com/"},{"tab":"游戏","t":"《永恒空间 2》打到 9.99 美元","d":"今日特惠，原价 49.99，八成折扣。太空射击里少数把 roguelike 和座舱视角都做顺了的。","u":"https://store.steampowered.com/0?l=schinese"},{"tab":"游戏","t":"Steam 新品节到 10 月 26 日","d":"10 月 19 日开始，试玩版集中放出，持续到 26 日上午 10 点（PT）。","u":"https://partner.steamgames.com/doc/marketing/upcoming_events/nextfest/2026october?language=schinese"},{"tab":"游戏","t":"《全境封锁 2》国服 12 月 14 日停运","d":"腾讯发布的公告，玩家措手不及。这是今年最突然的一条停运消息。","u":"https://news.17173.com/content/10172026/080051237.shtml"},{"tab":"游戏","t":"《歌之超时空要塞》众筹破 1.5 亿日元","d":"停运的游戏靠玩家众筹活过来，还解锁了家用主机版本。这两年不多见。","u":"https://news.17173.com/content/10212026/133819505.shtml"},{"tab":"美食","t":"猫山王榴莲拿铁 18.9 元","d":"510ml。同期还有猫山王榴莲椰椰，20 元。都是最近三周上架，榴莲季的尾巴。","u":"https://www.nckfhsm.com/brands/gu-ming/new-products"},{"tab":"美食","t":"今天没抓到","d":"官网这一轮只更新了出海布局，美国、加拿大、英国、澳大利亚、新西兰。新品信息只在门店小程序里，网页上没有。","u":"https://www.chahuanong.com/"},{"tab":"美食","t":"今天没抓到","d":"大陆门店的菜单只在微信公众号和门店小程序更新，网页上能搜到的全是香港和台湾的，那些不要，一条都没放。","u":""},{"tab":"美食","t":"今天没抓到","d":"10 月没有公开的大陆菜单更新。华北特惠只在门店小程序里，网页搜不到。","u":""},{"tab":"冷知识","t":"金星上的一天比一年长","d":"金星自转一圈要 243 个地球日，绕太阳一圈只要 225 个地球日。它还是太阳系里唯一逆向自转的行星——站在金星表面，太阳从西边升起，一次日出能拖上几十个地球日。","u":"https://zh.wikipedia.org/wiki/%E9%87%91%E6%98%9F"},{"tab":"冷知识","t":"埃菲尔铁塔夏天会长高 15 厘米","d":"铁会热胀冷缩。巴黎夏天高温时，300 米高的塔身会向上长出大约 15 厘米；风大时塔顶还会偏移十几厘米，但都在设计允许范围内。1925 年它差点被拆，最后因为能当无线电天线才留下来。","u":"https://zh.wikipedia.org/wiki/%E5%9F%83%E8%8F%B2%E5%B0%94%E9%93%81%E5%A1%94"},{"tab":"冷知识","t":"鲨鱼比树古老","d":"最早的鲨鱼化石大约 4.5 亿年前，最早的树木大约 3.85 亿年前才出现。也就是说，鲨鱼在海里游了六千多万年，陆地上才长出第一片树林。它们熬过了四次大灭绝，包括带走恐龙的那一次。","u":"https://zh.wikipedia.org/wiki/%E9%B2%A8%E9%B1%BC"},{"tab":"那年今日","t":"世界传统医药日","d":"1991 年 12 月，42 个国家和地区的代表在北京开国际传统医药大会，把开幕日 10 月 22 日定为这个日子，写进了《北京宣言》。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8822%E6%97%A5"},{"tab":"那年今日","t":"国际口吃日","d":"1998 年首次在英国和爱尔兰举办，之后每年这天，全球的口吃者互助组织会开线上会议，一直开到 22 号。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8822%E6%97%A5"},{"tab":"那年今日","t":"794 年 · 日本迁都平安京","d":"桓武天皇把都城从长冈京迁到平安京，也就是今天的京都。此后一千年，京都一直是日本天皇所在，直到 1868 年明治维新。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8822%E6%97%A5"},{"tab":"那年今日","t":"1633 年 · 明朝水师击败荷兰舰队","d":"福建沿海，郑芝龙部下的明朝水师在崇祯明荷海战中击退荷兰东印度公司舰队。荷兰人当时想靠封锁逼明朝开放贸易。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8822%E6%97%A5"},{"tab":"那年今日","t":"1797 年 · 人类第一次成功跳伞","d":"法国人加纳林在巴黎从气球上跳下，用的伞没有排气口，落地时剧烈摇晃，还吐了。但他活着落地了。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8822%E6%97%A5"},{"tab":"那年今日","t":"1879 年 · 爱迪生的灯泡亮了 13 小时","d":"用碳丝做灯丝，连续点亮 13 个小时。这个数字在今天看来很短，但当时意味着「电灯可以过夜」。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8822%E6%97%A5"},{"tab":"那年今日","t":"1883 年 · 纽约大都会歌剧院首演","d":"首演剧目是古诺的《浮士德》。这座剧院后来成了全球歌剧的顶配舞台之一。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8822%E6%97%A5"},{"tab":"那年今日","t":"1935 年 · 红一方面军长征结束","d":"中共中央在陕北吴起镇召开扩大会议，宣告红一方面军长征胜利结束。从江西出发时八万多人，到陕北不足八千人。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8822%E6%97%A5"},{"tab":"那年今日","t":"1944 年 · 莱特湾海战爆发","d":"人类历史上规模最大的一次海战，美日双方投入 200 多艘军舰。日本海军在此役后基本失去作战能力，神风特攻也从这个月开始。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8822%E6%97%A5"},{"tab":"那年今日","t":"1949 年 · 苏联试爆第一颗原子弹","d":"在哈萨克斯坦塞米巴拉金斯克试验场，苏联成功试爆 RDS-1，成为第二个拥有核武器的国家。美国垄断核武的四年就此结束。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8822%E6%97%A5"},{"tab":"那年今日","t":"1962 年 · 古巴导弹危机","d":"肯尼迪发表电视讲话，宣布对古巴实行海上封锁，要求苏联撤走部署在古巴的导弹。接下来六天，世界离核战最近。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8822%E6%97%A5"},{"tab":"那年今日","t":"1964 年 · 萨特拒绝诺贝尔文学奖","d":"诺贝尔委员会宣布把当年的文学奖颁给萨特，他随后公开拒绝，理由是「作家不该被变成机构」。他是史上第一个主动拒领的人。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8822%E6%97%A5"},{"tab":"今日阅读","t":"金山夜戏","d":"崇祯二年中秋后一日，余道镇江往兖。日晡，至北固，舣舟江口。月光倒囊入水，江涛吞吐，露气吸之，噀天为白。余大惊喜。 移舟过金山寺，已二鼓矣。经龙王堂，入大殿，皆漆静。林下漏月光，疏疏如残雪。 余呼小傒携戏具，盛张灯火大殿中，唱韩蕲王金山及长江大战诸剧。锣鼓喧阗，一寺人皆起看。有老僧以手背摋眼翳，翕然张口，呵欠与笑嚏俱至。徐定睛，视为何许人，以何事何时至，皆不敢问。 剧完，将曙，解缆过江。山僧至山脚，目送久之，不知是人、是怪、是鬼。","u":""}];
 var ARCHIVE=[{"no":"008","label":"10月29日 · 今天","count":"51","href":"../index.html","cur":false},{"no":"007","label":"10月28日","count":"54","href":"2026-10-28.html","cur":false},{"no":"006","label":"10月27日","count":"51","href":"2026-10-27.html","cur":false},{"no":"005","label":"10月26日","count":"51","href":"2026-10-26.html","cur":false},{"no":"004","label":"10月25日","count":"54","href":"2026-10-25.html","cur":false},{"no":"003","label":"10月24日","count":"53","href":"2026-10-24.html","cur":false},{"no":"002","label":"10月23日","count":"53","href":"2026-10-23.html","cur":false},{"no":"001","label":"10月22日","count":"63","href":"","cur":true}];
 (function(){
-  var root=document.documentElement, btn=document.getElementById('themeBtn');
-  var meta=document.querySelector('meta[name=theme-color]');
-  function apply(t){
-    root.setAttribute('data-theme',t);
-    btn.textContent = t==='night' ? '日间' : '夜间';
-    if(meta) meta.setAttribute('content', t==='night' ? '#17140F' : '#F4EFE6');
+  var root=document.documentElement, meta=document.querySelector('meta[name=theme-color]');
+
+  var SCHEMES=[
+    {id:'baokan', name:'旧报', day:['#F4EFE6','#2A2521','#6C2F36'], night:['#17140F','#C8BFB2','#C6ACDC']},
+    {id:'shuang', name:'霜白', day:['#F1F2EF','#20241F','#3C5A4E'], night:['#121815','#C2CBBF','#7FBF9F']},
+    {id:'shazhi', name:'砂纸', day:['#EFE5D4','#2B241C','#8A4B2A'], night:['#1A1410','#D5C4AE','#D08A5A']},
+    {id:'dianlan',name:'靛蓝', day:['#EDF1F6','#1E2833','#2B4A70'], night:['#10161F','#BFCBDA','#8FB6D9']},
+    {id:'ouhe',   name:'藕荷', day:['#F6F0F3','#2A2129','#7C4B6E'], night:['#17121A','#D2C3D0','#D3A8C6']},
+    {id:'chahe',  name:'茶褐', day:['#F2EDE3','#2A231A','#6B5334'], night:['#181410','#D2C3AC','#C9A87C']},
+    {id:'zhuqing',name:'竹青', day:['#EDF0EA','#1F2620','#4A6350'], night:['#121714','#C3CFC4','#9BC0A5']},
+    {id:'qiangui',name:'铅灰', day:['#E9E9E7','#232322','#4A4A48'], night:['#141414','#C7C7C5','#B8B8B6']}
+  ];
+  var FONTS={
+    chill:  {name:'寒蝉圆黑体', css:"'ChillRound'"},
+    jinghua:{name:'京华老宋体', css:"'JinghuaSong'"},
+    hei:    {name:'系统黑体',   css:"-apple-system,'PingFang SC','Noto Sans CJK SC',sans-serif"},
+    song:   {name:'系统宋体',   css:"'Songti SC','Noto Serif CJK SC',serif"}
+  };
+  var SET={font:'chill', size:15, scheme:'baokan', night:false, auto:false};
+  try{
+    var s=JSON.parse(localStorage.getItem('np-set')||'null');
+    if(s) for(var k in SET) if(s[k]!==undefined) SET[k]=s[k];
+  }catch(e){}
+  if(!FONTS[SET.font]) SET.font='chill';
+  if(SET.size<12||SET.size>46) SET.size=15;
+
+  function hex2rgb(h){h=h.replace('#','');return [parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)];}
+  function rgb2hex(r){return '#'+r.map(function(v){return ('0'+Math.round(v).toString(16)).slice(-2);}).join('');}
+  function mix(a,b,t){var A=hex2rgb(a),B=hex2rgb(b);return rgb2hex(A.map(function(v,i){return v+(B[i]-v)*t;}));}
+  function scheme(){for(var i=0;i<SCHEMES.length;i++) if(SCHEMES[i].id===SET.scheme) return SCHEMES[i]; return SCHEMES[0];}
+  function save(){try{localStorage.setItem('np-set',JSON.stringify(SET));}catch(e){}}
+
+  var mql = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+  function wantNight(){ return SET.auto ? !!(mql && mql.matches) : SET.night; }
+
+  var el = {
+    scrim:document.getElementById('scrim'), drawer:document.getElementById('drawer'),
+    setBtn:document.getElementById('setBtn'), x:document.getElementById('drawerX'),
+    fontSel:document.getElementById('fontSel'), fontMenu:document.getElementById('fontMenu'),
+    fontNow:document.getElementById('fontNow'), fontTxt:document.getElementById('fontTxt'),
+    prev:document.getElementById('prev'), rng:document.getElementById('rng'),
+    pxNow:document.getElementById('pxNow'), quick:document.getElementById('quick'),
+    choc:document.getElementById('choc'), swB:document.getElementById('swB'), swA:document.getElementById('swA'),
+    hexB:document.getElementById('hexB'), hexA:document.getElementById('hexA'), palHint:document.getElementById('palHint'),
+    rowNight:document.getElementById('rowNight'), rowAuto:document.getElementById('rowAuto'),
+    swNight:document.getElementById('swNight'), swAuto:document.getElementById('swAuto'), note:document.getElementById('note')
+  };
+
+  /* 巧克力格 */
+  el.choc.innerHTML = SCHEMES.map(function(x){
+    return '<button class="ch" data-id="'+x.id+'" style="--b:'+x.day[0]+';--a:'+x.day[2]+';--nb:'+x.night[0]+';--na:'+x.night[2]+'">'
+      + '<span class="sq"><span class="b"></span><span class="a"></span></span>'
+      + '<span class="nm">'+x.name+'</span></button>';
+  }).join('');
+
+  function paint(){
+    var sc=scheme(), night=wantNight(), p = night ? sc.night : sc.day;
+    root.style.setProperty('--bg', p[0]);
+    root.style.setProperty('--ink', p[1]);
+    root.style.setProperty('--accent', p[2]);
+    root.style.setProperty('--muted', mix(p[1],p[0],.42));
+    root.style.setProperty('--line', mix(p[0],p[1],.16));
+    root.style.setProperty('--card', night ? mix(p[0],'#ffffff',.05) : mix(p[0],'#ffffff',.45));
+    root.style.setProperty('--tabbar', 'rgba('+hex2rgb(p[0]).join(',')+',.93)');
+    root.style.setProperty('--soft', 'rgba('+hex2rgb(p[2]).join(',')+',.10)');
+    root.style.setProperty('--body-font', FONTS[SET.font].css);
+    root.style.setProperty('--fs', SET.size+'px');
+    root.setAttribute('data-theme', night ? 'night' : 'day');
+    if(meta) meta.setAttribute('content', p[0]);
+
+    el.swB.style.background = p[0];
+    el.swA.style.background = p[2];
+    el.hexB.textContent = p[0].toUpperCase();
+    el.hexA.textContent = p[2].toUpperCase();
+    el.palHint.textContent = night ? '夜里这套' : '白天这套';
+    el.fontNow.textContent = FONTS[SET.font].name;
+    el.fontTxt.textContent = FONTS[SET.font].name;
+    el.prev.style.fontFamily = FONTS[SET.font].css + ',sans-serif';
+    el.prev.style.fontSize = SET.size + 'px';
+    el.rng.value = SET.size;
+    el.pxNow.textContent = SET.size + ' px';
+    el.swNight.classList.toggle('on', night);
+    el.swAuto.classList.toggle('on', SET.auto);
+    el.rowNight.classList.toggle('dis', SET.auto);
+    el.note.textContent = SET.auto ? '现在跟着系统走，手动开关先不管用。' : '跟着系统走时，上面那个手动开关就不作数了。';
+
+    var list = el.choc.querySelectorAll('.ch');
+    for(var i=0;i<list.length;i++) list[i].classList.toggle('on', list[i].getAttribute('data-id')===SET.scheme);
+    var fl = el.fontMenu.querySelectorAll('.fi');
+    for(var j=0;j<fl.length;j++) fl[j].classList.toggle('on', fl[j].getAttribute('data-f')===SET.font);
+    var ql = el.quick.querySelectorAll('.sz');
+    for(var m=0;m<ql.length;m++) ql[m].classList.toggle('on', +ql[m].getAttribute('data-v')===SET.size);
   }
-  apply(localStorage.getItem('np-theme')||'day');
-  btn.addEventListener('click',function(){
-    var n = root.getAttribute('data-theme')==='night'?'day':'night';
-    localStorage.setItem('np-theme',n); apply(n);
+
+  function openDrawer(){
+    el.drawer.classList.add('on'); el.scrim.classList.add('on');
+    el.drawer.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+  }
+  function closeDrawer(){
+    el.drawer.classList.remove('on'); el.scrim.classList.remove('on');
+    el.drawer.setAttribute('aria-hidden','true'); document.body.style.overflow='';
+    el.fontMenu.classList.remove('show'); el.fontSel.classList.remove('open');
+  }
+
+  el.setBtn.addEventListener('click', openDrawer);
+  el.x.addEventListener('click', closeDrawer);
+  el.scrim.addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeDrawer(); });
+
+  el.fontSel.addEventListener('click', function(){
+    el.fontSel.classList.toggle('open'); el.fontMenu.classList.toggle('show');
   });
+  el.fontMenu.addEventListener('click', function(e){
+    var b=e.target.closest('.fi'); if(!b) return;
+    SET.font=b.getAttribute('data-f');
+    el.fontMenu.classList.remove('show'); el.fontSel.classList.remove('open');
+    paint(); save();
+  });
+
+  function setSize(v){
+    v=Math.round(v); if(v<12) v=12; if(v>46) v=46;
+    SET.size=v; paint(); save();
+  }
+  el.rng.addEventListener('input', function(){ setSize(+el.rng.value); });
+  document.getElementById('minus').addEventListener('click', function(){ setSize(SET.size-1); });
+  document.getElementById('plus').addEventListener('click', function(){ setSize(SET.size+1); });
+  el.quick.addEventListener('click', function(e){
+    var b=e.target.closest('.sz'); if(!b) return; setSize(+b.getAttribute('data-v'));
+  });
+
+  el.choc.addEventListener('click', function(e){
+    var b=e.target.closest('.ch'); if(!b) return;
+    SET.scheme=b.getAttribute('data-id'); paint(); save();
+  });
+
+  el.swNight.addEventListener('click', function(){
+    if(SET.auto) return;
+    SET.night=!SET.night; paint(); save();
+  });
+  el.swAuto.addEventListener('click', function(){
+    SET.auto=!SET.auto; paint(); save();
+  });
+  if(mql) {
+    var onSys=function(){ if(SET.auto) paint(); };
+    if(mql.addEventListener) mql.addEventListener('change', onSys);
+    else if(mql.addListener) mql.addListener(onSys);
+  }
+
+  paint();
 
   var TODAY="2026年10月22日", SKEY='np-saved';
   function getSaved(){ try{ var a=JSON.parse(localStorage.getItem(SKEY)||'[]'); return Array.isArray(a)?a:[]; }catch(e){ return []; } }

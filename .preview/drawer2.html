@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="day">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>设置抽屉 · 预览 v2</title>
+<style>
+@font-face{font-family:'ChillRound';src:url('../fonts/ChillRoundGothic_Medium.ttf') format('truetype');font-weight:500;font-display:swap;}
+@font-face{font-family:'BarlowCond';src:url('../fonts/BarlowCondensed-Bold.ttf') format('truetype');font-weight:700;font-display:swap;}
+@font-face{font-family:'JinghuaSong';src:url('../fonts/KingHwa_OldSong.woff2') format('woff2');font-weight:400;font-display:swap;}
+:root{
+  --bg:#F4EFE6; --ink:#2A2521; --accent:#6C2F36; --muted:#7A6E62;
+  --line:#DCD3C4; --card:#FBF7F0; --tabbar:rgba(244,239,230,.93);
+  --soft:rgba(108,47,54,.06);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{background:var(--bg);}
+body{margin:0;color:var(--ink);font-family:'ChillRound',-apple-system,'PingFang SC',sans-serif;font-size:15px;line-height:1.72;}
+.wrap{max-width:720px;margin:0 auto;padding:0 16px 70px;}
+header{padding:22px 0 12px;}
+.masthead{display:flex;align-items:baseline;justify-content:space-between;}
+h1{font-size:34px;margin:0;font-family:'BarlowCond','ChillRound';font-weight:700;line-height:1;}
+h1 .dot{color:var(--accent);}
+.dateline{font-size:11.5px;color:var(--muted);margin-top:7px;display:inline-flex;gap:5px;align-items:center;}
+.dateline .pick{border-bottom:1px dotted var(--line);padding-bottom:1px;}
+.navrow{display:flex;gap:7px;align-items:center;margin:0 -16px;padding:9px 16px;background:var(--tabbar);border-bottom:1px solid var(--line);}
+.chip{border:1px solid var(--line);background:transparent;color:var(--muted);font-family:inherit;font-size:13px;padding:6px 13px;border-radius:999px;white-space:nowrap;}
+.chip.on{background:var(--accent);border-color:var(--accent);color:var(--bg);}
+.searchbx{flex:1;display:flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:5px 11px;font-size:12.5px;color:var(--muted);}
+.lead{margin-top:20px;border-left:2px solid var(--accent);padding-left:13px;}
+.lead .kicker{font-size:10.5px;letter-spacing:1.4px;color:var(--muted);}
+.lead h2{font-size:22px;margin:4px 0 8px;line-height:1.45;font-weight:500;}
+.lead p{margin:0;font-size:14.5px;opacity:.9;}
+.ghost{opacity:.35;margin-top:26px;}
+.ghost .g{height:11px;background:var(--line);border-radius:2px;margin:9px 0;}
+
+/* ===== 抽屉 ===== */
+.scrim{position:fixed;inset:0;background:rgba(30,22,16,.20);}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:320px;max-width:88vw;
+  background:var(--card);border-left:1px solid var(--line);
+  box-shadow:-6px 0 24px rgba(40,30,20,.10);display:flex;flex-direction:column;}
+.dh{display:flex;align-items:center;justify-content:space-between;
+  padding:16px 18px 13px;border-bottom:1px solid var(--line);}
+.dh b{font-size:15px;font-weight:500;letter-spacing:.5px;}
+.dh .x{border:1px solid var(--line);background:transparent;color:var(--muted);
+  width:26px;height:26px;border-radius:999px;font-size:12px;line-height:1;font-family:inherit;}
+.dbody{flex:1;overflow-y:auto;padding:4px 18px 22px;display:flex;flex-direction:column;}
+section{padding:16px 0;border-bottom:1px solid var(--line);}
+section:last-of-type{border-bottom:none;}
+.cap{font-size:10.5px;letter-spacing:1.6px;color:var(--muted);margin-bottom:9px;
+  display:flex;justify-content:space-between;align-items:baseline;}
+.cap .r{letter-spacing:.4px;font-family:'BarlowCond',ui-monospace,monospace;font-size:11px;color:var(--accent);}
+
+/* 字体：折叠选择 */
+.sel{width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;
+  border:1px solid var(--line);background:transparent;color:var(--ink);
+  font-family:inherit;font-size:13px;padding:9px 11px;border-radius:6px;cursor:pointer;text-align:left;}
+.sel.open{border-color:var(--accent);}
+.sel .cv{font-size:9px;color:var(--muted);transition:transform .15s;}
+.sel.open .cv{transform:rotate(180deg);}
+.menu{display:none;margin-top:7px;border:1px solid var(--line);border-radius:6px;overflow:hidden;}
+.menu.show{display:block;}
+.fi{width:100%;display:flex;align-items:center;gap:9px;border:none;border-bottom:1px solid var(--line);
+  background:transparent;color:var(--ink);font-family:inherit;font-size:12.5px;padding:8px 11px;cursor:pointer;text-align:left;}
+.fi:last-child{border-bottom:none;}
+.fi .g{font-size:16px;line-height:1;width:18px;text-align:center;opacity:.9;}
+.fi .nm{flex:1;}
+.fi .tag{font-size:9.5px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 6px;letter-spacing:.3px;}
+.fi.on{background:var(--soft);color:var(--accent);}
+.fi .ck{display:none;font-size:12px;color:var(--accent);}
+.fi.on .ck{display:inline;}
+.fi.on .tag{border-color:var(--accent);color:var(--accent);}
+.fi.dim{opacity:.55;}
+.now{font-size:11px;color:var(--muted);margin-top:8px;}
+.now em{font-style:normal;color:var(--accent);}
+.prev{margin-top:10px;border:1px solid var(--line);border-radius:6px;background:var(--bg);
+  padding:10px 12px;white-space:pre-wrap;word-break:break-word;line-height:1.9;
+  font-size:15px;}
+
+/* 字号 */
+.sizerow{display:flex;align-items:center;gap:10px;}
+.pm{width:30px;height:30px;flex:0 0 auto;border:1px solid var(--line);background:transparent;color:var(--ink);
+  border-radius:6px;font-family:inherit;font-size:15px;line-height:1;cursor:pointer;}
+.pm:active{background:var(--soft);}
+input[type=range]{-webkit-appearance:none;appearance:none;flex:1;height:2px;background:var(--line);
+  border-radius:2px;outline:none;margin:0;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;
+  background:var(--accent);box-shadow:0 1px 3px rgba(0,0,0,.22);cursor:pointer;}
+.sizes{display:flex;gap:6px;margin-top:11px;}
+.sz{flex:1;border:1px solid var(--line);background:transparent;color:var(--muted);font-family:inherit;
+  border-radius:6px;padding:6px 0 5px;font-size:12.5px;cursor:pointer;line-height:1.35;}
+.sz .px{display:block;font-size:9.5px;opacity:.75;font-family:'BarlowCond',monospace;letter-spacing:.3px;}
+.sz.on{border-color:var(--accent);color:var(--accent);background:var(--soft);}
+
+/* 巧克力格 */
+.choc{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;}
+.ch{position:relative;border:none;padding:0;background:transparent;cursor:pointer;}
+.ch .sq{height:50px;border-radius:5px;border:1px solid rgba(0,0,0,.10);overflow:hidden;display:flex;flex-direction:column;}
+.ch .sq .b{flex:1;background:var(--b);}
+.ch .sq .a{height:13px;background:var(--a);}
+.ch .nm{display:block;font-size:10.5px;color:var(--muted);margin-top:4px;letter-spacing:.3px;}
+.ch.on .sq{outline:1.5px solid var(--accent);outline-offset:1.5px;}
+.ch.on .nm{color:var(--accent);}
+.detail{margin-top:10px;font-size:11px;color:var(--muted);font-family:'BarlowCond',ui-monospace,monospace;
+  letter-spacing:.4px;display:flex;align-items:center;gap:7px;}
+.detail .sw2{width:11px;height:11px;border-radius:2px;border:1px solid rgba(0,0,0,.12);}
+
+/* 开关 */
+.row{display:flex;align-items:center;justify-content:space-between;padding:9px 0;font-size:13.5px;}
+.sw{width:40px;height:23px;border-radius:999px;background:var(--line);position:relative;flex:0 0 auto;}
+.sw i{position:absolute;top:2.5px;left:2.5px;width:18px;height:18px;border-radius:999px;background:#fff;
+  box-shadow:0 1px 2px rgba(0,0,0,.18);transition:.2s;}
+.sw.on{background:var(--accent);}
+.sw.on i{left:19.5px;}
+.note{font-size:11px;color:var(--muted);opacity:.9;padding-top:2px;}
+.foot{margin-top:auto;font-size:10.5px;color:var(--muted);opacity:.75;letter-spacing:.4px;
+  border-top:1px solid var(--line);padding:13px 0 2px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="masthead">
+      <h1>730pm<span class="dot">.</span></h1>
+      <button class="chip" style="font-size:12px;padding:5px 12px">设置</button>
+    </div>
+    <div class="dateline"><span class="pick">2026年10月29日 · 星期四 · 第 008 期</span><span>▾</span></div>
+  </header>
+  <nav class="navrow">
+    <button class="chip on">头条</button>
+    <button class="chip">今日阅读</button>
+    <button class="chip">全部 ▾</button>
+    <div class="searchbx">搜索本期</div>
+  </nav>
+  <div class="lead">
+    <div class="kicker">榜单第一，门只开一条缝</div>
+    <h2>谷歌 Gemini 4 Carbon：登顶了，但先只给守网络的人用</h2>
+    <p>当地时间 10 月 28 日，谷歌发布 Gemini 4 Carbon——距 Gemini 4 Argon 只隔两周。谷歌称这是它最强的模型……</p>
+  </div>
+  <div class="ghost">
+    <div class="g" style="width:82%"></div><div class="g"></div><div class="g" style="width:74%"></div>
+    <div class="g" style="width:88%"></div><div class="g" style="width:60%"></div>
+  </div>
+</div>
+
+<div class="scrim"></div>
+
+<aside class="drawer">
+  <div class="dh"><b>设置</b><button class="x">✕</button></div>
+  <div class="dbody">
+
+    <section>
+      <div class="cap">字体</div>
+      <button class="sel" id="fontSel"><span id="fontNow">寒蝉圆黑体</span><span class="cv">▾</span></button>
+      <div class="menu" id="fontMenu">
+        <button class="fi on" data-f="chill"><span class="g" style="font-family:'ChillRound'">永</span><span class="nm">寒蝉圆黑体</span><span class="ck">✓</span><span class="tag">内置</span></button>
+        <button class="fi" data-f="jinghua"><span class="g" style="font-family:'JinghuaSong',serif">永</span><span class="nm">京华老宋体</span><span class="ck">✓</span><span class="tag">待装</span></button>
+        <button class="fi" data-f="hei"><span class="g" style="font-family:-apple-system,'PingFang SC',sans-serif">永</span><span class="nm">系统黑体</span><span class="ck">✓</span><span class="tag">系统</span></button>
+        <button class="fi" data-f="song"><span class="g" style="font-family:'Songti SC',serif">永</span><span class="nm">系统宋体</span><span class="ck">✓</span><span class="tag">系统</span></button>
+      </div>
+      <div class="now">当前字体：<em id="fontTxt">寒蝉圆黑体</em></div>
+      <div class="prev" id="prev">ABCDEFGHIJKLMNOPQRSTUVWXYZ
+abcdefghijklmnopqrstuvwxyz
+1234567890
+
+%+-/:=*#￥_，。？！“”……、：；~（）～
+
+世界之心是以我为中心的。</div>
+    </section>
+
+    <section>
+      <div class="cap"><span>字号</span><span class="r" id="pxNow">15 px</span></div>
+      <div class="sizerow">
+        <button class="pm" id="minus">−</button>
+        <input type="range" id="rng" min="12" max="46" step="1" value="15">
+        <button class="pm" id="plus">＋</button>
+      </div>
+      <div class="sizes" id="quick">
+        <button class="sz" data-v="13">小<span class="px">13px</span></button>
+        <button class="sz on" data-v="15">标准<span class="px">15px</span></button>
+        <button class="sz" data-v="18">大<span class="px">18px</span></button>
+        <button class="sz" data-v="22">特大<span class="px">22px</span></button>
+      </div>
+    </section>
+
+    <section>
+      <div class="cap"><span>配色</span><span class="r">底色 / 强调</span></div>
+      <div class="choc">
+        <button class="ch on" style="--b:#F4EFE6;--a:#6C2F36"><span class="sq"><span class="b"></span><span class="a"></span></span><span class="nm">旧报</span></button>
+        <button class="ch" style="--b:#F1F2EF;--a:#3C5A4E"><span class="sq"><span class="b"></span><span class="a"></span></span><span class="nm">霜白</span></button>
+        <button class="ch" style="--b:#EFE5D4;--a:#8A4B2A"><span class="sq"><span class="b"></span><span class="a"></span></span><span class="nm">砂纸</span></button>
+        <button class="ch" style="--b:#EDF1F6;--a:#2B4A70"><span class="sq"><span class="b"></span><span class="a"></span></span><span class="nm">靛蓝</span></button>
+        <button class="ch" style="--b:#F6F0F3;--a:#7C4B6E"><span class="sq"><span class="b"></span><span class="a"></span></span><span class="nm">藕荷</span></button>
+        <button class="ch" style="--b:#F2EDE3;--a:#6B5334"><span class="sq"><span class="b"></span><span class="a"></span></span><span class="nm">茶褐</span></button>
+        <button class="ch" style="--b:#EDF0EA;--a:#4A6350"><span class="sq"><span class="b"></span><span class="a"></span></span><span class="nm">竹青</span></button>
+        <button class="ch" style="--b:#17140F;--a:#C6ACDC"><span class="sq"><span class="b"></span><span class="a"></span></span><span class="nm">夜墨</span></button>
+      </div>
+      <div class="detail"><span class="sw2" style="background:#F4EFE6"></span>#F4EFE6<span class="sw2" style="background:#6C2F36;margin-left:5px"></span>#6C2F36</div>
+    </section>
+
+    <section>
+      <div class="row"><span>夜间模式</span><span class="sw"><i></i></span></div>
+      <div class="row"><span>夜间模式跟随系统</span><span class="sw"><i></i></span></div>
+      <div class="note">跟着系统走时，上面那个手动开关就不作数了。</div>
+    </section>
+
+    <div class="foot">改动即时生效 · 只存在这台设备上</div>
+  </div>
+</aside>
+
+<script>
+var FONTS = {
+  chill:  {name:'寒蝉圆黑体', css:"'ChillRound'"},
+  jinghua:{name:'京华老宋体', css:"'JinghuaSong'"},
+  hei:    {name:'系统黑体',   css:"-apple-system,'PingFang SC','Noto Sans CJK SC',sans-serif"},
+  song:   {name:'系统宋体',   css:"'Songti SC','Noto Serif CJK SC',serif"}
+};
+var cur = 'chill';
+
+var sel = document.getElementById('fontSel'),
+    menu = document.getElementById('fontMenu'),
+    prev = document.getElementById('prev'),
+    fontTxt = document.getElementById('fontTxt'),
+    fontNow = document.getElementById('fontNow'),
+    rng = document.getElementById('rng'),
+    pxNow = document.getElementById('pxNow');
+
+sel.onclick = function(){ sel.classList.toggle('open'); menu.classList.toggle('show'); };
+
+menu.onclick = function(e){
+  var b = e.target.closest('.fi'); if(!b) return;
+  cur = b.dataset.f;
+  menu.querySelectorAll('.fi').forEach(function(x){ x.classList.toggle('on', x === b); });
+  applyFont();
+  menu.classList.remove('show'); sel.classList.remove('open');
+};
+
+function applyFont(){
+  var f = FONTS[cur];
+  document.body.style.fontFamily = f.css + ',sans-serif';
+  fontTxt.textContent = f.name;
+  fontNow.textContent = f.name;
+  prev.style.fontFamily = f.css + ',sans-serif';
+}
+
+function applySize(v){
+  v = Math.max(12, Math.min(46, Math.round(v)));
+  rng.value = v;
+  pxNow.textContent = v + ' px';
+  prev.style.fontSize = v + 'px';
+  document.querySelectorAll('#quick .sz').forEach(function(b){
+    b.classList.toggle('on', +b.dataset.v === v);
+  });
+}
+
+rng.oninput = function(){ applySize(+rng.value); };
+document.getElementById('minus').onclick = function(){ applySize(+rng.value - 1); };
+document.getElementById('plus').onclick  = function(){ applySize(+rng.value + 1); };
+document.getElementById('quick').onclick = function(e){
+  var b = e.target.closest('.sz'); if(!b) return; applySize(+b.dataset.v);
+};
+
+applyFont(); applySize(15);
+</script>
+</body>
+</html>
