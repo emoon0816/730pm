@@ -213,12 +213,32 @@ html[data-theme="night"] mark {{ background: rgba(198,172,220,.20); }}
 .item .more:active {{ opacity:.6; }}
 .irow {{ display:flex; align-items:center; gap:10px; margin-top:7px; }}
 .irow .more {{ margin-top:0; }}
-.save, .del {{
+.save, .del, .share {{
   background:transparent; border:1px solid var(--line); color:var(--muted);
   font-family:inherit; font-size:11.5px; padding:2px 10px; border-radius:999px; cursor:pointer;
   transition: all .16s ease;
 }}
 .save.on {{ border-color:var(--accent); color:var(--accent); }}
+
+/* ===== 分享弹窗 ===== */
+.shwrap {{ position:fixed; inset:0; z-index:70; display:none; }}
+.shwrap.on {{ display:flex; align-items:center; justify-content:center; padding:20px; }}
+.shmask {{ position:absolute; inset:0; background:rgba(18,12,8,.44); }}
+.shbox {{ position:relative; width:100%; max-width:430px; max-height:82vh;
+  background:var(--card); border:1px solid var(--line); border-radius:8px;
+  display:flex; flex-direction:column; box-shadow:0 12px 36px rgba(0,0,0,.22); }}
+.shhead {{ display:flex; align-items:center; justify-content:space-between;
+  padding:12px 15px; border-bottom:1px solid var(--line);
+  font-size:11px; letter-spacing:1.6px; color:var(--muted); }}
+.shhead .x {{ width:24px; height:24px; border:1px solid var(--line); background:transparent;
+  color:var(--muted); border-radius:999px; font-size:11px; line-height:1; font-family:inherit; cursor:pointer; }}
+.shtext {{ margin:0; padding:14px 15px; overflow:auto; white-space:pre-wrap; word-break:break-word;
+  font-family:inherit; font-size:calc(var(--fs) * .9); line-height:1.82; color:var(--ink);
+  -webkit-user-select:text; user-select:text; }}
+.shacts {{ padding:11px 15px 14px; border-top:1px solid var(--line); display:flex; }}
+.shacts button {{ flex:1; border:1px solid var(--accent); background:var(--accent); color:var(--bg);
+  border-radius:6px; padding:9px 0; font-family:inherit; font-size:13px; letter-spacing:1px; cursor:pointer; }}
+.shacts button:active {{ opacity:.75; }}
 .save:active, .del:active {{ opacity:.55; }}
 .del {{ }}
 .sdate {{ font-size:11px; color:var(--muted); margin-left:auto; }}
@@ -385,6 +405,15 @@ html[data-theme="night"] .drawer .ch .sq .a {{ background:var(--na); }}
   <footer>730pm · 每日 19:30 更新 · 给不想被算法喂饭的人</footer>
 </div>
 
+<div class="shwrap" id="shWrap" aria-hidden="true">
+  <div class="shmask" id="shMask"></div>
+  <div class="shbox" role="dialog" aria-modal="true" aria-label="分享">
+    <div class="shhead"><span>分 享</span><button class="x" id="shX" type="button" aria-label="关闭">✕</button></div>
+    <pre class="shtext" id="shText"></pre>
+    <div class="shacts"><button id="shCopy" type="button">复制文字</button></div>
+  </div>
+</div>
+
 <div class="scrim" id="scrim"></div>
 
 <aside class="drawer" id="drawer" aria-hidden="true">
@@ -447,6 +476,7 @@ abcdefghijklmnopqrstuvwxyz
 var TODAY="{date}", WEEKDAY="{weekday}", ISSUE="{issue}", TODAY_ISO="{today_iso}";
 var ALL_TABS={all_tabs};
 var ISSUE_ITEMS={issue_json};
+var SHARE={share_json};
 var ARCHIVE={archive_json};
 (function(){{
   var root=document.documentElement, meta=document.querySelector('meta[name=theme-color]');
@@ -611,6 +641,51 @@ var ARCHIVE={archive_json};
   }});
 
   paint();
+
+  /* ---------- 分享 ---------- */
+  var shWrap=document.getElementById('shWrap'), shText=document.getElementById('shText'),
+      shCopy=document.getElementById('shCopy'), shTmr=null;
+  function openShare(id){{
+    var x=SHARE[+id]; if(!x) return;
+    var LF=String.fromCharCode(10);
+    var s='标题：'+x.t+LF+'正文：'+x.d+(x.u?LF+'原文链接：'+x.u:'');
+    shText.textContent=s;
+    shText.scrollTop=0;
+    shCopy.textContent='复制文字';
+    shWrap.classList.add('on');
+    shWrap.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+  }}
+  function closeShare(){{
+    shWrap.classList.remove('on');
+    shWrap.setAttribute('aria-hidden','true');
+    if(!document.getElementById('drawer').classList.contains('on')) document.body.style.overflow='';
+  }}
+  document.addEventListener('click', function(e){{
+    var b=e.target.closest('.share');
+    if(!b) return;
+    e.preventDefault();
+    openShare(b.getAttribute('data-si'));
+  }});
+  document.getElementById('shMask').addEventListener('click', closeShare);
+  document.getElementById('shX').addEventListener('click', closeShare);
+  document.addEventListener('keydown', function(e){{ if(e.key==='Escape') closeShare(); }});
+  shCopy.addEventListener('click', function(){{
+    var s=shText.textContent;
+    function ok(){{ shCopy.textContent='已复制'; clearTimeout(shTmr);
+      shTmr=setTimeout(function(){{ shCopy.textContent='复制文字'; }},1600); }}
+    function fb(){{
+      var ta=document.createElement('textarea');
+      ta.value=s; ta.setAttribute('readonly','');
+      ta.style.position='fixed'; ta.style.top='-999px'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0,s.length);
+      try{{ document.execCommand('copy'); ok(); }}catch(e){{}}
+      document.body.removeChild(ta);
+    }}
+    if(navigator.clipboard && navigator.clipboard.writeText){{
+      navigator.clipboard.writeText(s).then(ok, fb);
+    }} else fb();
+  }});
 
   var TODAY="{date}", SKEY='np-saved';
   function getSaved(){{ try{{ var a=JSON.parse(localStorage.getItem(SKEY)||'[]'); return Array.isArray(a)?a:[]; }}catch(e){{ return []; }} }}
@@ -856,7 +931,7 @@ GROUP_T = """      <div class="group">
 ITEM_T = """        <div class="item">
           <h3>{t}</h3>
           <p>{d}</p>{note}
-          <div class="irow">{more}<button class="save" type="button">存</button></div>
+          <div class="irow">{more}<button class="save" type="button">存</button>{share}</div>
         </div>"""
 
 NOTE_T = """
@@ -864,6 +939,9 @@ NOTE_T = """
 
 MORE_T = """
           <a class="more" href="{u}" target="_blank" rel="noopener">原文 ↗</a>"""
+
+SHARE_BTN = """
+          <button class="share" type="button" data-si="{si}">分享</button>"""
 
 READING_T = """      <article class="reading">
         <h2 class="rtitle">{title}</h2>
@@ -878,7 +956,7 @@ LEAD_T = """    <div class="lead">
       <div class="kicker">{kicker}</div>
       <h2>{title}</h2>
       <p>{body}</p>
-      <div class="src">{source}{link}</div>
+      <div class="src">{source}{link}{share}</div>
     </div>"""
 
 
@@ -927,6 +1005,14 @@ def render_html(d, page_iso, in_issues_dir):
     tabs = d["tabs"]
     tab_buttons = "\n    ".join(TAB_BTN.format(id=t["id"], name=t["name"]) for t in tabs)
 
+    # 分享数据：标题 + 正文 + 原文链接（不含批注）
+    share = []
+    def sid(title, body, url):
+        if not title:
+            return ""
+        share.append({"t": title, "d": body or "", "u": url or ""})
+        return str(len(share) - 1)
+
     panels = []
     for t in tabs:
         body = []
@@ -934,7 +1020,8 @@ def render_html(d, page_iso, in_issues_dir):
             l = d["lead"]
             link = (' · <a href="%s" target="_blank" rel="noopener">原文 ↗</a>' % l["u"]) if l.get("u") else ""
             body.append(LEAD_T.format(kicker=l["kicker"], title=l["title"], body=l["body"],
-                                      source=l.get("source", ""), link=link))
+                                      source=l.get("source", ""), link=link,
+                                      share=SHARE_BTN.format(si=sid(l["title"], l["body"], l.get("u", "")))))
         if "reading" in t:
             r = t["reading"]
             rb = "".join("<p>%s</p>" % x for x in r["body"])
@@ -958,7 +1045,8 @@ def render_html(d, page_iso, in_issues_dir):
             for i in g["items"]:
                 more = MORE_T.format(u=i["u"]) if i.get("u") else ""
                 note = NOTE_T.format(n=i["note"]) if i.get("note") else ""
-                items.append(ITEM_T.format(t=i["t"], d=i["d"], note=note, more=more))
+                items.append(ITEM_T.format(t=i["t"], d=i["d"], note=note, more=more,
+                                           share=SHARE_BTN.format(si=sid(i["t"], i.get("d", ""), i.get("u", "")))))
             body.append(GROUP_T.format(name=g["name"], items="\n".join(items)))
         panels.append('    <section class="panel" data-id="%s">\n%s\n    </section>' % (t["id"], "\n".join(body)))
 
@@ -993,6 +1081,7 @@ def render_html(d, page_iso, in_issues_dir):
         all_tabs=json.dumps(all_tabs, ensure_ascii=False, separators=(",", ":")),
         issue_json=json.dumps(searchable, ensure_ascii=False, separators=(",", ":")),
         archive_json=json.dumps(rows, ensure_ascii=False, separators=(",", ":")),
+        share_json=json.dumps(share, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/"),
     )
 
 

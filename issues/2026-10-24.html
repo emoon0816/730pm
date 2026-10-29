@@ -206,12 +206,32 @@ html[data-theme="night"] mark { background: rgba(198,172,220,.20); }
 .item .more:active { opacity:.6; }
 .irow { display:flex; align-items:center; gap:10px; margin-top:7px; }
 .irow .more { margin-top:0; }
-.save, .del {
+.save, .del, .share {
   background:transparent; border:1px solid var(--line); color:var(--muted);
   font-family:inherit; font-size:11.5px; padding:2px 10px; border-radius:999px; cursor:pointer;
   transition: all .16s ease;
 }
 .save.on { border-color:var(--accent); color:var(--accent); }
+
+/* ===== 分享弹窗 ===== */
+.shwrap { position:fixed; inset:0; z-index:70; display:none; }
+.shwrap.on { display:flex; align-items:center; justify-content:center; padding:20px; }
+.shmask { position:absolute; inset:0; background:rgba(18,12,8,.44); }
+.shbox { position:relative; width:100%; max-width:430px; max-height:82vh;
+  background:var(--card); border:1px solid var(--line); border-radius:8px;
+  display:flex; flex-direction:column; box-shadow:0 12px 36px rgba(0,0,0,.22); }
+.shhead { display:flex; align-items:center; justify-content:space-between;
+  padding:12px 15px; border-bottom:1px solid var(--line);
+  font-size:11px; letter-spacing:1.6px; color:var(--muted); }
+.shhead .x { width:24px; height:24px; border:1px solid var(--line); background:transparent;
+  color:var(--muted); border-radius:999px; font-size:11px; line-height:1; font-family:inherit; cursor:pointer; }
+.shtext { margin:0; padding:14px 15px; overflow:auto; white-space:pre-wrap; word-break:break-word;
+  font-family:inherit; font-size:calc(var(--fs) * .9); line-height:1.82; color:var(--ink);
+  -webkit-user-select:text; user-select:text; }
+.shacts { padding:11px 15px 14px; border-top:1px solid var(--line); display:flex; }
+.shacts button { flex:1; border:1px solid var(--accent); background:var(--accent); color:var(--bg);
+  border-radius:6px; padding:9px 0; font-family:inherit; font-size:13px; letter-spacing:1px; cursor:pointer; }
+.shacts button:active { opacity:.75; }
 .save:active, .del:active { opacity:.55; }
 .del { }
 .sdate { font-size:11px; color:var(--muted); margin-left:auto; }
@@ -370,7 +390,8 @@ html[data-theme="night"] .drawer .ch .sq .a { background:var(--na); }
       <div class="kicker">AI 与钱</div>
       <h2>DeepSeek 一轮融了千亿，国内纪录刷新</h2>
       <p>10 月 23 日，多个一级投资人向《证券时报》确认，DeepSeek 已完成约 1000 亿元融资，刷新中国 AI 行业单轮融资纪录。投资人士称，DeepSeek 对投资方提出了明确的资源协同要求：所有意向方必须说明能提供什么数据支持与业务协同，具备产业资源的机构因此拿到更多份额，横店资本等获较大额度。同一天，寒武纪三季报前三季度净利润同比增 131.49% 至 37.15 亿元。</p>
-      <div class="src">证券时报（经新华财经早报转引） · <a href="https://www.cnfin.com/gs-lb/detail/20261024/4485889_1.html" target="_blank" rel="noopener">原文 ↗</a></div>
+      <div class="src">证券时报（经新华财经早报转引） · <a href="https://www.cnfin.com/gs-lb/detail/20261024/4485889_1.html" target="_blank" rel="noopener">原文 ↗</a>
+          <button class="share" type="button" data-si="0">分享</button></div>
     </div>
       <div class="group">
         <div class="gname">我觉得你该知道的</div>
@@ -378,19 +399,22 @@ html[data-theme="night"] .drawer .ch .sq .a { background:var(--na); }
           <h3>凌晨 3 点 25 分，酒泉一次送上去六颗遥感星</h3>
           <p>10 月 24 日 3 时 25 分，长征四号乙在酒泉发射遥感五十三号 07-09 星与遥感五十六号 19-21 星，全部进入预定轨道，主要用于科学试验、国土资源普查、农产品估产和防灾减灾。前一天 18 时 15 分，长征六号改在太原把遥感五十号 03 星送上天。</p>
           <div class="irow">
-          <a class="more" href="http://news.cyol.com/gb/news/articles/2026-10/24/content_YOvQY6tm9V.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="http://news.cyol.com/gb/news/articles/2026-10/24/content_YOvQY6tm9V.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="1">分享</button></div>
         </div>
         <div class="item">
           <h3>瓦努阿图海域 7.2 级地震，海啸预警已发出</h3>
           <p>北京时间 10 月 24 日 10 时 31 分前后，瓦努阿图索拉以西约 200 公里海域发生 7.2 级地震，震源深度 10 公里，德国地学研究中心测得 7.1。美国太平洋海啸预警中心对震中 300 公里内海岸发布海啸威胁预警；智利方面称不具备波及本国沿岸的条件。目前暂无伤亡与财产损失报告。</p>
           <div class="irow">
-          <a class="more" href="https://today.zhudong.net/2026-10-24.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://today.zhudong.net/2026-10-24.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="2">分享</button></div>
         </div>
         <div class="item">
           <h3>Meta 被罚 250 亿美元，美国司法史上最高之一</h3>
           <p>10 月 21 日，新墨西哥州第一司法区法官马修裁定，Meta 因十多年就用户数据使用方式误导用户，支付 250 亿美元民事罚款，未付清期间按年利率 15% 计息，每年多出 37.5 亿美元。9 月陪审团认定 29 项相关陈述中 26 项误导，累计违法约 4390 万次。州方原要 350 亿至 400 亿，Meta 主张不超过 34 亿，并表示上诉。</p>
           <div class="irow">
-          <a class="more" href="https://cn.chinadaily.com.cn/a/202610/22/WS6ad9a2b2e4b09a165c790d74.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://cn.chinadaily.com.cn/a/202610/22/WS6ad9a2b2e4b09a165c790d74.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="3">分享</button></div>
         </div>
       </div>
     </section>
@@ -401,19 +425,22 @@ html[data-theme="night"] .drawer .ch .sq .a { background:var(--na); }
           <h3>两艘油轮在霍尔木兹以南触雷，合计载油 450 万桶</h3>
           <p>10 月 23 日，伊朗革命卫队海军称两艘试图经「未经授权」航线穿越海峡南部的超级油轮触雷，机舱起火停航，船员弃船，两船合计载油超过 450 万桶。同日伊斯坦布尔，土耳其、埃及、巴基斯坦、沙特、英国、法国、德国、意大利外长开会，一致反对对伊朗发动新一轮军事打击，呼吁全面恢复海峡通航。路透引华盛顿近东政策研究所数据：10 月已记录 28 起商船遇袭，是该智库 2017 年追踪以来最严重的一个月。</p>
           <div class="irow">
-          <a class="more" href="https://www.chinanews.com.cn/gj/2026/10-24/10720245.shtml" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://www.chinanews.com.cn/gj/2026/10-24/10720245.shtml" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="4">分享</button></div>
         </div>
         <div class="item">
           <h3>特朗普放话：可能再来一次小规模「史诗怒火」</h3>
           <p>10 月 23 日特朗普称，美国或许会再来一次小规模「史诗怒火」行动，也可能伊朗选择妥协，「如果伊朗够聪明，就会直接说咱们来谈正事」。此前 21 日消息称，美以军方已制定具体计划，准备在 11 月中期选举结束后再次打击伊朗，特朗普是否批准尚不确定。当日布油主力涨 3.25% 报 116.85 美元，美油涨 3.99% 报 103.44 美元。</p>
           <div class="irow">
-          <a class="more" href="https://www.nbd.com.cn/articles/2026-10-24/4615973.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://www.nbd.com.cn/articles/2026-10-24/4615973.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="5">分享</button></div>
         </div>
         <div class="item">
           <h3>奥列什基 10 月 29 日停火，赫尔松方向 27 日起静默</h3>
           <p>白宫 10 月 23 日声明称，已促成俄乌在奥列什基暂时停火，10 月 29 日开始，以便人道物资进入、平民经指定安全通道撤离。同日俄军总参谋长格拉西莫夫宣布，自莫斯科时间 10 月 27 日 4 时起在赫尔松方向停止开火并进入「静默状态」。佩斯科夫称俄美乌三方会谈定于 11 月上旬在阿布扎比；泽连斯基称安全保障是乌方谈判的「核心要素」。</p>
           <div class="irow">
-          <a class="more" href="https://www.cnfin.com/gs-lb/detail/20261024/4485889_1.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://www.cnfin.com/gs-lb/detail/20261024/4485889_1.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="6">分享</button></div>
         </div>
       </div>
       <div class="group">
@@ -422,13 +449,15 @@ html[data-theme="night"] .drawer .ch .sq .a { background:var(--na); }
           <h3>巴西大选明天第二轮：弗拉维奥 47%，卢拉 46%</h3>
           <p>巴西总统选举第二轮决选定于 10 月 25 日投票。最新民调显示，右翼候选人弗拉维奥·博索纳罗支持率 47%，现总统卢拉 46%。受访学者认为，若右翼上台，巴西在政治与安全上将加速靠向美国，但经贸纽带会限制其对华政策大幅转向——中国去年采购约 8540 万吨巴西大豆，占其全年出口量 79%。</p>
           <div class="irow">
-          <a class="more" href="https://www.zaobao.com.sg/specials/cn/daily-brief/20261024" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://www.zaobao.com.sg/specials/cn/daily-brief/20261024" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="7">分享</button></div>
         </div>
         <div class="item">
           <h3>王毅在雄安见客人，谈难民治理与 AI 规则</h3>
           <p>10 月 23 日，2026 全球治理论坛在河北雄安举行。王毅会见联合国难民事务高级专员萨利赫，提出消除难民危机和平是首要、改善处境发展是基础、完善治理国际合作是关键。他还会见美国亚洲协会董事会共同主席桑顿与《纽约时报》专栏作家弗里德曼，称中美作为人工智能第一梯队国家，不仅要防范风险，也要开展合作，共同商讨全球适用的规则标准。</p>
           <div class="irow">
-          <a class="more" href="https://www.gov.cn/yaowen/liebiao/202610/content_7084197.htm" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://www.gov.cn/yaowen/liebiao/202610/content_7084197.htm" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="8">分享</button></div>
         </div>
       </div>
     </section>
@@ -439,13 +468,15 @@ html[data-theme="night"] .drawer .ch .sq .a { background:var(--na); }
           <h3>Claude Duet 上线：给智能体配了一台云电脑</h3>
           <p>Anthropic 10 月 21 日推出由 Opus 5.5 驱动的主动式 Agent Claude Duet，美国 Pro、Max 用户需获邀使用，支持 iOS、Android 与网页。它配有独立云端虚拟机与浏览器，用户关机后仍在后台推进任务，每数小时巡检工作流、判断哪些事需要打断人；继承原账户记忆与授权，可调用 6000 多个连接器。官方演示中 41 项开店清单被自动梳理，只有卫生许可要本人点头，付款、发消息、签文件仍需批准。</p>
           <div class="irow">
-          <a class="more" href="http://www.damoai.com.cn/kuaixun/19650.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="http://www.damoai.com.cn/kuaixun/19650.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="9">分享</button></div>
         </div>
         <div class="item">
           <h3>Kimi K3.1 Pro 正式发布，还多一档 Highspeed</h3>
           <p>10 月 23 日，月之暗面发布 Kimi K3.1 Pro 与 Kimi K3.1 Pro Highspeed。前一天官方只放了一段 24 秒预热视频，终端里写着 K3.1、版本 2.2.0、上下文 1M，发布日期、价格、是否开源都没说；第二天两个型号一起落地，DataLearner 已收录 Highspeed 版本。此前的 K3.1 预热在开发者圈引发了大量讨论。</p>
           <div class="irow">
-          <a class="more" href="https://www.yicai.com/brief/103407449.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://www.yicai.com/brief/103407449.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="10">分享</button></div>
         </div>
       </div>
       <div class="group">
@@ -454,13 +485,15 @@ html[data-theme="night"] .drawer .ch .sq .a { background:var(--na); }
           <h3>荣耀 WIN2：10100mAh，2nm 芯片，4999 元起</h3>
           <p>10 月 21 日发布的三款电竞手机中，WIN2 搭载第六代骁龙 8 超级至尊版（2nm 工艺），LPDDR5X Ultra 内存加 UFS4.1 闪存，实验室安兔兔跑到 5702964 分；双风扇涡轮散热，2K 185Hz 屏，触控采样率最高 5000Hz，10100mAh 电池，100W 有线、80W 无线，IP68/69/69K，2 亿像素主摄。国补后 4999 元起，发布即售；Turbo2 10 月 30 日开售。</p>
           <div class="irow">
-          <a class="more" href="http://www.news.cn/tech/20261021/056aa4a80f374b5499916e45c7245573/c.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="http://www.news.cn/tech/20261021/056aa4a80f374b5499916e45c7245573/c.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="11">分享</button></div>
         </div>
         <div class="item">
           <h3>Find X10 系列进中东：Pro Max 三颗 2 亿像素</h3>
           <p>10 月 24 日，OPPO 在阿联酋、阿曼、卡塔尔、巴林、科威特开卖 Find X10 与 Find X10 Pro Max。Pro Max 后置三摄全是 2 亿像素，哈苏联合调校；标准版为双 2 亿。两款都是 12GB+512GB，阿联酋售价 5199 与 6399 迪拉姆，预购 10 月 30 日到 11 月 5 日，11 月 6 日开售；海湾其余四国 11 月 27 日上市。</p>
           <div class="irow">
-          <a class="more" href="https://web-release.com/oppo-find-x10-series-launches-in-the-gcc-with-true-to-life-imaging-and-all-round-flagship-upgrades/" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://web-release.com/oppo-find-x10-series-launches-in-the-gcc-with-true-to-life-imaging-and-all-round-flagship-upgrades/" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="12">分享</button></div>
         </div>
       </div>
     </section>
@@ -471,13 +504,15 @@ html[data-theme="night"] .drawer .ch .sq .a { background:var(--na); }
           <h3>米级单晶，不用籽晶也不用模具</h3>
           <p>清华航院崔一南团队 10 月 21 日在《自然》在线发表：建立增材制造力学—凝固学耦合模型，提出「深蹲脉冲」热输入方法，在强瞬态热循环下实现间歇式单晶生长，做出米级尺度、复杂构型、跨材料体系的无籽晶、无杂晶、无模具、无支撑单晶。期刊同期配发 News & Views，称其「为未来技术与科学发展创造了令人振奋的机遇」。</p>
           <div class="irow">
-          <a class="more" href="https://wap.sciencenet.cn/mobile.php?type=detail&cat=news&id=573451&mobile=1" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://wap.sciencenet.cn/mobile.php?type=detail&cat=news&id=573451&mobile=1" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="13">分享</button></div>
         </div>
         <div class="item">
           <h3>21 年的悬案：声子热霍尔效应是内禀的</h3>
           <p>华中科技大学国家脉冲强磁场科学中心李亮团队联合法国巴黎高等物理化工学院，10 月 23 日在《科学》在线发表。五块「路况」基本一致的样品，热流偏转程度最大相差近十倍，且与声子平均自由程无关、与材料磁各向异性紧密关联——说明不是杂质或缺陷碰巧造成。机制是磁振子与声子能带多处交叉、耦合出杂化模式，让不带电的声子获得对磁场的感知能力。2005 年首次观测到信号后，内禀与外禀之争持续了 21 年。</p>
           <div class="irow">
-          <a class="more" href="https://www.chinanews.com.cn/gn/2026/10-23/10719776.shtml" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://www.chinanews.com.cn/gn/2026/10-23/10719776.shtml" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="14">分享</button></div>
         </div>
       </div>
       <div class="group">
@@ -486,7 +521,8 @@ html[data-theme="night"] .drawer .ch .sq .a { background:var(--na); }
           <h3>FAST 抓到一对轨道最扁的中子星</h3>
           <p>中国天眼发现脉冲星 PSR J0653+0443，每秒自转 21 圈，与另一颗质量几乎相同的中子星相互绕转。轨道周期 79 天，偏心率 0.992，创下双星纪录：大部分时间两者相距遥远，然后 46 分钟内以每秒 1140 公里掠过对方；2025 年那次近掠，脉冲星信号在伴星磁环境后消失了 85 秒。这样的轨道要求伴星超新星爆发时受到猛烈「踢击」，模拟显示这类系统出现概率低于两百分之一。两颗星将在约 25 亿年后并合。</p>
           <div class="irow">
-          <a class="more" href="https://arxiv.org/abs/2610.29838" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://arxiv.org/abs/2610.29838" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="15">分享</button></div>
         </div>
       </div>
     </section>
@@ -498,14 +534,16 @@ html[data-theme="night"] .drawer .ch .sq .a { background:var(--na); }
           <p>10 月 23 日晚腾讯视频上线，开播 10 分钟站内热度破 2 万，2 小时破 2.4 万，首日峰值 24971，排 2026 年腾讯剧集首日热度前五，同时登顶猫眼网络剧热度总榜。首播 4 集，8 个品牌植入，天猫双 11 总冠名。口碑两头走：一边夸实景、服化道和孟子义的疯批公主贴脸，一边嫌前两集节奏慢。</p>
           <div class="note"><b>注</b> 广告比剧情先到位，这在今年的古偶里算常规操作了。</div>
           <div class="irow">
-          <a class="more" href="https://k.sina.com.cn/article_7879923576_1d5ae1778068017wgq.html?from=ent" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://k.sina.com.cn/article_7879923576_1d5ae1778068017wgq.html?from=ent" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="16">分享</button></div>
         </div>
         <div class="item">
           <h3>迪丽热巴造型师否认「逼宫」，粉丝不买账</h3>
           <p>10 月 23 日 VOGUE 活动后，闵塔鲨发迪丽热巴的 Zuhair Murad 造型并艾特祖海、御木本，被质疑倒逼品牌认领。10 月 24 日他回应：祖海官博 0 点 35 分就发帖认领，他的快拍 0 点 40 分才发，时间线上没有逼宫这回事，还说要取证。粉丝真正不满的是造型和资源，两边说的不是一件事。她的造型 9 月初已交给 OneShot。</p>
           <div class="note"><b>注</b> 造型师讲流程，粉丝讲审美。两套语言，谁也说服不了谁。</div>
           <div class="irow">
-          <a class="more" href="https://ent.sina.cn/2026-10-24/detail-iniwikcq1259852.d.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://ent.sina.cn/2026-10-24/detail-iniwikcq1259852.d.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="17">分享</button></div>
         </div>
       </div>
       <div class="group">
@@ -514,19 +552,22 @@ html[data-theme="night"] .drawer .ch .sq .a { background:var(--na); }
           <h3>BTS《Swim》破 10 亿播放，今年全球第一首</h3>
           <p>10 月 24 日经纪公司确认，《Arirang》主打《Swim》在 Spotify 累计破 10 亿，是 2026 年全球发行的歌里第一首到这个数，也是 BTS 第七首破 10 亿的歌，并且是最快的一首。3 月 20 日发行，4 月 4 日空降 Hot 100 冠军、连在榜 20 周，英国单曲榜最高第 2。收录它的专辑 10 月 14 日累计破 50 亿，14 首歌每首都过了 2 亿。</p>
           <div class="irow">
-          <a class="more" href="https://www.koreaherald.com/article/10913433" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://www.koreaherald.com/article/10913433" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="18">分享</button></div>
         </div>
         <div class="item">
           <h3>NCT WISH 拿《音乐银行》一位，周榜也扫了</h3>
           <p>10 月 12 日发的迷你四辑《I SPY》，Hanteo 周榜第一；22 日 Circle 榜专辑榜与零售专辑榜双冠；Melon、腾讯音乐、LINE MUSIC 合成的全球 K 榜周榜（10 月 12 到 18 日）也是第一。10 月 23 日《音乐银行》靠《I SPY》再拿一个一位。</p>
           <div class="irow">
-          <a class="more" href="https://topstarnews.net/news/articleView.html?idxno=16254604" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://topstarnews.net/news/articleView.html?idxno=16254604" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="19">分享</button></div>
         </div>
         <div class="item">
           <h3>IVE 后天回归，第五张迷你专辑</h3>
           <p>《Looks Can Kill》10 月 26 日发行，先行曲 10 月 19 日已经放出来。距上一张正规二辑《Revive+》八个月，上一轮巡演 10 月初在台北三场收尾。这次概念走超级少女英雄，跟她以往的酷飒路线差得远，回归还没到，先在评论区吵起来了。</p>
           <div class="irow">
-          <a class="more" href="https://www.koreaherald.com/article/10886123" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://www.koreaherald.com/article/10886123" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="20">分享</button></div>
         </div>
       </div>
       <div class="group">
@@ -536,14 +577,16 @@ html[data-theme="night"] .drawer .ch .sq .a { background:var(--na); }
           <p>查下来她今年最近的戏还是《雀骨》：7 月 11 日爱奇艺上线，28 集，她演何太后，已经播完。综艺是《乘风2026》，四月的二公她团队拿 868 票、全场第二，她个人喜爱度只有 27 票被淘汰，赛制争议冲上热搜第一。十月没有新项目定档，冒出来的只有 10 月 16 日她重扮安陵容那波旧话题。</p>
           <div class="note"><b>注</b> 赢了比赛被淘汰这种事，放谁身上都咽不下去。她咽了。</div>
           <div class="irow">
-          <a class="more" href="https://www.iq.com/wiki/zh_tw/album/%E9%9B%80%E9%AA%A8-2026-25lwyc1zim1" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://www.iq.com/wiki/zh_tw/album/%E9%9B%80%E9%AA%A8-2026-25lwyc1zim1" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="21">分享</button></div>
         </div>
         <div class="item">
           <h3>刘琳 · 也没有新定档，露面在乌镇</h3>
           <p>今年她的排期其实很满：2 月 13 日《我的妈妈是校花》、3 月 6 日到 30 日《逐玉》（赵大娘）、7 月 2 日电影《不成功穿越指南》、9 月 3 日《生逢其时》上了央视一套，她演霍青莲。待播的《金枝》2 月 10 日开的机，一直没定档。10 月 16 日有人在乌镇戏剧节拍到她，同场还有梅婷、郝蕾。</p>
           <div class="note"><b>注</b> 一条新戏都没有，热度倒是靠旧角色一直在续。</div>
           <div class="irow">
-          <a class="more" href="https://zh.wikipedia.org/zh-hans/%E5%88%98%E7%90%B3_(1974%E5%B9%B4)" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://zh.wikipedia.org/zh-hans/%E5%88%98%E7%90%B3_(1974%E5%B9%B4)" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="22">分享</button></div>
         </div>
       </div>
     </section>
@@ -554,13 +597,15 @@ html[data-theme="night"] .drawer .ch .sq .a { background:var(--na); }
           <h3>北爱八强打完，威廉姆斯从 2 比 4 里爬出来</h3>
           <p>10 月 24 日凌晨的 1/4 决赛，马克·威廉姆斯 2 比 4 落后吉尔伯特，随后连赢四局，其中 104、115、101 三杆破百加一杆 68，6 比 4 逆转，职业生涯第 71 次进排名赛四强。最后一局那颗几乎沿库边走的远台红球，他自己说成功率只有二十分之一。半决赛对杰克·琼斯，他冲第 28 个排名赛冠军，拿下就追平戴维斯。</p>
           <div class="irow">
-          <a class="more" href="https://c.m.163.com/news/a/LA0CAMHG0549A5HX.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://c.m.163.com/news/a/LA0CAMHG0549A5HX.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="23">分享</button></div>
         </div>
         <div class="item">
           <h3>威尔逊 6 比 1，克雷吉 6 比 2</h3>
           <p>凯伦·威尔逊单杆 122、77、75，连胜四局横扫两冠王麦克吉尔；克雷吉 50、66 两杆，连赢五局 6 比 2 送走斯莱瑟。四强：威尔逊、克雷吉、威廉姆斯、杰克·琼斯。中国球员到 16 强就全停了，庞俊旭昨天决胜局 3 比 4 输给威尔逊，张家玮 2 比 4 负吉尔伯特。</p>
           <div class="irow">
-          <a class="more" href="https://m.163.com/dy/article/L9VU81NJ0556BNFH.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://m.163.com/dy/article/L9VU81NJ0556BNFH.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="24">分享</button></div>
         </div>
       </div>
       <div class="group">
@@ -569,14 +614,16 @@ html[data-theme="night"] .drawer .ch .sq .a { background:var(--na); }
           <h3>亚锦赛四对双打全进四强，单打 3 男 3 女进八强</h3>
           <p>10 月 24 日塔什干。男双 1/4 决赛，林诗栋/黄友政 3 比 1 再赢张本智和/篠塚大登（11-7、11-13、11-5、11-6），温瑞博/袁励岑先丢一局后同样 3 比 1 逆转印度的贾恩/塔卡；女双蒯曼/王艺迪、陈熠/姜依依也双双过关，男女双打到这轮没人掉队。单打：蒯曼、王艺迪、陈熠直落三局进八强，覃予萱在内战里出局；男单温瑞博、向鹏、李天阳都是 3 比 1 过关。</p>
           <div class="irow">
-          <a class="more" href="https://xinwen.bjd.com.cn/content/s6adc69cee4b0e42f8f0201f4.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://xinwen.bjd.com.cn/content/s6adc69cee4b0e42f8f0201f4.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="25">分享</button></div>
         </div>
         <div class="item">
           <h3>黄友政一天之内赢了张本智和，又输给他</h3>
           <p>下午男双刚和张本智和交手并赢下来，一小时后男单 1/8 决赛再碰，7-11、8-11、10-12，0 比 3 止步 16 强。第三局他 2 比 5、3 比 8 落后一路追到 10 平，最后两分没咬住。他世界排名第 59，张本第 3。这届他身兼四项，前一天单日打了六场。</p>
           <div class="note"><b>注</b> 同一天、同一个对手，双打赢了单打输了。差的不是手上功夫，是能不能一个人扛住那一分。</div>
           <div class="irow">
-          <a class="more" href="https://sports.sina.cn/2026-10-24/detail-iniwikcs1964074.d.html?vt=4" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://sports.sina.cn/2026-10-24/detail-iniwikcs1964074.d.html?vt=4" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="26">分享</button></div>
         </div>
       </div>
     </section>
@@ -587,7 +634,8 @@ html[data-theme="night"] .drawer .ch .sq .a { background:var(--na); }
           <h3>今天挂在上面的事</h3>
           <p>去年全国结婚登记 676 万对（142 万）· 汞能变成黄金（90 万）· 个人账户跨省共济全国落地（71 万）· 成都蓉城 0 比 1 大连英博（64 万）· 秦始皇兵马俑上发现女性指纹（57 万）· 蓉城末轮若输球英博赢球将逆袭夺冠（32 万）· 王一博「不是我的肚子」（32 万）· 多位网友晒 iPhoneDuo 屏幕裂了（30 万）· 西藏巴青 7.0 级地震已发生余震 834 次（28 万）</p>
           <div class="irow">
-          <a class="more" href="https://tophub.today/n/KqndgxeLl9" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://tophub.today/n/KqndgxeLl9" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="27">分享</button></div>
         </div>
       </div>
       <div class="group">
@@ -596,7 +644,8 @@ html[data-theme="night"] .drawer .ch .sq .a { background:var(--na); }
           <h3>世界榜被日本和东南亚占满</h3>
           <p>前面是日本职棒 #SMBC日本シリーズ2026，还有 ハマスタ、東京湾大華火祭、#集えNIKKE4周年（NIKKE 四周年）；韩国那边 #별의_궤적이_빛나는_1위 上榜；往后全是粉丝场——#BBFanFest2026inMacau、#LYKNReflexionConcertD2、SAMSUNGTV WITH MARKJUMMO、SAROCHA IN CHINA 2026。中文话题今天没挤进世界榜。</p>
           <div class="irow">
-          <a class="more" href="https://whatstrends.com" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://whatstrends.com" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="28">分享</button></div>
         </div>
       </div>
     </section>
@@ -608,13 +657,15 @@ html[data-theme="night"] .drawer .ch .sq .a { background:var(--na); }
           <p>Steam 官方日程：Steam Scream V（尖叫游戏节）10 月 26 日上午 10 点（太平洋时间）到 11 月 2 日同一时间，只收恐怖品类和明确以万圣节为主题的游戏，主题 DLC 和游戏内活动不算。同期 Steam Next Fest 也是 10 月 26 日结束，试玩还剩最后一个周末。</p>
           <div class="note"><b>注</b> 想等更低的价，可以赌三天后这一波。前提是你能玩得动恐怖游戏。</div>
           <div class="irow">
-          <a class="more" href="https://partner.steamgames.com/doc/marketing/upcoming_events" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://partner.steamgames.com/doc/marketing/upcoming_events" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="29">分享</button></div>
         </div>
         <div class="item">
           <h3>今天架上的折扣：2077 七折，生化四作齐降</h3>
           <p>国区实时价：《赛博朋克 2077》70%，89.4 元（原 298）；《往日之影》40%，89.4 元；《生化危机 4》75%，49.5 元；《生化危机 2》80%，39.6 元；《生化危机 8》75%，49.5 元；《生化危机 7》60%，39.2 元；《星际战士 2》75%，62.25 元；GTA V 增强版 50%，74.5 元；《行尸走肉》Telltale 合集 90%，16.8 元；《饥荒联机版》50%，12 元。</p>
           <div class="irow">
-          <a class="more" href="https://store.steampowered.com/specials?l=schinese" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://store.steampowered.com/specials?l=schinese" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="30">分享</button></div>
         </div>
       </div>
       <div class="group">
@@ -623,7 +674,8 @@ html[data-theme="night"] .drawer .ch .sq .a { background:var(--na); }
           <h3>王者荣耀周年庆，嘉年华今天在深圳开场</h3>
           <p>10 月 24 到 25 日，深圳国际会展中心 1、2 号馆和南广场办嘉年华暨 KPL 十周年奇妙日，持 KPL 奇妙日门票可以整场逛。共创之夜 10 月 25 日 18 点 30 分在深圳市体育中心体育馆，线上 19 点开播。KPL 奇妙日原本定在广州，因原场馆收回档期改到深圳，两场庆生活动撞在一起办。</p>
           <div class="irow">
-          <a class="more" href="https://news.17173.com/content/08222026/232652597.shtml" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://news.17173.com/content/08222026/232652597.shtml" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="31">分享</button></div>
         </div>
       </div>
     </section>
@@ -635,13 +687,15 @@ html[data-theme="night"] .drawer .ch .sq .a { background:var(--na); }
           <p>「早安鲜牛奶」近日出现在古茗小程序里，500ml 左右，原料只有门店做茶饮用的鲜牛奶，可选加冰冷饮或加热，售价 8 元。门店用的是悦鲜活、卫岗、认养一头牛这类冷藏鲜奶。消费者的反馈很一致：这个价位去便利店能买到更好的。</p>
           <div class="note"><b>注</b> 菜单上多一格，成本几乎为零。这杯是给菜单看的，不是给人喝的。</div>
           <div class="irow">
-          <a class="more" href="https://www.gafei.com/kafeibiji-150291" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://www.gafei.com/kafeibiji-150291" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="32">分享</button></div>
         </div>
         <div class="item">
           <h3>炖梨装进盖碗杯，杯盖被说像皮搋子</h3>
           <p>地区限定的「鲜炖两颗梨」用银耳、香梨、红枣等六种原料炖煮，配了一只仿盖碗的棕褐色杯盖。吸管从顶端插进去之后，有顾客发帖说像皮搋子，评论区一片「不说不觉得，一说真的像」。同款杯形奈雪早用过，没人这么看。</p>
           <div class="irow">
-          <a class="more" href="https://www.gafei.com/kafeibiji-149822" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://www.gafei.com/kafeibiji-149822" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="33">分享</button></div>
         </div>
       </div>
       <div class="group">
@@ -649,7 +703,8 @@ html[data-theme="night"] .drawer .ch .sq .a { background:var(--na); }
         <div class="item">
           <h3>今天没抓到</h3>
           <p>官网和公众号的公开页里没翻到 10 月的新品公告，能查到的还是上一轮那几只：黄油啤酒拿铁、桂花酒酿拿铁、相思引、墨色惊鸿。新品窗口应该在小程序里，网页端看不到。</p>
-          <div class="irow"><button class="save" type="button">存</button></div>
+          <div class="irow"><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="34">分享</button></div>
         </div>
       </div>
       <div class="group">
@@ -658,14 +713,16 @@ html[data-theme="night"] .drawer .ch .sq .a { background:var(--na); }
           <h3>老品回归：8 元的生三文鱼，10 元的焦糖鹅肝</h3>
           <p>寿司郎近期在中国大陆门店做「老品回归」，公开的优惠单品有 8 元的大切生三文鱼、炙烧大切鳗鱼、爆盛红虾，以及 10 元的炙烧焦糖鹅肝。截至 10 月，全国在营门店近 180 家；北京有门店称前几日一天排号 7000 多桌。</p>
           <div class="irow">
-          <a class="more" href="https://www.163.com/dy/article/L9SJ5R770514BE2Q.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://www.163.com/dy/article/L9SJ5R770514BE2Q.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="35">分享</button></div>
         </div>
         <div class="item">
           <h3>小程序崩过一次，底层还是日本的代码</h3>
           <p>10 月 22 日上午，寿司郎公众号发紧急通知：小程序因系统维护暂停，预约、积分、外带、会员优惠全部不可用。门店给记者的解释是，国内小程序的底层代码仍用日本的，日本一些网站近期遭攻击，跟着一起受影响。当天只能现场取号排队。</p>
           <div class="note"><b>注</b> 一家日本网站被打，北京排队的人手上的号就没了。这套系统比寿司本身更依赖跨境链路。</div>
           <div class="irow">
-          <a class="more" href="https://www.caiwennews.com/article/1663692.shtml" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://www.caiwennews.com/article/1663692.shtml" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="36">分享</button></div>
         </div>
       </div>
       <div class="group">
@@ -673,7 +730,8 @@ html[data-theme="night"] .drawer .ch .sq .a { background:var(--na); }
         <div class="item">
           <h3>今天没抓到</h3>
           <p>官网和小程序公开页没有 10 月的大陆菜单更新，华北门店的特惠只在门店自己发。搜到的「十月新品」讨论是食客写的点单清单，不是官方菜单，一条都没放。</p>
-          <div class="irow"><button class="save" type="button">存</button></div>
+          <div class="irow"><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="37">分享</button></div>
         </div>
       </div>
     </section>
@@ -684,19 +742,22 @@ html[data-theme="night"] .drawer .ch .sq .a { background:var(--na); }
           <h3>一只企鹅的军衔，比给它命名的人还高</h3>
           <p>尼尔斯·奥拉夫是住在爱丁堡动物园的一只国王企鹅，挪威国王卫队的吉祥物。1972 年卫队认养它，此后每次来访就升一级。2008 年它在几百人围观下被册封为骑士，2016 年升准将，2023 年升少将——比当年给它取名的中尉尼尔斯·埃格林本人还高。</p>
           <div class="irow">
-          <a class="more" href="https://zh.wikipedia.org/wiki/%E5%B0%BC%E7%88%BE%E6%96%AF%C2%B7%E5%A5%A7%E6%8B%89%E5%A4%AB" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://zh.wikipedia.org/wiki/%E5%B0%BC%E7%88%BE%E6%96%AF%C2%B7%E5%A5%A7%E6%8B%89%E5%A4%AB" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="38">分享</button></div>
         </div>
         <div class="item">
           <h3>一只蛤蜊活了 507 年，死于被研究</h3>
           <p>2006 年，班戈大学的研究者在冰岛海底捞起一批北极蛤，其中一只被放进冰柜等着后续研究。初步判断它约 405 岁，按中国年号算是明朝，于是取名「明」。2013 年研究人员打开壳数年轮，才发现它有 507 岁——约生于 1499 年，弘治十二年。它在这道工序里死了。</p>
           <div class="irow">
-          <a class="more" href="https://zh.wikipedia.org/wiki/%E6%98%8E_(%E8%9B%A4%E8%9C%8A)" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://zh.wikipedia.org/wiki/%E6%98%8E_(%E8%9B%A4%E8%9C%8A)" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="39">分享</button></div>
         </div>
         <div class="item">
           <h3>龙涎香只有百分之一的抹香鲸有</h3>
           <p>它是在抹香鲸肠道里偶尔形成的蜡状物，比例约 1% 到 1.5%，成因至今没有定论，主流推测是鱿鱼嘴喙消化不掉，被分泌物一层层裹住。新鲜的龙涎香带着粪便味，放久了才转成近似麝香的香。1953 年一头南半球雄鲸体内取出的那块重 420 公斤，是已知最大的。</p>
           <div class="irow">
-          <a class="more" href="https://zh.wikipedia.org/wiki/%E6%8A%B9%E9%A6%99%E9%AF%A8" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://zh.wikipedia.org/wiki/%E6%8A%B9%E9%A6%99%E9%AF%A8" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="40">分享</button></div>
         </div>
       </div>
     </section>
@@ -707,19 +768,22 @@ html[data-theme="night"] .drawer .ch .sq .a { background:var(--na); }
           <h3>联合国日</h3>
           <p>1945 年 10 月 24 日，《联合国宪章》获得多数签字国批准生效，联合国正式成立。1947 年联合国大会把这一天定为联合国日。宪章签字是同年 6 月 26 日在旧金山完成的，等了四个月才凑够批准数。</p>
           <div class="irow">
-          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="41">分享</button></div>
         </div>
         <div class="item">
           <h3>程序员日</h3>
           <p>1024 是 2 的 10 次方，也是程序员最顺手的那个整数，所以 10 月 24 日被叫作程序员节。它不在法定节假日里，没有假，多数人是在加班时从同事的群里知道今天有这个节。</p>
           <div class="irow">
-          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="42">分享</button></div>
         </div>
         <div class="item">
           <h3>世界发展信息日</h3>
           <p>1972 年联合国大会设立，用来提请人们注意发展问题，以及信息技术在其中扮演的角色。和多数国际日一样，它更像个提醒，不是假期。</p>
           <div class="irow">
-          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="43">分享</button></div>
         </div>
       </div>
       <div class="group">
@@ -728,62 +792,72 @@ html[data-theme="night"] .drawer .ch .sq .a { background:var(--na); }
           <h3>1648 年 · 《威斯特伐利亚和约》正式确认</h3>
           <p>神圣罗马帝国与法国、瑞典等国代表在奥斯纳布吕克和明斯特确认和约，三十年战争与西班牙、荷兰之间的八十年战争同时收尾。条款里写了诸侯国可自定官方宗教，选帝侯增至八席。</p>
           <div class="irow">
-          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="44">分享</button></div>
         </div>
         <div class="item">
           <h3>1860 年 · 《北京条约》签订</h3>
           <p>钦差大臣奕訢与英国代表额尔金签署条约，清朝割让九龙半岛予英国，天津开埠。这是第二次鸦片战争的收尾文件之一，同一年圆明园已被烧。</p>
           <div class="irow">
-          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="45">分享</button></div>
         </div>
         <div class="item">
           <h3>1901 年 · 有人坐着木桶跳下尼亚加拉瀑布，活着</h3>
           <p>美国女教师安妮·埃德森·泰勒把自己和一只宠物猫绑进木桶，从瀑布上冲下去，成为第一个活着完成这件事的人。她后来靠巡回演讲谋生，晚年贫困。</p>
           <div class="irow">
-          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="46">分享</button></div>
         </div>
         <div class="item">
           <h3>1929 年 · 华尔街股灾爆发</h3>
           <p>纽约股市在几天里连续暴跌，市值蒸发得比任何人预料的都快，随后把美国和世界拖进大萧条。当时的总统胡佛在几个月里一直说基本面是好的。</p>
           <div class="irow">
-          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="47">分享</button></div>
         </div>
         <div class="item">
           <h3>1938 年 · 中山舰沉在长江里</h3>
           <p>武汉会战期间，中山舰在武昌金口赤矶山一带江面巡防时被日军飞机击沉。舰上官兵大多阵亡。这艘船原名永丰舰，1925 年因孙中山改名。</p>
           <div class="irow">
-          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="48">分享</button></div>
         </div>
         <div class="item">
           <h3>1945 年 · 联合国正式成立</h3>
           <p>《联合国宪章》在获得美国、英国、中国、苏联、法国等多数签字国批准后生效。第一批成员国 51 个，现在 193 个。</p>
           <div class="irow">
-          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="49">分享</button></div>
         </div>
         <div class="item">
           <h3>1949 年 · 古宁头战役</h3>
           <p>解放军渡海进攻金门，与国军激战三昼夜，登陆部队全军覆没。这是两岸分治后规模最大的一场登陆战，也是后来金门驻军长期重兵的原因。</p>
           <div class="irow">
-          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="50">分享</button></div>
         </div>
         <div class="item">
           <h3>1975 年 · 冰岛九成女性罢工一天</h3>
           <p>为了抗议薪资与劳动待遇的不公，冰岛约九成女性当天不做工、也不做家务，工厂、学校、商店大面积停摆。次年，冰岛议会通过了保障同工同酬的法律。</p>
           <div class="note"><b>注</b> 九成女人不上班，一个国家当天就停摆。第二年的法律是被这一天推出来的。</div>
           <div class="irow">
-          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="51">分享</button></div>
         </div>
         <div class="item">
           <h3>2002 年 · 中文维基百科上线</h3>
           <p>维基百科的中文版本正式成立。第一条条目是「物理学」，只有一句话。今天这座站点上很多引注，最早就是从它开始堆的。</p>
           <div class="irow">
-          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="52">分享</button></div>
         </div>
         <div class="item">
           <h3>2007 年 · 嫦娥一号发射</h3>
           <p>中国探月工程的第一颗绕月卫星从西昌发射升空，一个多月后进入环月轨道，拍回了第一张全月面影像。这是中国第一次把探测器送到月球附近。</p>
           <div class="irow">
-          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button></div>
+          <a class="more" href="https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="53">分享</button></div>
         </div>
       </div>
     </section>
@@ -807,6 +881,15 @@ html[data-theme="night"] .drawer .ch .sq .a { background:var(--na); }
   </main>
 
   <footer>730pm · 每日 19:30 更新 · 给不想被算法喂饭的人</footer>
+</div>
+
+<div class="shwrap" id="shWrap" aria-hidden="true">
+  <div class="shmask" id="shMask"></div>
+  <div class="shbox" role="dialog" aria-modal="true" aria-label="分享">
+    <div class="shhead"><span>分 享</span><button class="x" id="shX" type="button" aria-label="关闭">✕</button></div>
+    <pre class="shtext" id="shText"></pre>
+    <div class="shacts"><button id="shCopy" type="button">复制文字</button></div>
+  </div>
 </div>
 
 <div class="scrim" id="scrim"></div>
@@ -871,6 +954,7 @@ abcdefghijklmnopqrstuvwxyz
 var TODAY="2026年10月24日", WEEKDAY="星期六", ISSUE="第 003 期", TODAY_ISO="2026-10-24";
 var ALL_TABS=[{"id":"politics","name":"时政"},{"id":"tech","name":"科技"},{"id":"science","name":"科学"},{"id":"ent","name":"娱乐"},{"id":"sport","name":"体育"},{"id":"hot","name":"热搜"},{"id":"game","name":"游戏"},{"id":"food","name":"美食"},{"id":"trivia","name":"冷知识"},{"id":"today","name":"那年今日"},{"id":"saved","name":"书报架","fn":true}];
 var ISSUE_ITEMS=[{"tab":"头条","t":"DeepSeek 一轮融了千亿，国内纪录刷新","d":"10 月 23 日，多个一级投资人向《证券时报》确认，DeepSeek 已完成约 1000 亿元融资，刷新中国 AI 行业单轮融资纪录。投资人士称，DeepSeek 对投资方提出了明确的资源协同要求：所有意向方必须说明能提供什么数据支持与业务协同，具备产业资源的机构因此拿到更多份额，横店资本等获较大额度。同一天，寒武纪三季报前三季度净利润同比增 131.49% 至 37.15 亿元。","u":"https://www.cnfin.com/gs-lb/detail/20261024/4485889_1.html"},{"tab":"头条","t":"凌晨 3 点 25 分，酒泉一次送上去六颗遥感星","d":"10 月 24 日 3 时 25 分，长征四号乙在酒泉发射遥感五十三号 07-09 星与遥感五十六号 19-21 星，全部进入预定轨道，主要用于科学试验、国土资源普查、农产品估产和防灾减灾。前一天 18 时 15 分，长征六号改在太原把遥感五十号 03 星送上天。","u":"http://news.cyol.com/gb/news/articles/2026-10/24/content_YOvQY6tm9V.html"},{"tab":"头条","t":"瓦努阿图海域 7.2 级地震，海啸预警已发出","d":"北京时间 10 月 24 日 10 时 31 分前后，瓦努阿图索拉以西约 200 公里海域发生 7.2 级地震，震源深度 10 公里，德国地学研究中心测得 7.1。美国太平洋海啸预警中心对震中 300 公里内海岸发布海啸威胁预警；智利方面称不具备波及本国沿岸的条件。目前暂无伤亡与财产损失报告。","u":"https://today.zhudong.net/2026-10-24.html"},{"tab":"头条","t":"Meta 被罚 250 亿美元，美国司法史上最高之一","d":"10 月 21 日，新墨西哥州第一司法区法官马修裁定，Meta 因十多年就用户数据使用方式误导用户，支付 250 亿美元民事罚款，未付清期间按年利率 15% 计息，每年多出 37.5 亿美元。9 月陪审团认定 29 项相关陈述中 26 项误导，累计违法约 4390 万次。州方原要 350 亿至 400 亿，Meta 主张不超过 34 亿，并表示上诉。","u":"https://cn.chinadaily.com.cn/a/202610/22/WS6ad9a2b2e4b09a165c790d74.html"},{"tab":"时政","t":"两艘油轮在霍尔木兹以南触雷，合计载油 450 万桶","d":"10 月 23 日，伊朗革命卫队海军称两艘试图经「未经授权」航线穿越海峡南部的超级油轮触雷，机舱起火停航，船员弃船，两船合计载油超过 450 万桶。同日伊斯坦布尔，土耳其、埃及、巴基斯坦、沙特、英国、法国、德国、意大利外长开会，一致反对对伊朗发动新一轮军事打击，呼吁全面恢复海峡通航。路透引华盛顿近东政策研究所数据：10 月已记录 28 起商船遇袭，是该智库 2017 年追踪以来最严重的一个月。","u":"https://www.chinanews.com.cn/gj/2026/10-24/10720245.shtml"},{"tab":"时政","t":"特朗普放话：可能再来一次小规模「史诗怒火」","d":"10 月 23 日特朗普称，美国或许会再来一次小规模「史诗怒火」行动，也可能伊朗选择妥协，「如果伊朗够聪明，就会直接说咱们来谈正事」。此前 21 日消息称，美以军方已制定具体计划，准备在 11 月中期选举结束后再次打击伊朗，特朗普是否批准尚不确定。当日布油主力涨 3.25% 报 116.85 美元，美油涨 3.99% 报 103.44 美元。","u":"https://www.nbd.com.cn/articles/2026-10-24/4615973.html"},{"tab":"时政","t":"奥列什基 10 月 29 日停火，赫尔松方向 27 日起静默","d":"白宫 10 月 23 日声明称，已促成俄乌在奥列什基暂时停火，10 月 29 日开始，以便人道物资进入、平民经指定安全通道撤离。同日俄军总参谋长格拉西莫夫宣布，自莫斯科时间 10 月 27 日 4 时起在赫尔松方向停止开火并进入「静默状态」。佩斯科夫称俄美乌三方会谈定于 11 月上旬在阿布扎比；泽连斯基称安全保障是乌方谈判的「核心要素」。","u":"https://www.cnfin.com/gs-lb/detail/20261024/4485889_1.html"},{"tab":"时政","t":"巴西大选明天第二轮：弗拉维奥 47%，卢拉 46%","d":"巴西总统选举第二轮决选定于 10 月 25 日投票。最新民调显示，右翼候选人弗拉维奥·博索纳罗支持率 47%，现总统卢拉 46%。受访学者认为，若右翼上台，巴西在政治与安全上将加速靠向美国，但经贸纽带会限制其对华政策大幅转向——中国去年采购约 8540 万吨巴西大豆，占其全年出口量 79%。","u":"https://www.zaobao.com.sg/specials/cn/daily-brief/20261024"},{"tab":"时政","t":"王毅在雄安见客人，谈难民治理与 AI 规则","d":"10 月 23 日，2026 全球治理论坛在河北雄安举行。王毅会见联合国难民事务高级专员萨利赫，提出消除难民危机和平是首要、改善处境发展是基础、完善治理国际合作是关键。他还会见美国亚洲协会董事会共同主席桑顿与《纽约时报》专栏作家弗里德曼，称中美作为人工智能第一梯队国家，不仅要防范风险，也要开展合作，共同商讨全球适用的规则标准。","u":"https://www.gov.cn/yaowen/liebiao/202610/content_7084197.htm"},{"tab":"科技","t":"Claude Duet 上线：给智能体配了一台云电脑","d":"Anthropic 10 月 21 日推出由 Opus 5.5 驱动的主动式 Agent Claude Duet，美国 Pro、Max 用户需获邀使用，支持 iOS、Android 与网页。它配有独立云端虚拟机与浏览器，用户关机后仍在后台推进任务，每数小时巡检工作流、判断哪些事需要打断人；继承原账户记忆与授权，可调用 6000 多个连接器。官方演示中 41 项开店清单被自动梳理，只有卫生许可要本人点头，付款、发消息、签文件仍需批准。","u":"http://www.damoai.com.cn/kuaixun/19650.html"},{"tab":"科技","t":"Kimi K3.1 Pro 正式发布，还多一档 Highspeed","d":"10 月 23 日，月之暗面发布 Kimi K3.1 Pro 与 Kimi K3.1 Pro Highspeed。前一天官方只放了一段 24 秒预热视频，终端里写着 K3.1、版本 2.2.0、上下文 1M，发布日期、价格、是否开源都没说；第二天两个型号一起落地，DataLearner 已收录 Highspeed 版本。此前的 K3.1 预热在开发者圈引发了大量讨论。","u":"https://www.yicai.com/brief/103407449.html"},{"tab":"科技","t":"荣耀 WIN2：10100mAh，2nm 芯片，4999 元起","d":"10 月 21 日发布的三款电竞手机中，WIN2 搭载第六代骁龙 8 超级至尊版（2nm 工艺），LPDDR5X Ultra 内存加 UFS4.1 闪存，实验室安兔兔跑到 5702964 分；双风扇涡轮散热，2K 185Hz 屏，触控采样率最高 5000Hz，10100mAh 电池，100W 有线、80W 无线，IP68/69/69K，2 亿像素主摄。国补后 4999 元起，发布即售；Turbo2 10 月 30 日开售。","u":"http://www.news.cn/tech/20261021/056aa4a80f374b5499916e45c7245573/c.html"},{"tab":"科技","t":"Find X10 系列进中东：Pro Max 三颗 2 亿像素","d":"10 月 24 日，OPPO 在阿联酋、阿曼、卡塔尔、巴林、科威特开卖 Find X10 与 Find X10 Pro Max。Pro Max 后置三摄全是 2 亿像素，哈苏联合调校；标准版为双 2 亿。两款都是 12GB+512GB，阿联酋售价 5199 与 6399 迪拉姆，预购 10 月 30 日到 11 月 5 日，11 月 6 日开售；海湾其余四国 11 月 27 日上市。","u":"https://web-release.com/oppo-find-x10-series-launches-in-the-gcc-with-true-to-life-imaging-and-all-round-flagship-upgrades/"},{"tab":"科学","t":"米级单晶，不用籽晶也不用模具","d":"清华航院崔一南团队 10 月 21 日在《自然》在线发表：建立增材制造力学—凝固学耦合模型，提出「深蹲脉冲」热输入方法，在强瞬态热循环下实现间歇式单晶生长，做出米级尺度、复杂构型、跨材料体系的无籽晶、无杂晶、无模具、无支撑单晶。期刊同期配发 News & Views，称其「为未来技术与科学发展创造了令人振奋的机遇」。","u":"https://wap.sciencenet.cn/mobile.php?type=detail&cat=news&id=573451&mobile=1"},{"tab":"科学","t":"21 年的悬案：声子热霍尔效应是内禀的","d":"华中科技大学国家脉冲强磁场科学中心李亮团队联合法国巴黎高等物理化工学院，10 月 23 日在《科学》在线发表。五块「路况」基本一致的样品，热流偏转程度最大相差近十倍，且与声子平均自由程无关、与材料磁各向异性紧密关联——说明不是杂质或缺陷碰巧造成。机制是磁振子与声子能带多处交叉、耦合出杂化模式，让不带电的声子获得对磁场的感知能力。2005 年首次观测到信号后，内禀与外禀之争持续了 21 年。","u":"https://www.chinanews.com.cn/gn/2026/10-23/10719776.shtml"},{"tab":"科学","t":"FAST 抓到一对轨道最扁的中子星","d":"中国天眼发现脉冲星 PSR J0653+0443，每秒自转 21 圈，与另一颗质量几乎相同的中子星相互绕转。轨道周期 79 天，偏心率 0.992，创下双星纪录：大部分时间两者相距遥远，然后 46 分钟内以每秒 1140 公里掠过对方；2025 年那次近掠，脉冲星信号在伴星磁环境后消失了 85 秒。这样的轨道要求伴星超新星爆发时受到猛烈「踢击」，模拟显示这类系统出现概率低于两百分之一。两颗星将在约 25 亿年后并合。","u":"https://arxiv.org/abs/2610.29838"},{"tab":"娱乐","t":"《尚公主》开播一夜，热度冲进腾讯年榜前五","d":"10 月 23 日晚腾讯视频上线，开播 10 分钟站内热度破 2 万，2 小时破 2.4 万，首日峰值 24971，排 2026 年腾讯剧集首日热度前五，同时登顶猫眼网络剧热度总榜。首播 4 集，8 个品牌植入，天猫双 11 总冠名。口碑两头走：一边夸实景、服化道和孟子义的疯批公主贴脸，一边嫌前两集节奏慢。","u":"https://k.sina.com.cn/article_7879923576_1d5ae1778068017wgq.html?from=ent"},{"tab":"娱乐","t":"迪丽热巴造型师否认「逼宫」，粉丝不买账","d":"10 月 23 日 VOGUE 活动后，闵塔鲨发迪丽热巴的 Zuhair Murad 造型并艾特祖海、御木本，被质疑倒逼品牌认领。10 月 24 日他回应：祖海官博 0 点 35 分就发帖认领，他的快拍 0 点 40 分才发，时间线上没有逼宫这回事，还说要取证。粉丝真正不满的是造型和资源，两边说的不是一件事。她的造型 9 月初已交给 OneShot。","u":"https://ent.sina.cn/2026-10-24/detail-iniwikcq1259852.d.html"},{"tab":"娱乐","t":"BTS《Swim》破 10 亿播放，今年全球第一首","d":"10 月 24 日经纪公司确认，《Arirang》主打《Swim》在 Spotify 累计破 10 亿，是 2026 年全球发行的歌里第一首到这个数，也是 BTS 第七首破 10 亿的歌，并且是最快的一首。3 月 20 日发行，4 月 4 日空降 Hot 100 冠军、连在榜 20 周，英国单曲榜最高第 2。收录它的专辑 10 月 14 日累计破 50 亿，14 首歌每首都过了 2 亿。","u":"https://www.koreaherald.com/article/10913433"},{"tab":"娱乐","t":"NCT WISH 拿《音乐银行》一位，周榜也扫了","d":"10 月 12 日发的迷你四辑《I SPY》，Hanteo 周榜第一；22 日 Circle 榜专辑榜与零售专辑榜双冠；Melon、腾讯音乐、LINE MUSIC 合成的全球 K 榜周榜（10 月 12 到 18 日）也是第一。10 月 23 日《音乐银行》靠《I SPY》再拿一个一位。","u":"https://topstarnews.net/news/articleView.html?idxno=16254604"},{"tab":"娱乐","t":"IVE 后天回归，第五张迷你专辑","d":"《Looks Can Kill》10 月 26 日发行，先行曲 10 月 19 日已经放出来。距上一张正规二辑《Revive+》八个月，上一轮巡演 10 月初在台北三场收尾。这次概念走超级少女英雄，跟她以往的酷飒路线差得远，回归还没到，先在评论区吵起来了。","u":"https://www.koreaherald.com/article/10886123"},{"tab":"娱乐","t":"陶昕然 · 十月没有新剧新综定档","d":"查下来她今年最近的戏还是《雀骨》：7 月 11 日爱奇艺上线，28 集，她演何太后，已经播完。综艺是《乘风2026》，四月的二公她团队拿 868 票、全场第二，她个人喜爱度只有 27 票被淘汰，赛制争议冲上热搜第一。十月没有新项目定档，冒出来的只有 10 月 16 日她重扮安陵容那波旧话题。","u":"https://www.iq.com/wiki/zh_tw/album/%E9%9B%80%E9%AA%A8-2026-25lwyc1zim1"},{"tab":"娱乐","t":"刘琳 · 也没有新定档，露面在乌镇","d":"今年她的排期其实很满：2 月 13 日《我的妈妈是校花》、3 月 6 日到 30 日《逐玉》（赵大娘）、7 月 2 日电影《不成功穿越指南》、9 月 3 日《生逢其时》上了央视一套，她演霍青莲。待播的《金枝》2 月 10 日开的机，一直没定档。10 月 16 日有人在乌镇戏剧节拍到她，同场还有梅婷、郝蕾。","u":"https://zh.wikipedia.org/zh-hans/%E5%88%98%E7%90%B3_(1974%E5%B9%B4)"},{"tab":"体育","t":"北爱八强打完，威廉姆斯从 2 比 4 里爬出来","d":"10 月 24 日凌晨的 1/4 决赛，马克·威廉姆斯 2 比 4 落后吉尔伯特，随后连赢四局，其中 104、115、101 三杆破百加一杆 68，6 比 4 逆转，职业生涯第 71 次进排名赛四强。最后一局那颗几乎沿库边走的远台红球，他自己说成功率只有二十分之一。半决赛对杰克·琼斯，他冲第 28 个排名赛冠军，拿下就追平戴维斯。","u":"https://c.m.163.com/news/a/LA0CAMHG0549A5HX.html"},{"tab":"体育","t":"威尔逊 6 比 1，克雷吉 6 比 2","d":"凯伦·威尔逊单杆 122、77、75，连胜四局横扫两冠王麦克吉尔；克雷吉 50、66 两杆，连赢五局 6 比 2 送走斯莱瑟。四强：威尔逊、克雷吉、威廉姆斯、杰克·琼斯。中国球员到 16 强就全停了，庞俊旭昨天决胜局 3 比 4 输给威尔逊，张家玮 2 比 4 负吉尔伯特。","u":"https://m.163.com/dy/article/L9VU81NJ0556BNFH.html"},{"tab":"体育","t":"亚锦赛四对双打全进四强，单打 3 男 3 女进八强","d":"10 月 24 日塔什干。男双 1/4 决赛，林诗栋/黄友政 3 比 1 再赢张本智和/篠塚大登（11-7、11-13、11-5、11-6），温瑞博/袁励岑先丢一局后同样 3 比 1 逆转印度的贾恩/塔卡；女双蒯曼/王艺迪、陈熠/姜依依也双双过关，男女双打到这轮没人掉队。单打：蒯曼、王艺迪、陈熠直落三局进八强，覃予萱在内战里出局；男单温瑞博、向鹏、李天阳都是 3 比 1 过关。","u":"https://xinwen.bjd.com.cn/content/s6adc69cee4b0e42f8f0201f4.html"},{"tab":"体育","t":"黄友政一天之内赢了张本智和，又输给他","d":"下午男双刚和张本智和交手并赢下来，一小时后男单 1/8 决赛再碰，7-11、8-11、10-12，0 比 3 止步 16 强。第三局他 2 比 5、3 比 8 落后一路追到 10 平，最后两分没咬住。他世界排名第 59，张本第 3。这届他身兼四项，前一天单日打了六场。","u":"https://sports.sina.cn/2026-10-24/detail-iniwikcs1964074.d.html?vt=4"},{"tab":"热搜","t":"今天挂在上面的事","d":"去年全国结婚登记 676 万对（142 万）· 汞能变成黄金（90 万）· 个人账户跨省共济全国落地（71 万）· 成都蓉城 0 比 1 大连英博（64 万）· 秦始皇兵马俑上发现女性指纹（57 万）· 蓉城末轮若输球英博赢球将逆袭夺冠（32 万）· 王一博「不是我的肚子」（32 万）· 多位网友晒 iPhoneDuo 屏幕裂了（30 万）· 西藏巴青 7.0 级地震已发生余震 834 次（28 万）","u":"https://tophub.today/n/KqndgxeLl9"},{"tab":"热搜","t":"世界榜被日本和东南亚占满","d":"前面是日本职棒 #SMBC日本シリーズ2026，还有 ハマスタ、東京湾大華火祭、#集えNIKKE4周年（NIKKE 四周年）；韩国那边 #별의_궤적이_빛나는_1위 上榜；往后全是粉丝场——#BBFanFest2026inMacau、#LYKNReflexionConcertD2、SAMSUNGTV WITH MARKJUMMO、SAROCHA IN CHINA 2026。中文话题今天没挤进世界榜。","u":"https://whatstrends.com"},{"tab":"游戏","t":"Scream V 特卖 10 月 26 日开，只卖恐怖游戏","d":"Steam 官方日程：Steam Scream V（尖叫游戏节）10 月 26 日上午 10 点（太平洋时间）到 11 月 2 日同一时间，只收恐怖品类和明确以万圣节为主题的游戏，主题 DLC 和游戏内活动不算。同期 Steam Next Fest 也是 10 月 26 日结束，试玩还剩最后一个周末。","u":"https://partner.steamgames.com/doc/marketing/upcoming_events"},{"tab":"游戏","t":"今天架上的折扣：2077 七折，生化四作齐降","d":"国区实时价：《赛博朋克 2077》70%，89.4 元（原 298）；《往日之影》40%，89.4 元；《生化危机 4》75%，49.5 元；《生化危机 2》80%，39.6 元；《生化危机 8》75%，49.5 元；《生化危机 7》60%，39.2 元；《星际战士 2》75%，62.25 元；GTA V 增强版 50%，74.5 元；《行尸走肉》Telltale 合集 90%，16.8 元；《饥荒联机版》50%，12 元。","u":"https://store.steampowered.com/specials?l=schinese"},{"tab":"游戏","t":"王者荣耀周年庆，嘉年华今天在深圳开场","d":"10 月 24 到 25 日，深圳国际会展中心 1、2 号馆和南广场办嘉年华暨 KPL 十周年奇妙日，持 KPL 奇妙日门票可以整场逛。共创之夜 10 月 25 日 18 点 30 分在深圳市体育中心体育馆，线上 19 点开播。KPL 奇妙日原本定在广州，因原场馆收回档期改到深圳，两场庆生活动撞在一起办。","u":"https://news.17173.com/content/08222026/232652597.shtml"},{"tab":"美食","t":"菜单上多了一杯纯牛奶，8 块","d":"「早安鲜牛奶」近日出现在古茗小程序里，500ml 左右，原料只有门店做茶饮用的鲜牛奶，可选加冰冷饮或加热，售价 8 元。门店用的是悦鲜活、卫岗、认养一头牛这类冷藏鲜奶。消费者的反馈很一致：这个价位去便利店能买到更好的。","u":"https://www.gafei.com/kafeibiji-150291"},{"tab":"美食","t":"炖梨装进盖碗杯，杯盖被说像皮搋子","d":"地区限定的「鲜炖两颗梨」用银耳、香梨、红枣等六种原料炖煮，配了一只仿盖碗的棕褐色杯盖。吸管从顶端插进去之后，有顾客发帖说像皮搋子，评论区一片「不说不觉得，一说真的像」。同款杯形奈雪早用过，没人这么看。","u":"https://www.gafei.com/kafeibiji-149822"},{"tab":"美食","t":"今天没抓到","d":"官网和公众号的公开页里没翻到 10 月的新品公告，能查到的还是上一轮那几只：黄油啤酒拿铁、桂花酒酿拿铁、相思引、墨色惊鸿。新品窗口应该在小程序里，网页端看不到。","u":""},{"tab":"美食","t":"老品回归：8 元的生三文鱼，10 元的焦糖鹅肝","d":"寿司郎近期在中国大陆门店做「老品回归」，公开的优惠单品有 8 元的大切生三文鱼、炙烧大切鳗鱼、爆盛红虾，以及 10 元的炙烧焦糖鹅肝。截至 10 月，全国在营门店近 180 家；北京有门店称前几日一天排号 7000 多桌。","u":"https://www.163.com/dy/article/L9SJ5R770514BE2Q.html"},{"tab":"美食","t":"小程序崩过一次，底层还是日本的代码","d":"10 月 22 日上午，寿司郎公众号发紧急通知：小程序因系统维护暂停，预约、积分、外带、会员优惠全部不可用。门店给记者的解释是，国内小程序的底层代码仍用日本的，日本一些网站近期遭攻击，跟着一起受影响。当天只能现场取号排队。","u":"https://www.caiwennews.com/article/1663692.shtml"},{"tab":"美食","t":"今天没抓到","d":"官网和小程序公开页没有 10 月的大陆菜单更新，华北门店的特惠只在门店自己发。搜到的「十月新品」讨论是食客写的点单清单，不是官方菜单，一条都没放。","u":""},{"tab":"冷知识","t":"一只企鹅的军衔，比给它命名的人还高","d":"尼尔斯·奥拉夫是住在爱丁堡动物园的一只国王企鹅，挪威国王卫队的吉祥物。1972 年卫队认养它，此后每次来访就升一级。2008 年它在几百人围观下被册封为骑士，2016 年升准将，2023 年升少将——比当年给它取名的中尉尼尔斯·埃格林本人还高。","u":"https://zh.wikipedia.org/wiki/%E5%B0%BC%E7%88%BE%E6%96%AF%C2%B7%E5%A5%A7%E6%8B%89%E5%A4%AB"},{"tab":"冷知识","t":"一只蛤蜊活了 507 年，死于被研究","d":"2006 年，班戈大学的研究者在冰岛海底捞起一批北极蛤，其中一只被放进冰柜等着后续研究。初步判断它约 405 岁，按中国年号算是明朝，于是取名「明」。2013 年研究人员打开壳数年轮，才发现它有 507 岁——约生于 1499 年，弘治十二年。它在这道工序里死了。","u":"https://zh.wikipedia.org/wiki/%E6%98%8E_(%E8%9B%A4%E8%9C%8A)"},{"tab":"冷知识","t":"龙涎香只有百分之一的抹香鲸有","d":"它是在抹香鲸肠道里偶尔形成的蜡状物，比例约 1% 到 1.5%，成因至今没有定论，主流推测是鱿鱼嘴喙消化不掉，被分泌物一层层裹住。新鲜的龙涎香带着粪便味，放久了才转成近似麝香的香。1953 年一头南半球雄鲸体内取出的那块重 420 公斤，是已知最大的。","u":"https://zh.wikipedia.org/wiki/%E6%8A%B9%E9%A6%99%E9%AF%A8"},{"tab":"那年今日","t":"联合国日","d":"1945 年 10 月 24 日，《联合国宪章》获得多数签字国批准生效，联合国正式成立。1947 年联合国大会把这一天定为联合国日。宪章签字是同年 6 月 26 日在旧金山完成的，等了四个月才凑够批准数。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5"},{"tab":"那年今日","t":"程序员日","d":"1024 是 2 的 10 次方，也是程序员最顺手的那个整数，所以 10 月 24 日被叫作程序员节。它不在法定节假日里，没有假，多数人是在加班时从同事的群里知道今天有这个节。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5"},{"tab":"那年今日","t":"世界发展信息日","d":"1972 年联合国大会设立，用来提请人们注意发展问题，以及信息技术在其中扮演的角色。和多数国际日一样，它更像个提醒，不是假期。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5"},{"tab":"那年今日","t":"1648 年 · 《威斯特伐利亚和约》正式确认","d":"神圣罗马帝国与法国、瑞典等国代表在奥斯纳布吕克和明斯特确认和约，三十年战争与西班牙、荷兰之间的八十年战争同时收尾。条款里写了诸侯国可自定官方宗教，选帝侯增至八席。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5"},{"tab":"那年今日","t":"1860 年 · 《北京条约》签订","d":"钦差大臣奕訢与英国代表额尔金签署条约，清朝割让九龙半岛予英国，天津开埠。这是第二次鸦片战争的收尾文件之一，同一年圆明园已被烧。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5"},{"tab":"那年今日","t":"1901 年 · 有人坐着木桶跳下尼亚加拉瀑布，活着","d":"美国女教师安妮·埃德森·泰勒把自己和一只宠物猫绑进木桶，从瀑布上冲下去，成为第一个活着完成这件事的人。她后来靠巡回演讲谋生，晚年贫困。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5"},{"tab":"那年今日","t":"1929 年 · 华尔街股灾爆发","d":"纽约股市在几天里连续暴跌，市值蒸发得比任何人预料的都快，随后把美国和世界拖进大萧条。当时的总统胡佛在几个月里一直说基本面是好的。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5"},{"tab":"那年今日","t":"1938 年 · 中山舰沉在长江里","d":"武汉会战期间，中山舰在武昌金口赤矶山一带江面巡防时被日军飞机击沉。舰上官兵大多阵亡。这艘船原名永丰舰，1925 年因孙中山改名。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5"},{"tab":"那年今日","t":"1945 年 · 联合国正式成立","d":"《联合国宪章》在获得美国、英国、中国、苏联、法国等多数签字国批准后生效。第一批成员国 51 个，现在 193 个。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5"},{"tab":"那年今日","t":"1949 年 · 古宁头战役","d":"解放军渡海进攻金门，与国军激战三昼夜，登陆部队全军覆没。这是两岸分治后规模最大的一场登陆战，也是后来金门驻军长期重兵的原因。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5"},{"tab":"那年今日","t":"1975 年 · 冰岛九成女性罢工一天","d":"为了抗议薪资与劳动待遇的不公，冰岛约九成女性当天不做工、也不做家务，工厂、学校、商店大面积停摆。次年，冰岛议会通过了保障同工同酬的法律。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5"},{"tab":"那年今日","t":"2002 年 · 中文维基百科上线","d":"维基百科的中文版本正式成立。第一条条目是「物理学」，只有一句话。今天这座站点上很多引注，最早就是从它开始堆的。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5"},{"tab":"那年今日","t":"2007 年 · 嫦娥一号发射","d":"中国探月工程的第一颗绕月卫星从西昌发射升空，一个多月后进入环月轨道，拍回了第一张全月面影像。这是中国第一次把探测器送到月球附近。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5"},{"tab":"今日阅读","t":"柳敬亭说书","d":"南京柳麻子，黧黑，满面㿬癗，悠悠忽忽，土木形骸，善说书。一日说书一回，定价一两。十日前先送书帕下定，常不得空。南京一时有两行情人：王月生、柳麻子是也。 余听其说「景阳冈武松打虎」白文，与本传大异。其描写刻画，微入毫发，然又找截干净，并不唠叨。夬声如巨钟，说至筋节处，叱咤叫喊，汹汹崩屋。武松到店沽酒，店内无人，謈地一吼，店中空缸空甓皆瓮瓮有声。闲中着色，细微至此。 主人必屏息静坐，倾耳听之，彼方掉舌。稍见下人呫哔耳语，听者欠伸有倦色，辄不言，故不得强。 每至丙夜，拭桌剪灯，素瓷静递，款款言之，其疾徐轻重，吞吐抑扬，入情入理，入筋入骨，摘世上说书之耳而使之谛听，不怕其不齰舌死也。 柳麻子貌奇丑，然其口角波俏，眼目流利，衣服恬静，直与王月生同其婉娈，故其行情正等。","u":""}];
+var SHARE=[{"t":"DeepSeek 一轮融了千亿，国内纪录刷新","d":"10 月 23 日，多个一级投资人向《证券时报》确认，DeepSeek 已完成约 1000 亿元融资，刷新中国 AI 行业单轮融资纪录。投资人士称，DeepSeek 对投资方提出了明确的资源协同要求：所有意向方必须说明能提供什么数据支持与业务协同，具备产业资源的机构因此拿到更多份额，横店资本等获较大额度。同一天，寒武纪三季报前三季度净利润同比增 131.49% 至 37.15 亿元。","u":"https://www.cnfin.com/gs-lb/detail/20261024/4485889_1.html"},{"t":"凌晨 3 点 25 分，酒泉一次送上去六颗遥感星","d":"10 月 24 日 3 时 25 分，长征四号乙在酒泉发射遥感五十三号 07-09 星与遥感五十六号 19-21 星，全部进入预定轨道，主要用于科学试验、国土资源普查、农产品估产和防灾减灾。前一天 18 时 15 分，长征六号改在太原把遥感五十号 03 星送上天。","u":"http://news.cyol.com/gb/news/articles/2026-10/24/content_YOvQY6tm9V.html"},{"t":"瓦努阿图海域 7.2 级地震，海啸预警已发出","d":"北京时间 10 月 24 日 10 时 31 分前后，瓦努阿图索拉以西约 200 公里海域发生 7.2 级地震，震源深度 10 公里，德国地学研究中心测得 7.1。美国太平洋海啸预警中心对震中 300 公里内海岸发布海啸威胁预警；智利方面称不具备波及本国沿岸的条件。目前暂无伤亡与财产损失报告。","u":"https://today.zhudong.net/2026-10-24.html"},{"t":"Meta 被罚 250 亿美元，美国司法史上最高之一","d":"10 月 21 日，新墨西哥州第一司法区法官马修裁定，Meta 因十多年就用户数据使用方式误导用户，支付 250 亿美元民事罚款，未付清期间按年利率 15% 计息，每年多出 37.5 亿美元。9 月陪审团认定 29 项相关陈述中 26 项误导，累计违法约 4390 万次。州方原要 350 亿至 400 亿，Meta 主张不超过 34 亿，并表示上诉。","u":"https://cn.chinadaily.com.cn/a/202610/22/WS6ad9a2b2e4b09a165c790d74.html"},{"t":"两艘油轮在霍尔木兹以南触雷，合计载油 450 万桶","d":"10 月 23 日，伊朗革命卫队海军称两艘试图经「未经授权」航线穿越海峡南部的超级油轮触雷，机舱起火停航，船员弃船，两船合计载油超过 450 万桶。同日伊斯坦布尔，土耳其、埃及、巴基斯坦、沙特、英国、法国、德国、意大利外长开会，一致反对对伊朗发动新一轮军事打击，呼吁全面恢复海峡通航。路透引华盛顿近东政策研究所数据：10 月已记录 28 起商船遇袭，是该智库 2017 年追踪以来最严重的一个月。","u":"https://www.chinanews.com.cn/gj/2026/10-24/10720245.shtml"},{"t":"特朗普放话：可能再来一次小规模「史诗怒火」","d":"10 月 23 日特朗普称，美国或许会再来一次小规模「史诗怒火」行动，也可能伊朗选择妥协，「如果伊朗够聪明，就会直接说咱们来谈正事」。此前 21 日消息称，美以军方已制定具体计划，准备在 11 月中期选举结束后再次打击伊朗，特朗普是否批准尚不确定。当日布油主力涨 3.25% 报 116.85 美元，美油涨 3.99% 报 103.44 美元。","u":"https://www.nbd.com.cn/articles/2026-10-24/4615973.html"},{"t":"奥列什基 10 月 29 日停火，赫尔松方向 27 日起静默","d":"白宫 10 月 23 日声明称，已促成俄乌在奥列什基暂时停火，10 月 29 日开始，以便人道物资进入、平民经指定安全通道撤离。同日俄军总参谋长格拉西莫夫宣布，自莫斯科时间 10 月 27 日 4 时起在赫尔松方向停止开火并进入「静默状态」。佩斯科夫称俄美乌三方会谈定于 11 月上旬在阿布扎比；泽连斯基称安全保障是乌方谈判的「核心要素」。","u":"https://www.cnfin.com/gs-lb/detail/20261024/4485889_1.html"},{"t":"巴西大选明天第二轮：弗拉维奥 47%，卢拉 46%","d":"巴西总统选举第二轮决选定于 10 月 25 日投票。最新民调显示，右翼候选人弗拉维奥·博索纳罗支持率 47%，现总统卢拉 46%。受访学者认为，若右翼上台，巴西在政治与安全上将加速靠向美国，但经贸纽带会限制其对华政策大幅转向——中国去年采购约 8540 万吨巴西大豆，占其全年出口量 79%。","u":"https://www.zaobao.com.sg/specials/cn/daily-brief/20261024"},{"t":"王毅在雄安见客人，谈难民治理与 AI 规则","d":"10 月 23 日，2026 全球治理论坛在河北雄安举行。王毅会见联合国难民事务高级专员萨利赫，提出消除难民危机和平是首要、改善处境发展是基础、完善治理国际合作是关键。他还会见美国亚洲协会董事会共同主席桑顿与《纽约时报》专栏作家弗里德曼，称中美作为人工智能第一梯队国家，不仅要防范风险，也要开展合作，共同商讨全球适用的规则标准。","u":"https://www.gov.cn/yaowen/liebiao/202610/content_7084197.htm"},{"t":"Claude Duet 上线：给智能体配了一台云电脑","d":"Anthropic 10 月 21 日推出由 Opus 5.5 驱动的主动式 Agent Claude Duet，美国 Pro、Max 用户需获邀使用，支持 iOS、Android 与网页。它配有独立云端虚拟机与浏览器，用户关机后仍在后台推进任务，每数小时巡检工作流、判断哪些事需要打断人；继承原账户记忆与授权，可调用 6000 多个连接器。官方演示中 41 项开店清单被自动梳理，只有卫生许可要本人点头，付款、发消息、签文件仍需批准。","u":"http://www.damoai.com.cn/kuaixun/19650.html"},{"t":"Kimi K3.1 Pro 正式发布，还多一档 Highspeed","d":"10 月 23 日，月之暗面发布 Kimi K3.1 Pro 与 Kimi K3.1 Pro Highspeed。前一天官方只放了一段 24 秒预热视频，终端里写着 K3.1、版本 2.2.0、上下文 1M，发布日期、价格、是否开源都没说；第二天两个型号一起落地，DataLearner 已收录 Highspeed 版本。此前的 K3.1 预热在开发者圈引发了大量讨论。","u":"https://www.yicai.com/brief/103407449.html"},{"t":"荣耀 WIN2：10100mAh，2nm 芯片，4999 元起","d":"10 月 21 日发布的三款电竞手机中，WIN2 搭载第六代骁龙 8 超级至尊版（2nm 工艺），LPDDR5X Ultra 内存加 UFS4.1 闪存，实验室安兔兔跑到 5702964 分；双风扇涡轮散热，2K 185Hz 屏，触控采样率最高 5000Hz，10100mAh 电池，100W 有线、80W 无线，IP68/69/69K，2 亿像素主摄。国补后 4999 元起，发布即售；Turbo2 10 月 30 日开售。","u":"http://www.news.cn/tech/20261021/056aa4a80f374b5499916e45c7245573/c.html"},{"t":"Find X10 系列进中东：Pro Max 三颗 2 亿像素","d":"10 月 24 日，OPPO 在阿联酋、阿曼、卡塔尔、巴林、科威特开卖 Find X10 与 Find X10 Pro Max。Pro Max 后置三摄全是 2 亿像素，哈苏联合调校；标准版为双 2 亿。两款都是 12GB+512GB，阿联酋售价 5199 与 6399 迪拉姆，预购 10 月 30 日到 11 月 5 日，11 月 6 日开售；海湾其余四国 11 月 27 日上市。","u":"https://web-release.com/oppo-find-x10-series-launches-in-the-gcc-with-true-to-life-imaging-and-all-round-flagship-upgrades/"},{"t":"米级单晶，不用籽晶也不用模具","d":"清华航院崔一南团队 10 月 21 日在《自然》在线发表：建立增材制造力学—凝固学耦合模型，提出「深蹲脉冲」热输入方法，在强瞬态热循环下实现间歇式单晶生长，做出米级尺度、复杂构型、跨材料体系的无籽晶、无杂晶、无模具、无支撑单晶。期刊同期配发 News & Views，称其「为未来技术与科学发展创造了令人振奋的机遇」。","u":"https://wap.sciencenet.cn/mobile.php?type=detail&cat=news&id=573451&mobile=1"},{"t":"21 年的悬案：声子热霍尔效应是内禀的","d":"华中科技大学国家脉冲强磁场科学中心李亮团队联合法国巴黎高等物理化工学院，10 月 23 日在《科学》在线发表。五块「路况」基本一致的样品，热流偏转程度最大相差近十倍，且与声子平均自由程无关、与材料磁各向异性紧密关联——说明不是杂质或缺陷碰巧造成。机制是磁振子与声子能带多处交叉、耦合出杂化模式，让不带电的声子获得对磁场的感知能力。2005 年首次观测到信号后，内禀与外禀之争持续了 21 年。","u":"https://www.chinanews.com.cn/gn/2026/10-23/10719776.shtml"},{"t":"FAST 抓到一对轨道最扁的中子星","d":"中国天眼发现脉冲星 PSR J0653+0443，每秒自转 21 圈，与另一颗质量几乎相同的中子星相互绕转。轨道周期 79 天，偏心率 0.992，创下双星纪录：大部分时间两者相距遥远，然后 46 分钟内以每秒 1140 公里掠过对方；2025 年那次近掠，脉冲星信号在伴星磁环境后消失了 85 秒。这样的轨道要求伴星超新星爆发时受到猛烈「踢击」，模拟显示这类系统出现概率低于两百分之一。两颗星将在约 25 亿年后并合。","u":"https://arxiv.org/abs/2610.29838"},{"t":"《尚公主》开播一夜，热度冲进腾讯年榜前五","d":"10 月 23 日晚腾讯视频上线，开播 10 分钟站内热度破 2 万，2 小时破 2.4 万，首日峰值 24971，排 2026 年腾讯剧集首日热度前五，同时登顶猫眼网络剧热度总榜。首播 4 集，8 个品牌植入，天猫双 11 总冠名。口碑两头走：一边夸实景、服化道和孟子义的疯批公主贴脸，一边嫌前两集节奏慢。","u":"https://k.sina.com.cn/article_7879923576_1d5ae1778068017wgq.html?from=ent"},{"t":"迪丽热巴造型师否认「逼宫」，粉丝不买账","d":"10 月 23 日 VOGUE 活动后，闵塔鲨发迪丽热巴的 Zuhair Murad 造型并艾特祖海、御木本，被质疑倒逼品牌认领。10 月 24 日他回应：祖海官博 0 点 35 分就发帖认领，他的快拍 0 点 40 分才发，时间线上没有逼宫这回事，还说要取证。粉丝真正不满的是造型和资源，两边说的不是一件事。她的造型 9 月初已交给 OneShot。","u":"https://ent.sina.cn/2026-10-24/detail-iniwikcq1259852.d.html"},{"t":"BTS《Swim》破 10 亿播放，今年全球第一首","d":"10 月 24 日经纪公司确认，《Arirang》主打《Swim》在 Spotify 累计破 10 亿，是 2026 年全球发行的歌里第一首到这个数，也是 BTS 第七首破 10 亿的歌，并且是最快的一首。3 月 20 日发行，4 月 4 日空降 Hot 100 冠军、连在榜 20 周，英国单曲榜最高第 2。收录它的专辑 10 月 14 日累计破 50 亿，14 首歌每首都过了 2 亿。","u":"https://www.koreaherald.com/article/10913433"},{"t":"NCT WISH 拿《音乐银行》一位，周榜也扫了","d":"10 月 12 日发的迷你四辑《I SPY》，Hanteo 周榜第一；22 日 Circle 榜专辑榜与零售专辑榜双冠；Melon、腾讯音乐、LINE MUSIC 合成的全球 K 榜周榜（10 月 12 到 18 日）也是第一。10 月 23 日《音乐银行》靠《I SPY》再拿一个一位。","u":"https://topstarnews.net/news/articleView.html?idxno=16254604"},{"t":"IVE 后天回归，第五张迷你专辑","d":"《Looks Can Kill》10 月 26 日发行，先行曲 10 月 19 日已经放出来。距上一张正规二辑《Revive+》八个月，上一轮巡演 10 月初在台北三场收尾。这次概念走超级少女英雄，跟她以往的酷飒路线差得远，回归还没到，先在评论区吵起来了。","u":"https://www.koreaherald.com/article/10886123"},{"t":"陶昕然 · 十月没有新剧新综定档","d":"查下来她今年最近的戏还是《雀骨》：7 月 11 日爱奇艺上线，28 集，她演何太后，已经播完。综艺是《乘风2026》，四月的二公她团队拿 868 票、全场第二，她个人喜爱度只有 27 票被淘汰，赛制争议冲上热搜第一。十月没有新项目定档，冒出来的只有 10 月 16 日她重扮安陵容那波旧话题。","u":"https://www.iq.com/wiki/zh_tw/album/%E9%9B%80%E9%AA%A8-2026-25lwyc1zim1"},{"t":"刘琳 · 也没有新定档，露面在乌镇","d":"今年她的排期其实很满：2 月 13 日《我的妈妈是校花》、3 月 6 日到 30 日《逐玉》（赵大娘）、7 月 2 日电影《不成功穿越指南》、9 月 3 日《生逢其时》上了央视一套，她演霍青莲。待播的《金枝》2 月 10 日开的机，一直没定档。10 月 16 日有人在乌镇戏剧节拍到她，同场还有梅婷、郝蕾。","u":"https://zh.wikipedia.org/zh-hans/%E5%88%98%E7%90%B3_(1974%E5%B9%B4)"},{"t":"北爱八强打完，威廉姆斯从 2 比 4 里爬出来","d":"10 月 24 日凌晨的 1/4 决赛，马克·威廉姆斯 2 比 4 落后吉尔伯特，随后连赢四局，其中 104、115、101 三杆破百加一杆 68，6 比 4 逆转，职业生涯第 71 次进排名赛四强。最后一局那颗几乎沿库边走的远台红球，他自己说成功率只有二十分之一。半决赛对杰克·琼斯，他冲第 28 个排名赛冠军，拿下就追平戴维斯。","u":"https://c.m.163.com/news/a/LA0CAMHG0549A5HX.html"},{"t":"威尔逊 6 比 1，克雷吉 6 比 2","d":"凯伦·威尔逊单杆 122、77、75，连胜四局横扫两冠王麦克吉尔；克雷吉 50、66 两杆，连赢五局 6 比 2 送走斯莱瑟。四强：威尔逊、克雷吉、威廉姆斯、杰克·琼斯。中国球员到 16 强就全停了，庞俊旭昨天决胜局 3 比 4 输给威尔逊，张家玮 2 比 4 负吉尔伯特。","u":"https://m.163.com/dy/article/L9VU81NJ0556BNFH.html"},{"t":"亚锦赛四对双打全进四强，单打 3 男 3 女进八强","d":"10 月 24 日塔什干。男双 1/4 决赛，林诗栋/黄友政 3 比 1 再赢张本智和/篠塚大登（11-7、11-13、11-5、11-6），温瑞博/袁励岑先丢一局后同样 3 比 1 逆转印度的贾恩/塔卡；女双蒯曼/王艺迪、陈熠/姜依依也双双过关，男女双打到这轮没人掉队。单打：蒯曼、王艺迪、陈熠直落三局进八强，覃予萱在内战里出局；男单温瑞博、向鹏、李天阳都是 3 比 1 过关。","u":"https://xinwen.bjd.com.cn/content/s6adc69cee4b0e42f8f0201f4.html"},{"t":"黄友政一天之内赢了张本智和，又输给他","d":"下午男双刚和张本智和交手并赢下来，一小时后男单 1/8 决赛再碰，7-11、8-11、10-12，0 比 3 止步 16 强。第三局他 2 比 5、3 比 8 落后一路追到 10 平，最后两分没咬住。他世界排名第 59，张本第 3。这届他身兼四项，前一天单日打了六场。","u":"https://sports.sina.cn/2026-10-24/detail-iniwikcs1964074.d.html?vt=4"},{"t":"今天挂在上面的事","d":"去年全国结婚登记 676 万对（142 万）· 汞能变成黄金（90 万）· 个人账户跨省共济全国落地（71 万）· 成都蓉城 0 比 1 大连英博（64 万）· 秦始皇兵马俑上发现女性指纹（57 万）· 蓉城末轮若输球英博赢球将逆袭夺冠（32 万）· 王一博「不是我的肚子」（32 万）· 多位网友晒 iPhoneDuo 屏幕裂了（30 万）· 西藏巴青 7.0 级地震已发生余震 834 次（28 万）","u":"https://tophub.today/n/KqndgxeLl9"},{"t":"世界榜被日本和东南亚占满","d":"前面是日本职棒 #SMBC日本シリーズ2026，还有 ハマスタ、東京湾大華火祭、#集えNIKKE4周年（NIKKE 四周年）；韩国那边 #별의_궤적이_빛나는_1위 上榜；往后全是粉丝场——#BBFanFest2026inMacau、#LYKNReflexionConcertD2、SAMSUNGTV WITH MARKJUMMO、SAROCHA IN CHINA 2026。中文话题今天没挤进世界榜。","u":"https://whatstrends.com"},{"t":"Scream V 特卖 10 月 26 日开，只卖恐怖游戏","d":"Steam 官方日程：Steam Scream V（尖叫游戏节）10 月 26 日上午 10 点（太平洋时间）到 11 月 2 日同一时间，只收恐怖品类和明确以万圣节为主题的游戏，主题 DLC 和游戏内活动不算。同期 Steam Next Fest 也是 10 月 26 日结束，试玩还剩最后一个周末。","u":"https://partner.steamgames.com/doc/marketing/upcoming_events"},{"t":"今天架上的折扣：2077 七折，生化四作齐降","d":"国区实时价：《赛博朋克 2077》70%，89.4 元（原 298）；《往日之影》40%，89.4 元；《生化危机 4》75%，49.5 元；《生化危机 2》80%，39.6 元；《生化危机 8》75%，49.5 元；《生化危机 7》60%，39.2 元；《星际战士 2》75%，62.25 元；GTA V 增强版 50%，74.5 元；《行尸走肉》Telltale 合集 90%，16.8 元；《饥荒联机版》50%，12 元。","u":"https://store.steampowered.com/specials?l=schinese"},{"t":"王者荣耀周年庆，嘉年华今天在深圳开场","d":"10 月 24 到 25 日，深圳国际会展中心 1、2 号馆和南广场办嘉年华暨 KPL 十周年奇妙日，持 KPL 奇妙日门票可以整场逛。共创之夜 10 月 25 日 18 点 30 分在深圳市体育中心体育馆，线上 19 点开播。KPL 奇妙日原本定在广州，因原场馆收回档期改到深圳，两场庆生活动撞在一起办。","u":"https://news.17173.com/content/08222026/232652597.shtml"},{"t":"菜单上多了一杯纯牛奶，8 块","d":"「早安鲜牛奶」近日出现在古茗小程序里，500ml 左右，原料只有门店做茶饮用的鲜牛奶，可选加冰冷饮或加热，售价 8 元。门店用的是悦鲜活、卫岗、认养一头牛这类冷藏鲜奶。消费者的反馈很一致：这个价位去便利店能买到更好的。","u":"https://www.gafei.com/kafeibiji-150291"},{"t":"炖梨装进盖碗杯，杯盖被说像皮搋子","d":"地区限定的「鲜炖两颗梨」用银耳、香梨、红枣等六种原料炖煮，配了一只仿盖碗的棕褐色杯盖。吸管从顶端插进去之后，有顾客发帖说像皮搋子，评论区一片「不说不觉得，一说真的像」。同款杯形奈雪早用过，没人这么看。","u":"https://www.gafei.com/kafeibiji-149822"},{"t":"今天没抓到","d":"官网和公众号的公开页里没翻到 10 月的新品公告，能查到的还是上一轮那几只：黄油啤酒拿铁、桂花酒酿拿铁、相思引、墨色惊鸿。新品窗口应该在小程序里，网页端看不到。","u":""},{"t":"老品回归：8 元的生三文鱼，10 元的焦糖鹅肝","d":"寿司郎近期在中国大陆门店做「老品回归」，公开的优惠单品有 8 元的大切生三文鱼、炙烧大切鳗鱼、爆盛红虾，以及 10 元的炙烧焦糖鹅肝。截至 10 月，全国在营门店近 180 家；北京有门店称前几日一天排号 7000 多桌。","u":"https://www.163.com/dy/article/L9SJ5R770514BE2Q.html"},{"t":"小程序崩过一次，底层还是日本的代码","d":"10 月 22 日上午，寿司郎公众号发紧急通知：小程序因系统维护暂停，预约、积分、外带、会员优惠全部不可用。门店给记者的解释是，国内小程序的底层代码仍用日本的，日本一些网站近期遭攻击，跟着一起受影响。当天只能现场取号排队。","u":"https://www.caiwennews.com/article/1663692.shtml"},{"t":"今天没抓到","d":"官网和小程序公开页没有 10 月的大陆菜单更新，华北门店的特惠只在门店自己发。搜到的「十月新品」讨论是食客写的点单清单，不是官方菜单，一条都没放。","u":""},{"t":"一只企鹅的军衔，比给它命名的人还高","d":"尼尔斯·奥拉夫是住在爱丁堡动物园的一只国王企鹅，挪威国王卫队的吉祥物。1972 年卫队认养它，此后每次来访就升一级。2008 年它在几百人围观下被册封为骑士，2016 年升准将，2023 年升少将——比当年给它取名的中尉尼尔斯·埃格林本人还高。","u":"https://zh.wikipedia.org/wiki/%E5%B0%BC%E7%88%BE%E6%96%AF%C2%B7%E5%A5%A7%E6%8B%89%E5%A4%AB"},{"t":"一只蛤蜊活了 507 年，死于被研究","d":"2006 年，班戈大学的研究者在冰岛海底捞起一批北极蛤，其中一只被放进冰柜等着后续研究。初步判断它约 405 岁，按中国年号算是明朝，于是取名「明」。2013 年研究人员打开壳数年轮，才发现它有 507 岁——约生于 1499 年，弘治十二年。它在这道工序里死了。","u":"https://zh.wikipedia.org/wiki/%E6%98%8E_(%E8%9B%A4%E8%9C%8A)"},{"t":"龙涎香只有百分之一的抹香鲸有","d":"它是在抹香鲸肠道里偶尔形成的蜡状物，比例约 1% 到 1.5%，成因至今没有定论，主流推测是鱿鱼嘴喙消化不掉，被分泌物一层层裹住。新鲜的龙涎香带着粪便味，放久了才转成近似麝香的香。1953 年一头南半球雄鲸体内取出的那块重 420 公斤，是已知最大的。","u":"https://zh.wikipedia.org/wiki/%E6%8A%B9%E9%A6%99%E9%AF%A8"},{"t":"联合国日","d":"1945 年 10 月 24 日，《联合国宪章》获得多数签字国批准生效，联合国正式成立。1947 年联合国大会把这一天定为联合国日。宪章签字是同年 6 月 26 日在旧金山完成的，等了四个月才凑够批准数。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5"},{"t":"程序员日","d":"1024 是 2 的 10 次方，也是程序员最顺手的那个整数，所以 10 月 24 日被叫作程序员节。它不在法定节假日里，没有假，多数人是在加班时从同事的群里知道今天有这个节。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5"},{"t":"世界发展信息日","d":"1972 年联合国大会设立，用来提请人们注意发展问题，以及信息技术在其中扮演的角色。和多数国际日一样，它更像个提醒，不是假期。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5"},{"t":"1648 年 · 《威斯特伐利亚和约》正式确认","d":"神圣罗马帝国与法国、瑞典等国代表在奥斯纳布吕克和明斯特确认和约，三十年战争与西班牙、荷兰之间的八十年战争同时收尾。条款里写了诸侯国可自定官方宗教，选帝侯增至八席。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5"},{"t":"1860 年 · 《北京条约》签订","d":"钦差大臣奕訢与英国代表额尔金签署条约，清朝割让九龙半岛予英国，天津开埠。这是第二次鸦片战争的收尾文件之一，同一年圆明园已被烧。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5"},{"t":"1901 年 · 有人坐着木桶跳下尼亚加拉瀑布，活着","d":"美国女教师安妮·埃德森·泰勒把自己和一只宠物猫绑进木桶，从瀑布上冲下去，成为第一个活着完成这件事的人。她后来靠巡回演讲谋生，晚年贫困。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5"},{"t":"1929 年 · 华尔街股灾爆发","d":"纽约股市在几天里连续暴跌，市值蒸发得比任何人预料的都快，随后把美国和世界拖进大萧条。当时的总统胡佛在几个月里一直说基本面是好的。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5"},{"t":"1938 年 · 中山舰沉在长江里","d":"武汉会战期间，中山舰在武昌金口赤矶山一带江面巡防时被日军飞机击沉。舰上官兵大多阵亡。这艘船原名永丰舰，1925 年因孙中山改名。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5"},{"t":"1945 年 · 联合国正式成立","d":"《联合国宪章》在获得美国、英国、中国、苏联、法国等多数签字国批准后生效。第一批成员国 51 个，现在 193 个。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5"},{"t":"1949 年 · 古宁头战役","d":"解放军渡海进攻金门，与国军激战三昼夜，登陆部队全军覆没。这是两岸分治后规模最大的一场登陆战，也是后来金门驻军长期重兵的原因。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5"},{"t":"1975 年 · 冰岛九成女性罢工一天","d":"为了抗议薪资与劳动待遇的不公，冰岛约九成女性当天不做工、也不做家务，工厂、学校、商店大面积停摆。次年，冰岛议会通过了保障同工同酬的法律。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5"},{"t":"2002 年 · 中文维基百科上线","d":"维基百科的中文版本正式成立。第一条条目是「物理学」，只有一句话。今天这座站点上很多引注，最早就是从它开始堆的。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5"},{"t":"2007 年 · 嫦娥一号发射","d":"中国探月工程的第一颗绕月卫星从西昌发射升空，一个多月后进入环月轨道，拍回了第一张全月面影像。这是中国第一次把探测器送到月球附近。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8824%E6%97%A5"}];
 var ARCHIVE=[{"no":"008","label":"10月29日 · 今天","count":"51","href":"../index.html","cur":false},{"no":"007","label":"10月28日","count":"54","href":"2026-10-28.html","cur":false},{"no":"006","label":"10月27日","count":"51","href":"2026-10-27.html","cur":false},{"no":"005","label":"10月26日","count":"51","href":"2026-10-26.html","cur":false},{"no":"004","label":"10月25日","count":"54","href":"2026-10-25.html","cur":false},{"no":"003","label":"10月24日","count":"53","href":"","cur":true},{"no":"002","label":"10月23日","count":"53","href":"2026-10-23.html","cur":false},{"no":"001","label":"10月22日","count":"63","href":"2026-10-22.html","cur":false}];
 (function(){
   var root=document.documentElement, meta=document.querySelector('meta[name=theme-color]');
@@ -1035,6 +1119,51 @@ var ARCHIVE=[{"no":"008","label":"10月29日 · 今天","count":"51","href":"../
   });
 
   paint();
+
+  /* ---------- 分享 ---------- */
+  var shWrap=document.getElementById('shWrap'), shText=document.getElementById('shText'),
+      shCopy=document.getElementById('shCopy'), shTmr=null;
+  function openShare(id){
+    var x=SHARE[+id]; if(!x) return;
+    var LF=String.fromCharCode(10);
+    var s='标题：'+x.t+LF+'正文：'+x.d+(x.u?LF+'原文链接：'+x.u:'');
+    shText.textContent=s;
+    shText.scrollTop=0;
+    shCopy.textContent='复制文字';
+    shWrap.classList.add('on');
+    shWrap.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+  }
+  function closeShare(){
+    shWrap.classList.remove('on');
+    shWrap.setAttribute('aria-hidden','true');
+    if(!document.getElementById('drawer').classList.contains('on')) document.body.style.overflow='';
+  }
+  document.addEventListener('click', function(e){
+    var b=e.target.closest('.share');
+    if(!b) return;
+    e.preventDefault();
+    openShare(b.getAttribute('data-si'));
+  });
+  document.getElementById('shMask').addEventListener('click', closeShare);
+  document.getElementById('shX').addEventListener('click', closeShare);
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeShare(); });
+  shCopy.addEventListener('click', function(){
+    var s=shText.textContent;
+    function ok(){ shCopy.textContent='已复制'; clearTimeout(shTmr);
+      shTmr=setTimeout(function(){ shCopy.textContent='复制文字'; },1600); }
+    function fb(){
+      var ta=document.createElement('textarea');
+      ta.value=s; ta.setAttribute('readonly','');
+      ta.style.position='fixed'; ta.style.top='-999px'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0,s.length);
+      try{ document.execCommand('copy'); ok(); }catch(e){}
+      document.body.removeChild(ta);
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(s).then(ok, fb);
+    } else fb();
+  });
 
   var TODAY="2026年10月24日", SKEY='np-saved';
   function getSaved(){ try{ var a=JSON.parse(localStorage.getItem(SKEY)||'[]'); return Array.isArray(a)?a:[]; }catch(e){ return []; } }
