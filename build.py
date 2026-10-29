@@ -397,6 +397,14 @@ html[data-theme="night"] .oil em.dn {{ color:#8FBF9F; }}
 .book .bintro {{ margin:0; font-size:calc(var(--fs) * .93); line-height:1.82; }}
 .book .bmore {{ display:inline-block; margin-top:10px; font-size:12px; color:var(--accent); text-decoration:none; }}
 
+/* ===== 今日 ===== */
+.tnote {{ margin:20px 0 2px; padding:14px 0 2px; border-top:1px solid var(--line); }}
+.tnote .tlab {{ font-size:10.5px; letter-spacing:2.6px; color:var(--accent); margin-bottom:9px; }}
+.tnote .tlist {{ margin:0; }}
+.tnote .tr {{ display:flex; gap:12px; align-items:baseline; padding:3.5px 0; }}
+.tnote dt {{ flex:0 0 5.2em; font-size:11.5px; color:var(--muted); letter-spacing:.6px; }}
+.tnote dd {{ margin:0; font-size:calc(var(--fs) * .95); line-height:1.6; }}
+
 /* ===== 每日识物 ===== */
 .thing {{ margin:6px 0 0; }}
 .thing .tempty {{ color:var(--muted); font-size:calc(var(--fs) * .93); padding:26px 0; }}
@@ -996,6 +1004,9 @@ THING_T = """      <article class="thing">
         <div class="tfacts">{facts}</div>{link}
       </article>"""
 
+TODAY_T = """      <div class="tnote"><div class="tlab">今 日</div><dl class="tlist">{rows}</dl></div>"""
+TODAY_ROW = """<div class="tr"><dt>{k}</dt><dd>{v}</dd></div>"""
+
 OIL_T = """      <div class="oil">{cells}<span class="od">{date}{delta}</span>{link}</div>"""
 
 BOOK_T = """        <div class="book">
@@ -1100,6 +1111,14 @@ def render_html(d, page_iso, in_issues_dir):
             body.append(LEAD_T.format(kicker=l["kicker"], title=l["title"], body=l["body"],
                                       source=l.get("source", ""), link=link,
                                       share=SHARE_BTN.format(si=sid(l["title"], l["body"], l.get("u", "")))))
+            tn = d.get("today_note") or {}
+            rows = ""
+            for key, lab in (("festival", "传统节日"), ("memorial", "纪念日"), ("holiday", "法定假日"),
+                             ("solar", "节气数九"), ("intl", "国际日"), ("moon", "月相")):
+                if tn.get(key):
+                    rows += TODAY_ROW.format(k=lab, v=tn[key])
+            if rows:
+                body.append(TODAY_T.format(rows=rows))
             if oil_html:
                 body.append(oil_html)
         if "reading" in t:
