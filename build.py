@@ -108,7 +108,9 @@ h1 .dot {{ color: var(--accent); }}
   font-family: inherit; font-size: 12.5px; color: var(--ink);
 }}
 .searchbx input::placeholder {{ color: var(--muted); opacity: .85; }}
-.searchbx .mag {{ font-size: 12px; color: var(--muted); }}
+.searchbx input::-webkit-search-cancel-button,
+.searchbx input::-webkit-search-decoration {{ -webkit-appearance: none; appearance: none; display: none; }}
+.searchbx .mag {{ flex: 0 0 auto; color: var(--muted); display: block; }}
 .searchbx .clr {{
   display: none; border: none; background: transparent; color: var(--muted);
   font-size: 13px; line-height: 1; cursor: pointer; padding: 0 1px;
@@ -251,7 +253,7 @@ footer {{
     <button class="chip" type="button" data-id="head">头条</button>
     <button class="chip" type="button" data-id="reading">今日阅读</button>
     <button class="chip" type="button" id="allBtn">全部 <span class="cv">▾</span></button>
-    <label class="searchbx" id="searchbx"><span class="mag">⌕</span><input id="q" type="search" placeholder="搜索本期" autocomplete="off"><button class="clr" id="qclr" type="button">✕</button></label>
+    <label class="searchbx" id="searchbx"><svg class="mag" width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"></circle><path d="M10.5 10.5 L14 14"></path></svg><input id="q" type="text" inputmode="search" placeholder="搜索本期" autocomplete="off"><button class="clr" id="qclr" type="button">✕</button></label>
   </nav>
 
   <div class="dd" id="allPanel"></div>
