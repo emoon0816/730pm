@@ -401,6 +401,9 @@ html[data-theme="night"] .oil em.dn {{ color:#8FBF9F; }}
 .tnote {{ margin:20px 0 2px; padding:14px 0 2px; border-top:1px solid var(--line); }}
 .tnote .tlab {{ font-size:10.5px; letter-spacing:2.6px; color:var(--accent); margin-bottom:9px; }}
 .tnote .tlist {{ margin:0; }}
+.tnote.t1 {{ display:flex; align-items:baseline; gap:12px; padding:11px 0 3px; }}
+.tnote.t1 .tlab {{ margin:0; }}
+.tnote.t1 .tv {{ font-size:calc(var(--fs) * .93); color:var(--muted); }}
 .tnote .tr {{ display:flex; gap:12px; align-items:baseline; padding:3.5px 0; }}
 .tnote dt {{ flex:0 0 5.2em; font-size:11.5px; color:var(--muted); letter-spacing:.6px; }}
 .tnote dd {{ margin:0; font-size:calc(var(--fs) * .95); line-height:1.6; }}
@@ -1006,6 +1009,7 @@ THING_T = """      <article class="thing">
 
 TODAY_T = """      <div class="tnote"><div class="tlab">今 日</div><dl class="tlist">{rows}</dl></div>"""
 TODAY_ROW = """<div class="tr"><dt>{k}</dt><dd>{v}</dd></div>"""
+TODAY_ONE_T = """      <div class="tnote t1"><span class="tlab">今 日</span><span class="tv">{k} {v}</span></div>"""
 
 OIL_T = """      <div class="oil">{cells}<span class="od">{date}{delta}</span>{link}</div>"""
 
@@ -1112,13 +1116,13 @@ def render_html(d, page_iso, in_issues_dir):
                                       source=l.get("source", ""), link=link,
                                       share=SHARE_BTN.format(si=sid(l["title"], l["body"], l.get("u", "")))))
             tn = d.get("today_note") or {}
-            rows = ""
-            for key, lab in (("festival", "传统节日"), ("memorial", "纪念日"), ("holiday", "法定假日"),
-                             ("solar", "节气数九"), ("intl", "国际日"), ("moon", "月相")):
-                if tn.get(key):
-                    rows += TODAY_ROW.format(k=lab, v=tn[key])
-            if rows:
-                body.append(TODAY_T.format(rows=rows))
+            pairs = [(lab, tn[key]) for key, lab in
+                     (("festival", "传统节日"), ("memorial", "纪念日"), ("holiday", "法定假日"),
+                      ("solar", "节气数九"), ("intl", "国际日"), ("moon", "月相")) if tn.get(key)]
+            if len(pairs) == 1:
+                body.append(TODAY_ONE_T.format(k=pairs[0][0], v=pairs[0][1]))
+            elif pairs:
+                body.append(TODAY_T.format(rows="".join(TODAY_ROW.format(k=k, v=v) for k, v in pairs)))
             if oil_html:
                 body.append(oil_html)
         if "reading" in t:
