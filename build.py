@@ -399,6 +399,7 @@ html[data-theme="night"] .oil em.dn {{ color:#8FBF9F; }}
 
 /* ===== 每日识物 ===== */
 .thing {{ margin:6px 0 0; }}
+.thing .tempty {{ color:var(--muted); font-size:calc(var(--fs) * .93); padding:26px 0; }}
 .thing .tkicker {{ font-size:11px; letter-spacing:1.4px; color:var(--accent); margin-bottom:8px; }}
 .thing .ttitle {{ font-size:calc(var(--fs) * 1.6); line-height:1.45; margin:0 0 14px; font-weight:500; }}
 .thing .tbody p {{ margin:0 0 15px; font-size:calc(var(--fs) * 1.02); line-height:1.9; }}
@@ -1135,6 +1136,9 @@ def render_html(d, page_iso, in_issues_dir):
         if "thing" in t:
             th = t["thing"]
             tb = "".join("<p>%s</p>" % x for x in th.get("body", []))
+            if not tb:
+                body.append('<p class="tempty">今天这块还空着。</p>')
+                th = {}
             facts = ""
             fl = th.get("facts") or []
             if fl:
