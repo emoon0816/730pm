@@ -9,7 +9,7 @@ TEMPLATE = """<!DOCTYPE html>
 <html lang="zh-CN" data-theme="day">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <title>730pm · {date}</title>
 <link rel="manifest" href="{up}manifest.json">
 <link rel="icon" href="{up}favicon.ico?v=3" sizes="any">
@@ -59,8 +59,13 @@ html[data-theme="night"] {{
   --card: #1F1B15;
   --tabbar: rgba(23,20,15,.93);
 }}
-* {{ box-sizing: border-box; -webkit-tap-highlight-color: transparent; }}
+* {{ box-sizing: border-box; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }}
 html, body {{ background: var(--bg); }}
+html {{ -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }}
+/* iOS：输入框小于 16px，点进去会自己放大一屏 */
+@supports (-webkit-touch-callout: none) {{
+  @media (max-width: 560px) {{ .searchbx input {{ font-size: 16px; }} }}
+}}
 body {{
   margin: 0; color: var(--ink);
   font-family: var(--body-font, 'ChillRound'), -apple-system, 'PingFang SC', 'Noto Sans CJK SC', sans-serif;
@@ -232,7 +237,8 @@ html[data-theme="night"] mark {{ background: rgba(198,172,220,.20); }}
   font-size:11px; letter-spacing:1.6px; color:var(--muted); }}
 .shhead .x {{ width:24px; height:24px; border:1px solid var(--line); background:transparent;
   color:var(--muted); border-radius:999px; font-size:11px; line-height:1; font-family:inherit; cursor:pointer; }}
-.shtext {{ margin:0; padding:14px 15px; overflow:auto; white-space:pre-wrap; word-break:break-word;
+.shtext {{ margin:0; padding:14px 15px; overflow:auto; overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch; white-space:pre-wrap; word-break:break-word;
   font-family:inherit; font-size:calc(var(--fs) * .9); line-height:1.82; color:var(--ink);
   -webkit-user-select:text; user-select:text; }}
 .shacts {{ padding:11px 15px 14px; border-top:1px solid var(--line); display:flex; }}
@@ -294,7 +300,8 @@ footer {{
   background:var(--accent); color:var(--bg); font-size:11.5px; padding:5px 13px; border-radius:999px;
   opacity:0; pointer-events:none; transition:opacity .2s, transform .2s; z-index:2; white-space:nowrap; }}
 .drawer .toast.on {{ opacity:.95; transform:translate(-50%,0); }}
-.drawer .dbody {{ flex:1; overflow-y:auto; padding:4px 18px 22px; display:flex; flex-direction:column; }}
+.drawer .dbody {{ flex:1; overflow-y:auto; overscroll-behavior:contain; -webkit-overflow-scrolling:touch;
+  padding:4px 18px 22px; display:flex; flex-direction:column; }}
 .drawer section {{ padding:16px 0; border-bottom:1px solid var(--line); }}
 .drawer section:last-of-type {{ border-bottom:none; }}
 .drawer .cap {{ display:flex; justify-content:space-between; align-items:baseline;
@@ -473,6 +480,12 @@ abcdefghijklmnopqrstuvwxyz
 
 
 <script>
+/* iOS：捏合放大、双击放大，一并按住 */
+(function(){{
+  ['gesturestart','gesturechange','gestureend'].forEach(function(t){{
+    document.addEventListener(t, function(e){{ e.preventDefault(); }}, {{passive:false}});
+  }});
+}})();
 var TODAY="{date}", WEEKDAY="{weekday}", ISSUE="{issue}", TODAY_ISO="{today_iso}";
 var ALL_TABS={all_tabs};
 var ISSUE_ITEMS={issue_json};
