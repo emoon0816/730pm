@@ -85,6 +85,7 @@ h1 .dot { color: var(--accent); }
   transition: all .18s ease; white-space: nowrap;
 }
 .tab.on { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.tlink { text-decoration: none; display: inline-block; }
 
 /* 面板 */
 .panel { display: none; animation: fade .22s ease; }
@@ -182,7 +183,7 @@ footer {
     <button class="tab" data-id="food">美食</button>
     <button class="tab" data-id="trivia">冷知识</button>
     <button class="tab" data-id="today">那年今日</button>
-    <button class="tab" data-id="reading">阅读</button><button class="tab" data-id="saved">书报架</button></nav>
+    <button class="tab" data-id="reading">阅读</button><button class="tab" data-id="saved">书报架</button><a class="tab tlink" href="issues.html">往期</a></nav>
 
   <main id="main">
     <section class="panel" data-id="head">
@@ -672,7 +673,7 @@ footer {
     }
   });
 
-  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  var tabs=[].slice.call(document.querySelectorAll('.tab[data-id]'));
   var panels=[].slice.call(document.querySelectorAll('.panel'));
   function show(id){
     tabs.forEach(function(b){ b.classList.toggle('on', b.dataset.id===id); });

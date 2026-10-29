@@ -92,6 +92,7 @@ h1 .dot {{ color: var(--accent); }}
   transition: all .18s ease; white-space: nowrap;
 }}
 .tab.on {{ background: var(--accent); border-color: var(--accent); color: var(--bg); }}
+.tlink {{ text-decoration: none; display: inline-block; }}
 
 /* 面板 */
 .panel {{ display: none; animation: fade .22s ease; }}
@@ -178,7 +179,7 @@ footer {{
     <div class="dateline">{date} · {weekday} · {issue}</div>
   </header>
 
-  <nav class="tabs" id="tabs">{tab_buttons}<button class="tab" data-id="saved">书报架</button></nav>
+  <nav class="tabs" id="tabs">{tab_buttons}<button class="tab" data-id="saved">书报架</button><a class="tab tlink" href="issues.html">往期</a></nav>
 
   <main id="main">
 {panels}
@@ -257,7 +258,7 @@ footer {{
     }}
   }});
 
-  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  var tabs=[].slice.call(document.querySelectorAll('.tab[data-id]'));
   var panels=[].slice.call(document.querySelectorAll('.panel'));
   function show(id){{
     tabs.forEach(function(b){{ b.classList.toggle('on', b.dataset.id===id); }});
