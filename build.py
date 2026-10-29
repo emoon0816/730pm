@@ -254,7 +254,7 @@ footer {{
 }}
 .scrim.on {{ opacity:1; pointer-events:auto; }}
 .drawer {{
-  position:fixed; top:0; right:0; bottom:0; z-index:61; width:320px; max-width:88vw;
+  position:fixed; top:0; right:0; bottom:0; z-index:61; width:320px; max-width:88vw; overflow:hidden;
   background:var(--card); border-left:1px solid var(--line);
   box-shadow:-6px 0 24px rgba(40,30,20,.12);
   display:flex; flex-direction:column;
@@ -264,8 +264,16 @@ footer {{
 .drawer .dh {{ display:flex; align-items:center; justify-content:space-between;
   padding:16px 18px 13px; border-bottom:1px solid var(--line); }}
 .drawer .dh b {{ font-size:15px; font-weight:500; letter-spacing:.5px; }}
+.drawer .dh .dhx {{ display:flex; align-items:center; gap:8px; }}
 .drawer .dh .x {{ width:26px; height:26px; border:1px solid var(--line); background:transparent;
   color:var(--muted); border-radius:999px; font-size:12px; line-height:1; font-family:inherit; cursor:pointer; }}
+.drawer .dh .rst {{ border:1px solid var(--line); background:transparent; color:var(--muted);
+  border-radius:999px; padding:3px 10px; font-size:11.5px; font-family:inherit; cursor:pointer; letter-spacing:.5px; }}
+.drawer .dh .rst:active {{ background:var(--soft); color:var(--accent); border-color:var(--accent); }}
+.drawer .toast {{ position:absolute; left:50%; top:58px; transform:translate(-50%,-6px);
+  background:var(--accent); color:var(--bg); font-size:11.5px; padding:5px 13px; border-radius:999px;
+  opacity:0; pointer-events:none; transition:opacity .2s, transform .2s; z-index:2; white-space:nowrap; }}
+.drawer .toast.on {{ opacity:.95; transform:translate(-50%,0); }}
 .drawer .dbody {{ flex:1; overflow-y:auto; padding:4px 18px 22px; display:flex; flex-direction:column; }}
 .drawer section {{ padding:16px 0; border-bottom:1px solid var(--line); }}
 .drawer section:last-of-type {{ border-bottom:none; }}
@@ -380,7 +388,8 @@ html[data-theme="night"] .drawer .ch .sq .a {{ background:var(--na); }}
 <div class="scrim" id="scrim"></div>
 
 <aside class="drawer" id="drawer" aria-hidden="true">
-  <div class="dh"><b>设置</b><button class="x" id="drawerX" aria-label="关闭">✕</button></div>
+  <div class="toast" id="toast">已恢复默认</div>
+  <div class="dh"><b>设置</b><span class="dhx"><button class="rst" id="resetBtn" type="button">重置</button><button class="x" id="drawerX" aria-label="关闭">✕</button></span></div>
   <div class="dbody">
 
     <section>
@@ -587,6 +596,19 @@ var ARCHIVE={archive_json};
     if(mql.addEventListener) mql.addEventListener('change', onSys);
     else if(mql.addListener) mql.addListener(onSys);
   }}
+
+  /* 急救重置：字体 / 字号 / 配色 / 夜间，一次全回默认 */
+  var toast=document.getElementById('toast'), toastT=null;
+  document.getElementById('resetBtn').addEventListener('click', function(){{
+    SET={{font:'chill', size:15, scheme:'baokan', night:false, auto:false}};
+    try{{ localStorage.removeItem('np-set'); }}catch(e){{}}
+    el.fontMenu.classList.remove('show');
+    el.fontSel.classList.remove('open');
+    paint();
+    toast.classList.add('on');
+    clearTimeout(toastT);
+    toastT=setTimeout(function(){{ toast.classList.remove('on'); }}, 1400);
+  }});
 
   paint();
 
