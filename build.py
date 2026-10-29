@@ -59,7 +59,7 @@ body {{
   -webkit-font-smoothing: antialiased;
   transition: background .25s ease, color .25s ease;
 }}
-.wrap {{ max-width: 720px; margin: 0 auto; padding: 0 16px 70px; }}
+.wrap {{ max-width: 720px; margin: 0 auto; padding: 0 16px 70px; position: relative; }}
 
 /* 报头 */
 header {{ padding: 22px 0 12px; position: relative; }}
@@ -124,7 +124,7 @@ body.searching .searchbx {{ border-color: var(--accent); }}
   border-radius: 6px; box-shadow: 0 2px 7px rgba(0,0,0,.07); overflow: hidden;
 }}
 .dd.on {{ display: block; }}
-#allPanel {{ right: 10px; top: 136px; width: 262px; }}
+#allPanel {{ left: 0; top: 0; width: 262px; }}
 #allPanel .grid {{ display: grid; grid-template-columns: repeat(3,1fr); gap: 5px; padding: 9px; }}
 .cell {{
   text-align: center; font-size: 12px; padding: 8px 0; border-radius: 6px;
@@ -134,7 +134,7 @@ body.searching .searchbx {{ border-color: var(--accent); }}
 .cell.on {{ background: var(--accent); color: var(--bg); border-color: var(--accent); }}
 .cell.fn {{ color: var(--muted); border-style: dashed; }}
 
-#datePanel {{ left: 10px; top: 56px; width: 236px; }}
+#datePanel {{ left: 0; top: 0; width: 236px; }}
 #datePanel .dh {{ padding: 5px 12px 6px; border-bottom: 1px solid var(--line); }}
 #datePanel .dh .l1 {{ display: flex; align-items: center; justify-content: space-between; gap: 6px; }}
 #datePanel .dh .d {{ font-size: 12px; color: var(--accent); }}
@@ -356,6 +356,17 @@ var ISSUE_ITEMS={issue_json};
     allPanel.classList.remove('on'); datePanel.classList.remove('on');
     allBtn.classList.remove('act'); dateBtn.classList.remove('act');
   }}
+  function place(panel, anchor, cover){{
+    var host=panel.parentNode.getBoundingClientRect();
+    var a=anchor.getBoundingClientRect();
+    var w=panel.offsetWidth || 240;
+    var left=a.left-host.left;
+    var maxLeft=host.width-w-8;
+    if(left<8) left=8;
+    if(left>maxLeft) left=maxLeft;
+    panel.style.left=left+'px';
+    panel.style.top=(cover ? a.top-host.top : a.bottom-host.top+6)+'px';
+  }}
   function openDD(which){{
     var wasOpen = (which==='all' ? allPanel.classList.contains('on') : datePanel.classList.contains('on'));
     closeDD();
@@ -365,9 +376,17 @@ var ISSUE_ITEMS={issue_json};
       [].forEach.call(allPanel.querySelectorAll('.cell'), function(c){{
         c.classList.toggle('on', c.getAttribute('data-id')===lastTab);
       }});
+      place(allPanel, allBtn);
     }}
-    else {{ datePanel.classList.add('on'); dateBtn.classList.add('act'); loadArchive(); }}
+    else {{
+      datePanel.classList.add('on'); dateBtn.classList.add('act');
+      loadArchive(); place(datePanel, dateBtn, true);   // 盖住日期本身，由条头替代
+    }}
   }}
+  window.addEventListener('resize', function(){{
+    if(allPanel.classList.contains('on')) place(allPanel, allBtn);
+    if(datePanel.classList.contains('on')) place(datePanel, dateBtn, true);
+  }});
   allBtn.addEventListener('click', function(e){{ e.stopPropagation(); openDD('all'); }});
   dateBtn.addEventListener('click', function(e){{ e.stopPropagation(); openDD('date'); }});
   allPanel.addEventListener('click', function(e){{ e.stopPropagation(); }});
