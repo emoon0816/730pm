@@ -397,6 +397,50 @@ html[data-theme="night"] .oil em.dn {{ color:#8FBF9F; }}
 .book .bintro {{ margin:0; font-size:calc(var(--fs) * .93); line-height:1.82; }}
 .book .bmore {{ display:inline-block; margin-top:10px; font-size:12px; color:var(--accent); text-decoration:none; }}
 
+/* ===== 朗读 ===== */
+.tts {{ display:flex; align-items:center; gap:9px; margin:13px 0 18px; }}
+.tts .tbtn {{ flex:0 0 auto; width:30px; height:30px; border-radius:50%; border:1px solid var(--line);
+  background:transparent; color:var(--ink); display:flex; align-items:center; justify-content:center;
+  padding:0; cursor:pointer; -webkit-tap-highlight-color:transparent; }}
+.tts .tbtn svg {{ width:13px; height:13px; display:block; }}
+.tts .tbtn:disabled {{ opacity:.3; cursor:default; }}
+.tts .tplay {{ border-color:var(--accent); color:var(--accent); }}
+.tts .tplay.gen svg {{ animation:tg .9s linear infinite; transform-origin:center; }}
+@keyframes tg {{ to {{ transform:rotate(360deg); }} }}
+.tts .tbar {{ position:relative; flex:1 1 auto; height:20px; display:flex; align-items:center; }}
+.tts .track {{ position:absolute; left:0; right:0; height:2px; background:var(--line); border-radius:2px; }}
+.tts .tfill {{ position:absolute; left:0; height:2px; width:0; background:var(--accent); border-radius:2px; }}
+.tts .knot {{ position:absolute; left:0; width:8px; height:8px; margin-left:-4px; border-radius:50%;
+  background:var(--accent); opacity:0; transition:opacity .15s; }}
+.tts[data-st="ready"] .tbar {{ cursor:pointer; }}
+.tts[data-st="ready"] .knot {{ opacity:1; }}
+.tts .ttime {{ flex:0 0 auto; font-size:10.5px; color:var(--muted); letter-spacing:.3px;
+  font-variant-numeric:tabular-nums; min-width:62px; text-align:right; }}
+
+.drawer .tin {{ width:100%; box-sizing:border-box; margin:0 0 7px; padding:8px 10px; border:1px solid var(--line);
+  border-radius:5px; background:transparent; color:var(--ink); font-family:inherit; font-size:12.5px; }}
+.drawer .tin::placeholder {{ color:var(--muted); opacity:.75; }}
+.drawer .tsel {{ border:1px solid var(--line); border-radius:5px; background:transparent; color:var(--ink);
+  font-family:inherit; font-size:12.5px; padding:5px 8px; }}
+.drawer #ttsSpeed {{ width:100%; margin:2px 0 4px; accent-color:var(--accent); }}
+/* ===== 朗读：弹窗与提示 ===== */
+.ttsd {{ position:fixed; inset:0; z-index:70; display:none; }}
+.ttsd.on {{ display:block; }}
+.ttsd .ttsdm {{ position:absolute; inset:0; background:rgba(18,14,10,.34); }}
+.ttsd .ttsbx {{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:280px;
+  background:var(--bg); color:var(--ink); border-radius:8px; padding:20px 18px 14px;
+  box-shadow:0 12px 40px rgba(0,0,0,.22); }}
+.ttsd .ttst {{ margin:0 0 8px; font-size:15px; font-weight:500; }}
+.ttsd .ttsdsc {{ margin:0 0 18px; font-size:13px; line-height:1.7; color:var(--muted); }}
+.ttsd .ttsact {{ display:flex; gap:8px; justify-content:flex-end; }}
+.ttsd .ttsact button {{ border:1px solid var(--line); background:transparent; color:var(--ink);
+  font-family:inherit; font-size:13px; padding:7px 15px; border-radius:5px; cursor:pointer; }}
+.ttsd .ttsact .pri {{ border-color:var(--accent); color:#fff; background:var(--accent); }}
+.ttoast {{ position:fixed; left:50%; bottom:34px; transform:translate(-50%,10px); z-index:80;
+  background:rgba(28,22,17,.92); color:#F3EDE3; font-size:12.5px; letter-spacing:.5px;
+  padding:9px 16px; border-radius:6px; opacity:0; pointer-events:none; transition:opacity .2s, transform .2s; }}
+.ttoast.on {{ opacity:1; transform:translate(-50%,0); }}
+
 /* ===== 今日 ===== */
 .tnote {{ margin:20px 0 2px; padding:14px 0 2px; border-top:1px solid var(--line); }}
 .tnote .tlab {{ font-size:10.5px; letter-spacing:2.6px; color:var(--accent); margin-bottom:9px; }}
@@ -465,6 +509,17 @@ html[data-theme="night"] .oil em.dn {{ color:#8FBF9F; }}
   </div>
 </div>
 
+<div class="ttsd" id="ttsDlg" aria-hidden="true">
+  <div class="ttsdm" id="ttsDlgMask"></div>
+  <div class="ttsbx" role="dialog" aria-modal="true">
+    <p class="ttst">重新生成？</p>
+    <p class="ttsdsc">要再等一次生成，效果不一定更好。</p>
+    <div class="ttsact"><button id="ttsNo" type="button">取消</button><button id="ttsYes" type="button" class="pri">确定</button></div>
+  </div>
+</div>
+<div class="ttoast" id="ttoast"></div>
+<!--TTS_JS-->
+
 <div class="scrim" id="scrim"></div>
 
 <aside class="drawer" id="drawer" aria-hidden="true">
@@ -518,6 +573,24 @@ abcdefghijklmnopqrstuvwxyz
       <div class="note" id="note">跟着系统走时，上面那个手动开关就不作数了。</div>
     </section>
 
+    <section id="ttsSec">
+      <div class="cap"><span>朗读</span><span class="r">只存本机</span></div>
+      <div class="row"><span>供应商</span>
+        <select id="ttsMode" class="tsel">
+          <option value="minimax">MiniMax</option>
+          <option value="volc">火山（走中转）</option>
+          <option value="fish">Fish（走中转）</option>
+        </select>
+      </div>
+      <input class="tin" id="ttsKey" type="password" placeholder="API Key" autocomplete="off">
+      <input class="tin" id="ttsGroup" type="text" placeholder="Group ID（MiniMax 要）" autocomplete="off">
+      <input class="tin" id="ttsVoice" type="text" placeholder="音色 ID" autocomplete="off">
+      <input class="tin" id="ttsProxy" type="text" placeholder="中转地址（可选，填了就走中转）" autocomplete="off">
+      <div class="row"><span>语速</span><span class="r" id="ttsSpd">1.00×</span></div>
+      <input type="range" id="ttsSpeed" min="0.6" max="1.6" step="0.05" value="1">
+      <div class="note">Key 只在这台设备的浏览器里，不上传、不同步。清掉浏览器数据就没了。</div>
+    </section>
+
     <div class="foot">改动即时生效 · 只存在这台设备上</div>
   </div>
 </aside>
@@ -534,6 +607,7 @@ var TODAY="{date}", WEEKDAY="{weekday}", ISSUE="{issue}", TODAY_ISO="{today_iso}
 var ALL_TABS={all_tabs};
 var ISSUE_ITEMS={issue_json};
 var SHARE={share_json};
+var READTTS={read_json};
 var ARCHIVE={archive_json};
 (function(){{
   var root=document.documentElement, meta=document.querySelector('meta[name=theme-color]');
@@ -1020,9 +1094,18 @@ BOOK_T = """        <div class="book">
           <p class="bintro">{intro}</p>{link}
         </div>"""
 
+PLAYER_T = """        <div class="tts" data-st="idle" data-tts="{idx}">
+          <button class="tbtn tplay" type="button" aria-label="播放"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.6 2.6v10.8L13.4 8z"/></svg></button>
+          <div class="tbar"><div class="track"></div><div class="tfill"></div><div class="knot"></div></div>
+          <span class="ttime">0:00 / 0:00</span>
+          <button class="tbtn tredo" type="button" aria-label="重新生成" disabled><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13.2 8A5.2 5.2 0 1 1 11.5 4"/><path d="M13.3 2.2v3h-3"/></svg></button>
+          <button class="tbtn tdl" type="button" aria-label="下载语音" disabled><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2.6v8"/><path d="M4.9 7.7 8 10.8l3.1-3.1"/><path d="M3.2 13h9.6"/></svg></button>
+        </div>"""
+
 READING_T = """      <article class="reading">
         <h2 class="rtitle">{title}</h2>
         <div class="rby">{byline}</div>
+        {player}
         {why}
         <div class="rbody">{body}</div>
         {trans}
@@ -1077,6 +1160,9 @@ def archive_rows(page_iso, in_issues_dir, today_iso):
     return rows
 
 
+TTS_JS = "<script>" + open(os.path.join(BASE, "tts.js"), encoding="utf-8").read() + "</script>"
+
+
 def render_html(d, page_iso, in_issues_dir):
 
     tabs = d["tabs"]
@@ -1097,6 +1183,8 @@ def render_html(d, page_iso, in_issues_dir):
         olink = (' <a href="%s" target="_blank" rel="noopener">来源</a>' % o["u"]) if o.get("u") else ""
         oil_html = OIL_T.format(cells='<span class="olab">油价</span>' + "".join(cells),
                                   date=o.get("date", ""), delta=delta, link=olink)
+
+    tts_payload = []
 
     # 分享数据：标题 + 正文 + 原文链接（不含批注）
     share = []
@@ -1140,7 +1228,10 @@ def render_html(d, page_iso, in_issues_dir):
                 if r.get("after"):
                     rows.append("<p><b>读后</b>%s</p>" % r["after"])
                 why = '<div class="rwhy">%s</div>' % "".join(rows)
+            read_text = r["title"] + "。\n" + "\n".join(r["body"])
+            tts_payload.append({"id": page_iso + "-read", "title": r["title"], "text": read_text})
             body.append(READING_T.format(title=r["title"], byline=r.get("byline", ""),
+                                         player=PLAYER_T.format(idx=len(tts_payload) - 1),
                                          body=rb, trans=trans, why=why,
                                          author=r.get("author", ""), source=r.get("source", "")))
             bk = r.get("book")
@@ -1203,7 +1294,7 @@ def render_html(d, page_iso, in_issues_dir):
         if os.path.exists(os.path.join(BASE, "data.json")) else ""
     rows = archive_rows(page_iso, in_issues_dir, today_iso)
 
-    return TEMPLATE.format(
+    html = TEMPLATE.format(
         up=("../" if in_issues_dir else ""),
         date=d["date"], weekday=d["weekday"], issue=d.get("issue", ""),
         tab_buttons=tab_buttons, panels="\n".join(panels),
@@ -1212,7 +1303,9 @@ def render_html(d, page_iso, in_issues_dir):
         issue_json=json.dumps(searchable, ensure_ascii=False, separators=(",", ":")),
         archive_json=json.dumps(rows, ensure_ascii=False, separators=(",", ":")),
         share_json=json.dumps(share, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/"),
+        read_json=json.dumps(tts_payload, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/"),
     )
+    return html.replace("<!--TTS_JS-->", TTS_JS)
 
 
 def build():

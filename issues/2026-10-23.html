@@ -390,6 +390,50 @@ html[data-theme="night"] .oil em.dn { color:#8FBF9F; }
 .book .bintro { margin:0; font-size:calc(var(--fs) * .93); line-height:1.82; }
 .book .bmore { display:inline-block; margin-top:10px; font-size:12px; color:var(--accent); text-decoration:none; }
 
+/* ===== 朗读 ===== */
+.tts { display:flex; align-items:center; gap:9px; margin:13px 0 18px; }
+.tts .tbtn { flex:0 0 auto; width:30px; height:30px; border-radius:50%; border:1px solid var(--line);
+  background:transparent; color:var(--ink); display:flex; align-items:center; justify-content:center;
+  padding:0; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+.tts .tbtn svg { width:13px; height:13px; display:block; }
+.tts .tbtn:disabled { opacity:.3; cursor:default; }
+.tts .tplay { border-color:var(--accent); color:var(--accent); }
+.tts .tplay.gen svg { animation:tg .9s linear infinite; transform-origin:center; }
+@keyframes tg { to { transform:rotate(360deg); } }
+.tts .tbar { position:relative; flex:1 1 auto; height:20px; display:flex; align-items:center; }
+.tts .track { position:absolute; left:0; right:0; height:2px; background:var(--line); border-radius:2px; }
+.tts .tfill { position:absolute; left:0; height:2px; width:0; background:var(--accent); border-radius:2px; }
+.tts .knot { position:absolute; left:0; width:8px; height:8px; margin-left:-4px; border-radius:50%;
+  background:var(--accent); opacity:0; transition:opacity .15s; }
+.tts[data-st="ready"] .tbar { cursor:pointer; }
+.tts[data-st="ready"] .knot { opacity:1; }
+.tts .ttime { flex:0 0 auto; font-size:10.5px; color:var(--muted); letter-spacing:.3px;
+  font-variant-numeric:tabular-nums; min-width:62px; text-align:right; }
+
+.drawer .tin { width:100%; box-sizing:border-box; margin:0 0 7px; padding:8px 10px; border:1px solid var(--line);
+  border-radius:5px; background:transparent; color:var(--ink); font-family:inherit; font-size:12.5px; }
+.drawer .tin::placeholder { color:var(--muted); opacity:.75; }
+.drawer .tsel { border:1px solid var(--line); border-radius:5px; background:transparent; color:var(--ink);
+  font-family:inherit; font-size:12.5px; padding:5px 8px; }
+.drawer #ttsSpeed { width:100%; margin:2px 0 4px; accent-color:var(--accent); }
+/* ===== 朗读：弹窗与提示 ===== */
+.ttsd { position:fixed; inset:0; z-index:70; display:none; }
+.ttsd.on { display:block; }
+.ttsd .ttsdm { position:absolute; inset:0; background:rgba(18,14,10,.34); }
+.ttsd .ttsbx { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:280px;
+  background:var(--bg); color:var(--ink); border-radius:8px; padding:20px 18px 14px;
+  box-shadow:0 12px 40px rgba(0,0,0,.22); }
+.ttsd .ttst { margin:0 0 8px; font-size:15px; font-weight:500; }
+.ttsd .ttsdsc { margin:0 0 18px; font-size:13px; line-height:1.7; color:var(--muted); }
+.ttsd .ttsact { display:flex; gap:8px; justify-content:flex-end; }
+.ttsd .ttsact button { border:1px solid var(--line); background:transparent; color:var(--ink);
+  font-family:inherit; font-size:13px; padding:7px 15px; border-radius:5px; cursor:pointer; }
+.ttsd .ttsact .pri { border-color:var(--accent); color:#fff; background:var(--accent); }
+.ttoast { position:fixed; left:50%; bottom:34px; transform:translate(-50%,10px); z-index:80;
+  background:rgba(28,22,17,.92); color:#F3EDE3; font-size:12.5px; letter-spacing:.5px;
+  padding:9px 16px; border-radius:6px; opacity:0; pointer-events:none; transition:opacity .2s, transform .2s; }
+.ttoast.on { opacity:1; transform:translate(-50%,0); }
+
 /* ===== 今日 ===== */
 .tnote { margin:20px 0 2px; padding:14px 0 2px; border-top:1px solid var(--line); }
 .tnote .tlab { font-size:10.5px; letter-spacing:2.6px; color:var(--accent); margin-bottom:9px; }
@@ -917,6 +961,13 @@ html[data-theme="night"] .oil em.dn { color:#8FBF9F; }
       <article class="reading">
         <h2 class="rtitle">寒花葬志</h2>
         <div class="rby">归有光 · 明</div>
+                <div class="tts" data-st="idle" data-tts="0">
+          <button class="tbtn tplay" type="button" aria-label="播放"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.6 2.6v10.8L13.4 8z"/></svg></button>
+          <div class="tbar"><div class="track"></div><div class="tfill"></div><div class="knot"></div></div>
+          <span class="ttime">0:00 / 0:00</span>
+          <button class="tbtn tredo" type="button" aria-label="重新生成" disabled><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13.2 8A5.2 5.2 0 1 1 11.5 4"/><path d="M13.3 2.2v3h-3"/></svg></button>
+          <button class="tbtn tdl" type="button" aria-label="下载语音" disabled><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2.6v8"/><path d="M4.9 7.7 8 10.8l3.1-3.1"/><path d="M3.2 13h9.6"/></svg></button>
+        </div>
         <div class="rwhy"><p><b>为什么是这篇</b>不到两百字，只写了三件小事：削荸荠不给人吃，倚着桌角吃饭，眼珠慢慢转。归有光不写她怎么死，只写十年前她十岁的样子。今天霜降，正适合读这种把凉意藏在一碗荸荠里的文字。</p><p><b>读后</b>最扎人的是「目眶冉冉动」五个字——他记了十年，记住的只是一个女孩吃饭时眼珠在动。全文没有一句夸她好，连名字都没提，只说是「魏孺人的陪嫁」。归有光的深情是记账式的：他记细节，不做评价。</p></div>
         <div class="rbody"><p>婢，魏孺人媵也。嘉靖丁酉五月四日死，葬虚丘。事我而不卒，命也夫！</p><p>婢初媵时，年十岁，垂双鬟，曳深绿布裳。一日，天寒，爇火煮荸荠熟，婢削之盈瓯；予入自外，取食之；婢持去，不与。魏孺人笑之。孺人每令婢倚几旁饭，即饭，目眶冉冉动。孺人又指予以为笑。</p><p>回思是时，奄忽便已十年。吁，可悲也已！</p></div>
         <div class="rtrans"><div class="rlabel">白 话</div><p>这个婢女，是魏孺人的陪嫁丫鬟。嘉靖十六年五月四日去世，葬在虚丘。服侍我却没有到头，是命吧！</p><p>她刚陪嫁过来时，十岁，梳着两个环形发髻，拖着深绿色的布裙。有一天很冷，烧火煮荸荠，煮熟了，她把荸荠削满一小盆；我从外面进来，拿起来就吃，她把盆端走，不给我。魏孺人笑她。孺人常让她靠在桌边吃饭，她一吃饭，眼眶里的眼珠就缓缓转动。孺人又指给我看，拿这个笑。</p><p>回想那时候，转眼已经十年了。唉，可悲啊！</p></div>
@@ -943,6 +994,259 @@ html[data-theme="night"] .oil em.dn { color:#8FBF9F; }
     <div class="shacts"><button id="shCopy" type="button">复制文字</button></div>
   </div>
 </div>
+
+<div class="ttsd" id="ttsDlg" aria-hidden="true">
+  <div class="ttsdm" id="ttsDlgMask"></div>
+  <div class="ttsbx" role="dialog" aria-modal="true">
+    <p class="ttst">重新生成？</p>
+    <p class="ttsdsc">要再等一次生成，效果不一定更好。</p>
+    <div class="ttsact"><button id="ttsNo" type="button">取消</button><button id="ttsYes" type="button" class="pri">确定</button></div>
+  </div>
+</div>
+<div class="ttoast" id="ttoast"></div>
+<script>/* 730pm · 朗读：点击才生成，生成完才播，音频缓存在本机 IndexedDB */
+(function () {
+  var CKEY = 'np-tts';
+  var cfg = { mode: 'minimax', key: '', group: '', voice: '', speed: 1, proxy: '' };
+  try { var s = JSON.parse(localStorage.getItem(CKEY) || 'null'); if (s) for (var k in s) if (k in cfg) cfg[k] = s[k]; } catch (e) {}
+  function saveCfg() { try { localStorage.setItem(CKEY, JSON.stringify(cfg)); } catch (e) {} }
+
+  var toastEl = document.getElementById('ttoast'), toastT = null;
+  function toast(m) {
+    if (!toastEl) return;
+    toastEl.textContent = m; toastEl.classList.add('on');
+    clearTimeout(toastT); toastT = setTimeout(function () { toastEl.classList.remove('on'); }, 1900);
+  }
+
+  function fmt(t) { t = Math.max(0, Math.floor(t || 0)); var m = Math.floor(t / 60), s = t % 60; return m + ':' + (s < 10 ? '0' : '') + s; }
+
+  /* ---------- 本机缓存 ---------- */
+  var DBp = null;
+  function db() {
+    if (DBp) return DBp;
+    DBp = new Promise(function (res, rej) {
+      try {
+        var r = indexedDB.open('730pm-tts', 1);
+        r.onupgradeneeded = function () { r.result.createObjectStore('a'); };
+        r.onsuccess = function () { res(r.result); };
+        r.onerror = function () { rej(r.error); };
+      } catch (e) { rej(e); }
+    });
+    return DBp;
+  }
+  function idbGet(k) {
+    return db().then(function (d) {
+      return new Promise(function (res, rej) {
+        var q = d.transaction('a', 'readonly').objectStore('a').get(k);
+        q.onsuccess = function () { res(q.result || null); };
+        q.onerror = function () { rej(q.error); };
+      });
+    });
+  }
+  function idbSet(k, v) {
+    return db().then(function (d) {
+      return new Promise(function (res, rej) {
+        var q = d.transaction('a', 'readwrite').objectStore('a').put(v, k);
+        q.onsuccess = function () { res(); };
+        q.onerror = function () { rej(q.error); };
+      });
+    });
+  }
+
+  /* ---------- 合成 ---------- */
+  function split(text, max) {
+    var out = [], cur = '';
+    String(text || '').split(/\n+/).forEach(function (p) {
+      p = p.trim(); if (!p) return;
+      if (!cur) { cur = p; return; }
+      if ((cur + '\n' + p).length <= max) { cur += '\n' + p; return; }
+      out.push(cur); cur = p;
+    });
+    if (cur) out.push(cur);
+    var res = [];
+    out.forEach(function (p) {
+      while (p.length > max) { res.push(p.slice(0, max)); p = p.slice(max); }
+      if (p) res.push(p);
+    });
+    return res;
+  }
+
+  function hexBytes(h) {
+    var n = h.length >> 1, u = new Uint8Array(n);
+    for (var i = 0; i < n; i++) u[i] = parseInt(h.substr(i * 2, 2), 16);
+    return u;
+  }
+
+  function one(text) {
+    if (cfg.proxy) {
+      return fetch(cfg.proxy, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ provider: cfg.mode, key: cfg.key, group: cfg.group, voice: cfg.voice, speed: cfg.speed, text: text })
+      }).then(function (r) {
+        if (!r.ok) return r.text().then(function (t) { throw new Error('HTTP ' + r.status + (t ? ' ' + t.slice(0, 60) : '')); });
+        return r.blob();
+      });
+    }
+    if (cfg.mode !== 'minimax') throw new Error('这个供应商要走中转，先填中转地址');
+    var u = 'https://api.minimaxi.com/v1/t2a_v2' + (cfg.group ? ('?GroupId=' + encodeURIComponent(cfg.group)) : '');
+    return fetch(u, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', 'authorization': 'Bearer ' + cfg.key },
+      body: JSON.stringify({
+        model: 'speech-02-hd', text: text, stream: false,
+        voice_setting: { voice_id: cfg.voice, speed: cfg.speed, vol: 1, pitch: 0 },
+        audio_setting: { sample_rate: 32000, bitrate: 128000, format: 'mp3' }
+      })
+    }).then(function (r) { return r.json(); }).then(function (j) {
+      if (!j || !j.data || !j.data.audio) {
+        var m = (j && j.base_resp && j.base_resp.status_msg) || '合成失败';
+        throw new Error(m);
+      }
+      return hexBytes(j.data.audio);
+    });
+  }
+
+  function synth(text) {
+    var parts = split(text, 1200), bufs = [], i = 0;
+    function step() {
+      if (i >= parts.length) return Promise.resolve(new Blob(bufs, { type: 'audio/mpeg' }));
+      return one(parts[i++]).then(function (b) { bufs.push(b); return step(); });
+    }
+    return step();
+  }
+
+  /* ---------- 播放器 ---------- */
+  var ICO_PLAY = '<svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.6 2.6v10.8L13.4 8z"/></svg>';
+  var ICO_PAUSE = '<svg viewBox="0 0 16 16" fill="currentColor"><rect x="4" y="2.8" width="3" height="10.4" rx="0.8"/><rect x="9" y="2.8" width="3" height="10.4" rx="0.8"/></svg>';
+  var ICO_WAIT = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 2.2a5.8 5.8 0 1 1-4.1 1.7"/></svg>';
+
+  var el = document.querySelector('.tts');
+  var audio = new Audio(), url = null, st = 'idle';
+
+  function paint() {
+    if (!el) return;
+    el.setAttribute('data-st', st);
+    var play = el.querySelector('.tplay'), redo = el.querySelector('.tredo'), dl = el.querySelector('.tdl');
+    if (st === 'gen') {
+      play.innerHTML = ICO_WAIT; play.classList.add('gen'); play.disabled = true;
+      redo.disabled = true; dl.disabled = true;
+      el.querySelector('.ttime').textContent = '生成中…';
+    } else {
+      play.classList.remove('gen');
+      play.innerHTML = (st === 'ready' && !audio.paused) ? ICO_PAUSE : ICO_PLAY;
+      play.disabled = false;
+      redo.disabled = (st !== 'ready');
+      dl.disabled = (st !== 'ready');
+      if (st === 'idle') el.querySelector('.ttime').textContent = '0:00 / 0:00';
+    }
+  }
+
+  function drawTime() {
+    if (!el) return;
+    var dur = audio.duration || 0, cur = audio.currentTime || 0;
+    var pct = dur ? (cur / dur) : 0;
+    el.querySelector('.tfill').style.width = (pct * 100) + '%';
+    el.querySelector('.knot').style.left = (pct * 100) + '%';
+    el.querySelector('.ttime').textContent = fmt(cur) + ' / ' + fmt(dur);
+  }
+
+  function ready(b) {
+    if (url) URL.revokeObjectURL(url);
+    url = URL.createObjectURL(b);
+    audio.src = url;
+    st = 'ready';
+    paint();
+    audio.play().catch(function () {});
+  }
+
+  function need() {
+    return !!(cfg.proxy || (cfg.mode === 'minimax' && cfg.key && cfg.voice));
+  }
+
+  function ensure(force) {
+    if (!need()) { toast('先去设置里填朗读的 key 和音色'); return Promise.resolve(); }
+    var data = (typeof READTTS !== 'undefined' && READTTS[+el.getAttribute('data-tts')]) || { id: 'read', text: '' };
+    var key = 'tts:' + data.id + '|' + cfg.mode + '|' + cfg.voice + '|' + cfg.speed;
+    st = 'gen'; paint();
+    var p = force ? Promise.resolve(null) : idbGet(key);
+    return p.then(function (b) { return b || synth(data.text).then(function (nb) { return idbSet(key, nb).then(function () { return nb; }); }); })
+      .then(function (b) { ready(b); })
+      .catch(function (e) { st = url ? 'ready' : 'idle'; paint(); toast('没生成成：' + (e && e.message ? e.message : e)); });
+  }
+
+  if (el) {
+    paint();
+    el.querySelector('.tplay').addEventListener('click', function () {
+      if (st === 'gen') return;
+      if (st === 'ready') { if (audio.paused) audio.play(); else audio.pause(); return; }
+      ensure(false);
+    });
+
+    var dlg = document.getElementById('ttsDlg');
+    el.querySelector('.tredo').addEventListener('click', function () {
+      if (st === 'gen') return;
+      if (!need()) { toast('先去设置里填朗读的 key 和音色'); return; }
+      dlg.classList.add('on'); dlg.setAttribute('aria-hidden', 'false');
+    });
+    document.getElementById('ttsNo').addEventListener('click', function () {
+      dlg.classList.remove('on'); dlg.setAttribute('aria-hidden', 'true'); toast('已取消重新生成');
+    });
+    document.getElementById('ttsYes').addEventListener('click', function () {
+      dlg.classList.remove('on'); dlg.setAttribute('aria-hidden', 'true');
+      toast('正在重新生成，请稍候'); ensure(true);
+    });
+    document.getElementById('ttsDlgMask').addEventListener('click', function () {
+      dlg.classList.remove('on'); dlg.setAttribute('aria-hidden', 'true');
+    });
+
+    el.querySelector('.tdl').addEventListener('click', function () {
+      if (st !== 'ready' || !url) return;
+      var a = document.createElement('a');
+      var t = (READTTS[+el.getAttribute('data-tts')] || {}).title || '730pm';
+      a.href = url; a.download = t.replace(/[\\/:*?"<>|]/g, '') + '.mp3';
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      toast('已下载');
+    });
+
+    var bar = el.querySelector('.tbar');
+    function seek(ev) {
+      if (st !== 'ready' || !audio.duration) return;
+      var r = bar.getBoundingClientRect();
+      var x = (ev.touches ? ev.touches[0].clientX : ev.clientX) - r.left;
+      audio.currentTime = Math.min(1, Math.max(0, x / r.width)) * audio.duration;
+    }
+    bar.addEventListener('click', seek);
+    bar.addEventListener('touchstart', function (e) { seek(e); }, { passive: true });
+
+    audio.addEventListener('timeupdate', drawTime);
+    audio.addEventListener('loadedmetadata', drawTime);
+    audio.addEventListener('play', paint);
+    audio.addEventListener('pause', paint);
+    audio.addEventListener('ended', function () { audio.currentTime = 0; paint(); });
+  }
+
+  /* ---------- 设置里的朗读段 ---------- */
+  var mEl = document.getElementById('ttsMode'), kEl = document.getElementById('ttsKey'),
+      gEl = document.getElementById('ttsGroup'), vEl = document.getElementById('ttsVoice'),
+      pEl = document.getElementById('ttsProxy'), sEl = document.getElementById('ttsSpeed'),
+      spEl = document.getElementById('ttsSpd');
+  function readForm() {
+    if (!mEl) return;
+    cfg.mode = mEl.value; cfg.key = kEl.value.trim(); cfg.group = gEl.value.trim();
+    cfg.voice = vEl.value.trim(); cfg.proxy = pEl.value.trim(); cfg.speed = parseFloat(sEl.value) || 1;
+    if (spEl) spEl.textContent = cfg.speed.toFixed(2) + '×';
+    saveCfg(); if (st === 'ready') paint();
+  }
+  if (mEl) {
+    mEl.value = cfg.mode; kEl.value = cfg.key; gEl.value = cfg.group;
+    vEl.value = cfg.voice; pEl.value = cfg.proxy; sEl.value = cfg.speed;
+    if (spEl) spEl.textContent = (+cfg.speed).toFixed(2) + '×';
+    [mEl, kEl, gEl, vEl, pEl].forEach(function (x) { x.addEventListener('change', readForm); x.addEventListener('blur', readForm); });
+    sEl.addEventListener('input', readForm);
+  }
+})();
+</script>
 
 <div class="scrim" id="scrim"></div>
 
@@ -997,6 +1301,24 @@ abcdefghijklmnopqrstuvwxyz
       <div class="note" id="note">跟着系统走时，上面那个手动开关就不作数了。</div>
     </section>
 
+    <section id="ttsSec">
+      <div class="cap"><span>朗读</span><span class="r">只存本机</span></div>
+      <div class="row"><span>供应商</span>
+        <select id="ttsMode" class="tsel">
+          <option value="minimax">MiniMax</option>
+          <option value="volc">火山（走中转）</option>
+          <option value="fish">Fish（走中转）</option>
+        </select>
+      </div>
+      <input class="tin" id="ttsKey" type="password" placeholder="API Key" autocomplete="off">
+      <input class="tin" id="ttsGroup" type="text" placeholder="Group ID（MiniMax 要）" autocomplete="off">
+      <input class="tin" id="ttsVoice" type="text" placeholder="音色 ID" autocomplete="off">
+      <input class="tin" id="ttsProxy" type="text" placeholder="中转地址（可选，填了就走中转）" autocomplete="off">
+      <div class="row"><span>语速</span><span class="r" id="ttsSpd">1.00×</span></div>
+      <input type="range" id="ttsSpeed" min="0.6" max="1.6" step="0.05" value="1">
+      <div class="note">Key 只在这台设备的浏览器里，不上传、不同步。清掉浏览器数据就没了。</div>
+    </section>
+
     <div class="foot">改动即时生效 · 只存在这台设备上</div>
   </div>
 </aside>
@@ -1013,6 +1335,7 @@ var TODAY="2026年10月23日", WEEKDAY="星期五", ISSUE="第 002 期", TODAY_I
 var ALL_TABS=[{"id":"politics","name":"时政"},{"id":"tech","name":"科技"},{"id":"science","name":"科学"},{"id":"ent","name":"娱乐"},{"id":"sport","name":"体育"},{"id":"hot","name":"热搜"},{"id":"game","name":"游戏"},{"id":"food","name":"美食"},{"id":"trivia","name":"冷知识"},{"id":"today","name":"那年今日"},{"id":"saved","name":"书报架","fn":true}];
 var ISSUE_ITEMS=[{"tab":"头条","t":"Claude 把「允许」按钮交给自己了","d":"10 月 22 日 Anthropic 公告：下周起，Claude 网页、桌面、手机端的新会话在 Pro、Max、Team 套餐下默认进入自动模式。以前每一步工具调用都要你点允许，现在改由一个分类模型逐条审：安全的直接放行，危险的拦下，让 Claude 换条路。官方给的理由是人的判断力有限——Claude Code 里用户批准了 97% 的提示；1053 名付费测试者的实验里，人只拦下 13.6% 的危险命令，自动模式拦下 89%。连续三次被拦或单场二十次，会退回人工。","u":"https://hitlistai.com/posts/2026-10-23/claudeautomode"},{"tab":"头条","t":"台风蔷琵逼近，台北 23 日停班停课","d":"18 个县市风力或雨量达到停班停课标准，基隆、台北、新北、桃园经共识宣布停班停课。金钟奖主办方先前说明：若 23 日停班停课，节目类颁奖典礼顺延到 25 日。","u":"https://news.yahoo.com/%E8%96%94%E7%90%B5%E9%A2%B1%E9%A2%A8%E5%A8%81%E8%84%85%E5%8A%A0%E5%8A%87-%E5%8C%97%E5%8C%97%E5%9F%BA%E6%A1%83%E9%81%94%E5%85%B1%E8%AD%98-10-23%E5%81%9C%E6%AD%A2%E4%B8%8A%E7%8F%AD%E4%B8%8A%E8%AA%B2-121259711.html"},{"tab":"头条","t":"西藏巴青 7.0 级地震，救援连夜展开","d":"10 月 22 日 22 时 33 分，震中北纬 32.40 度、东经 93.79 度，距青海省界约 11 公里。杂多县交界乡镇震感强烈，部分房屋出现裂缝。西部战区 300 余人赶赴灾区，西藏消防已进入震区搜救。","u":"http://www.ce.cn/xwzx/gnsz/gdxw/202610/t20261023_3268394.shtml"},{"tab":"头条","t":"iPhone Duo 开售首日，溢价一路往下掉","d":"官网现在下单要排到 2027 年 1 月 22 日，门店没有现货。黄牛回收只肯加 1700 到 1800 元，转手卖 512GB、1TB 加 1500 到 2500 元。得物上 256GB 的加价一周缩水约五成，首销当天三小时又跌 946 元。","u":"https://www.cls.cn/detail/2513495"},{"tab":"头条","t":"国乒男团亚锦赛四连冠","d":"塔什干，决赛 3 比 0 横扫韩国。周启豪 3 比 1 赢姜东秀，林诗栋 3 比 0 赢朴奎炫，向鹏 3 比 1 赢朴康贤。这是中国队第 26 次拿到亚锦赛男团冠军。","u":"https://www.news.cn/sports/20261023/b227f4656aad4f10bedcf9c6a3637f09/c.html"},{"tab":"时政","t":"俄乌互指对方用数百架无人机打首都","d":"10 月 22 日，双方各自指责对方发动大规模无人机袭击。前一天克里姆林宫才表示原则上同意重启美国主导的三方会谈。万斯说，解决俄乌问题仍面临巨大挑战，但华盛顿会继续推。","u":"https://www.voachinese.com/a/8209482.html"},{"tab":"时政","t":"特朗普指伊朗「捏造」袭船，为了抬油价","d":"伊朗称一天前有七艘油轮遭袭或触雷，特朗普 10 月 22 日反过来说这是编的，目的是在美国中期选举前推高油价。此前霍尔木兹海峡与波斯湾确有两艘油轮遭发射物袭击，油价随之走高。","u":"https://www.voachinese.com/z/1772"},{"tab":"时政","t":"匈牙利纪念 1956 年起义七十周年","d":"布达佩斯在国会大厦前的科苏特广场升旗。冯德莱恩、科斯塔等欧洲领导人到场，被视为马扎尔政府修复与欧盟关系的一步。1956 年的起义被苏军镇压，约 3000 名平民死亡，20 万人逃亡。","u":"https://apnews.com/article/hungary-revolution-commemoration-european-guests-magyar-1a1221feb414d26f468687c566b7dff5"},{"tab":"时政","t":"美调查报告：中俄防务合作在加速升级","d":"报告称俄罗斯国防工业相关企业正逐步进入中国供应链，中国在获取俄罗斯的设计与科研专长。专家建议美国及其盟友加大创新，并协调强化制裁与出口管制。","u":"https://www.voachinese.com/a/voa-today-20261022/8214233.html"},{"tab":"科技","t":"讯飞星火 X2.6：全国产算力训练，端云一体","d":"10 月 22 日开发者节发布。官方给的尺寸是 293-A30B，支持百万 token 上下文，同时开源 4B 端侧模型 X2.6-4B。端云路由准确率 96.1%，端侧能独立完成的智能体任务覆盖度 41.9%。超长上下文训练效率约 4 倍，国产集群推理效率 4.5 倍。","u":"http://ah.xinhuanet.com/20261023/00db92f6b06f4a3daa714c781370de72/c.html"},{"tab":"科技","t":"Kimi K3.1 露了个脸，官方没说日期","d":"10 月 23 日上午，Kimi 官方账号发了一段 24 秒视频，终端里 Model 栏写着 Kimi K3.1、版本 2.2.0、上下文 1M。SGLang 的提交里已经加了 K3.1 支持，思考强度多了一档 medium。发布日、价格、是否开源，一个字都没有。","u":"https://blocktempo.com/kimi-k3-1-official-teaser-video-leaked-specs-match-k3"},{"tab":"科技","t":"Agent Skills 标准捐给 Linux 基金会","d":"Anthropic 10 月 22 日公告，把 Agent Skills 开放标准捐给 Linux 基金会旗下的 Agentic AI Foundation。这个组织 2025 年 12 月成立，由 Anthropic、Block、OpenAI 共同创立，MCP 也托管在这里。","u":"http://finance.sina.com.cn/tech/digi/2026-10-23/doc-iniweiyt5687698.shtml"},{"tab":"科技","t":"信通院：国内大模型均价一年翻倍","d":"10 月 23 日发布的《大模型词元服务性能监测报告（2026 年）》称，2026 年以来发布的典型模型平均归一价格约 117.8 元，比之前翻倍；但国外价格仍高于国内。","u":"https://k.sina.com.cn/article_7857201856_1d45362c001908s4gc.html"},{"tab":"科技","t":"iPhone Duo 首销：一机难求，但没人加价了","d":"国行 15999 元起，全系线上预约、线下取货，门店无现货。256GB 回收加价约 2000 元，2TB 版本现场多位黄牛直接不收。渠道商的说法很直白：买来用的人很少，大部分是炒的。","u":"https://jnzstatic.cs.com.cn/zzb/htmlInfo/135907.html"},{"tab":"科技","t":"25 个常用应用实测，约八成没适配内屏","d":"首批测评显示，未适配的应用只能居中显示或等比放大，用不满 7.6 英寸内屏。微信、QQ 已完成适配。客服称后续会解决——也就是说，15999 元买到的是一台要等生态追上来的机器。","u":"https://www.cls.cn/detail/2513495"},{"tab":"科学","t":"96% 的珊瑚礁被列为「极度濒危」","d":"IUCN 在埃里温 COP17 生物多样性峰会上发布首份全球珊瑚礁生态系统评估：96% 被划入最高风险等级，到 2075 年几乎所有浅水珊瑚礁都面临崩溃的极高风险。今年出现的超级厄尔尼诺又加了一层。","u":"https://japantimes.co.jp/environment/2026/10/22/climate-change/coral-reefs-collapse-50-years"},{"tab":"科学","t":"欧洲今夏城市热浪死亡超五万，三分之二算在气候变暖头上","d":"帝国理工团队在 Nature Health 发两篇论文：2026 年夏天欧洲城市约 5 万人死于高温，为有记录以来最严重；其中 3.26 万人直接归因于人为气候变化。作者说，可以比较有把握地说这是欧洲大部分地区热相关死亡率最差的一年。","u":"https://cnn.com/2026/10/22/climate/europe-heat-wave-deaths-50000"},{"tab":"科学","t":"兔子少了，猞猁开始吃老鹰","d":"Nature 论文记录了一件几十年没发生过的事：疾病让共用的猎物（兔子）锐减后，猞猁开始捕食红鸢，而且只在干旱年份、在鸢巢下发现兔尸时下手。结果红鸢繁殖成功率下降、弃巢、扩散，数量减少后小型鸮类反而增多。","u":"https://www.nature.com/articles/s41586-026-11194-z"},{"tab":"科学","t":"461 纳米蓝光激光器做进芯片，线宽不到 30 kHz","d":"Nature Photonics：氮化镓激光二极管自注入锁定到氮化硅微腔，做出 461 nm 集成蓝光激光器，输出超过 1 mW，线宽低于 30 kHz；氮化铝压电执行器做在光路上，实现无跳模线性扫频，最高 900 MHz、重复率 1 MHz。作者演示了水下通信和相干气溶胶探测。","u":"https://nature.com/articles/s41566-026-02040-9"},{"tab":"娱乐","t":"VOGUE 盛典：杨幂开场，刘亦菲压轴","d":"10 月 23 日苏州，主题「Extreme Colors·绝色」。杨幂黑纱斗篷短裙开场，刘亦菲穿 Elie Saab 2025 秋冬高定国内首穿压轴，配整套宝格丽。大合影两人分列主编刘冲两侧，中间还踩到了刘亦菲的裙摆。","u":"https://k.sina.com.cn/article_7879776730_1d5abd9da06803xsaa.html"},{"tab":"娱乐","t":"《尚公主》今天开播，先炒了一周 CP","d":"孟子义、李昀锐主演，预约量破 400 万。开播前两人高强度营业，李昀锐在综艺里选「早五年认识孟子义」，引发唯粉脱粉，相关话题阅读量过 8 亿。剧方没有停合体宣传。","u":"https://www.dianlingai.com/articles/li-yunrui-fan-loss-shanggongzhu-promotion-controversy-analysis?cat=star_hot"},{"tab":"娱乐","t":"LISA 发首张个人 EP《PRESS PLAY》","d":"10 月 23 日全球同步，六首：Tarantino、V12、Cobra、Cut U Off、Sweat、SaWaDiKa。主打 Tarantino 的 MV 同日上线，整张按「看电影」的概念做的。距上一张专辑《Alter Ego》一年八个月。","u":"https://en.yna.co.kr/view/AEN20261023007000315"},{"tab":"娱乐","t":"河正宇 12 月 13 日结婚","d":"经纪公司 10 月 14 日公布，与女友车贞媛的婚礼定在 12 月 13 日，只请家人和亲友，不对外公开。","u":"https://china.newspim.com/news/view?idx=20261014000929"},{"tab":"娱乐","t":"陶昕然 · 重扮安陵容，被说脸变了","d":"10 月 16 日她发「甄嬛传之安陵容番外」造型，评论区说认不出。她回：每个人的容颜会随心境改变，我也觉得我比十年前好看了。《雀骨》7 月 11 日上线、8 月已收官；《朋友别见外》更新到 10 月 11 日那期。","u":"https://www.yesdaily.com/xinwen_285871.html"},{"tab":"娱乐","t":"刘琳 · 十月没有新定档","d":"《逐玉》3 月 6 日到 30 日播完，她演赵大娘；《生逢其时》9 月 3 日央视一套开播。待播还有《金枝》《五个失踪的少年》《孔雀东南飞》，十月都没有新消息。","u":"https://zh.wikipedia.org/zh-hans/%E5%88%98%E7%90%B3_(1974%E5%B9%B4)"},{"tab":"体育","t":"中国军团全军覆没，无人进北爱八强","d":"16 进 8，庞俊旭对凯伦·威尔逊打满七局：单杆 108、97，一度追平，决胜局被对手一杆 94 清台，3 比 4 惜败。张家玮 2 比 4 负吉尔伯特，黑马之旅到此为止。本届 14 人进正赛，6 人 32 强，2 人 16 强。","u":"https://www.chinanews.com.cn/ty/2026/10-23/10719709.shtml"},{"tab":"体育","t":"八强只剩两个 Top16","d":"凯伦·威尔逊、马克·威廉姆斯。特鲁姆普在 32 进 16 被奥德奈尔 4 比 3 淘汰，墨菲、希金斯、布雷切尔也都早早出局。1/4 决赛改 11 局 6 胜。","u":"https://c.m.163.com/news/a/L9U98ASO0556C55F.html?from=subscribe"},{"tab":"体育","t":"亚锦赛女团 2 比 3 负日本，拿银牌","d":"孙颖莎、王曼昱、陈幸同都没来，五盘打满。王艺迪在第二盘 3 比 2 赢下张本美和，但整体还是差一口气。这是本届亚锦赛国乒的第二块奖牌。","u":"https://www.163.com/dy/article/L9SQJI4N05566S2A.html?f=post1603_tab_news"},{"tab":"体育","t":"林诗栋团体赛四战全胜","d":"21 岁，一单位置，四场没输过，只在对伊朗时丢了一局。亚运会他拿过 3 金 1 银，这次扛住了男团最重的那一分。接下来还要和黄友政打男双。","u":"https://m.dongqiudi.com/article/6535260.html"},{"tab":"热搜","t":"今天挂在上面的事","d":"李昌钰骨灰一半葬扬州一半留美国（5297 万）· 李昌钰 · 多方力量保障西藏巴青地震救援 · 台风 · 美国姑娘来中国考英语倒数第一 · 松岛辉空男单退赛 · 尚公主 · 泰国旅游部长回应中国游客安全 · iPhoneDuo 到手发现华为更香了 · VOGUE 红毯","u":"https://remoshuang.com/weibo"},{"tab":"热搜","t":"巴西政治直播刷屏","d":"#LulaAoVivoComSeuExercito、#FlavioBolsonaroNaLancha、#JanonesELulaAoVivoAgora、#EsquentaDaLiveDe24HS、#EsquerdaDominouAsRedes 五条挤在前五。后面是欧联杯（Bournemouth、Crystal Palace、Europa League）、Tom Skerritt、Top Gun、Haiti。","u":"https://whatstrends.com"},{"tab":"游戏","t":"Spiral Up 发行商特卖，最低四折","d":"10 月 23 日到 11 月 6 日，CRPG《动物迷城》和《轮盘英雄》都是新史低。同一天开的还有 Telltale 行尸走肉系列特卖、饥荒系列特卖，Monster Prom 独立游戏特卖到 10 月 26 日。","u":"https://store.steampowered.com/specials?l=schinese"},{"tab":"游戏","t":"101XP 特卖到 11 月 1 日","d":"自家全线游戏打折，《The Life and Suffering of Prince Jerian》也在里面。这一轮发行商特卖里折扣最整齐的一家。","u":"https://store.steampowered.com/specials?l=schinese"},{"tab":"游戏","t":"《三角洲行动》联动《影之刃零》","d":"官方 9 月底发布会确认联动，《影之刃零》10 月 29 日登 PC 和 PS5。具体联动形式和上线时间都还没公布。","u":"https://www.gamersky.com/news/202609/2217461.shtml"},{"tab":"美食","t":"榴莲系列 10 月 22 日全国上新","d":"猫山王榴莲拿铁 18.9 元、510ml；猫山王榴莲椰椰 20 元。马来西亚猫山王配泰国金枕，宣称 100% 果肉、0 香精，一杯约等于一瓣完整榴莲。","u":"https://www.sina.cn/news/detail/5356471084647568.html"},{"tab":"美食","t":"近三周上了四款，最便宜 11.9","d":"黄油啤酒拿铁 11.9、桂花酒酿拿铁 12.9、相思引 16、墨色惊鸿 17。都是这一轮新菜单里的，门店现售。","u":"https://www.nckfhsm.com/brands/cha-hua-nong/new-products"},{"tab":"美食","t":"今天没抓到","d":"大陆门店的菜单只在微信公众号和门店小程序更新，网页上能搜到的还是香港、台湾的门店活动，那些不要，一条都没放。","u":""},{"tab":"美食","t":"今天没抓到","d":"10 月没有公开的大陆菜单更新，华北特惠只在门店小程序里。搜到的十月新品讨论是食客吐槽，不是官方菜单。","u":""},{"tab":"冷知识","t":"蜂蜜放三千年还能吃","d":"考古队在埃及古墓里挖出过三千年前的蜂蜜，没坏，理论上还能抹面包。原因是它几乎不给微生物留活路：含水量低到 18% 以下，酸度高，葡萄糖氧化酶还会慢慢产生微量过氧化氢。唯一的前提是密封——一旦进水，酵母就开始工作。","u":"https://zh.wikipedia.org/wiki/%E8%9C%82%E8%9C%9C"},{"tab":"冷知识","t":"蜗牛的牙齿长在舌头上","d":"它们没有颌骨，只有一条叫齿舌的带状器官，上面排着成排的微型齿，像锉刀一样刮食物。不同种类数量差别极大，从几十颗到上万颗都有记录。牙齿会不断磨损、不断向后补充，用旧了就换新的。","u":"https://zh.wikipedia.org/wiki/%E9%BD%92%E8%88%8C"},{"tab":"冷知识","t":"自由女神像本来不是绿的","d":"1886 年落成时是亮铜色，像一枚新硬币。二十多年后表面氧化，形成碱式碳酸铜，才变成现在这层绿。这层铜绿并不只是脏，它反过来把里面的铜封住了，腐蚀速率大幅下降。当年有人提议刷掉，被否了。","u":"https://zh.wikipedia.org/wiki/%E8%87%AA%E7%94%B1%E5%A5%B3%E7%A5%9E%E5%83%8F"},{"tab":"那年今日","t":"霜降","d":"二十四节气的第十八个，秋季最后一个。2026 年交节时刻是 10 月 23 日 17 时 38 分，太阳到达黄经 210 度。名字里的「霜降」不是说天上下霜，是说气温骤降、昼夜温差拉到一年最大。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8823%E6%97%A5"},{"tab":"那年今日","t":"国际雪豹日","d":"2013 年 10 月 23 日，包括中国在内的十二个亚洲国家在比什凯克签署保护雪豹的《比什凯克宣言》，这一天由此定为国际雪豹日。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8823%E6%97%A5"},{"tab":"那年今日","t":"摩尔日","d":"化学老师们的节日。阿伏伽德罗常数是 6.02×10²³，所以庆祝时间定在 10 月 23 日的 6:02 到 18:02。1991 年从美国威斯康星州一所高中开始，后来蔓延到全世界。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8823%E6%97%A5"},{"tab":"那年今日","t":"1856 年 · 亚罗号事件，第二次鸦片战争导火索","d":"清朝广州水师登上商船亚罗号搜查、逮捕海盗与嫌犯，英国以该船曾在香港注册为由抗议，并借此进攻广州。战争由此扩大。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8823%E6%97%A5"},{"tab":"那年今日","t":"1868 年 · 日本改元明治","d":"天皇将年号从庆应改为明治，日本进入一世一元制。同一年，江户改称东京，幕府时代正式收尾。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8823%E6%97%A5"},{"tab":"那年今日","t":"1884 年 · 法军宣布封锁台湾","d":"中法战争期间，法国远东舰队司令孤拔宣布封锁台湾各口岸，试图逼清廷让步。封锁持续到次年，台湾军民守住了淡水。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8823%E6%97%A5"},{"tab":"那年今日","t":"1911 年 · 飞机第一次用于战争","d":"意土战争中，意大利首次把动力飞机投入空中作战，也第一次从飞机上投掷炸弹。那一年距离莱特兄弟首飞才八年。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8823%E6%97%A5"},{"tab":"那年今日","t":"1917 年 · 布尔什维克决定发动十月革命","d":"俄共中央通过决议，武装起义被提上日程。三周后，冬宫被攻占。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8823%E6%97%A5"},{"tab":"那年今日","t":"1942 年 · 第二次阿拉曼战役开始","d":"蒙哥马利指挥英军第八集团军向隆美尔的非洲军团发起进攻，十二天后德意军溃退。北非战局就此转向。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8823%E6%97%A5"},{"tab":"那年今日","t":"1946 年 · 联合国大会首次开会","d":"第一届联合国大会在纽约法拉盛开幕。当时有 51 个成员国，现在 193 个。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8823%E6%97%A5"},{"tab":"那年今日","t":"1956 年 · 匈牙利革命爆发","d":"布达佩斯学生游行，推倒斯大林像，起义迅速蔓延全国。十三天后苏军重返，镇压造成约 3000 名平民死亡，20 万人逃亡。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8823%E6%97%A5"},{"tab":"那年今日","t":"1993 年 · 上海杨浦大桥通车","d":"主跨 602 米，建成时是世界最大跨度的斜拉桥。浦西浦东之间，从此多了一条不堵车的路。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8823%E6%97%A5"},{"tab":"那年今日","t":"2001 年 · 第一代 iPod 发布","d":"5GB 硬盘、一千首歌、10 小时续航、399 美元。乔布斯说「把一千首歌装进口袋」，台下掌声持续了很久。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8823%E6%97%A5"},{"tab":"今日阅读","t":"寒花葬志","d":"婢，魏孺人媵也。嘉靖丁酉五月四日死，葬虚丘。事我而不卒，命也夫！ 婢初媵时，年十岁，垂双鬟，曳深绿布裳。一日，天寒，爇火煮荸荠熟，婢削之盈瓯；予入自外，取食之；婢持去，不与。魏孺人笑之。孺人每令婢倚几旁饭，即饭，目眶冉冉动。孺人又指予以为笑。 回思是时，奄忽便已十年。吁，可悲也已！","u":""}];
 var SHARE=[{"t":"Claude 把「允许」按钮交给自己了","d":"10 月 22 日 Anthropic 公告：下周起，Claude 网页、桌面、手机端的新会话在 Pro、Max、Team 套餐下默认进入自动模式。以前每一步工具调用都要你点允许，现在改由一个分类模型逐条审：安全的直接放行，危险的拦下，让 Claude 换条路。官方给的理由是人的判断力有限——Claude Code 里用户批准了 97% 的提示；1053 名付费测试者的实验里，人只拦下 13.6% 的危险命令，自动模式拦下 89%。连续三次被拦或单场二十次，会退回人工。","u":"https://hitlistai.com/posts/2026-10-23/claudeautomode"},{"t":"台风蔷琵逼近，台北 23 日停班停课","d":"18 个县市风力或雨量达到停班停课标准，基隆、台北、新北、桃园经共识宣布停班停课。金钟奖主办方先前说明：若 23 日停班停课，节目类颁奖典礼顺延到 25 日。","u":"https://news.yahoo.com/%E8%96%94%E7%90%B5%E9%A2%B1%E9%A2%A8%E5%A8%81%E8%84%85%E5%8A%A0%E5%8A%87-%E5%8C%97%E5%8C%97%E5%9F%BA%E6%A1%83%E9%81%94%E5%85%B1%E8%AD%98-10-23%E5%81%9C%E6%AD%A2%E4%B8%8A%E7%8F%AD%E4%B8%8A%E8%AA%B2-121259711.html"},{"t":"西藏巴青 7.0 级地震，救援连夜展开","d":"10 月 22 日 22 时 33 分，震中北纬 32.40 度、东经 93.79 度，距青海省界约 11 公里。杂多县交界乡镇震感强烈，部分房屋出现裂缝。西部战区 300 余人赶赴灾区，西藏消防已进入震区搜救。","u":"http://www.ce.cn/xwzx/gnsz/gdxw/202610/t20261023_3268394.shtml"},{"t":"iPhone Duo 开售首日，溢价一路往下掉","d":"官网现在下单要排到 2027 年 1 月 22 日，门店没有现货。黄牛回收只肯加 1700 到 1800 元，转手卖 512GB、1TB 加 1500 到 2500 元。得物上 256GB 的加价一周缩水约五成，首销当天三小时又跌 946 元。","u":"https://www.cls.cn/detail/2513495"},{"t":"国乒男团亚锦赛四连冠","d":"塔什干，决赛 3 比 0 横扫韩国。周启豪 3 比 1 赢姜东秀，林诗栋 3 比 0 赢朴奎炫，向鹏 3 比 1 赢朴康贤。这是中国队第 26 次拿到亚锦赛男团冠军。","u":"https://www.news.cn/sports/20261023/b227f4656aad4f10bedcf9c6a3637f09/c.html"},{"t":"俄乌互指对方用数百架无人机打首都","d":"10 月 22 日，双方各自指责对方发动大规模无人机袭击。前一天克里姆林宫才表示原则上同意重启美国主导的三方会谈。万斯说，解决俄乌问题仍面临巨大挑战，但华盛顿会继续推。","u":"https://www.voachinese.com/a/8209482.html"},{"t":"特朗普指伊朗「捏造」袭船，为了抬油价","d":"伊朗称一天前有七艘油轮遭袭或触雷，特朗普 10 月 22 日反过来说这是编的，目的是在美国中期选举前推高油价。此前霍尔木兹海峡与波斯湾确有两艘油轮遭发射物袭击，油价随之走高。","u":"https://www.voachinese.com/z/1772"},{"t":"匈牙利纪念 1956 年起义七十周年","d":"布达佩斯在国会大厦前的科苏特广场升旗。冯德莱恩、科斯塔等欧洲领导人到场，被视为马扎尔政府修复与欧盟关系的一步。1956 年的起义被苏军镇压，约 3000 名平民死亡，20 万人逃亡。","u":"https://apnews.com/article/hungary-revolution-commemoration-european-guests-magyar-1a1221feb414d26f468687c566b7dff5"},{"t":"美调查报告：中俄防务合作在加速升级","d":"报告称俄罗斯国防工业相关企业正逐步进入中国供应链，中国在获取俄罗斯的设计与科研专长。专家建议美国及其盟友加大创新，并协调强化制裁与出口管制。","u":"https://www.voachinese.com/a/voa-today-20261022/8214233.html"},{"t":"讯飞星火 X2.6：全国产算力训练，端云一体","d":"10 月 22 日开发者节发布。官方给的尺寸是 293-A30B，支持百万 token 上下文，同时开源 4B 端侧模型 X2.6-4B。端云路由准确率 96.1%，端侧能独立完成的智能体任务覆盖度 41.9%。超长上下文训练效率约 4 倍，国产集群推理效率 4.5 倍。","u":"http://ah.xinhuanet.com/20261023/00db92f6b06f4a3daa714c781370de72/c.html"},{"t":"Kimi K3.1 露了个脸，官方没说日期","d":"10 月 23 日上午，Kimi 官方账号发了一段 24 秒视频，终端里 Model 栏写着 Kimi K3.1、版本 2.2.0、上下文 1M。SGLang 的提交里已经加了 K3.1 支持，思考强度多了一档 medium。发布日、价格、是否开源，一个字都没有。","u":"https://blocktempo.com/kimi-k3-1-official-teaser-video-leaked-specs-match-k3"},{"t":"Agent Skills 标准捐给 Linux 基金会","d":"Anthropic 10 月 22 日公告，把 Agent Skills 开放标准捐给 Linux 基金会旗下的 Agentic AI Foundation。这个组织 2025 年 12 月成立，由 Anthropic、Block、OpenAI 共同创立，MCP 也托管在这里。","u":"http://finance.sina.com.cn/tech/digi/2026-10-23/doc-iniweiyt5687698.shtml"},{"t":"信通院：国内大模型均价一年翻倍","d":"10 月 23 日发布的《大模型词元服务性能监测报告（2026 年）》称，2026 年以来发布的典型模型平均归一价格约 117.8 元，比之前翻倍；但国外价格仍高于国内。","u":"https://k.sina.com.cn/article_7857201856_1d45362c001908s4gc.html"},{"t":"iPhone Duo 首销：一机难求，但没人加价了","d":"国行 15999 元起，全系线上预约、线下取货，门店无现货。256GB 回收加价约 2000 元，2TB 版本现场多位黄牛直接不收。渠道商的说法很直白：买来用的人很少，大部分是炒的。","u":"https://jnzstatic.cs.com.cn/zzb/htmlInfo/135907.html"},{"t":"25 个常用应用实测，约八成没适配内屏","d":"首批测评显示，未适配的应用只能居中显示或等比放大，用不满 7.6 英寸内屏。微信、QQ 已完成适配。客服称后续会解决——也就是说，15999 元买到的是一台要等生态追上来的机器。","u":"https://www.cls.cn/detail/2513495"},{"t":"96% 的珊瑚礁被列为「极度濒危」","d":"IUCN 在埃里温 COP17 生物多样性峰会上发布首份全球珊瑚礁生态系统评估：96% 被划入最高风险等级，到 2075 年几乎所有浅水珊瑚礁都面临崩溃的极高风险。今年出现的超级厄尔尼诺又加了一层。","u":"https://japantimes.co.jp/environment/2026/10/22/climate-change/coral-reefs-collapse-50-years"},{"t":"欧洲今夏城市热浪死亡超五万，三分之二算在气候变暖头上","d":"帝国理工团队在 Nature Health 发两篇论文：2026 年夏天欧洲城市约 5 万人死于高温，为有记录以来最严重；其中 3.26 万人直接归因于人为气候变化。作者说，可以比较有把握地说这是欧洲大部分地区热相关死亡率最差的一年。","u":"https://cnn.com/2026/10/22/climate/europe-heat-wave-deaths-50000"},{"t":"兔子少了，猞猁开始吃老鹰","d":"Nature 论文记录了一件几十年没发生过的事：疾病让共用的猎物（兔子）锐减后，猞猁开始捕食红鸢，而且只在干旱年份、在鸢巢下发现兔尸时下手。结果红鸢繁殖成功率下降、弃巢、扩散，数量减少后小型鸮类反而增多。","u":"https://www.nature.com/articles/s41586-026-11194-z"},{"t":"461 纳米蓝光激光器做进芯片，线宽不到 30 kHz","d":"Nature Photonics：氮化镓激光二极管自注入锁定到氮化硅微腔，做出 461 nm 集成蓝光激光器，输出超过 1 mW，线宽低于 30 kHz；氮化铝压电执行器做在光路上，实现无跳模线性扫频，最高 900 MHz、重复率 1 MHz。作者演示了水下通信和相干气溶胶探测。","u":"https://nature.com/articles/s41566-026-02040-9"},{"t":"VOGUE 盛典：杨幂开场，刘亦菲压轴","d":"10 月 23 日苏州，主题「Extreme Colors·绝色」。杨幂黑纱斗篷短裙开场，刘亦菲穿 Elie Saab 2025 秋冬高定国内首穿压轴，配整套宝格丽。大合影两人分列主编刘冲两侧，中间还踩到了刘亦菲的裙摆。","u":"https://k.sina.com.cn/article_7879776730_1d5abd9da06803xsaa.html"},{"t":"《尚公主》今天开播，先炒了一周 CP","d":"孟子义、李昀锐主演，预约量破 400 万。开播前两人高强度营业，李昀锐在综艺里选「早五年认识孟子义」，引发唯粉脱粉，相关话题阅读量过 8 亿。剧方没有停合体宣传。","u":"https://www.dianlingai.com/articles/li-yunrui-fan-loss-shanggongzhu-promotion-controversy-analysis?cat=star_hot"},{"t":"LISA 发首张个人 EP《PRESS PLAY》","d":"10 月 23 日全球同步，六首：Tarantino、V12、Cobra、Cut U Off、Sweat、SaWaDiKa。主打 Tarantino 的 MV 同日上线，整张按「看电影」的概念做的。距上一张专辑《Alter Ego》一年八个月。","u":"https://en.yna.co.kr/view/AEN20261023007000315"},{"t":"河正宇 12 月 13 日结婚","d":"经纪公司 10 月 14 日公布，与女友车贞媛的婚礼定在 12 月 13 日，只请家人和亲友，不对外公开。","u":"https://china.newspim.com/news/view?idx=20261014000929"},{"t":"陶昕然 · 重扮安陵容，被说脸变了","d":"10 月 16 日她发「甄嬛传之安陵容番外」造型，评论区说认不出。她回：每个人的容颜会随心境改变，我也觉得我比十年前好看了。《雀骨》7 月 11 日上线、8 月已收官；《朋友别见外》更新到 10 月 11 日那期。","u":"https://www.yesdaily.com/xinwen_285871.html"},{"t":"刘琳 · 十月没有新定档","d":"《逐玉》3 月 6 日到 30 日播完，她演赵大娘；《生逢其时》9 月 3 日央视一套开播。待播还有《金枝》《五个失踪的少年》《孔雀东南飞》，十月都没有新消息。","u":"https://zh.wikipedia.org/zh-hans/%E5%88%98%E7%90%B3_(1974%E5%B9%B4)"},{"t":"中国军团全军覆没，无人进北爱八强","d":"16 进 8，庞俊旭对凯伦·威尔逊打满七局：单杆 108、97，一度追平，决胜局被对手一杆 94 清台，3 比 4 惜败。张家玮 2 比 4 负吉尔伯特，黑马之旅到此为止。本届 14 人进正赛，6 人 32 强，2 人 16 强。","u":"https://www.chinanews.com.cn/ty/2026/10-23/10719709.shtml"},{"t":"八强只剩两个 Top16","d":"凯伦·威尔逊、马克·威廉姆斯。特鲁姆普在 32 进 16 被奥德奈尔 4 比 3 淘汰，墨菲、希金斯、布雷切尔也都早早出局。1/4 决赛改 11 局 6 胜。","u":"https://c.m.163.com/news/a/L9U98ASO0556C55F.html?from=subscribe"},{"t":"亚锦赛女团 2 比 3 负日本，拿银牌","d":"孙颖莎、王曼昱、陈幸同都没来，五盘打满。王艺迪在第二盘 3 比 2 赢下张本美和，但整体还是差一口气。这是本届亚锦赛国乒的第二块奖牌。","u":"https://www.163.com/dy/article/L9SQJI4N05566S2A.html?f=post1603_tab_news"},{"t":"林诗栋团体赛四战全胜","d":"21 岁，一单位置，四场没输过，只在对伊朗时丢了一局。亚运会他拿过 3 金 1 银，这次扛住了男团最重的那一分。接下来还要和黄友政打男双。","u":"https://m.dongqiudi.com/article/6535260.html"},{"t":"今天挂在上面的事","d":"李昌钰骨灰一半葬扬州一半留美国（5297 万）· 李昌钰 · 多方力量保障西藏巴青地震救援 · 台风 · 美国姑娘来中国考英语倒数第一 · 松岛辉空男单退赛 · 尚公主 · 泰国旅游部长回应中国游客安全 · iPhoneDuo 到手发现华为更香了 · VOGUE 红毯","u":"https://remoshuang.com/weibo"},{"t":"巴西政治直播刷屏","d":"#LulaAoVivoComSeuExercito、#FlavioBolsonaroNaLancha、#JanonesELulaAoVivoAgora、#EsquentaDaLiveDe24HS、#EsquerdaDominouAsRedes 五条挤在前五。后面是欧联杯（Bournemouth、Crystal Palace、Europa League）、Tom Skerritt、Top Gun、Haiti。","u":"https://whatstrends.com"},{"t":"Spiral Up 发行商特卖，最低四折","d":"10 月 23 日到 11 月 6 日，CRPG《动物迷城》和《轮盘英雄》都是新史低。同一天开的还有 Telltale 行尸走肉系列特卖、饥荒系列特卖，Monster Prom 独立游戏特卖到 10 月 26 日。","u":"https://store.steampowered.com/specials?l=schinese"},{"t":"101XP 特卖到 11 月 1 日","d":"自家全线游戏打折，《The Life and Suffering of Prince Jerian》也在里面。这一轮发行商特卖里折扣最整齐的一家。","u":"https://store.steampowered.com/specials?l=schinese"},{"t":"《三角洲行动》联动《影之刃零》","d":"官方 9 月底发布会确认联动，《影之刃零》10 月 29 日登 PC 和 PS5。具体联动形式和上线时间都还没公布。","u":"https://www.gamersky.com/news/202609/2217461.shtml"},{"t":"榴莲系列 10 月 22 日全国上新","d":"猫山王榴莲拿铁 18.9 元、510ml；猫山王榴莲椰椰 20 元。马来西亚猫山王配泰国金枕，宣称 100% 果肉、0 香精，一杯约等于一瓣完整榴莲。","u":"https://www.sina.cn/news/detail/5356471084647568.html"},{"t":"近三周上了四款，最便宜 11.9","d":"黄油啤酒拿铁 11.9、桂花酒酿拿铁 12.9、相思引 16、墨色惊鸿 17。都是这一轮新菜单里的，门店现售。","u":"https://www.nckfhsm.com/brands/cha-hua-nong/new-products"},{"t":"今天没抓到","d":"大陆门店的菜单只在微信公众号和门店小程序更新，网页上能搜到的还是香港、台湾的门店活动，那些不要，一条都没放。","u":""},{"t":"今天没抓到","d":"10 月没有公开的大陆菜单更新，华北特惠只在门店小程序里。搜到的十月新品讨论是食客吐槽，不是官方菜单。","u":""},{"t":"蜂蜜放三千年还能吃","d":"考古队在埃及古墓里挖出过三千年前的蜂蜜，没坏，理论上还能抹面包。原因是它几乎不给微生物留活路：含水量低到 18% 以下，酸度高，葡萄糖氧化酶还会慢慢产生微量过氧化氢。唯一的前提是密封——一旦进水，酵母就开始工作。","u":"https://zh.wikipedia.org/wiki/%E8%9C%82%E8%9C%9C"},{"t":"蜗牛的牙齿长在舌头上","d":"它们没有颌骨，只有一条叫齿舌的带状器官，上面排着成排的微型齿，像锉刀一样刮食物。不同种类数量差别极大，从几十颗到上万颗都有记录。牙齿会不断磨损、不断向后补充，用旧了就换新的。","u":"https://zh.wikipedia.org/wiki/%E9%BD%92%E8%88%8C"},{"t":"自由女神像本来不是绿的","d":"1886 年落成时是亮铜色，像一枚新硬币。二十多年后表面氧化，形成碱式碳酸铜，才变成现在这层绿。这层铜绿并不只是脏，它反过来把里面的铜封住了，腐蚀速率大幅下降。当年有人提议刷掉，被否了。","u":"https://zh.wikipedia.org/wiki/%E8%87%AA%E7%94%B1%E5%A5%B3%E7%A5%9E%E5%83%8F"},{"t":"霜降","d":"二十四节气的第十八个，秋季最后一个。2026 年交节时刻是 10 月 23 日 17 时 38 分，太阳到达黄经 210 度。名字里的「霜降」不是说天上下霜，是说气温骤降、昼夜温差拉到一年最大。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8823%E6%97%A5"},{"t":"国际雪豹日","d":"2013 年 10 月 23 日，包括中国在内的十二个亚洲国家在比什凯克签署保护雪豹的《比什凯克宣言》，这一天由此定为国际雪豹日。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8823%E6%97%A5"},{"t":"摩尔日","d":"化学老师们的节日。阿伏伽德罗常数是 6.02×10²³，所以庆祝时间定在 10 月 23 日的 6:02 到 18:02。1991 年从美国威斯康星州一所高中开始，后来蔓延到全世界。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8823%E6%97%A5"},{"t":"1856 年 · 亚罗号事件，第二次鸦片战争导火索","d":"清朝广州水师登上商船亚罗号搜查、逮捕海盗与嫌犯，英国以该船曾在香港注册为由抗议，并借此进攻广州。战争由此扩大。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8823%E6%97%A5"},{"t":"1868 年 · 日本改元明治","d":"天皇将年号从庆应改为明治，日本进入一世一元制。同一年，江户改称东京，幕府时代正式收尾。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8823%E6%97%A5"},{"t":"1884 年 · 法军宣布封锁台湾","d":"中法战争期间，法国远东舰队司令孤拔宣布封锁台湾各口岸，试图逼清廷让步。封锁持续到次年，台湾军民守住了淡水。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8823%E6%97%A5"},{"t":"1911 年 · 飞机第一次用于战争","d":"意土战争中，意大利首次把动力飞机投入空中作战，也第一次从飞机上投掷炸弹。那一年距离莱特兄弟首飞才八年。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8823%E6%97%A5"},{"t":"1917 年 · 布尔什维克决定发动十月革命","d":"俄共中央通过决议，武装起义被提上日程。三周后，冬宫被攻占。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8823%E6%97%A5"},{"t":"1942 年 · 第二次阿拉曼战役开始","d":"蒙哥马利指挥英军第八集团军向隆美尔的非洲军团发起进攻，十二天后德意军溃退。北非战局就此转向。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8823%E6%97%A5"},{"t":"1946 年 · 联合国大会首次开会","d":"第一届联合国大会在纽约法拉盛开幕。当时有 51 个成员国，现在 193 个。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8823%E6%97%A5"},{"t":"1956 年 · 匈牙利革命爆发","d":"布达佩斯学生游行，推倒斯大林像，起义迅速蔓延全国。十三天后苏军重返，镇压造成约 3000 名平民死亡，20 万人逃亡。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8823%E6%97%A5"},{"t":"1993 年 · 上海杨浦大桥通车","d":"主跨 602 米，建成时是世界最大跨度的斜拉桥。浦西浦东之间，从此多了一条不堵车的路。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8823%E6%97%A5"},{"t":"2001 年 · 第一代 iPod 发布","d":"5GB 硬盘、一千首歌、10 小时续航、399 美元。乔布斯说「把一千首歌装进口袋」，台下掌声持续了很久。","u":"https://zh.wikipedia.org/wiki/10%E6%9C%8823%E6%97%A5"}];
+var READTTS=[{"id":"2026-10-23-read","title":"寒花葬志","text":"寒花葬志。\n婢，魏孺人媵也。嘉靖丁酉五月四日死，葬虚丘。事我而不卒，命也夫！\n婢初媵时，年十岁，垂双鬟，曳深绿布裳。一日，天寒，爇火煮荸荠熟，婢削之盈瓯；予入自外，取食之；婢持去，不与。魏孺人笑之。孺人每令婢倚几旁饭，即饭，目眶冉冉动。孺人又指予以为笑。\n回思是时，奄忽便已十年。吁，可悲也已！"}];
 var ARCHIVE=[{"no":"008","label":"10月29日 · 今天","count":"51","href":"../index.html","cur":false},{"no":"007","label":"10月28日","count":"54","href":"2026-10-28.html","cur":false},{"no":"006","label":"10月27日","count":"51","href":"2026-10-27.html","cur":false},{"no":"005","label":"10月26日","count":"51","href":"2026-10-26.html","cur":false},{"no":"004","label":"10月25日","count":"54","href":"2026-10-25.html","cur":false},{"no":"003","label":"10月24日","count":"53","href":"2026-10-24.html","cur":false},{"no":"002","label":"10月23日","count":"53","href":"","cur":true},{"no":"001","label":"10月22日","count":"63","href":"2026-10-22.html","cur":false}];
 (function(){
   var root=document.documentElement, meta=document.querySelector('meta[name=theme-color]');
