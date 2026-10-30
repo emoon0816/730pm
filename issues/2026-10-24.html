@@ -1677,7 +1677,13 @@ if('serviceWorker' in navigator){
       return fetch(cfg.proxy, {
         method: 'POST',
         headers: hd,
-        body: JSON.stringify({ provider: cfg.mode, model: modelId(), key: cfg.key, group: cfg.group, voice: voiceId(), speed: cfg.speed, text: text })
+        body: JSON.stringify((function () {
+          var b = { provider: cfg.mode, model: modelId(), key: cfg.key, group: cfg.group,
+                    voice: voiceId(), speed: cfg.speed, text: text };
+          // Fish 那套认 reference_id，一起带上，谁家 Worker 直接转发都能认
+          if (cfg.mode === 'fish') { b.reference_id = voiceId(); b.format = 'mp3'; }
+          return b;
+        })())
       }).then(function (r) {
         if (!r.ok) return r.text().then(function (t) { throw new Error(humanErr(r.status, t)); });
         return r.blob();
