@@ -1624,6 +1624,15 @@ if('serviceWorker' in navigator){
       });
     });
   }
+  function idbDel(k) {
+    return db().then(function (d) {
+      return new Promise(function (res, rej) {
+        var q = d.transaction('a', 'readwrite').objectStore('a').delete(k);
+        q.onsuccess = function () { res(); };
+        q.onerror = function () { rej(q.error); };
+      });
+    }).catch(function () {});
+  }
   function idbSet(k, v) {
     return db().then(function (d) {
       return new Promise(function (res, rej) {
@@ -1713,14 +1722,14 @@ if('serviceWorker' in navigator){
   }
 
   /* 按段合成、按段缓存：刷新后重来只补没生成完的那几段 */
-  function synth(text, base, onStep) {
+  function synth(text, base, onStep, fresh) {
     var parts = split(simp(text), 1200), bufs = [], i = 0;
     function step() {
       if (i >= parts.length) return Promise.resolve(new Blob(bufs, { type: 'audio/mpeg' }));
       if (onStep) onStep(i, parts.length);
       var seg = parts[i], k = base + '|s' + i + '|' + hash(seg);
       i++;
-      return idbGet(k).then(function (hit) {
+      return (fresh ? Promise.resolve(null) : idbGet(k)).then(function (hit) {
         if (hit) { bufs.push(hit); return step(); }
         return one(seg).then(function (b) { bufs.push(b); return idbSet(k, b); }).then(step);
       });
@@ -1763,14 +1772,22 @@ if('serviceWorker' in navigator){
     el.querySelector('.ttime').textContent = fmt(cur) + ' / ' + fmt(dur);
   }
 
-  function ready(b) {
+  function ready(b, autoplay) {
     if (url) URL.revokeObjectURL(url);
     url = URL.createObjectURL(b);
     audio.src = url;
     audio.playbackRate = cfg.rate;
     st = 'ready';
     paint();
-    audio.play().catch(function () {});
+    resetBar();
+    if (autoplay !== false) audio.play().catch(function () {});
+  }
+
+  function resetBar() {
+    if (!el) return;
+    el.querySelector('.tfill').style.width = '0';
+    el.querySelector('.knot').style.left = '0';
+    el.querySelector('.ttime').textContent = '0:00 / ' + fmt(audio.duration || 0);
   }
 
   function need() {
@@ -1781,16 +1798,27 @@ if('serviceWorker' in navigator){
     if (!need()) { toast('先去设置里填朗读的 key 和音色'); return Promise.resolve(); }
     var data = (typeof READTTS !== 'undefined' && READTTS[+el.getAttribute('data-tts')]) || { id: 'read', text: '' };
     var key = 'tts:' + data.id + '|' + cfg.mode + '|' + modelId() + '|' + voiceId() + '|' + cfg.speed;
+    var hadAudio = (st === 'ready');
+    if (force) {
+      try { audio.pause(); } catch (e) {}
+      audio.removeAttribute('src'); audio.load();
+      if (url) { URL.revokeObjectURL(url); url = null; }
+      resetBar();
+    }
     st = 'gen'; paint();
-    var p = force ? Promise.resolve(null) : idbGet(key);
+    var p = force ? idbDel(key).then(function () { return null; }) : idbGet(key);
     return p.then(function (b) {
       return b || synth(data.text, key, function (n, total) {
         var tl = el.querySelector('.ttime');
         if (tl) tl.textContent = total > 1 ? ('生成中 ' + (n + 1) + '/' + total) : '生成中…';
-      }).then(function (nb) { return idbSet(key, nb).then(function () { return nb; }); });
+      }, force).then(function (nb) { return idbSet(key, nb).then(function () { return nb; }); });
     })
-      .then(function (b) { ready(b); })
-      .catch(function (e) { st = url ? 'ready' : 'idle'; paint(); toast('没生成成：' + (e && e.message ? e.message : e)); });
+      .then(function (b) { ready(b, !force); })
+      .catch(function (e) {
+        st = (!force && url && hadAudio) ? 'ready' : 'idle';
+        paint();
+        toast('没生成成：' + (e && e.message ? e.message : e));
+      });
   }
 
   if (el) {
