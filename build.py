@@ -422,7 +422,8 @@ html[data-theme="night"] .oil em.dn {{ color:#8FBF9F; }}
 .drawer .tin::placeholder {{ color:var(--muted); opacity:.75; }}
 .drawer .tsel {{ border:1px solid var(--line); border-radius:5px; background:transparent; color:var(--ink);
   font-family:inherit; font-size:12.5px; padding:5px 8px; }}
-.drawer #ttsSpeed {{ width:100%; margin:2px 0 4px; accent-color:var(--accent); }}
+.drawer #ttsSpeed, .drawer #ttsRate {{ width:100%; margin:2px 0 4px; accent-color:var(--accent); }}
+.drawer .note2 {{ font-size:11px; line-height:1.6; color:var(--muted); margin:2px 0 10px; }}
 /* ===== 朗读：弹窗与提示 ===== */
 .ttsd {{ position:fixed; inset:0; z-index:70; display:none; }}
 .ttsd.on {{ display:block; }}
@@ -586,8 +587,11 @@ abcdefghijklmnopqrstuvwxyz
       <input class="tin" id="ttsGroup" type="text" placeholder="Group ID（MiniMax 要）" autocomplete="off">
       <input class="tin" id="ttsVoice" type="text" placeholder="音色 ID" autocomplete="off">
       <input class="tin" id="ttsProxy" type="text" placeholder="中转地址（可选，填了就走中转）" autocomplete="off">
-      <div class="row"><span>语速</span><span class="r" id="ttsSpd">1.00×</span></div>
+      <div class="row"><span>合成语速</span><span class="r" id="ttsSpd">1.00×</span></div>
       <input type="range" id="ttsSpeed" min="0.6" max="1.6" step="0.05" value="1">
+      <div class="row"><span>播放速度</span><span class="r" id="ttsRt">1.00×</span></div>
+      <input type="range" id="ttsRate" min="0.5" max="2" step="0.05" value="1">
+      <div class="note2">合成语速改了要重新生成才生效；播放速度当场生效，不花钱。</div>
       <div class="note">Key 只在这台设备的浏览器里，不上传、不同步。清掉浏览器数据就没了。</div>
     </section>
 
@@ -1229,7 +1233,7 @@ def render_html(d, page_iso, in_issues_dir):
                 if r.get("after"):
                     rows.append("<p><b>读后</b>%s</p>" % r["after"])
                 why = '<div class="rwhy">%s</div>' % "".join(rows)
-            read_text = r["title"] + "。\n" + "\n".join(r["body"])
+            read_text = "\n".join(r["body"])
             tts_payload.append({"id": page_iso + "-read", "title": r["title"], "text": read_text})
             body.append(READING_T.format(title=r["title"], byline=r.get("byline", ""),
                                          player=PLAYER_T.format(idx=len(tts_payload) - 1),
