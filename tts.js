@@ -236,7 +236,11 @@
     mEl.value = cfg.mode; kEl.value = cfg.key; gEl.value = cfg.group;
     vEl.value = cfg.voice; pEl.value = cfg.proxy; sEl.value = cfg.speed;
     if (spEl) spEl.textContent = (+cfg.speed).toFixed(2) + '×';
-    [mEl, kEl, gEl, vEl, pEl].forEach(function (x) { x.addEventListener('change', readForm); x.addEventListener('blur', readForm); });
+    [mEl, kEl, gEl, vEl, pEl].forEach(function (x) {
+      x.addEventListener('change', readForm);
+      x.addEventListener('input', readForm);
+      x.addEventListener('blur', readForm);
+    });
     sEl.addEventListener('input', readForm);
   }
 })();

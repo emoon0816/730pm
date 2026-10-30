@@ -518,7 +518,6 @@ html[data-theme="night"] .oil em.dn {{ color:#8FBF9F; }}
   </div>
 </div>
 <div class="ttoast" id="ttoast"></div>
-<!--TTS_JS-->
 
 <div class="scrim" id="scrim"></div>
 
@@ -1048,6 +1047,7 @@ if('serviceWorker' in navigator){{
   }});
 }}
 </script>
+<!--TTS_JS-->
 </body>
 </html>
 """
