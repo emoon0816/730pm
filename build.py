@@ -595,8 +595,9 @@ abcdefghijklmnopqrstuvwxyz
       <div class="row"><span>供应商</span>
         <select id="ttsMode" class="tsel">
           <option value="minimax">MiniMax</option>
-          <option value="volc">火山（走中转）</option>
-          <option value="fish">Fish（走中转）</option>
+          <option value="fish">Fish Audio</option>
+          <option value="volc">火山豆包（要中转）</option>
+          <option value="eleven">ElevenLabs</option>
         </select>
       </div>
       <div class="mrow">

@@ -1081,8 +1081,9 @@ abcdefghijklmnopqrstuvwxyz
       <div class="row"><span>供应商</span>
         <select id="ttsMode" class="tsel">
           <option value="minimax">MiniMax</option>
-          <option value="volc">火山（走中转）</option>
-          <option value="fish">Fish（走中转）</option>
+          <option value="fish">Fish Audio</option>
+          <option value="volc">火山豆包（要中转）</option>
+          <option value="eleven">ElevenLabs</option>
         </select>
       </div>
       <div class="mrow">
@@ -1569,13 +1570,14 @@ if('serviceWorker' in navigator){
 (function () {
   var CKEY = 'np-tts';
   var cfg = { mode: 'minimax', key: '', group: '', voice: '', model: '', speed: 1, rate: 1, proxy: '' };
-  var DEF_MODEL = { minimax: 'speech-2.6-hd', fish: 's2-pro', volc: 'volc_tts' };
-  var DEF_VOICE = { minimax: 'female-shaonv', fish: '', volc: '' };
+  var DEF_MODEL = { minimax: 'speech-2.6-hd', fish: 's2-pro', volc: 'seed-tts-2.0', eleven: 'eleven_multilingual_v2' };
+  var DEF_VOICE = { minimax: 'female-shaonv', fish: '', volc: 'zh_female_vv_uranus_bigtts', eleven: '21m00Tcm4TlvDq8ikWAM' };
   var MODELS = {
     minimax: ['speech-2.8-hd', 'speech-2.8-turbo', 'speech-2.6-hd', 'speech-2.6-turbo',
               'speech-02-hd', 'speech-02-turbo', 'speech-01-hd', 'speech-01-turbo'],
     fish: ['s2.1-pro', 's2-pro', 's1'],
-    volc: ['volc_tts']
+    volc: ['seed-tts-2.0', 'seed-icl-2.0'],
+    eleven: ['eleven_multilingual_v2', 'eleven_turbo_v2_5', 'eleven_flash_v2_5']
   };
 
   /* 繁 -> 简：念之前先转，免得模型按粤语读 */
@@ -1681,16 +1683,43 @@ if('serviceWorker' in navigator){
     if (cfg.proxy) {
       var hd = { 'content-type': 'application/json' };
       if (cfg.key) hd['authorization'] = 'Bearer ' + cfg.key;
-      return fetch(cfg.proxy, {
+      var explicitModel = (cfg.model || '').trim();
+      if (explicitModel) hd['model'] = explicitModel;  // 没手填就不发，让 Worker 用它自己的默认
+      var body = JSON.stringify((function () {
+        // key 只走请求头，别塞进 body——有些 Worker 会把 body 原样转给上游
+        var b = { provider: cfg.mode, model: (cfg.model || '').trim(), group: cfg.group,
+                  voice: voiceId(), speed: cfg.speed, text: text };
+        if (cfg.mode === 'fish') { b.reference_id = voiceId(); b.format = 'mp3'; }
+        if (cfg.mode === 'volc') { b.format = 'mp3'; b.resource = modelId(); }
+        return b;
+      })());
+
+      function send(h) {
+        return fetch(cfg.proxy, { method: 'POST', headers: h, body: body }).then(function (r) {
+          if (!r.ok) return r.text().then(function (t) { throw new Error(humanErr(r.status, t)); });
+          return r.blob();
+        });
+      }
+      // 有的 Worker 没在预检里放行 model 头，那就退回不带模型头再试一次
+      return send(hd).catch(function (e) {
+        if (hd['model'] && e && e.name === 'TypeError') {
+          var h2 = { 'content-type': 'application/json' };
+          if (cfg.key) h2['authorization'] = 'Bearer ' + cfg.key;
+          return send(h2);
+        }
+        throw e;
+      });
+    }
+    if (cfg.mode === 'eleven') {
+      var eu = 'https://api.elevenlabs.io/v1/text-to-speech/' + encodeURIComponent(voiceId()) + '?output_format=mp3_44100_128';
+      return fetch(eu, {
         method: 'POST',
-        headers: hd,
-        body: JSON.stringify((function () {
-          var b = { provider: cfg.mode, model: modelId(), key: cfg.key, group: cfg.group,
-                    voice: voiceId(), speed: cfg.speed, text: text };
-          // Fish 那套认 reference_id，一起带上，谁家 Worker 直接转发都能认
-          if (cfg.mode === 'fish') { b.reference_id = voiceId(); b.format = 'mp3'; }
-          return b;
-        })())
+        headers: { 'content-type': 'application/json', 'xi-api-key': cfg.key },
+        body: JSON.stringify({
+          text: text,
+          model_id: modelId(),
+          voice_settings: { stability: 0.5, similarity_boost: 0.75 }
+        })
       }).then(function (r) {
         if (!r.ok) return r.text().then(function (t) { throw new Error(humanErr(r.status, t)); });
         return r.blob();
@@ -1791,11 +1820,17 @@ if('serviceWorker' in navigator){
   }
 
   function need() {
-    return !!(cfg.proxy || (cfg.mode === 'minimax' && cfg.key && voiceId()));
+    if (cfg.proxy) return true;
+    if (cfg.mode === 'minimax') return !!(cfg.key && voiceId());
+    if (cfg.mode === 'eleven') return !!cfg.key;
+    return false;  // 火山只能走中转
   }
 
   function ensure(force) {
-    if (!need()) { toast('先去设置里填朗读的 key 和音色'); return Promise.resolve(); }
+    if (!need()) {
+      toast(cfg.mode === 'volc' && !cfg.proxy ? '火山必须填中转地址' : '先去设置里填朗读的 key 和音色');
+      return Promise.resolve();
+    }
     var data = (typeof READTTS !== 'undefined' && READTTS[+el.getAttribute('data-tts')]) || { id: 'read', text: '' };
     var key = 'tts:' + data.id + '|' + cfg.mode + '|' + modelId() + '|' + voiceId() + '|' + cfg.speed;
     var hadAudio = (st === 'ready');
