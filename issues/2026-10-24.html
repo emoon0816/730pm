@@ -1640,11 +1640,23 @@ if('serviceWorker' in navigator){
     });
   }
 
-  function synth(text) {
+  function hash(s) {
+    var h = 2166136261;
+    for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+    return (h >>> 0).toString(36);
+  }
+
+  /* 按段合成、按段缓存：刷新后重来只补没生成完的那几段 */
+  function synth(text, base) {
     var parts = split(text, 1200), bufs = [], i = 0;
     function step() {
       if (i >= parts.length) return Promise.resolve(new Blob(bufs, { type: 'audio/mpeg' }));
-      return one(parts[i++]).then(function (b) { bufs.push(b); return step(); });
+      var seg = parts[i], k = base + '|s' + i + '|' + hash(seg);
+      i++;
+      return idbGet(k).then(function (hit) {
+        if (hit) { bufs.push(hit); return step(); }
+        return one(seg).then(function (b) { bufs.push(b); return idbSet(k, b); }).then(step);
+      });
     }
     return step();
   }
@@ -1703,7 +1715,9 @@ if('serviceWorker' in navigator){
     var key = 'tts:' + data.id + '|' + cfg.mode + '|' + modelId() + '|' + cfg.voice + '|' + cfg.speed;
     st = 'gen'; paint();
     var p = force ? Promise.resolve(null) : idbGet(key);
-    return p.then(function (b) { return b || synth(data.text).then(function (nb) { return idbSet(key, nb).then(function () { return nb; }); }); })
+    return p.then(function (b) {
+      return b || synth(data.text, key).then(function (nb) { return idbSet(key, nb).then(function () { return nb; }); });
+    })
       .then(function (b) { ready(b); })
       .catch(function (e) { st = url ? 'ready' : 'idle'; paint(); toast('没生成成：' + (e && e.message ? e.message : e)); });
   }
@@ -1751,6 +1765,10 @@ if('serviceWorker' in navigator){
     }
     bar.addEventListener('click', seek);
     bar.addEventListener('touchstart', function (e) { seek(e); }, { passive: true });
+
+    window.addEventListener('beforeunload', function (e) {
+      if (st === 'gen') { e.preventDefault(); e.returnValue = ''; return ''; }
+    });
 
     audio.addEventListener('timeupdate', drawTime);
     audio.addEventListener('loadedmetadata', drawTime);
