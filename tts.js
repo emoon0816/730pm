@@ -91,6 +91,16 @@
     return u;
   }
 
+  function humanErr(status, txt) {
+    var t = (txt || '').toLowerCase();
+    if (status === 401 || status === 403) return 'Key 不对，或者这个 key 没有朗读权限';
+    if (status === 402 || /insufficient|balance|quota|credit|额度|余额/.test(t)) return '额度用完了，充值或换一个 key 再试';
+    if (status === 429) return '请求太频繁，等几十秒再试';
+    if (status >= 500) return '对方服务端出错了，过一会儿再试';
+    if (/not found|invalid.*(voice|model)|voice.*not/.test(t)) return '音色或模型名字不对';
+    return 'HTTP ' + status + (txt ? '：' + String(txt).slice(0, 50) : '');
+  }
+
   function one(text) {
     if (cfg.proxy) {
       var hd = { 'content-type': 'application/json' };
@@ -100,7 +110,7 @@
         headers: hd,
         body: JSON.stringify({ provider: cfg.mode, model: modelId(), key: cfg.key, group: cfg.group, voice: voiceId(), speed: cfg.speed, text: text })
       }).then(function (r) {
-        if (!r.ok) return r.text().then(function (t) { throw new Error('HTTP ' + r.status + (t ? ' ' + t.slice(0, 60) : '')); });
+        if (!r.ok) return r.text().then(function (t) { throw new Error(humanErr(r.status, t)); });
         return r.blob();
       });
     }
@@ -130,10 +140,11 @@
   }
 
   /* 按段合成、按段缓存：刷新后重来只补没生成完的那几段 */
-  function synth(text, base) {
+  function synth(text, base, onStep) {
     var parts = split(simp(text), 1200), bufs = [], i = 0;
     function step() {
       if (i >= parts.length) return Promise.resolve(new Blob(bufs, { type: 'audio/mpeg' }));
+      if (onStep) onStep(i, parts.length);
       var seg = parts[i], k = base + '|s' + i + '|' + hash(seg);
       i++;
       return idbGet(k).then(function (hit) {
@@ -200,7 +211,10 @@
     st = 'gen'; paint();
     var p = force ? Promise.resolve(null) : idbGet(key);
     return p.then(function (b) {
-      return b || synth(data.text, key).then(function (nb) { return idbSet(key, nb).then(function () { return nb; }); });
+      return b || synth(data.text, key, function (n, total) {
+        var tl = el.querySelector('.ttime');
+        if (tl) tl.textContent = total > 1 ? ('生成中 ' + (n + 1) + '/' + total) : '生成中…';
+      }).then(function (nb) { return idbSet(key, nb).then(function () { return nb; }); });
     })
       .then(function (b) { ready(b); })
       .catch(function (e) { st = url ? 'ready' : 'idle'; paint(); toast('没生成成：' + (e && e.message ? e.message : e)); });
@@ -267,7 +281,21 @@
       pEl = document.getElementById('ttsProxy'), sEl = document.getElementById('ttsSpeed'),
       rEl = document.getElementById('ttsRate'), rpEl = document.getElementById('ttsRt'),
       spEl = document.getElementById('ttsSpd'), nowEl = document.getElementById('ttsNow'),
-      mbEl = document.getElementById('ttsModelBtn'), mlEl = document.getElementById('ttsModelList');
+      mbEl = document.getElementById('ttsModelBtn'), mlEl = document.getElementById('ttsModelList'),
+      tryEl = document.getElementById('ttsTry');
+
+  /* 粘贴分享链接时，把里面的音色 id 抠出来 */
+  function parseVoiceId(v) {
+    v = (v || '').trim();
+    if (!/^https?:\/\//i.test(v)) return v;
+    var m;
+    if ((m = v.match(/[?&](?:voice_id|reference_id|voice|model_id|id)=([^&#]+)/i))) return decodeURIComponent(m[1]);
+    if ((m = v.match(/fish\.audio\/(?:m|model)\/([A-Za-z0-9_-]{16,})/))) return m[1];
+    if ((m = v.match(/([0-9a-f]{32})/i))) return m[1];
+    if ((m = v.match(/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/i))) return m[1];
+    if ((m = v.match(/([A-Za-z0-9_-]{16,})/))) return m[1];
+    return v;
+  }
 
   function updateNow() {
     if (!nowEl) return;
@@ -325,5 +353,30 @@
     });
     sEl.addEventListener('input', readForm);
     rEl.addEventListener('input', readForm);
+
+    vEl.addEventListener('change', function () {
+      var raw = vEl.value.trim();
+      var got = parseVoiceId(raw);
+      if (got && got !== raw) { vEl.value = got; toast('已从链接里取到音色 id'); }
+      readForm();
+    });
+
+    if (tryEl) tryEl.addEventListener('click', function () {
+      if (!need()) { toast('先把 key（或中转地址）和音色填上'); return; }
+      if (tryEl.classList.contains('busy')) return;
+      tryEl.classList.add('busy');
+      toast('试听中，几秒钟…');
+      one('这是音色测试，一二三四五。').then(function (b) {
+        tryEl.classList.remove('busy');
+        var u = URL.createObjectURL(new Blob([b], { type: 'audio/mpeg' }));
+        var a = new Audio(u);
+        a.play();
+        a.addEventListener('ended', function () { URL.revokeObjectURL(u); });
+        toast('听一下，是不是你要的那个声音');
+      }).catch(function (e) {
+        tryEl.classList.remove('busy');
+        toast('不行：' + (e && e.message ? e.message : e));
+      });
+    });
   }
 })();

@@ -432,6 +432,8 @@ html[data-theme="night"] .oil em.dn {{ color:#8FBF9F; }}
 .drawer .tmBtn {{ flex:0 0 auto; width:30px; height:33px; border:1px solid var(--line); border-radius:5px;
   background:transparent; color:var(--ink); cursor:pointer; display:flex; align-items:center; justify-content:center; padding:0; }}
 .drawer .tmBtn svg {{ width:13px; height:13px; }}
+.drawer .tTry {{ width:34px; font-size:12px; letter-spacing:1px; font-family:inherit; }}
+.drawer .tTry.busy {{ opacity:.45; }}
 .drawer .tmList {{ position:absolute; top:100%; left:0; right:36px; z-index:6; margin-top:3px; display:none;
   background:var(--bg); border:1px solid var(--line); border-radius:6px; max-height:186px; overflow:auto;
   box-shadow:0 8px 22px rgba(0,0,0,.14); }}
@@ -607,7 +609,10 @@ abcdefghijklmnopqrstuvwxyz
       <div class="mnow" id="ttsNow"></div>
       <input class="tin" id="ttsKey" type="password" placeholder="API Key" autocomplete="off">
       <input class="tin" id="ttsGroup" type="text" placeholder="Group ID（MiniMax 要）" autocomplete="off">
-      <input class="tin" id="ttsVoice" type="text" placeholder="音色 ID" autocomplete="off">
+      <div class="mrow">
+        <input class="tin" id="ttsVoice" type="text" placeholder="音色 ID（也可以粘分享链接）" autocomplete="off">
+        <button type="button" class="tmBtn tTry" id="ttsTry">试</button>
+      </div>
       <input class="tin" id="ttsProxy" type="text" placeholder="中转地址（可选，填了就走中转）" autocomplete="off">
       <div class="row"><span>合成语速</span><span class="r" id="ttsSpd">1.00×</span></div>
       <input type="range" id="ttsSpeed" min="0.6" max="1.6" step="0.05" value="1">
