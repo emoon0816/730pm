@@ -1591,9 +1591,11 @@ if('serviceWorker' in navigator){
 
   function one(text) {
     if (cfg.proxy) {
+      var hd = { 'content-type': 'application/json' };
+      if (cfg.key) { hd['authorization'] = 'Bearer ' + cfg.key; hd['x-api-key'] = cfg.key; }
       return fetch(cfg.proxy, {
         method: 'POST',
-        headers: { 'content-type': 'application/json' },
+        headers: hd,
         body: JSON.stringify({ provider: cfg.mode, model: modelId(), key: cfg.key, group: cfg.group, voice: cfg.voice, speed: cfg.speed, text: text })
       }).then(function (r) {
         if (!r.ok) return r.text().then(function (t) { throw new Error('HTTP ' + r.status + (t ? ' ' + t.slice(0, 60) : '')); });
