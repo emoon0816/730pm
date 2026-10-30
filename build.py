@@ -581,6 +581,7 @@ abcdefghijklmnopqrstuvwxyz
           <option value="fish">Fish（走中转）</option>
         </select>
       </div>
+      <input class="tin" id="ttsModel" type="text" placeholder="模型 ID（留空用默认）" autocomplete="off">
       <input class="tin" id="ttsKey" type="password" placeholder="API Key" autocomplete="off">
       <input class="tin" id="ttsGroup" type="text" placeholder="Group ID（MiniMax 要）" autocomplete="off">
       <input class="tin" id="ttsVoice" type="text" placeholder="音色 ID" autocomplete="off">

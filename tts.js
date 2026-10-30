@@ -1,7 +1,9 @@
 /* 730pm · 朗读：点击才生成，生成完才播，音频缓存在本机 IndexedDB */
 (function () {
   var CKEY = 'np-tts';
-  var cfg = { mode: 'minimax', key: '', group: '', voice: '', speed: 1, proxy: '' };
+  var cfg = { mode: 'minimax', key: '', group: '', voice: '', model: '', speed: 1, proxy: '' };
+  var DEF_MODEL = { minimax: 'speech-02-hd', fish: 's1', volc: 'volc_tts' };
+  function modelId() { return (cfg.model || '').trim() || DEF_MODEL[cfg.mode] || ''; }
   try { var s = JSON.parse(localStorage.getItem(CKEY) || 'null'); if (s) for (var k in s) if (k in cfg) cfg[k] = s[k]; } catch (e) {}
   function saveCfg() { try { localStorage.setItem(CKEY, JSON.stringify(cfg)); } catch (e) {} }
 
@@ -76,7 +78,7 @@
       return fetch(cfg.proxy, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ provider: cfg.mode, key: cfg.key, group: cfg.group, voice: cfg.voice, speed: cfg.speed, text: text })
+        body: JSON.stringify({ provider: cfg.mode, model: modelId(), key: cfg.key, group: cfg.group, voice: cfg.voice, speed: cfg.speed, text: text })
       }).then(function (r) {
         if (!r.ok) return r.text().then(function (t) { throw new Error('HTTP ' + r.status + (t ? ' ' + t.slice(0, 60) : '')); });
         return r.blob();
@@ -88,7 +90,7 @@
       method: 'POST',
       headers: { 'content-type': 'application/json', 'authorization': 'Bearer ' + cfg.key },
       body: JSON.stringify({
-        model: 'speech-02-hd', text: text, stream: false,
+        model: modelId(), text: text, stream: false,
         voice_setting: { voice_id: cfg.voice, speed: cfg.speed, vol: 1, pitch: 0 },
         audio_setting: { sample_rate: 32000, bitrate: 128000, format: 'mp3' }
       })
@@ -161,7 +163,7 @@
   function ensure(force) {
     if (!need()) { toast('先去设置里填朗读的 key 和音色'); return Promise.resolve(); }
     var data = (typeof READTTS !== 'undefined' && READTTS[+el.getAttribute('data-tts')]) || { id: 'read', text: '' };
-    var key = 'tts:' + data.id + '|' + cfg.mode + '|' + cfg.voice + '|' + cfg.speed;
+    var key = 'tts:' + data.id + '|' + cfg.mode + '|' + modelId() + '|' + cfg.voice + '|' + cfg.speed;
     st = 'gen'; paint();
     var p = force ? Promise.resolve(null) : idbGet(key);
     return p.then(function (b) { return b || synth(data.text).then(function (nb) { return idbSet(key, nb).then(function () { return nb; }); }); })
@@ -221,22 +223,22 @@
   }
 
   /* ---------- 设置里的朗读段 ---------- */
-  var mEl = document.getElementById('ttsMode'), kEl = document.getElementById('ttsKey'),
+  var mEl = document.getElementById('ttsMode'), mdEl = document.getElementById('ttsModel'), kEl = document.getElementById('ttsKey'),
       gEl = document.getElementById('ttsGroup'), vEl = document.getElementById('ttsVoice'),
       pEl = document.getElementById('ttsProxy'), sEl = document.getElementById('ttsSpeed'),
       spEl = document.getElementById('ttsSpd');
   function readForm() {
     if (!mEl) return;
-    cfg.mode = mEl.value; cfg.key = kEl.value.trim(); cfg.group = gEl.value.trim();
+    cfg.mode = mEl.value; cfg.model = mdEl.value.trim(); cfg.key = kEl.value.trim(); cfg.group = gEl.value.trim();
     cfg.voice = vEl.value.trim(); cfg.proxy = pEl.value.trim(); cfg.speed = parseFloat(sEl.value) || 1;
     if (spEl) spEl.textContent = cfg.speed.toFixed(2) + '×';
     saveCfg(); if (st === 'ready') paint();
   }
   if (mEl) {
-    mEl.value = cfg.mode; kEl.value = cfg.key; gEl.value = cfg.group;
+    mEl.value = cfg.mode; mdEl.value = cfg.model; kEl.value = cfg.key; gEl.value = cfg.group;
     vEl.value = cfg.voice; pEl.value = cfg.proxy; sEl.value = cfg.speed;
     if (spEl) spEl.textContent = (+cfg.speed).toFixed(2) + '×';
-    [mEl, kEl, gEl, vEl, pEl].forEach(function (x) {
+    [mEl, mdEl, kEl, gEl, vEl, pEl].forEach(function (x) {
       x.addEventListener('change', readForm);
       x.addEventListener('input', readForm);
       x.addEventListener('blur', readForm);
