@@ -76,7 +76,7 @@
   function one(text) {
     if (cfg.proxy) {
       var hd = { 'content-type': 'application/json' };
-      if (cfg.key) { hd['authorization'] = 'Bearer ' + cfg.key; hd['x-api-key'] = cfg.key; }
+      if (cfg.key) hd['authorization'] = 'Bearer ' + cfg.key;
       return fetch(cfg.proxy, {
         method: 'POST',
         headers: hd,
