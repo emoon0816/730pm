@@ -424,6 +424,21 @@ html[data-theme="night"] .oil em.dn {{ color:#8FBF9F; }}
   font-family:inherit; font-size:12.5px; padding:5px 8px; }}
 .drawer #ttsSpeed, .drawer #ttsRate {{ width:100%; margin:2px 0 4px; accent-color:var(--accent); }}
 .drawer .note2 {{ font-size:11px; line-height:1.6; color:var(--muted); margin:2px 0 10px; }}
+.ttsw {{ margin:13px 0 18px; }}
+.ttsw .tts {{ margin:0 0 6px; }}
+.tthint {{ margin:0 0 20px; font-size:11px; line-height:1.5; letter-spacing:.2px; color:var(--muted); opacity:.95; }}
+.drawer .mrow {{ position:relative; display:flex; gap:6px; align-items:center; margin:0 0 7px; }}
+.drawer .mrow .tin {{ margin:0; flex:1 1 auto; min-width:0; }}
+.drawer .tmBtn {{ flex:0 0 auto; width:30px; height:33px; border:1px solid var(--line); border-radius:5px;
+  background:transparent; color:var(--ink); cursor:pointer; display:flex; align-items:center; justify-content:center; padding:0; }}
+.drawer .tmBtn svg {{ width:13px; height:13px; }}
+.drawer .tmList {{ position:absolute; top:100%; left:0; right:36px; z-index:6; margin-top:3px; display:none;
+  background:var(--bg); border:1px solid var(--line); border-radius:6px; max-height:186px; overflow:auto;
+  box-shadow:0 8px 22px rgba(0,0,0,.14); }}
+.drawer .tmList.on {{ display:block; }}
+.drawer .tmList b {{ display:block; padding:8px 10px; font-weight:400; font-size:12px; cursor:pointer; }}
+.drawer .tmList b:hover {{ background:rgba(120,90,70,.08); }}
+.drawer .mnow {{ font-size:11px; line-height:1.5; color:var(--muted); margin:0 0 9px; }}
 /* ===== 朗读：弹窗与提示 ===== */
 .ttsd {{ position:fixed; inset:0; z-index:70; display:none; }}
 .ttsd.on {{ display:block; }}
@@ -582,7 +597,14 @@ abcdefghijklmnopqrstuvwxyz
           <option value="fish">Fish（走中转）</option>
         </select>
       </div>
-      <input class="tin" id="ttsModel" type="text" placeholder="模型 ID（留空用默认）" autocomplete="off">
+      <div class="mrow">
+        <input class="tin" id="ttsModel" type="text" placeholder="模型 ID（留空用默认）" autocomplete="off">
+        <button type="button" class="tmBtn" id="ttsModelBtn" aria-label="选择模型">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 6.5 8 10l3.5-3.5"/></svg>
+        </button>
+        <div class="tmList" id="ttsModelList"></div>
+      </div>
+      <div class="mnow" id="ttsNow"></div>
       <input class="tin" id="ttsKey" type="password" placeholder="API Key" autocomplete="off">
       <input class="tin" id="ttsGroup" type="text" placeholder="Group ID（MiniMax 要）" autocomplete="off">
       <input class="tin" id="ttsVoice" type="text" placeholder="音色 ID" autocomplete="off">
@@ -1099,12 +1121,15 @@ BOOK_T = """        <div class="book">
           <p class="bintro">{intro}</p>{link}
         </div>"""
 
-PLAYER_T = """        <div class="tts" data-st="idle" data-tts="{idx}">
+PLAYER_T = """        <div class="ttsw">
+        <div class="tts" data-st="idle" data-tts="{idx}">
           <button class="tbtn tplay" type="button" aria-label="播放"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.6 2.6v10.8L13.4 8z"/></svg></button>
           <div class="tbar"><div class="track"></div><div class="tfill"></div><div class="knot"></div></div>
           <span class="ttime">0:00 / 0:00</span>
           <button class="tbtn tredo" type="button" aria-label="重新生成" disabled><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13.2 8A5.2 5.2 0 1 1 11.5 4"/><path d="M13.3 2.2v3h-3"/></svg></button>
-          <button class="tbtn tdl" type="button" aria-label="下载语音" disabled><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2.6v8"/><path d="M4.9 7.7 8 10.8l3.1-3.1"/><path d="M3.2 13h9.6"/></svg></button>
+          <button class="tbtn tdl" type="button" aria-label="下载语音"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2.6v8"/><path d="M4.9 7.7 8 10.8l3.1-3.1"/><path d="M3.2 13h9.6"/></svg></button>
+        </div>
+        <p class="tthint">AI 语音也会读错字音，不要完全听 AI 的</p>
         </div>"""
 
 READING_T = """      <article class="reading">
