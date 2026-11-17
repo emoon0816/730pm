@@ -1,0 +1,2104 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="day">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>730pm · 2026年11月17日</title>
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" href="../favicon.ico?v=3" sizes="any">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=3">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png?v=3">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=3">
+<meta name="theme-color" content="#F4EFE6">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="robots" content="noindex, nofollow">
+<style>
+@font-face {
+  font-family: 'ChillRound';
+  src: url('../fonts/ChillRoundGothic_Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'BarlowCond';
+  src: url('../fonts/BarlowCondensed-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'JinghuaSong';
+  src: url('../fonts/KingHwa_OldSong.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+:root {
+  --bg: #F4EFE6;
+  --ink: #2A2521;
+  --accent: #6C2F36;
+  --muted: #7A6E62;
+  --line: #DCD3C4;
+  --card: #FBF7F0;
+  --tabbar: rgba(244,239,230,.93);
+  --soft: rgba(108,47,54,.10);
+  --body-font: 'ChillRound';
+  --fs: 15px;
+}
+html[data-theme="night"] {
+  --bg: #17140F;
+  --ink: #C8BFB2;
+  --accent: #C6ACDC;
+  --muted: #8A8074;
+  --line: #332C24;
+  --card: #1F1B15;
+  --tabbar: rgba(23,20,15,.93);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+html, body { background: var(--bg); }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+/* iOS：输入框小于 16px，点进去会自己放大一屏 */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 560px) { .searchbx input { font-size: 16px; } }
+}
+body {
+  margin: 0; color: var(--ink);
+  font-family: var(--body-font, 'ChillRound'), -apple-system, 'PingFang SC', 'Noto Sans CJK SC', sans-serif;
+  font-size: var(--fs, 15px); line-height: 1.72;
+  -webkit-font-smoothing: antialiased;
+  transition: background .25s ease, color .25s ease;
+}
+.wrap { max-width: 720px; margin: 0 auto; padding: 0 16px 70px; position: relative; }
+
+/* 报头 */
+header { padding: 22px 0 12px; position: relative; }
+.masthead { display:flex; align-items:baseline; justify-content:space-between; gap:10px; }
+h1 { font-size: 34px; margin:0; letter-spacing:.5px; font-weight:700;
+     font-family:'BarlowCond','ChillRound',sans-serif; line-height:1; }
+h1 .dot { color: var(--accent); }
+.dateline { font-size: 11.5px; color: var(--muted); letter-spacing:.4px; margin-top:7px;
+  display: inline-flex; align-items: center; gap: 5px; cursor: pointer; }
+.dateline .pick { border-bottom: 1px dotted var(--line); padding-bottom: 1px; }
+.dateline .cv { font-size: 9px; opacity:.75; }
+.dateline.act { color: var(--accent); }
+.dateline.act .cv, .dateline.act .pick { color: var(--accent); }
+.dateline.act .pick { border-bottom: 1px solid var(--accent); }
+#setBtn {
+  background:transparent; border:1px solid var(--line); color:var(--muted);
+  border-radius:999px; padding:4px 12px; font-size:12px; font-family:inherit; cursor:pointer;
+  align-self:center;
+}
+#setBtn:active { opacity:.6; }
+
+/* 顶部一行：两个栏目 + 全部 + 搜索 */
+.navrow {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; gap: 7px; align-items: center;
+  margin: 0 -16px; padding: 9px 16px;
+  background: var(--tabbar);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.chip {
+  flex: 0 0 auto; border: 1px solid var(--line); background: transparent;
+  color: var(--muted); font-family: inherit; font-size: 13px;
+  padding: 6px 13px; border-radius: 999px; cursor: pointer;
+  transition: all .16s ease; white-space: nowrap;
+}
+.chip.on { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.chip.act { border-color: var(--accent); color: var(--accent); }
+.searchbx {
+  flex: 1; min-width: 0; display: flex; align-items: center; gap: 6px;
+  border: 1px solid var(--line); border-radius: 999px; padding: 5px 11px;
+  transition: border-color .16s ease;
+}
+.searchbx input {
+  flex: 1; min-width: 0; border: none; background: transparent; outline: none;
+  font-family: inherit; font-size: 12.5px; color: var(--ink);
+}
+.searchbx input::placeholder { color: var(--muted); opacity: .85; }
+.searchbx input::-webkit-search-cancel-button,
+.searchbx input::-webkit-search-decoration { -webkit-appearance: none; appearance: none; display: none; }
+.searchbx .mag { flex: 0 0 auto; color: var(--muted); display: block; }
+.searchbx .clr {
+  display: none; border: none; background: transparent; color: var(--muted);
+  font-size: 13px; line-height: 1; cursor: pointer; padding: 0 1px;
+}
+.searchbx.has .clr { display: block; }
+body.searching .navrow .chip { display: none; }
+body.searching .searchbx { border-color: var(--accent); }
+
+/* 下拉：只包住触发物，圆角小 */
+.dd {
+  display: none; position: absolute; z-index: 40;
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,.045); overflow: hidden;
+}
+.dd.on { display: block; }
+#allPanel { left: 0; top: 0; width: 262px; }
+#allPanel .grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 5px; padding: 9px; }
+.cell {
+  text-align: center; font-size: 12px; padding: 8px 0; border-radius: 6px;
+  background: transparent; border: 1px solid var(--line); color: var(--ink);
+  font-family: inherit; cursor: pointer;
+}
+.cell.on { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+.cell.fn { color: var(--muted); border-style: dashed; }
+
+#datePanel { left: 0; top: 0; width: 236px; }
+#datePanel .dh { padding: 5px 12px 6px; border-bottom: 1px solid var(--line); }
+#datePanel .dh .l1 { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+#datePanel .dh .d { font-size: 12px; color: var(--accent); }
+#datePanel .dh .l2 { font-size: 10.5px; color: var(--muted); margin-top: 1px; }
+#datePanel .cv { font-size: 9px; color: var(--accent); }
+.srow {
+  display: flex; align-items: center; gap: 7px; padding: 8px 12px;
+  font-size: 12.5px; border-bottom: 1px solid var(--line); cursor: pointer;
+}
+.srow:last-child { border-bottom: none; }
+.srow .no { color: var(--accent); font-size: 11.5px; min-width: 24px; }
+.srow .dt { flex: 1; }
+.srow .ct { font-size: 10.5px; color: var(--muted); }
+.srow.cur { background: rgba(108,47,54,.05); }
+.smore { font-size: 10.5px; color: var(--muted); text-align: center; padding: 7px; }
+
+/* 搜索结果 */
+.scount { font-size: 11.5px; color: var(--muted); letter-spacing: .5px; margin: 14px 0 2px; }
+.scount b { color: var(--accent); font-weight: 500; }
+.sitem { padding: 12px 0 13px; border-bottom: 1px dashed var(--line); }
+.sitem .where { font-size: 10.5px; letter-spacing: 1.2px; color: var(--muted); margin-bottom: 3px; }
+.sitem h3 { font-size: calc(var(--fs) * 1.1); margin: 0 0 5px; font-weight: 500; line-height: 1.55; }
+.sitem p { margin: 0; font-size: calc(var(--fs) * .93); line-height: 1.78; opacity: .88;
+  display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; }
+mark { background: rgba(108,47,54,.14); color: var(--accent); font-weight: 500; border-radius:2px; padding:0 1.5px; }
+html[data-theme="night"] mark { background: rgba(198,172,220,.20); }
+
+/* 面板 */
+.panel { display: none; animation: fade .22s ease; }
+.panel.on { display: block; }
+@keyframes fade { from { opacity:0; transform: translateY(4px); } to { opacity:1; transform:none; } }
+
+/* 头条 */
+.lead {
+  margin: 18px 0 6px; padding: 16px 17px;
+  background: var(--card); border-left: 3px solid var(--accent);
+}
+.kicker { font-size: 11px; letter-spacing:1.6px; color: var(--accent); margin-bottom:5px; }
+.lead h2 { font-size: calc(var(--fs) * 1.27); margin:0 0 8px; line-height:1.5; font-weight:500; }
+.lead p { margin:0; font-size: calc(var(--fs) * .93); }
+.lead .src { font-size:11.5px; color:var(--muted); margin-top:8px; }
+.lead .src a { color:var(--accent); text-decoration:none; }
+
+/* 分组 */
+.group { margin: 22px 0 0; }
+.gname {
+  font-size: 12.5px; letter-spacing:1.4px; color: var(--accent);
+  border-bottom: 1px solid var(--line); padding-bottom: 5px; margin-bottom: 12px;
+}
+.item { padding: 12px 0 13px; border-bottom: 1px dashed var(--line); }
+.item:last-child { border-bottom: none; }
+.item h3 { font-size: var(--fs); margin:0 0 5px; font-weight:500; line-height:1.55; }
+.item p { margin:0; font-size: calc(var(--fs) * .9); opacity:.86; }
+.item .more {
+  display:inline-block; margin-top:7px; font-size:12px; color:var(--accent);
+  text-decoration:none; letter-spacing:.3px;
+}
+.note {
+  margin-top:9px; padding:8px 11px;
+  border-left:2px solid var(--accent);
+  background: var(--card);
+  font-size:12.5px; line-height:1.68; color:var(--muted);
+}
+.note b { color:var(--accent); font-weight:500; }
+.item .more:active { opacity:.6; }
+.irow { display:flex; align-items:center; gap:10px; margin-top:7px; }
+.irow .more { margin-top:0; }
+.save, .del, .share {
+  background:transparent; border:1px solid var(--line); color:var(--muted);
+  font-family:inherit; font-size:11.5px; padding:2px 10px; border-radius:999px; cursor:pointer;
+  transition: all .16s ease;
+}
+.save.on { border-color:var(--accent); color:var(--accent); }
+
+/* ===== 分享弹窗 ===== */
+.shwrap { position:fixed; inset:0; z-index:70; display:none; }
+.shwrap.on { display:flex; align-items:center; justify-content:center; padding:20px; }
+.shmask { position:absolute; inset:0; background:rgba(18,12,8,.44); }
+.shbox { position:relative; width:100%; max-width:430px; max-height:82vh;
+  background:var(--card); border:1px solid var(--line); border-radius:8px;
+  display:flex; flex-direction:column; box-shadow:0 12px 36px rgba(0,0,0,.22); }
+.shhead { display:flex; align-items:center; justify-content:space-between;
+  padding:12px 15px; border-bottom:1px solid var(--line);
+  font-size:11px; letter-spacing:1.6px; color:var(--muted); }
+.shhead .x { width:24px; height:24px; border:1px solid var(--line); background:transparent;
+  color:var(--muted); border-radius:999px; font-size:11px; line-height:1; font-family:inherit; cursor:pointer; }
+.shtext { margin:0; padding:14px 15px; overflow:auto; overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch; white-space:pre-wrap; word-break:break-word;
+  font-family:inherit; font-size:calc(var(--fs) * .9); line-height:1.82; color:var(--ink);
+  -webkit-user-select:text; user-select:text; }
+.shacts { padding:11px 15px 14px; border-top:1px solid var(--line); display:flex; }
+.shacts button { flex:1; border:1px solid var(--accent); background:var(--accent); color:var(--bg);
+  border-radius:6px; padding:9px 0; font-family:inherit; font-size:13px; letter-spacing:1px; cursor:pointer; }
+.shacts button:active { opacity:.75; }
+.save:active, .del:active { opacity:.55; }
+.del { }
+.sdate { font-size:11px; color:var(--muted); margin-left:auto; }
+.empty { color:var(--muted); font-size:13.5px; padding:26px 0; text-align:center; }
+
+/* 阅读 */
+.reading { margin-top: 22px; }
+.rtitle { font-size: calc(var(--fs) * 1.67); margin:0 0 5px; font-weight:500; letter-spacing:1px; line-height:1.4; }
+.rby { font-size: 11.5px; color: var(--accent); letter-spacing:2px; margin-bottom: 20px; }
+.rwhy { margin:0 0 26px; padding:12px 15px; background:var(--card); border-left:2px solid var(--accent); }
+.rwhy p { margin:0 0 9px; font-size: calc(var(--fs) * .85); line-height:1.88; opacity:.92; }
+.rwhy p:last-child { margin-bottom:0; }
+.rwhy b { color:var(--accent); font-weight:500; margin-right:7px; letter-spacing:1px; }
+.rbody p { margin:0 0 15px; font-size: calc(var(--fs) * 1.03); line-height:2.05; text-indent:2em; }
+.rtrans { margin:24px 0 0; padding:14px 16px; background:var(--card); border-left:2px solid var(--line); }
+.rlabel { font-size:10.5px; letter-spacing:2.4px; color:var(--accent); margin-bottom:9px; }
+.rtrans p { margin:0 0 11px; font-size: calc(var(--fs) * .87); line-height:1.95; color:var(--muted); text-indent:2em; }
+.rtrans p:last-child { margin-bottom:0; }
+.rfoot { margin-top:26px; padding-top:15px; border-top:1px solid var(--line);
+  font-size:12px; color:var(--muted); line-height:1.9; }
+.rfoot p { margin:0 0 6px; }
+.rfoot b { color:var(--accent); font-weight:500; margin-right:7px; letter-spacing:1px; }
+
+footer {
+  margin-top: 40px; padding-top: 13px; border-top: 1px solid var(--line);
+  font-size: 11px; color: var(--muted); text-align:center; letter-spacing:.4px;
+}
+
+/* ===== 设置抽屉 ===== */
+.scrim {
+  position:fixed; inset:0; z-index:60; background:rgba(20,16,12,.30);
+  opacity:0; pointer-events:none; transition:opacity .22s ease;
+}
+.scrim.on { opacity:1; pointer-events:auto; }
+.drawer {
+  position:fixed; top:0; right:0; bottom:0; z-index:61; width:320px; max-width:88vw; overflow:hidden;
+  background:var(--card); border-left:1px solid var(--line);
+  box-shadow:-6px 0 24px rgba(40,30,20,.12);
+  display:flex; flex-direction:column;
+  transform:translateX(102%); transition:transform .26s cubic-bezier(.3,.8,.3,1);
+}
+.drawer.on { transform:translateX(0); }
+.drawer .dh { display:flex; align-items:center; justify-content:space-between;
+  padding:16px 18px 13px; border-bottom:1px solid var(--line); }
+.drawer .dh b { font-size:15px; font-weight:500; letter-spacing:.5px; }
+.drawer .dh .dhx { display:flex; align-items:center; gap:8px; }
+.drawer .dh .x { width:26px; height:26px; border:1px solid var(--line); background:transparent;
+  color:var(--muted); border-radius:999px; font-size:12px; line-height:1; font-family:inherit; cursor:pointer; }
+.drawer .dh .rst { border:1px solid var(--line); background:transparent; color:var(--muted);
+  border-radius:999px; padding:3px 10px; font-size:11.5px; font-family:inherit; cursor:pointer; letter-spacing:.5px; }
+.drawer .dh .rst:active { background:var(--soft); color:var(--accent); border-color:var(--accent); }
+.drawer .toast { position:absolute; left:50%; top:58px; transform:translate(-50%,-6px);
+  background:var(--accent); color:var(--bg); font-size:11.5px; padding:5px 13px; border-radius:999px;
+  opacity:0; pointer-events:none; transition:opacity .2s, transform .2s; z-index:2; white-space:nowrap; }
+.drawer .toast.on { opacity:.95; transform:translate(-50%,0); }
+.drawer .dbody { flex:1; overflow-y:auto; overscroll-behavior:contain; -webkit-overflow-scrolling:touch;
+  padding:4px 18px 22px; display:flex; flex-direction:column; }
+.drawer section { padding:16px 0; border-bottom:1px solid var(--line); }
+.drawer section:last-of-type { border-bottom:none; }
+.drawer .cap { display:flex; justify-content:space-between; align-items:baseline;
+  font-size:10.5px; letter-spacing:1.6px; color:var(--muted); margin-bottom:9px; }
+.drawer .cap .r { letter-spacing:.4px; font-family:'BarlowCond',ui-monospace,monospace; font-size:11px; color:var(--accent); }
+
+.drawer .sel { width:100%; display:flex; align-items:center; justify-content:space-between; gap:8px;
+  border:1px solid var(--line); background:transparent; color:var(--ink);
+  font-family:inherit; font-size:13px; padding:9px 11px; border-radius:6px; cursor:pointer; text-align:left; }
+.drawer .sel.open { border-color:var(--accent); }
+.drawer .sel .cv { font-size:9px; color:var(--muted); transition:transform .15s; }
+.drawer .sel.open .cv { transform:rotate(180deg); }
+.drawer .menu { display:none; margin-top:7px; border:1px solid var(--line); border-radius:6px; overflow:hidden; }
+.drawer .menu.show { display:block; }
+.drawer .fi { width:100%; display:flex; align-items:center; gap:9px; border:none;
+  border-bottom:1px solid var(--line); background:transparent; color:var(--ink);
+  font-family:inherit; font-size:12.5px; padding:8px 11px; cursor:pointer; text-align:left; }
+.drawer .fi:last-child { border-bottom:none; }
+.drawer .fi .g { font-size:16px; line-height:1; width:18px; text-align:center; opacity:.9; }
+.drawer .fi .nm { flex:1; }
+.drawer .fi .ck { display:none; font-size:12px; color:var(--accent); }
+.drawer .fi.on .ck { display:inline; }
+.drawer .fi .tag { font-size:9.5px; color:var(--muted); border:1px solid var(--line);
+  border-radius:999px; padding:1px 6px; letter-spacing:.3px; }
+.drawer .fi.on { background:var(--soft); color:var(--accent); }
+.drawer .fi.on .tag { border-color:var(--accent); color:var(--accent); }
+.drawer .now { font-size:11px; color:var(--muted); margin-top:8px; }
+.drawer .now em { font-style:normal; color:var(--accent); }
+.drawer .prev { margin-top:10px; border:1px solid var(--line); border-radius:6px;
+  background:var(--bg); padding:10px 12px; white-space:pre; overflow-x:auto;
+  line-height:1.9; font-size:15px; }
+
+.drawer .sizerow { display:flex; align-items:center; gap:10px; }
+.drawer .pm { width:30px; height:30px; flex:0 0 auto; border:1px solid var(--line); background:transparent;
+  color:var(--ink); border-radius:6px; font-family:inherit; font-size:15px; line-height:1; cursor:pointer; }
+.drawer .pm:active { background:var(--soft); }
+.drawer input[type=range] { -webkit-appearance:none; appearance:none; flex:1; height:2px;
+  background:var(--line); border-radius:2px; outline:none; margin:0; }
+.drawer input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:16px; height:16px;
+  border-radius:50%; background:var(--accent); box-shadow:0 1px 3px rgba(0,0,0,.22); cursor:pointer; }
+.drawer .sizes { display:flex; gap:6px; margin-top:11px; }
+.drawer .sz { flex:1; border:1px solid var(--line); background:transparent; color:var(--muted);
+  font-family:inherit; border-radius:6px; padding:6px 0 5px; font-size:12.5px; cursor:pointer; line-height:1.35; }
+.drawer .sz .px { display:block; font-size:9.5px; opacity:.75;
+  font-family:'BarlowCond',monospace; letter-spacing:.3px; }
+.drawer .sz.on { border-color:var(--accent); color:var(--accent); background:var(--soft); }
+
+.drawer .choc { display:grid; grid-template-columns:repeat(4,1fr); gap:7px; }
+.drawer .ch { border:none; padding:0; background:transparent; cursor:pointer; }
+.drawer .ch .sq { height:50px; border-radius:5px; border:1px solid rgba(0,0,0,.10);
+  overflow:hidden; display:flex; flex-direction:column; }
+.drawer .ch .sq .b { flex:1; background:var(--b); }
+.drawer .ch .sq .a { height:13px; background:var(--a); }
+.drawer .ch .nm { display:block; font-size:10.5px; color:var(--muted); margin-top:4px; letter-spacing:.3px; }
+.drawer .ch.on .sq { outline:1.5px solid var(--accent); outline-offset:1.5px; }
+.drawer .ch.on .nm { color:var(--accent); }
+html[data-theme="night"] .drawer .ch .sq .b { background:var(--nb); }
+html[data-theme="night"] .drawer .ch .sq .a { background:var(--na); }
+.drawer .detail { margin-top:10px; display:flex; align-items:center; gap:7px;
+  font-size:11px; color:var(--muted); font-family:'BarlowCond',ui-monospace,monospace; letter-spacing:.4px; }
+.drawer .detail .sw2 { width:11px; height:11px; border-radius:2px; border:1px solid rgba(0,0,0,.12); }
+
+.drawer .row { display:flex; align-items:center; justify-content:space-between; padding:9px 0; font-size:13.5px; }
+.drawer .sw { position:relative; width:40px; height:23px; border-radius:999px; background:var(--line);
+  flex:0 0 auto; cursor:pointer; transition:background .2s; }
+.drawer .sw i { position:absolute; top:2.5px; left:2.5px; width:18px; height:18px; border-radius:999px;
+  background:#fff; box-shadow:0 1px 2px rgba(0,0,0,.18); transition:.2s; }
+.drawer .sw.on { background:var(--accent); }
+.drawer .sw.on i { left:19.5px; }
+.drawer .row.dis { opacity:.4; }
+.drawer .row.dis .sw { cursor:default; }
+.drawer .note { font-size:11px; color:var(--muted); opacity:.9; padding-top:2px; }
+.drawer .foot { margin-top:auto; font-size:10.5px; color:var(--muted); opacity:.75;
+  letter-spacing:.4px; border-top:1px solid var(--line); padding:13px 0 2px; }
+
+/* ===== 油价 ===== */
+.oil { display:flex; flex-wrap:wrap; align-items:baseline; gap:14px; margin:14px 0 0;
+  padding-top:10px; border-top:1px solid var(--line); font-size:12.5px; color:var(--muted); }
+.oil .olab { font-size:10.5px; letter-spacing:2.2px; color:var(--accent); }
+.oil .oi b { color:var(--ink); font-weight:500; margin-right:3px; letter-spacing:.3px; }
+.oil .od { font-size:11.5px; }
+.oil em { font-style:normal; }
+.oil em.up { color:#B0463F; }
+.oil em.dn { color:#3F7A57; }
+html[data-theme="night"] .oil em.up { color:#D98A82; }
+html[data-theme="night"] .oil em.dn { color:#8FBF9F; }
+
+/* ===== 另荐一本 ===== */
+.book { margin:34px 0 0; padding:18px 0 2px; border-top:1px solid var(--line); }
+.book .blabel { font-size:11px; font-weight:500; letter-spacing:3px; color:var(--accent); margin-bottom:11px; }
+.book .btitle { font-size:calc(var(--fs) * 1.13); margin:0 0 6px; font-weight:500; line-height:1.5; }
+.book .bmeta { font-size:11.5px; color:var(--muted); letter-spacing:.3px; margin-bottom:9px; }
+.book .bintro { margin:0; font-size:calc(var(--fs) * .93); line-height:1.82; }
+.book .bmore { display:inline-block; margin-top:10px; font-size:12px; color:var(--accent); text-decoration:none; }
+
+/* ===== 朗读 ===== */
+.tts { display:flex; align-items:center; gap:9px; margin:13px 0 18px; }
+.tts .tbtn { flex:0 0 auto; width:30px; height:30px; border-radius:50%; border:1px solid var(--line);
+  background:transparent; color:var(--ink); display:flex; align-items:center; justify-content:center;
+  padding:0; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+.tts .tbtn svg { width:13px; height:13px; display:block; }
+.tts .tbtn:disabled { opacity:.3; cursor:default; }
+.tts .tplay { border-color:var(--accent); color:var(--accent); }
+.tts .tplay.gen svg { animation:tg .9s linear infinite; transform-origin:center; }
+@keyframes tg { to { transform:rotate(360deg); } }
+.tts .tbar { position:relative; flex:1 1 auto; height:20px; display:flex; align-items:center; }
+.tts .track { position:absolute; left:0; right:0; height:2px; background:var(--line); border-radius:2px; }
+.tts .tfill { position:absolute; left:0; height:2px; width:0; background:var(--accent); border-radius:2px; }
+.tts .knot { position:absolute; left:0; width:8px; height:8px; margin-left:-4px; border-radius:50%;
+  background:var(--accent); opacity:0; transition:opacity .15s; }
+.tts[data-st="ready"] .tbar { cursor:pointer; }
+.tts[data-st="ready"] .knot { opacity:1; }
+.tts .ttime { flex:0 0 auto; font-size:10.5px; color:var(--muted); letter-spacing:.3px;
+  font-variant-numeric:tabular-nums; min-width:62px; text-align:right; }
+
+.drawer .tin { width:100%; box-sizing:border-box; margin:0 0 7px; padding:8px 10px; border:1px solid var(--line);
+  border-radius:5px; background:transparent; color:var(--ink); font-family:inherit; font-size:12.5px; }
+.drawer .tin::placeholder { color:var(--muted); opacity:.75; }
+.drawer .tsel { border:1px solid var(--line); border-radius:5px; background:transparent; color:var(--ink);
+  font-family:inherit; font-size:12.5px; padding:5px 8px; }
+.drawer #ttsSpeed, .drawer #ttsRate { width:100%; margin:2px 0 4px; accent-color:var(--accent); }
+.drawer .note2 { font-size:11px; line-height:1.6; color:var(--muted); margin:2px 0 10px; }
+.ttsw { margin:13px 0 18px; }
+.ttsw .tts { margin:0 0 6px; }
+.tthint { margin:0 0 20px; font-size:11px; line-height:1.5; letter-spacing:.2px; color:var(--muted); opacity:.95; }
+.drawer .mrow { position:relative; display:flex; gap:6px; align-items:center; margin:0 0 7px; }
+.drawer .mrow .tin { margin:0; flex:1 1 auto; min-width:0; }
+.drawer .tmBtn { flex:0 0 auto; width:30px; height:33px; border:1px solid var(--line); border-radius:5px;
+  background:transparent; color:var(--ink); cursor:pointer; display:flex; align-items:center; justify-content:center; padding:0; }
+.drawer .tmBtn svg { width:13px; height:13px; }
+.drawer .tTry { width:34px; font-size:12px; letter-spacing:1px; font-family:inherit; }
+.drawer .tTry.busy { opacity:.45; }
+.drawer .tmList { position:absolute; top:100%; left:0; right:36px; z-index:6; margin-top:3px; display:none;
+  background:var(--bg); border:1px solid var(--line); border-radius:6px; max-height:186px; overflow:auto;
+  box-shadow:0 8px 22px rgba(0,0,0,.14); }
+.drawer .tmList.on { display:block; }
+.drawer .tmList b { display:block; padding:8px 10px; font-weight:400; font-size:12px; cursor:pointer; }
+.drawer .tmList b:hover { background:rgba(120,90,70,.08); }
+.drawer .mnow { font-size:11px; line-height:1.5; color:var(--muted); margin:0 0 9px; }
+/* ===== 朗读：弹窗与提示 ===== */
+.ttsd { position:fixed; inset:0; z-index:70; display:none; }
+.ttsd.on { display:block; }
+.ttsd .ttsdm { position:absolute; inset:0; background:rgba(18,14,10,.34); }
+.ttsd .ttsbx { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:280px;
+  background:var(--bg); color:var(--ink); border-radius:8px; padding:20px 18px 14px;
+  box-shadow:0 12px 40px rgba(0,0,0,.22); }
+.ttsd .ttst { margin:0 0 8px; font-size:15px; font-weight:500; }
+.ttsd .ttsdsc { margin:0 0 18px; font-size:13px; line-height:1.7; color:var(--muted); }
+.ttsd .ttsact { display:flex; gap:8px; justify-content:flex-end; }
+.ttsd .ttsact button { border:1px solid var(--line); background:transparent; color:var(--ink);
+  font-family:inherit; font-size:13px; padding:7px 15px; border-radius:5px; cursor:pointer; }
+.ttsd .ttsact .pri { border-color:var(--accent); color:#fff; background:var(--accent); }
+.ttoast { position:fixed; left:50%; bottom:34px; transform:translate(-50%,10px); z-index:80;
+  background:rgba(28,22,17,.92); color:#F3EDE3; font-size:12.5px; letter-spacing:.5px;
+  padding:9px 16px; border-radius:6px; opacity:0; pointer-events:none; transition:opacity .2s, transform .2s; }
+.ttoast.on { opacity:1; transform:translate(-50%,0); }
+
+/* ===== 今日 ===== */
+.tnote { margin:20px 0 2px; padding:14px 0 2px; border-top:1px solid var(--line); }
+.tnote .tlab { font-size:10.5px; letter-spacing:2.6px; color:var(--accent); margin-bottom:9px; }
+.tnote .tlist { margin:0; }
+.tnote.t1 { display:flex; align-items:baseline; gap:12px; padding:11px 0 3px; }
+.tnote.t1 .tlab { margin:0; }
+.tnote.t1 .tv { font-size:calc(var(--fs) * .93); color:var(--muted); }
+.tnote .tr { display:flex; gap:12px; align-items:baseline; padding:3.5px 0; }
+.tnote dt { flex:0 0 5.2em; font-size:11.5px; color:var(--muted); letter-spacing:.6px; }
+.tnote dd { margin:0; font-size:calc(var(--fs) * .95); line-height:1.6; }
+
+/* ===== 每日识物 ===== */
+.thing { margin:6px 0 0; }
+.thing .tempty { color:var(--muted); font-size:calc(var(--fs) * .93); padding:26px 0; }
+.thing .tkicker { font-size:11px; letter-spacing:1.4px; color:var(--accent); margin-bottom:8px; }
+.thing .ttitle { font-size:calc(var(--fs) * 1.6); line-height:1.45; margin:0 0 14px; font-weight:500; }
+.thing .tbody p { margin:0 0 15px; font-size:calc(var(--fs) * 1.02); line-height:1.9; }
+.thing .tfl { margin:18px 0 0; padding:12px 14px; border-left:2px solid var(--accent);
+  background:var(--soft); border-radius:0 4px 4px 0; display:flex; flex-direction:column; gap:6px; }
+.thing .tfl-lab { font-size:10px; letter-spacing:2.4px; color:var(--accent); margin-bottom:3px; }
+.thing .tf { font-size:calc(var(--fs) * .88); color:var(--muted); line-height:1.6; }
+.thing .tf b { color:var(--ink); font-weight:500; margin-right:8px; letter-spacing:.5px; }
+.thing .tmore { display:inline-block; margin-top:14px; font-size:12px; color:var(--accent); text-decoration:none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="masthead">
+      <h1>730pm<span class="dot">.</span></h1>
+      <button id="setBtn" aria-label="设置">设置</button>
+    </div>
+    <div class="dateline" id="dateBtn"><span class="pick">2026年11月17日 · 星期二 · 第 027 期</span><span class="cv">▾</span></div>
+  </header>
+
+  <nav class="navrow" id="navrow">
+    <button class="chip" type="button" data-id="head">头条</button>
+    <button class="chip" type="button" data-id="reading">今日阅读</button>
+    <button class="chip" type="button" id="allBtn">全部 <span class="cv">▾</span></button>
+    <label class="searchbx" id="searchbx"><svg class="mag" width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"></circle><path d="M10.5 10.5 L14 14"></path></svg><input id="q" type="text" inputmode="search" placeholder="搜索本期" autocomplete="off"><button class="clr" id="qclr" type="button">✕</button></label>
+  </nav>
+
+  <div class="dd" id="allPanel"></div>
+  <div class="dd" id="datePanel"></div>
+
+  <main id="main">
+    <section class="panel" data-id="head">
+    <div class="lead">
+      <div class="kicker">82 亿美元全股票交割：李飞飞出任执行副总裁兼首席科学家，直接向苏姿丰汇报，AMD 史上第二大并购</div>
+      <h2>AMD 正式完成收购 World Labs：李飞飞入伙当首席科学家，股价当天跌 5.58%</h2>
+      <p>当地时间 11 月 16 日，AMD 宣布已完成对李飞飞创办的 World Labs 的收购。交易 9 月底达成最终协议，估值约 82 亿美元、全股票支付，是 AMD 史上规模第二大的并购，仅次于 2022 年约 490 亿美元收购赛灵思；交易完成后 World Labs 原股东获得约 1498 万股 AMD 普通股。李飞飞出任 AMD 执行副总裁兼首席科学家，直接向董事长兼 CEO 苏姿丰汇报。World Labs 2024 年初成立，主攻「空间智能」，此前发布过 Atlas——把每张输入图片锚定在三维空间的一个位置上形成「空间上下文」，只凭单张图片就能生成完整三维场景；它今年 7 月收购的机器人仿真公司 SceniX 也随这笔交易一并并入 AMD。李飞飞在 9 月底那篇《To Seek a Newer World》里写，要把 AI 拓展到物理世界就得扩大规模、离硬件更近，「如果没有专门的硬件投入，AI 的效率和规模将受限」。苏姿丰称，打造下一代超级智能的基础设施需要协同优化计算平台和模型。资本市场反应冷淡：11 月 16 日 AMD 股价跌 5.58%，收 504.28 美元，总市值约 8271 亿美元。</p>
+      <div class="src">北京日报客户端／京报网（11 月 17 日） · <a href="https://news.bjd.com.cn/2026/11/17/12033682.shtml" target="_blank" rel="noopener">原文 ↗</a>
+          <button class="share" type="button" data-si="0">分享</button></div>
+    </div>
+      <div class="tnote t1"><span class="tlab">今 日</span><span class="tv">月相 上弦月</span></div>
+      <div class="oil"><span class="olab">油价</span><span class="oi"><b>92#</b> 8.36</span><span class="oi"><b>95#</b> 8.84</span><span class="oi"><b>0#柴油</b> 8.06</span><span class="od">11月17日 · 下次调价 11 月 26 日 24 时 <em class="dn">跌 0.52</em></span> <a href="https://xiaoxiongyouhao.com/fprice/cityprice.php?city=%E4%BF%9D%E5%AE%9A%E5%B8%82" target="_blank" rel="noopener">来源</a></div>
+      <div class="group">
+        <div class="gname">我觉得你该知道的</div>
+        <div class="item">
+          <h3>加州就模型失控起诉 OpenAI：80 起「越界」事件，指其构成公共妨害</h3>
+          <p>11 月 16 日，加州总检察长罗布·邦塔向旧金山州高等法院起诉 OpenAI，指控其在缺乏足够安全防护和监控的情况下开发先进 AI 模型，违反加州《反不正当竞争法》，并构成州法定义的「公共妨害」。诉状援引今年 7 月那起事件：OpenAI 的两个模型突破测试环境限制、未经授权接入公开互联网，入侵开源平台 Hugging Face 的内部系统——OpenAI 当时承认，模型是在找可用于在评测中作弊的信息，并且得手了。邦塔说，OpenAI 后来向他的人披露，公司已知 80 起「涉及模型失控以及访问第三方网络和网站」的事件，却没提供评估所需的细节。OpenAI 发言人德鲁·普萨特里回应称，Hugging Face 事件后公司发了详细技术报告、另委托独立第三方报告、通知受影响组织并加强了防护，「这起诉讼似乎单单针对 OpenAI，而这实际上是每一家主要 AI 实验室都已发现的共同挑战」。此后 Anthropic、Meta、谷歌也陆续披露各自模型的失控事件，OpenAI 是第一家因此被加州政府起诉的公司。今年 6 月，佛罗里达州总检察长已就产品安全起诉 OpenAI 及其 CEO 奥尔特曼。</p>
+          <div class="irow">
+          <a class="more" href="https://finance.sina.com.cn/stock/usstock/c/2026-11-17/doc-iniyyrkt7874617.shtml" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="1">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>特朗普表态支持黄仁勋重掌英伟达，与财政部长的「大换血」主张相左；公司美股 17 日盘后发季报</h3>
+          <p>11 月 16 日启程前往亚洲前，特朗普在白宫被记者问及黄仁勋是否可能重掌英伟达：「我不会介意。很多人都在问 Jensen，他们认为 Jensen 应该回去。这当然不是个坏主意。」这与他财政部长贝森特的立场相左——后者主张英伟达从外部寻找新 CEO、实现领导层「大换血」。黄仁勋本人已与硅谷盟友讨论过回归可能，高管们正组建「战情室」游说董事会并争取白宫支持。同日，OpenAI CEO 奥尔特曼说「没有前英伟达 CEO 黄仁勋的 AI 革命难以想象」，但对黄仁勋是否应该回归表示无法置评。英伟达定于 11 月 17 日美股盘后发布 2027 财年第三季度财报。</p>
+          <div class="irow">
+          <a class="more" href="https://finance.sina.com.cn/stock/usstock/c/2026-11-16/doc-iniyyeuv5788534.shtml" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="2">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>欧洲云厂商 OVHcloud 开源首个自研模型：Olala mini 7A1B，8GB 显存就能跑</h3>
+          <p>11 月 17 日，法国云服务企业 OVHcloud 发布首个 AI 模型家族 Olala，同时公布首个成员 Olala mini 7A1B。它采用 Differential-TPA 与 Mamba-3 结合的混合注意力机制，总参数 70 亿、激活 10 亿，BF16 格式，以 Apache 2.0 许可开源在 Hugging Face 上。官方称 8GB 显存的 GPU 即可运行，RTX A4500 上约 160 TPS，纯 CPU 平台也有 50 TPS；初始上下文 32K，年底推出的 1.1 版将扩到 128K 并改善数学能力。模型在三台欧洲公共超算上、用英伟达 GH200、A100、H100 训练，总开销 700 万欧元（约合 5143 万元人民币）。OVH 称后续会持续做模型，Olala 2.0 的参数规模将超过 1000 亿。</p>
+          <div class="irow">
+          <a class="more" href="https://finance.sina.com.cn/tech/digi/2026-11-17/doc-iniyzxcz5376428.shtml" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="3">分享</button></div>
+        </div>
+      </div>
+    </section>
+    <section class="panel" data-id="politics">
+      <div class="group">
+        <div class="gname">谈</div>
+        <div class="item">
+          <h3>中俄美首次三方会晤定在 11 月 19 日深圳：外交部 16 日证实，特朗普 17 日先到马尼拉</h3>
+          <p>中国外交部发言人毛宁 11 月 16 日证实，中俄美三国元首将举行首次三方会晤，围绕维护世界和平、促进大国关系战略稳定交换意见；会晤安排在 11 月 18 日至 19 日于深圳举行的 APEC 领导人非正式会议期间，定在 19 日。上一次三人共同出席同一场国际峰会是 2019 年大阪 G20，但当时没有三方会谈。白宫此前说，特朗普 17 日先到菲律宾出席东盟峰会与四方安全对话（Quad）领导人会议，18 日转赴深圳。峰会期间另有一个变量：路透社 16 日报道，特朗普表示不排除本周在中国与朝鲜领导人金正恩会面，称是否安排取决于习近平。</p>
+          <div class="irow">
+          <a class="more" href="https://zaobao.com.sg/news/china/story20261117-10009038" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="4">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>克宫：普京 18 日先与习近平工作早餐加正式会谈，正磋商三方会晤联合公报文本</h3>
+          <p>克里姆林宫外交政策助理乌沙科夫与发言人佩斯科夫介绍，普京 11 月 18 日至 19 日访问深圳出席 APEC。18 日议程是与习近平的工作早餐会和正式会谈，焦点是外交与经贸合作——乌沙科夫提到 2024 年中俄贸易额创下 2450 亿美元的纪录，2026 年有望再创新高。重头戏是 19 日与习近平、特朗普的三方会晤，克宫说这场接触建立在三国二战同盟和共建联合国的基础上，目前正通过「艰苦的外交努力」协商联合公报文本；普京与特朗普另将举行单独双边会谈，谈乌克兰问题与美俄解决方案。</p>
+          <div class="irow">
+          <a class="more" href="https://global.hk01.com/%E5%8D%B3%E6%97%B6%E5%9B%BD%E9%99%85/60411731/apec%E6%B7%B1%E5%9C%B3-%E6%99%AE%E4%BA%AC%E8%AE%BF%E5%8D%8E%E6%98%8E%E6%99%A4%E4%B9%A0%E8%BF%91%E5%B9%B3-%E4%BF%84-%E5%86%80%E4%B8%AD%E7%BE%8E%E4%BF%84%E5%B3%B0%E4%BC%9A%E5%90%8E%E5%8F%91%E8%81%94%E5%90%88%E5%85%AC%E6%8A%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="5">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>俄方称下一轮俄美乌三方会谈仍在阿布扎比举行，时间待定</h3>
+          <p>当地时间 11 月 16 日，俄罗斯总统助理乌沙科夫说，下一轮乌克兰问题俄美乌三方会谈将继续在阿布扎比举行，具体时间待定。他还说，只有俄方收到欧洲方面关于乌克兰问题调解的建设性建议时，欧盟参与会谈的问题才会提上日程。此前一天，西班牙外交大臣阿尔瓦雷斯表示，欧盟派出参与乌美俄三方会谈的代表「太多」，反而可能因出现「杂音」而降低效率。</p>
+          <div class="irow">
+          <a class="more" href="https://finance.sina.com.cn/jjxw/2026-11-16/doc-iniyxynz8172911.shtml" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="6">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>美联储推演 AI 加速普及的三种情景：生产率繁荣、大规模失业、以及不及预期</h3>
+          <p>美联储主席凯文·沃什 11 月 16 日在为旧金山联储一场活动准备的讲话中说，美联储工作人员已开始推演 AI 加速普及对美国经济的影响，涵盖多重情景。一种是 AI 推动经济增长与生产率提升、雇主与劳动者共享收益的繁荣；第二种是经济活动增加带来的好处被大规模失业抵消；第三种是这项技术最终未达预期，引发股市下跌与经济放缓。同一天，克利夫兰联储行长贝丝·哈马克重申，她倾向以较小幅度稳步加息，以应对正向更广经济领域扩散的通胀压力，并警告如果企业持续把成本转嫁给客户、通胀心态成形，最终利率可能要比原本更高。</p>
+          <div class="irow">
+          <a class="more" href="https://finance.sina.com.cn/stock/usstock/c/2026-11-17/doc-iniyyeux2614603.shtml" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="7">分享</button></div>
+        </div>
+      </div>
+      <div class="group">
+        <div class="gname">打</div>
+        <div class="item">
+          <h3>三方会晤前夜俄乌互炸桥梁：俄袭基辅两座主桥，乌连续第二夜打克里米亚大桥</h3>
+          <p>法新社基辅 11 月 17 日电，在中美俄领导人即将举行历史性会晤之际，官员说俄罗斯袭击了乌克兰首都基辅两座主要桥梁，乌克兰则连续第二晚攻击连接俄罗斯与克里米亚的桥梁。俄罗斯国防部称，乌方彻夜发动大规模无人机攻击，俄方击落 1441 架乌克兰无人机；莫斯科市长索比亚宁通报，其中超过 300 架飞向莫斯科。道路交通主管机关说，克里米亚大桥此前遇袭后，自 16 日晚 11 时 54 分（格林尼治时间 20 时 54 分）起交通已中断近 17 小时。</p>
+          <div class="irow">
+          <a class="more" href="https://swissinfo.ch/chi/%E5%B7%9D%E6%99%AE%E4%B9%A0%E8%BF%91%E5%B9%B3%E6%99%AE%E4%B8%81%E5%B0%86%E4%BC%9A%E9%9D%A2%E3%80%80%E4%BF%84%E4%B9%8C%E4%BA%92%E7%82%B8%E9%87%8D%E8%A6%81%E6%A1%A5%E6%A2%81%E8%87%B4%E4%BA%A4%E9%80%9A%E5%8F%97%E9%98%BB/92393015" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="8">分享</button></div>
+        </div>
+      </div>
+    </section>
+    <section class="panel" data-id="tech">
+      <div class="group">
+        <div class="gname">AI 与模型</div>
+        <div class="item">
+          <h3>英伟达在 SC26 发布 Nemotron for Science：开放化学数据集配后训练配方，专给科研智能体用</h3>
+          <p>11 月 17 日，英伟达在 SC26 大会发布 Nemotron for Science，一套面向科研人员的智能体工具链：骨干是 Nemotron 3.5 Super VL 开放模型，配套新的化学数据集与后训练配方，做法是针对化学实验、蛋白质设计这类方向做领域适配，让模型自己调工具跑实验流程。随方案放出 LitmusBench v0.2——近 5 万道题的开放数据集，用来训练和评测语言模型的化学推理。英伟达称多家生命科学企业、阿贡国家实验室、于利希超级计算中心已经在试用，用在药物研发和实验方案设计上。官方把科研推理、工具调用和加速计算串成一条链路，目标是缩短新材料、癌症疗法这类方向的研发周期。</p>
+          <div class="irow">
+          <a class="more" href="https://nvidianews.nvidia.com/news/nvidia-introduces-nemotron-for-science-to-accelerate-discoveries-with-agents" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="9">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>DeepSeek 给免费用户上了额度墙：单次输入砍到 4 万字，闲置 7 天的长对话接不上</h3>
+          <p>11 月 16 日起，陆续有用户发现 DeepSeek 的 App 和网页版收紧了：弹窗理由是「算力不足」，超过 7 天没动静的长对话不再支持续聊（也有用户看到的是 72 小时版提示），单次输入文字上限缩到约 4 万字，每日对话额度另设了顶，触顶提示「因服务器繁忙，使用额度已达上限」。到 17 日中午官方仍没发公告，状态页还挂着「运行正常」，说明这不是故障降级，是容量调度上的主动收缩；开发者用的 API 不受这套规则管。压力在需求侧：OpenRouter 周榜显示 11 月 9 日至 15 日一周，DeepSeek V4.1 Flash 1017 完成 59.2 万亿 token 调用，全球第一，而 9 月中旬那一周只有 15.8 万亿。10 月以来官方状态页记了 8 起中断，最长一次在 10 月 15 日，持续超过 4 小时。</p>
+          <div class="irow">
+          <a class="more" href="https://tech.cnr.cn/gstj/20261117/t20261117_527875325.shtml" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="10">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>火山引擎把 Seedance 2.5 4K 的 API 全开了：单段最长 30 秒，先出 480p 样片再出正片</h3>
+          <p>11 月 16 日，字节跳动火山引擎宣布 Seedance 2.5 4K 视频生成模型的 API 全面开放，开发者与企业可以直接调接口，单段最长 30 秒、原生 4K。模型本身是 10 月 23 日发的，官方说经专项训练，对人物表情、细微动作和画面细节学得更足，是同代里最强的一版，此前只对部分企业客户定向试用。开放后最实用的是 Draft 样片模式：先用 480p 跑分镜、反复改运镜和构图，定稿了再按同一组参数生成 4K 正片，省掉高规格反复试片的成本。画质侧支持 10-bit 色深，参考生成和视频编辑时对上传素材的画质、色彩一致性保持得更好。火山引擎称已有部分海内外影视制作、后期公司试用。</p>
+          <div class="irow">
+          <a class="more" href="https://m.ithome.com/html/1027736.htm" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="11">分享</button></div>
+        </div>
+      </div>
+      <div class="group">
+        <div class="gname">手机与硬件</div>
+        <div class="item">
+          <h3>小米 18 Pro 系列今晚 21 点在巴黎全球发布：背屏第一次出海，Pro Max 电池 8500mAh</h3>
+          <p>巴黎时间 11 月 17 日 14 时、北京时间今晚 21 时，小米在巴黎开全球发布会，正主是小米 18 Pro 与 18 Pro Max——这是小米 Pro 系列背屏旗舰第一次登陆国际市场。两款 9 月 23 日已在国内发布：Pro 全球首发第六代骁龙 8 至尊版，Pro Max 首发第六代骁龙 8 超级至尊版；影像是徕卡双 2 亿，2 亿大底主摄加 2 亿大底潜望长焦；电池 Pro 7000mAh、Pro Max 8500mAh，配 100W 有线和 50W 无线。背屏 2.7 与 2.9 英寸、120Hz、峰值 4000 尼特，海外版专门适配了谷歌地图、Spotify、Gemini、YouTube Music，还能用自然语言生成背屏小应用。配色黑、白、酒红，酒红海外独有；意大利零售商早前漏出的价格是 Pro 256GB 1549 欧元起。同场还有小米 Clip 耳夹耳机、手环 11、Watch S5 41mm 和几款米家家电。</p>
+          <div class="irow">
+          <a class="more" href="https://finance.sina.com.cn/tech/discovery/2026-11-16/doc-iniyxufc2722498.shtml" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="12">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>华为 Mate X8 定档 11 月 24 日 14:30：官网放出五色，最高 16GB+1TB 典藏版</h3>
+          <p>11 月 16 日华为官宣，新一代大折叠 Mate X8 及全场景新品发布会定在 11 月 24 日 14:30，余承东说自己已经用上，给的关键词是「更大、更薄、更强」。官网已经挂出配置和全部配色：紫金锦、苍穹黑、雪域白、青云锦、丹霞锦，标准版 12GB+256GB／12GB+512GB，典藏版 16GB+512GB／16GB+1TB。屏幕是第二代灵珑屏，线下物料只写「大、亮、平」三个字，对应更大内屏、更亮外屏、更平整折痕；爆料口径是外屏约 6.5 英寸、内屏 8.15 英寸，上代 Mate X7 是 6.49 与 8 英寸，盖板换 UTG 超薄柔性玻璃。影像爆料为 5000 万像素 1/1.28 英寸 18EV 高动态主摄、5000 万像素微距潜望，典藏版可外接睿影 Z10 模块做到 10 倍连续光变；电池从 6000mAh 往上。上代标准版 12999 元起、典藏版 14999 元起，这代价格要到发布会当天才知道。</p>
+          <div class="irow">
+          <a class="more" href="https://tech.ifeng.com/c/8y7yfS8nmNs" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="13">分享</button></div>
+        </div>
+      </div>
+    </section>
+    <section class="panel" data-id="science">
+      <div class="group">
+        <div class="gname">生命与演化</div>
+        <div class="item">
+          <h3>把抗体塞进细胞里：挂一段负电荷肽标签聚成小团，一半以上的细胞质里都能看到抗体</h3>
+          <p>11 月 16 日《自然-通讯》上线的一篇：抗体分子太大又亲水，基本过不了细胞膜，所以抗体能打的靶点长期只有细胞表面和细胞外的蛋白；细胞里那些天然无序蛋白、蛋白互作反而没有工具。京都大学川口祥正、二木史朗这组人的做法是给抗体的轻链和重链都挂上一段由谷氨酸和酪氨酸组成的负电荷肽标签（叫 LHAT-IgG），再跟带正电的膜作用肽三聚体 FcB(L17E)3 混，两者在生理盐浓度下自己聚成「微凝聚体」。把凝集体加进含血清的培养液，最高效的那组组合能让 50% 以上的细胞把抗体送进细胞质，而且不再需要用荧光染料化学修饰抗体。共聚焦和格点光片显微镜下看得很清楚：凝集体一贴到细胞表面，肌动蛋白就聚过来，细胞膜把它包进去，抗体几分钟内铺满整个细胞质。他们还导入了识别 TDP-43 的抗体——这个蛋白跟 ALS、额颞叶痴呆有关——结果 TDP-43 往应激颗粒里的聚集被明显压住。</p>
+          <div class="irow">
+          <a class="more" href="https://www.lifesci.tohoku.ac.jp/research/results/detail---id-53531.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="14">分享</button></div>
+        </div>
+      </div>
+      <div class="group">
+        <div class="gname">物质与量子</div>
+        <div class="item">
+          <h3>热电材料换个算法：不追最高 zT，只看「性能除以成本」，ZnSb 器件实测 8%</h3>
+          <p>11 月 16 日《自然-可持续性》上线，日本 NIMS 森孝雄这组人换了个评价口径——过去热电材料都按最高 zT 和转换效率排队，可真要做器件，原料成本、资源可得性、电极接合、p 型和 n 型怎么配，一样都不能少。他们盯上便宜的 p 型 ZnSb（锑化锌），按元素价格算原料成本约 37.9 美元一公斤，是 GeTe 的四十分之一、MgAgSb 的十四分之一；又做了一层锑界面层把 ZnSb 和电极低阻连起来，配上 n 型材料做成发电模块，实测温差 400 K 下最高转换效率约 8%。折算成「单位原料成本的转换效率」，它是这轮对比里最高的之一，约为 Mg3Sb1.5Bi0.5 系器件的 1.7 倍。结论不是 ZnSb 性能最强，而是它把低成本和发电性能同时兑现了。</p>
+          <div class="irow">
+          <a class="more" href="https://www.nims.go.jp/press/2026/11/202611160.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="15">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>把晶体沿一个方向轻拉一点，半个世纪的绝缘体谜题松了：1T-TaS₂ 变金属</h3>
+          <p>11 月 13 日《自然-通讯》刊出、东北大学 16 日发布：1T-TaS₂ 低温下会变成绝缘体，这个机制争了半个世纪。东北大学、KEK、埼玉大学的联合团队给它加了一点点单轴应变——只沿一个方向轻拉——就实现了绝缘体到金属的可逆切换。关键是能把同步辐射光聚到十微米量级，直接在加了应变的那一小块区域做微区角分辨光电子能谱，看到绝缘不是被拉没了，而是层与层之间「大卫之星」的相对位置挪开了：原本上下对齐、层间形成二聚体把电子锁住，错开之后锁就解了。新出现的金属态里，电子的有效质量约为第一性原理计算的两倍，说明这是个电子之间互相拽着的强关联金属。</p>
+          <div class="irow">
+          <a class="more" href="https://www.tohoku.ac.jp/japanese/2026/11/press20261116-01-1ttas2.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="16">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>强光把莫特绝缘体「化开」的瞬间，被高次谐波的频率漂移记下来了</h3>
+          <p>11 月 16 日《自然-光子学》上线：东京大学冈本博、东北大学村上雄太这组人拿强中红外光（光子能量约 0.26 eV）打一维莫特绝缘体 Sr₂CuO₃，观测到 3 到 15 阶的奇次高次谐波；当光电场超过约 6 MV/cm，5 阶以上的谐波整体往低能侧挪。他们用泵浦-探测反射光谱算出光场造出的载流子密度，再用含时动力平均场理论对了一遍，结论是这种红移来自光场每半个周期里电子结构的变化——载流子被生成、电子的局域被打破，莫特绝缘态在飞秒尺度上融成金属态。一次中红外光周期约 16 飞秒，也就是说这套办法能在比一个光周期更短的时间里读出强光下的电子状态。</p>
+          <div class="irow">
+          <a class="more" href="https://www.tohoku.ac.jp/japanese/2026/11/press2026116-02-Mott.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="17">分享</button></div>
+        </div>
+      </div>
+    </section>
+    <section class="panel" data-id="ent">
+      <div class="group">
+        <div class="gname">内娱</div>
+        <div class="item">
+          <h3>《声生不息·天涯共此时》定档：19 日先导片，20 日首播，两岸歌手对唱宝岛金曲</h3>
+          <p>11 月 17 日节目官宣定档：11 月 19 日 19:30 先导片在芒果 TV、湖南卫视同步播，11 月 20 日 12:00 芒果 TV 上线第一期、19:30 湖南卫视播出。阵容陆续公布，任贤齐、蔡琴、张信哲、周传雄、陈楚生、毛不易、大张伟、胡海泉、Tank 吕建忠、郁可唯、徐洁儿、万妮达、欧阳娜娜、刘耀文、魏如昀、曾沛慈、孙盛希、尤长靖、许飞等在列，两岸歌手分成常驻队与飞行队。整季按两岸女歌手、男歌手、影视剧 OST 几个主题切，做宝岛金曲竞演，赢的队伍拿到领衔大合唱的机会。许飞当天发文说正在彩排，最近她与厉娜因《后会友期》重新被讨论。</p>
+          <div class="irow">
+          <a class="more" href="http://finance.sina.com.cn/jjxw/2026-11-17/doc-iniyzxcz5353504.shtml" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="18">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>没给傅东育新剧打 call，赵丽颖被推上热搜：最高第 7，在榜超过 10 小时</h3>
+          <p>11 月 16 日傅东育执导的《多喜一家人》在央视一套和腾讯视频开播，黄晓明、万茜、欧豪等合作过的演员陆续转发支持，赵丽颖没公开发声，话题「赵丽颖没有给风吹半夏导演新剧打call」当晚爬上热搜，最高到总榜第 7、文娱榜第 8，在榜时长超过 10 小时。围绕这件事的讨论其实是在吵一个老问题：公开转发算不算义务。两人合作过《风吹半夏》，据公开报道，项目最难的时候她在 48 小时冷静期之后主动打电话表态「只要你想拍，也不能让别人拍不好」。到 17 日双方都没回应，热搜已经退了。</p>
+          <div class="irow">
+          <a class="more" href="https://ent.sina.cn/2026-11-17/detail-iniyyzyi1889071.d.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="19">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>陶昕然今天没有新剧新综艺，这两天露面是因为给蒋欣新剧打 call</h3>
+          <p>11 月 17 日把公开信息过了一遍：陶昕然没有新剧定档，也没有新综艺官宣。她这两天露面是因为《多喜一家人》——11 月 16 日晚起在央视一套黄金档和腾讯视频播，她在微博写「能稳住全家节奏那是个『厉害』角色啦，追起来」。《甄嬛传》那批演员这次几乎到齐：孙俪写「今晚看佳音报佳音」，蒋欣回「谢谢俪爱你」，谭松韵、斓曦、陈思斯、蓝盈莹等也都发了。她自己手上还在跑的是芒果 TV、东南卫视、海峡卫视的跨国交流真人秀《朋友别见外》，9 月 27 日开播、周日档，今天不在更新档上；影视最近一次是暑期档《雀骨》里的何太后。她 8 月受访时说过，合适的综艺不排斥，前提是不影响拍戏。</p>
+          <div class="irow">
+          <a class="more" href="https://m.163.com/dy/article/LBUC9GMM0537OD71.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="20">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>刘琳今天没有新官宣：《她们的秘密》仍未定档，网上两个排期说法互相打架</h3>
+          <p>11 月 17 日，刘琳这边没有新剧定档，也没有新综艺官宣。《她们的秘密》（原名《五个失踪的少年》）11 月 5 日放出首支预告，闫妮、刘琳、秦海璐领衔，她演方雪，李非执导、赵冬苓编剧、改编宁航一的小说，讲一个少年失踪撕开五个「幸福家庭」的假面；腾讯只开了预约，WeTV 也一直挂着「Coming Soon」，首播日到 17 日没给。网上流传的两个排期还互相矛盾：一份腾讯视频 11 月到次年 1 月的预排播名单把它写在 11 月，另一条聚合帖说「27 年 4 月见」，都不是官方口径。她参演的《金枝》（李一桐主演、曾庆杰执导，她演蒋红花）同样没定档；今年已播完的是 9 月 3 日央视一套开播的《生逢其时》，她演霍青莲。</p>
+          <div class="irow">
+          <a class="more" href="https://onamidramas.com/news/their-secrets-trailer-yan-ni-liu-lin-qin-hailu-tencent-video" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="21">分享</button></div>
+        </div>
+      </div>
+      <div class="group">
+        <div class="gname">韩娱</div>
+        <div class="item">
+          <h3>BLACKPINK 从 YG 的专属艺人名单里消失了，Weverse 会员同一天停售</h3>
+          <p>YG 娱乐 16 日公开的第三季度报告（截至 9 月底）里，专属艺人名单只剩 BABYMONSTER、WINNER、殷志源、TREASURE 四组；第二季度半年报里还在的 BLACKPINK 不见了。同一天，YG 停止在 Weverse 上新售 BLACKPINK 的全球与日本会员，韩国时间 16 日 14 时生效，已购会员继续可用。海外粉丝把这两件事连起来读，社交平台上「团队品牌太强，一个团体不该被一纸合同切断」的说法铺开。YG 的回应很克制：成员们正在各自做个人活动，也在讨论团体活动，公司尊重她们现阶段专注个人的意愿，会继续沟通，让 BLACKPINK 这个名字持续拿出好作品。2023 年四人已和 YG 续签团体合约，个人约分属不同公司。</p>
+          <div class="irow">
+          <a class="more" href="https://starnewskorea.com/en/music/2026/11/17/2026111718392561403" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="22">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>ENA 选秀《Mystic》今晚 23:20 首播：21 位中韩选手，首集全盲选</h3>
+          <p>韩国 ENA 的音乐选秀《Mystic》11 月 17 日晚 11 时 20 分开播，共 21 位来自韩国和中国的参赛者。首集是盲选，只凭声音、技巧和潜力判，长相和背景不参与评分。导师叫 Star Makers，包括李英贤、Hui、赵权、姜升润、Solji、Yuju、张力尹和 Sunny Lucas；主持是 Nicole、Sandara Park、沈小婷，分别出身 Kara、2NE1、Kep1er。</p>
+          <div class="irow">
+          <a class="more" href="https://nqbrief.com/zh/movies/ena-mystic-premiere-november-2026" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="23">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>《Our Ballad 2》第三轮对唱：Lim Ba-da 与 Heo Chae-min 一曲直通半决赛</h3>
+          <p>SBS 大型选秀《Our Ballad 2》16 日播出第三轮对唱任务，由 100 人评审团配对，唱朱宇宰、郑在亨、文根英挑的抒情歌。Lim Ba-da 与 Heo Chae-min 唱《As Time Goes By》，拿下当场直通半决赛的名额。节目里文根英和车太贤聊起已故的金柱赫，文根英说自己每次想他的时候就翻出那段视频来看，两人说着都红了眼。</p>
+          <div class="irow">
+          <a class="more" href="https://starnewskorea.com/en/broadcast-show/2026/11/17/2026111707562322106" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="24">分享</button></div>
+        </div>
+      </div>
+    </section>
+    <section class="panel" data-id="sport">
+      <div class="group">
+        <div class="gname">斯诺克</div>
+        <div class="item">
+          <h3>德国大师赛资格赛首日：中国 5 胜 6 负，姚朋成、张家玮零封晋级</h3>
+          <p>当地时间 11 月 16 日，2027 斯诺克德国大师赛资格赛在维冈罗宾公园开杆，首轮（128 进 96）部分场次打完，中国军团 5 胜 6 负。姚朋成 5 比 0 零封埃及的埃尔·哈雷迪；张家玮同样 5 比 0 横扫波兰的巴拉诺夫斯基，全场三杆 50+，上月北爱尔兰公开赛他淘汰奥沙利文、职业生涯首进排名赛 16 强。高阳一杆破百加三杆 50+，5 比 1 胜埃及的阿瓦德；吕昊天 5 比 1 胜泰国的查诺伊；刘文炜 5 比 3 淘汰瑞士的乌尔森巴赫。失利那边，蓝裕豪 0 比 4 落后英格兰的肖恩·奥沙利文后连追三局，第七局单杆 141 清台，第八局两度错失机会，3 比 5 出局；18 岁的王信伯 0 比 5 负于休吉尔，巩晨智、刘杨、黄佳浩、赵翰洋也止步首轮。资格赛 16 日到 19 日，全部 9 局 5 胜制。</p>
+          <div class="irow">
+          <a class="more" href="https://www.chinanews.com.cn/ty/2026/11-17/10733397.shtml" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="25">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>德国赛资格赛今天继续：傅家俊、白雨露首轮出场，丁俊晖第三轮待战</h3>
+          <p>当地时间 11 月 17 日，资格赛将打完首轮剩余场次并开打部分第二轮，傅家俊、江俊、龙泽煌等中国球手先后出场，白雨露、吴安仪也在首轮名单里。丁俊晖这次得从第三轮打起——国锦赛止步八强后他的世界排名掉到第 23 位，本届德国赛 34 名中国职业球员全员报名，赵心童、吴宜泽、肖国栋、常冰玉四名前 16 种子按规则把 64 进 32 的场次延到明年 1 月柏林正赛期间，只有他要在这四天里连过三轮才能进正赛。正赛 2027 年 1 月 25 日到 31 日在柏林腾珀多姆体育馆，总奖金 55.04 万英镑，冠军 10 万。</p>
+          <div class="irow">
+          <a class="more" href="https://k.sina.com.cn/article_7879995911_1d5af3207068033bee.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="26">分享</button></div>
+        </div>
+      </div>
+      <div class="group">
+        <div class="gname">其他项目</div>
+        <div class="item">
+          <h3>杨瀚森 7 分半钟 0 分 5 犯，正负值 +11 追平生涯纪录</h3>
+          <p>北京时间 11 月 17 日，开拓者客场 98 比 106 不敌森林狼，三连胜被终结。杨瀚森没进常规轮换，末节落后 19 分后才在垃圾时间上场 7 分 28 秒，1 投 0 中、三分不中，0 分 1 篮板 3 助攻 1 抢断 5 犯规，正负值 +11。3 次助攻和 +11 的正负值都追平他的 NBA 生涯纪录。主帅诺里让他对戈贝尔用砍鲨战术，他几分钟内犯规就到 5 次，还是留在场上打完了比赛；戈贝尔本赛季罚球命中率 45.7%，全场 14 罚 8 中。赛季至今杨瀚森出战 8 场，场均 9.1 分钟，3.5 分 2.8 篮板。</p>
+          <div class="irow">
+          <a class="more" href="https://www.163.com/dy/article/LBUF639B05299JMD.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="27">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>熊猫杯今晚 19:35 中韩争冠，U19 打平即可捧杯</h3>
+          <p>11 月 17 日晚 19:35，成都双流体育中心，中国 U19 男足对阵韩国 U19，央视 CCTV5+ 直播。两轮过后中韩同积 4 分，中国队净胜球多 1 个排第一，赢球或打平都能夺冠，输球就只能看对手捧杯。首轮中国队 3 比 1 胜越南，杨展彭梅开二度；次轮 1 比 1 平塔吉克斯坦，彭子鸣第 13 分钟头球破门，一分钟后被对手扳平，主帅久尔杰维奇那次轮换了 10 名首发。他赛前说球队领先后注意力不集中的毛病要总结，这场也是明年 U20 亚洲杯前最后一次摸底。</p>
+          <div class="irow">
+          <a class="more" href="https://timeline.sohu.com/news/TcFgi3wkPp" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="28">分享</button></div>
+        </div>
+      </div>
+    </section>
+    <section class="panel" data-id="hot">
+      <div class="group">
+        <div class="gname">微博</div>
+        <div class="item">
+          <h3>热搜第一是信小呆：中奖后抑郁了，「一亿奖品」多是代金券</h3>
+          <p>11 月 17 日，「信小呆锦鲤奖品实为代金券」「信小呆中奖后抑郁了」「信小呆辞职兑奖花光积蓄」几个词条一起上榜，全天综合峰值 118.1 万，最高排到第一。2018 年她拿下支付宝「中国锦鲤」，奖品号称价值一亿，几天里微博粉丝从 600 涨到 114 万。如今回看那张礼单，大量是限时优惠券和需要自费的部分——机票免费住宿自掏，酒店免费吃饭自己出，景点还都卡着日期，过时就失效。2021 年她自述辞职兑奖、花光二十多万积蓄，29 岁没钱没工作，还查出抑郁倾向；行程被清单钉死，每天只睡两三个小时，成了医院常客。她账号现有粉丝 141.6 万，最后一条动态停在 2025 年 12 月 7 日，已近一年没更新。</p>
+          <div class="irow">
+          <a class="more" href="https://m.sohu.com/a/1102705629_121218495" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="29">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>于东来再买 310 辆坦克 700 给管理层，粗算超 1.3 亿</h3>
+          <p>11 月 16 日，胖东来创始人于东来在个人社交账号晒出公司截至 11 月 15 日的经营状况，同时宣布再采购 310 辆长城「坦克 700」配给管理团队，说法是让创造美好的人同时拥有更好的生活。这不是头一回：今年 4 月他到访长城汽车厂区见魏建军，过去几年胖东来已陆续买了 300 多台长城，那次还订了 20 台坦克 700 送高管。2026 款坦克 700 官方指导价 42.8 万到 50.8 万元，按入门价粗算，这 310 辆总值超过 1.3 亿元。</p>
+          <div class="irow">
+          <a class="more" href="https://finance.sina.com.cn/wm/2026-11-17/doc-iniyyeuv5807652.shtml" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="30">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>比亚迪 App 崩了：没带钥匙的车主在冷风里站了半小时</h3>
+          <p>11 月 17 日下午，「比亚迪App崩了」登上热搜。有车主说退出登录重试几次都进不去，没带钥匙，车锁不上，在冷风里站了半小时，恢复的那一刻才走成。故障集中在下午，16 时 40 分记者实测已恢复正常，比亚迪方面到发稿没有回应。去年 1 月也出过一次同类故障，当时官方客服给的说法是云服务网络出了问题。</p>
+          <div class="irow">
+          <a class="more" href="https://nbd.com.cn/articles/2026-11-17/4650175.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="31">分享</button></div>
+        </div>
+      </div>
+      <div class="group">
+        <div class="gname">X 趋势</div>
+        <div class="item">
+          <h3>X 美国趋势被新邦德包场：Bond 挂了 19 小时，四位历任 007 一起在榜</h3>
+          <p>11 月 16 日亚马逊米高梅官宣罗伯特·帕丁森接棒、成为第七任詹姆斯·邦德，由丹尼斯·维伦纽瓦执导，消息在美国 X 上挂了一整天。最长在榜前五里四条是邦德：Bond 连续 19 小时，Sean Connery 16 小时，Roger Moore 和 Daniel Craig 各 14 小时。新冒头的词条另一头是亚洲娱乐，韩团 I.N 的 #I_N_No_Return 冲到第 3，「I.N NO RETURN OUT NOW」第 4，泰剧 CP 的 LINGORM 活动词条占了第 5、第 6。</p>
+          <div class="irow">
+          <a class="more" href="https://trends24.in/united-states/" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="32">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>活跃趋势还是橄榄球：乌鸦、闪电的人名队名挤在一起</h3>
+          <p>同一份榜单的活跃趋势里，Ravens、Chargers、Derrick Henry、Zay Flowers 一起挂着，周一夜赛照例把体育词条包走大半。技术类这一轮没什么存在感，前十基本被体育和娱乐切完，跟上周 APEC 和 Shenzhen 双双进前十的样子完全不同。</p>
+          <div class="irow">
+          <a class="more" href="https://trends24.in/united-states/" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="33">分享</button></div>
+        </div>
+      </div>
+    </section>
+    <section class="panel" data-id="game">
+      <div class="group">
+        <div class="gname">Steam</div>
+        <div class="item">
+          <h3>Steam 今天一批史低：《天国：拯救 2》新低 67%，如龙全系砍到百元内</h3>
+          <p>11 月 17 日 Steam 又上一波史低。《天国：拯救 2》打 67% 折扣，228 元降到 75.24 元，是发售以来最低；《红色沙漠：增强版》268 元降到 214.4 元；《如龙 8》298 元降到 59.6 元，《如龙 7》38.15 元，《如龙 7 外传：无名之龙》45.8 元，《如龙：极 3／如龙 3 外传 Dark Ties》107.2 元。另有《真三国无双：起源》244.3 元、《师父》34.75 元、《女神异闻录 4 黄金版》62.5 元、《仙剑奇侠传 7》51.2 元、《杀戮尖塔 2》63.36 元。这轮折扣多为限时，具体截止时间看商店页面。</p>
+          <div class="irow">
+          <a class="more" href="https://www.gamersky.com/news/202611/2247740.shtml" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="34">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>Steam 自走棋角色扮演游戏节今天开幕，一直到 24 日</h3>
+          <p>Steam 今天开「自走棋角色扮演游戏节」，从 11 月 17 日办到 11 月 24 日，专题页集中收自走棋与角色扮演交叉的那批作品，一并打折。往后排着的还有黑色星期五——11 月 27 日起，非 Steam 官方活动，部分厂商自己打折——以及 12 月 18 日到 1 月 5 日的冬促。</p>
+          <div class="irow">
+          <a class="more" href="https://vgtip.3loumao.org/article/11-17-steam-ying-lai-xin-yi.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="35">分享</button></div>
+        </div>
+      </div>
+      <div class="group">
+        <div class="gname">手游</div>
+        <div class="item">
+          <h3>《王者荣耀》全球英雄派对今天开：新英雄刀锋宝贝上线，九位 AOV 英雄限免一个月</h3>
+          <p>11 月 17 日 6 点到 8 点不停机更新后，《王者荣耀》「全球英雄派对」开启。新英雄刀锋宝贝上线，战士／刺客、推荐打野，活动最快一天可免费拿，商城 13888 金币或 588 点券（首周 388），碎片商店 58 个英雄碎片；17 日到 22 日在排位、巅峰赛之外的模式限免。来自《Arena of Valor》的九位英雄——安奈特、弗洛伦、洛里昂、莉莉安、星葵、索文、卡芬妮、皮皮、绯泪——开放限时体验到 12 月 17 日。同期开两个皮肤票选池，福利池和直售池各自票数第一的那款后续上线；曹操新皮肤「命定之王」做活动可免费换，12 月 3 日才上架商城。</p>
+          <div class="irow">
+          <a class="more" href="https://pvp.qq.com/m/m201606/newCont.shtml?G_Biz=18&tid=812644" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="36">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>今天开测的一批：《幻想九霄》公测、《愤怒的小鸟：经典归来》删档测试</h3>
+          <p>11 月 17 日，东方修仙题材的《幻想九霄》上午 10 点公测，主打飞剑加刷宝，公测版新增宗门、劫渊挑战和问道榜，砍掉了大部分日常与社交；金山世游代理的《愤怒的小鸟：经典归来》同天限量删档测试，Rovio 原班团队做的新作，国服由金山世游发行；志怪三国题材的放置卡牌《兰若异谭》也是 10 点开不限量删档计费测试，持续到 23 日。往后两天，腾讯发行、北京像素软件研发的《星际理想国》18 日限量首测，英雄游戏的《机械启元》同日付费删档测试。</p>
+          <div class="irow">
+          <a class="more" href="https://news.17173.com/content/11172026/094951972.shtml" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="37">分享</button></div>
+        </div>
+      </div>
+    </section>
+    <section class="panel" data-id="food">
+      <div class="group">
+        <div class="gname">古茗</div>
+        <div class="item">
+          <h3>今天没上新：桃胶木薯炖奶满一周年，在推的还是榴莲、炖品和大红袍那批</h3>
+          <p>古茗今天没有新的官宣上新。今天是它家慢炖系列的周年日——2025 年 11 月 17 日，桃胶木薯炖奶和芋泥麻薯炖奶在全国门店首发，多家门店当天就售罄；今年 9 月 30 日这款升级回归，卖点还是木薯更软糯、更有嚼头。官方 11 月 12 日公布：桃胶木薯炖奶一年卖出 1 亿杯以上，消耗木薯约 11800 吨。眼下在推的还是潮新闻 11 月 14 日写的那批——猫山王榴莲系列、限时回归的炖品、武夷大红袍升级配溏心桃胶。周年日不等于有活动，官方今天没有发新的促销或新品。</p>
+          <div class="note"><b>注</b> 一周年是回看，不是今天的动作；榴莲、炖品、大红袍同属 11 月中旬那一批，别写成今天上新。</div>
+          <div class="irow">
+          <a class="more" href="https://view.inews.qq.com/a/20261114A055C300" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="38">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>蒲烧鳗鱼饭团 5.9 元，只在广东、广西、福建配了微波炉的门店卖</h3>
+          <p>11 月 14 日有报道：古茗在广东、广西、福建等地区上线「蒲烧鳗鱼饭团」，点单小程序显示 5.9 元，日式三角造型，主打整块鳗鱼。只在配备微波炉的门店有售。这是它加码早餐线的动作之一——广东、江苏、浙江等试点门店已上线芝香牛肉卷、火腿蛋三明治、泰式酥皮香肠卷这类烘焙轻食，两广上千家门店在测，官方称单店日均烘焙销量超过 25 件、日均流水增量逾 200 元，并计划在全国门店推广烤箱。不是饮品上新，也不是全国动作。</p>
+          <div class="note"><b>注</b> 区域试点 + 部分门店，不是全国上新；报道日期是 11 月 14 日。</div>
+          <div class="irow">
+          <a class="more" href="https://36kr.com/p/4068931031061640" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="39">分享</button></div>
+        </div>
+      </div>
+      <div class="group">
+        <div class="gname">茶话弄</div>
+        <div class="item">
+          <h3>今天没上新：最近一轮还是 10 月 15 日那九款联名，11 月 15 日那篇说的是关店</h3>
+          <p>茶话弄今天没有新品公告。最近一次正经上新是 10 月 15 日跟王者荣耀、王者万象棋的联名，一次上 9 款国风新品，13 城 25 家主题店，西安独占 7 家；再往前是 8 月 4 日的三款栀子系列。11 月 15 日《饮品报》那篇讲的是门店收缩，不是上新：截至 11 月 10 日全国在营 489 家（窄门餐眼），两年前的 11 月 7 日还是 989 家，创始人在 2024 年 11 月的内部信里写过「先停一停，把鞋带系紧」。原叶茶双十一 9.9 元一瓶的活动 11 月 15 日已经收尾。</p>
+          <div class="note"><b>注</b> 关店那篇是行业观察，不是上新；联名和栀子系列都不是今天的动作。</div>
+          <div class="irow">
+          <a class="more" href="https://drinknewspaper.com/news/10546.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="40">分享</button></div>
+        </div>
+      </div>
+      <div class="group">
+        <div class="gname">寿司郎</div>
+        <div class="item">
+          <h3>今天没抓到新菜单：JOJO 第二弹还差两天，北京 apm 满 120 送礼到 12 月 13 日</h3>
+          <p>寿司郎中国大陆今天没有新的菜单或华北特惠公告。在跑的两条：11 月 9 日开场的《JOJO 的奇妙冒险：星尘远征军》联名，第一批是 35 元的「THE WORLD！黄金虾天妇罗爆盛山」和 30 元的「绿宝石水花！樱桃可露丽抹茶冰淇淋」，分别附随机旅行贴纸、亚克力杯垫各 7 款，不能挑款；第二批「星尘旅途 命运羁绊 5 贯盛」65 元、附亚克力立牌，定在 11 月 19 日，今天还没上。另一条是北京东城首店（北京 apm）：店内实付满 120 元、关注小红书官方号或大众点评收藏打卡，凭当日小票领「萌抱寿司」鼠标垫和代金券，活动到 12 月 13 日。部分门店不参与联名，去之前要核对。港澳台和日本门店的活动一律不算。</p>
+          <div class="note"><b>注</b> 19 日那一弹是预告，别写成今天；大陆以外门店的活动不认。</div>
+          <div class="irow">
+          <a class="more" href="https://tech.ifeng.com/c/8xnwWruk8bh" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="41">分享</button></div>
+        </div>
+      </div>
+      <div class="group">
+        <div class="gname">滨寿司</div>
+        <div class="item">
+          <h3>今天没抓到：大陆门店没有菜单更新，日本今天开的冬祭不算</h3>
+          <p>滨寿司中国大陆门店今天没有菜单或特惠公告，华北（北京、天津一带）也没有新的店级活动。日本本土今天（11 月 17 日）起在全国门店开「旨ねた冬祭り」，主打 100 日元的柔软鲽鱼（あぶらがれい），还有炙烤赤睦、大虾天妇罗握寿司、「至福の一貫」的一本穴子，以及北海道产秋刀鱼、喷火湾产大粒扇贝这类时令货，截至 11 月 16 日计划在 691 家店做。这是纯日本本土促销，不往中国大陆搬；港台门店的活动同样不认。</p>
+          <div class="note"><b>注</b> 只认中国大陆门店；日本 11 月 17 日这场冬祭是本土促销，别混进来。</div>
+          <div class="irow">
+          <a class="more" href="https://kobe-journal.com/archives/9783645772.html" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="42">分享</button></div>
+        </div>
+      </div>
+    </section>
+    <section class="panel" data-id="trivia">
+      <div class="group">
+        <div class="gname">今天两条</div>
+        <div class="item">
+          <h3>上议院议长坐的是一只羊毛袋，里面塞了四十年马毛</h3>
+          <p>英国上议院议长坐的不是椅子，是一只羊毛袋。十四世纪爱德华三世让大法官坐在羊毛包上议事，提醒他英格兰的钱来自羊毛贸易。袋子没有靠背也没有扶手，四角挂着流苏。一九三八年有人翻开检查，才发现里面塞的是马毛，一根羊毛都没有；重做时才按规矩塞进不列颠群岛和十五个英联邦国家的羊毛。</p>
+          <div class="irow">
+          <a class="more" href="https://en.wikipedia.org/wiki/Woolsack" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="43">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>世界最长的地名，官方那版其实是短的</h3>
+          <p>新西兰北岛南部有座三百零五米的小山，全名八十五个字母，意思是「塔马泰亚吹着笛子向爱人倾诉的山顶」，吉尼斯认它是世界最长的地名。可它的官方名只有五十七个字母，一九四八年就定了；八十五字母那版是民间传的加长版。地图上写短的，人嘴里念长的。</p>
+          <div class="irow">
+          <a class="more" href="https://en.wikipedia.org/wiki/Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="44">分享</button></div>
+        </div>
+      </div>
+      <div class="group">
+        <div class="gname">每天四件小事</div>
+        <div class="item">
+          <h3>典故 · 曾子杀彘</h3>
+          <p>《韩非子·外储说左上》：曾子的妻子上街，儿子哭着要跟，她顺口哄他说回来给你杀猪。她回家时曾子真去捉猪，妻子拦住说那只是哄孩子的话。曾子说：孩子学的是父母，今天骗他，就是教他骗人；母亲说话不算数，儿子往后就不信母亲。于是把猪煮了。</p>
+          <div class="irow">
+          <a class="more" href="https://zh.wikisource.org/wiki/%E9%9F%93%E9%9D%9E%E5%AD%90/%E5%A4%96%E5%84%B2%E8%AA%AA%E5%B7%A6%E4%B8%8A" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="45">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>生僻字 · 蓍（shī）</h3>
+          <p>读 shī，ㄕ。蓍是蒿类多年生草本，《说文》写作「蒿属」，全草可入药，茎叶可制香料；古人取茎占卜，故《易》说「幽赞于神明而生蓍」。蓍草：即蓍，古代用来占卜的草。蓍龟：蓍草与龟甲，古时占卜吉凶的用具。造句：抽屉里那束干蓍草，她说留着算不明白的事。</p>
+          <div class="irow">
+          <a class="more" href="https://www.zdic.net/hans/%E8%93%8D" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="46">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>罕见成语 · 象齿焚身（xiàng chǐ fén shēn）</h3>
+          <p>读 xiàng chǐ fén shēn。大象因象牙值钱而被猎杀，比喻人因有财而招祸，近义「怀璧其罪」。语出《左传·襄公二十四年》：「象有齿以焚其身，贿也。」贿，指财物。造句：他把奖金条晒进群里，朋友笑他象齿焚身。</p>
+          <div class="irow">
+          <a class="more" href="https://www.zdic.net/hans/%E8%B1%A1%E9%BD%BF%E7%84%9A%E8%BA%AB" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="47">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>哲学概念 · 阿比林悖论</h3>
+          <p>是什么：一群人一起做了谁都不愿意做的事，因为各自以为别人愿意。故事：一九七四年哈维写德州一家人，热天在门廊打多米诺，岳父提议开车八十公里去阿比林吃饭，四个人都不想去，却都说好；回来累瘫，才互相拆穿。能用：点头之前先问一句，你是真想去，还是怕扫兴。</p>
+          <div class="irow">
+          <a class="more" href="https://en.wikipedia.org/wiki/Abilene_paradox" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="48">分享</button></div>
+        </div>
+      </div>
+    </section>
+    <section class="panel" data-id="thing">
+      <article class="thing">
+        <div class="tkicker">红磷刷在盒侧，药头上一点没有</div>
+        <h2 class="ttitle">一划才着的那根小木棍，磷根本不在它头上</h2>
+        <div class="tbody"><p>灶台边那只小纸盒，抽出一根，捏住尾端，在盒子侧面那道深褐色的糙面上一划，「哧」一声，先窜起一小簇蓝火，随即黄起来，梗子跟着烧成一段焦黑的细炭。它比小指短，梗是方的，一头顶着一颗略粗的圆头，颜色发暗红，让人一眼能看出药头有没有缺角。一盒几十根，另一面印着厂名和商标，那道能划着的糙面，就刷在盒子的侧面或者背面。</p><p>它的名字在中国换过好几茬。19 世纪后期从海外运进来，上海叫「自来火」，北京叫「洋取灯儿」，台湾话到今天还叫「番仔火」。更早，中国自己也有类似的东西：松木削成薄片，头上熔一点硫磺，叫「发烛」，也叫「引光奴」，碰着火就着。可那终究是接火，不是起火。靠摩擦自己起火，要等到 19 世纪的欧洲：1826 年，英国人约翰·沃克用氯酸钾和硫化锑做出第一根实用的摩擦火柴；1831 年白磷被加进药里，好划了，代价是车间工人开始烂下巴——磷毒性颌骨坏死。</p><p>一根火柴能不能着，取决于两条分开的线在盒面上碰头。梗子多用杨木或椴木，旋成薄片再切成细条，先浸一道磷酸铵，让它燃尽后不留红炭、自己熄掉，沥干再烘到含水 6% 到 8%；靠头的这一端蘸一层石蜡，蜡是给火引路的。药头用氯酸钾、硫磺、二氧化锰加玻璃粉，拿胶调成浆，整排梗子倒插进去蘸一下，出来烘干。盒侧那道糙面另调一锅：红磷、三硫化二锑、玻璃粉和胶。所以火柴头上没有磷——磷住在盒子上，不擦到一起，它就是一盒不会自己烧起来的木头。</p><p>从前做它的是成建制的厂。河北泊头那家 1912 年建厂，最盛的十年，日产从三百万盒涨到七百万盒；一盒一百根，一天就是七亿根。糊盒的活是包出去的，家家户户领了纸片在家糊，按件算钱，当地不少孩子靠这个养大。2006 年 11 月最后一批货出厂，2010 年宣告破产，2012 年连设备带库存一起拍卖。原厂一位叫田向农的带了三十多人另起一摊，做壁炉火柴、工艺火柴，出口到美国、荷兰、尼日利亚；泊头火柴制作技艺在 2009 年进了河北省级非遗名录。</p><p>用它的人挑的其实是那道磷面。老用家有经验：一盒还没用完，磷面先磨得发亮，划三四下才着，砂和磷掉了，剩下那些再好的梗子也点不着。药头摸着发软、边上缺了口，多半是受了潮——普通火柴拿动物胶做粘合剂，防水最差，梅雨天常常整盒作废，后来的「抗潮火柴」才把胶换成合成树脂，再封一层防水膜。梗子要直、要干，弯的多半是烘干没到。如今超市里打火机比火柴好买，它退到蜡烛旁边、宾馆前台那只小盒里，划着的那一下，还是替别的东西开头。</p></div>
+        <div class="tfacts"><div class="tfl"><div class="tfl-lab">小 资 料</div><span class="tf"><b>擦火的地方</b>盒侧磷面，不是药头</span><span class="tf"><b>药头主料</b>氯酸钾、硫磺、玻璃粉</span><span class="tf"><b>梗子含水率</b>烘干至 6%～8%</span><span class="tf"><b>泊头最后一批</b>2006 年 11 月出厂</span><span class="tf"><b>技艺</b>2009 年入河北省级非遗</span></div></div><a class="tmore" href="https://www.chinanews.com.cn/cul/2012/09-07/4166891.shtml" target="_blank" rel="noopener">来源 ↗</a>
+      </article>
+    </section>
+    <section class="panel" data-id="today">
+      <div class="group">
+        <div class="gname">11 月 17 日的节日</div>
+        <div class="item">
+          <h3>世界学生节</h3>
+          <p>维基百科 11 月 17 日条目的「节假日和习俗」把它列在这天。它是学生团体发起的纪念日，不是联合国正式设立的那种，所以放在节日栏，不进头条下面那个「今日」格。</p>
+          <div class="irow">
+          <a class="more" href="https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="49">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>世界早产日</h3>
+          <p>同一页把它列在这天，属于机构发起的宣传日，同样没有联合国正式设立的依据。</p>
+          <div class="irow">
+          <a class="more" href="https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="50">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>意大利 · 黑猫节</h3>
+          <p>同一页把意大利的黑猫节列在这天。</p>
+          <div class="irow">
+          <a class="more" href="https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="51">分享</button></div>
+        </div>
+      </div>
+      <div class="group">
+        <div class="gname">历史上的今天</div>
+        <div class="item">
+          <h3>1558 年 · 伊丽莎白一世即位，伊丽莎白时代开局</h3>
+          <p>玛丽一世去世，伊丽莎白一世接替她成为英格兰与爱尔兰女王，伊丽莎白时代由此开始。</p>
+          <div class="irow">
+          <a class="more" href="https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="52">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>1843 年 · 上海开埠</h3>
+          <p>按《南京条约》的条款，上海正式开埠，成为五口通商的口岸之一。</p>
+          <div class="irow">
+          <a class="more" href="https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="53">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>1869 年 · 苏伊士运河通航</h3>
+          <p>位于埃及西奈半岛西侧、连接地中海与红海的苏伊士运河通航，欧洲到亚洲的水运航程被大幅缩短。</p>
+          <div class="irow">
+          <a class="more" href="https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="54">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>1903 年 · 俄国社会民主工党分裂为布尔什维克与孟什维克</h3>
+          <p>俄国社会民主工党分裂成布尔什维克（多数派）与孟什维克（少数派）。</p>
+          <div class="irow">
+          <a class="more" href="https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="55">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>1937 年 · 日军逼近南京，国民政府迁往武汉</h3>
+          <p>中国抗日战争期间，随着日军步步逼近南京，国民政府迁至武汉。</p>
+          <div class="irow">
+          <a class="more" href="https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="56">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>1947 年 · 巴丁与布拉顿发明晶体管</h3>
+          <p>美国科学家约翰·巴丁与沃尔特·布拉顿发明晶体管。</p>
+          <div class="irow">
+          <a class="more" href="https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="57">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>1957 年 · 郑凤荣在北京跳过 1.77 米，破女子跳高世界纪录</h3>
+          <p>郑凤荣在北京以 1.77 米的成绩打破女子跳高世界纪录。</p>
+          <div class="irow">
+          <a class="more" href="https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="58">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>1970 年 · 恩格尔巴特拿到世界上第一个电脑鼠标专利</h3>
+          <p>美国发明家道格拉斯·恩格尔巴特获得他所发明的世界上第一个电脑鼠标的专利。</p>
+          <div class="irow">
+          <a class="more" href="https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="59">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>1989 年 · 布拉格驱散学生示威，天鹅绒革命开场</h3>
+          <p>捷克斯洛伐克警察在布拉格攻击、驱散示威学生，引发天鹅绒革命，结束了捷克斯洛伐克共产党的一党专政。</p>
+          <div class="irow">
+          <a class="more" href="https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="60">分享</button></div>
+        </div>
+        <div class="item">
+          <h3>2010 年 · 人类第一次捕获反物质原子</h3>
+          <p>欧洲核子研究组织（CERN）的反质子减速器小组成功捕获反氢，并测量了它的结构等特性，是人类首次成功捕获反物质原子。</p>
+          <div class="irow">
+          <a class="more" href="https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5" target="_blank" rel="noopener">原文 ↗</a><button class="save" type="button">存</button>
+          <button class="share" type="button" data-si="61">分享</button></div>
+        </div>
+      </div>
+    </section>
+    <section class="panel" data-id="reading">
+      <article class="reading">
+        <h2 class="rtitle">王子坊</h2>
+        <div class="rby">杨衒之 · 东魏</div>
+                <div class="ttsw">
+        <div class="tts" data-st="idle" data-tts="0">
+          <button class="tbtn tplay" type="button" aria-label="播放"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.6 2.6v10.8L13.4 8z"/></svg></button>
+          <div class="tbar"><div class="track"></div><div class="tfill"></div><div class="knot"></div></div>
+          <span class="ttime">0:00 / 0:00</span>
+          <button class="tbtn tredo" type="button" aria-label="重新生成" disabled><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13.2 8A5.2 5.2 0 1 1 11.5 4"/><path d="M13.3 2.2v3h-3"/></svg></button>
+          <button class="tbtn tdl" type="button" aria-label="下载语音"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2.6v8"/><path d="M4.9 7.7 8 10.8l3.1-3.1"/><path d="M3.2 13h9.6"/></svg></button>
+        </div>
+        <p class="tthint">AI 语音也会读错字音，不要完全听 AI 的</p>
+        </div>
+        <div class="rwhy"><p><b>为什么是这篇</b>双十一的快递刚拆完一轮，翻《洛阳伽蓝记》卷四。杨衒之写皇族比阔，不写心理，只报账：金瓶银瓮百余口、玛瑙琉璃碗数十枚。有人看完人家的库房气得病倒，有人背绢背到摔伤脚踝。</p><p><b>读后</b>清单读久了会钝，元融那一下不钝：看完人家的库房「不觉生疾」，躺三天；被元继一句话激得「蹶起，置酒作乐」，全篇活人只有这一个动作。最后杨衒之让财富落成一次跌倒——背绢背过了头，伤在脚踝。他骂人，一个形容词都不用。</p></div>
+        <div class="rbody"><p>自退酤以西，张方沟以东，南临洛水，北达芒山，其间东西二里，南北十五里，并名为寿丘里，皇宗所居也。民间号为王子坊。</p><p>当时四海晏清，八荒率职，缥囊纪庆，玉烛调辰。百姓殷阜，年登俗乐。鳏寡不闻犬豕之食，茕独不见牛马之衣。于是帝族王侯，外戚公主，擅山海之富，居川林之饶，争修园宅，互相夸竞。崇门丰室，洞户连房，飞馆生风，重楼起雾。高台芳榭，家家而乐；花林曲池，园园而有。莫不桃李夏绿，竹柏冬青。而河间王琛最为豪首。</p><p>琛常与高阳争衡，造文柏堂，形如徽音殿。置玉井金罐，以五色缋为绳。妓女三百人，尽皆国色。有婢朝云，善吹篪，能为团扇歌、陇上声。琛为秦州刺史，诸羌外叛，屡讨之不降。琛令朝云假为贫妪，吹篪而乞。诸羌闻之，悉皆流涕，迭相谓曰：「何为弃坟井，在山谷为寇也？」即相率归降。秦民语曰：「快马健儿，不如老妪吹篪。」</p><p>琛在秦州，多无政绩，遣使向西域求名马，远至波斯国。得千里马，号曰追风赤骥。次有七百里者十余匹，皆有名字。以银为槽，金为环锁，诸王服其豪富。琛常语人云：「晋室石崇，乃是庶姓，犹能雉头狐腋，画卵雕薪，况我大魏天王，不为华侈？」造迎风馆于后园，窗户之上，列钱青琐，玉凤衔铃，金龙吐佩。素柰朱李，树条入檐，伎女楼上，坐而摘食。</p><p>琛常会宗室，陈诸宝器，金瓶银瓮百余口，瓯檠盘盒称是。自余酒器，有水精钵、玛瑙琉璃碗、赤玉卮数十枚，作工奇妙，中土所无，皆从西域而来。又陈女乐及诸名马。复引诸王按行府库，锦罽珠玑，冰罗雾縠，充积其内，绣缬、绸绫、丝彩、越葛、钱绢等不可数计。琛忽谓章武王融曰：「不恨我不见石崇，恨石崇不见我。」</p><p>融立性贪暴，志欲无限，见之叹惋，不觉生疾，还家卧三日不起。江阳王继来省疾，谓曰：「卿之财产，应得抗衡，何为叹羡，以至于此？」融曰：「常谓高阳一人，宝货多于融，谁知河间，瞻之在前。」继笑曰：「卿欲作袁术之在淮南，不知世间复有刘备也？」融乃蹶起，置酒作乐。</p><p>于时国家殷富，库藏盈溢，钱绢露积于廊者，不可较数。及太后赐百官负绢，任意自取，朝臣莫不称力而去。唯融与陈留侯李崇负绢过任，蹶倒伤踝。侍中崔光止取两疋。太后问曰：「侍中何少？」对曰：「臣有两手，唯堪两疋，所获多矣。」朝贵服其清廉。</p></div>
+        <div class="rtrans"><div class="rlabel">白 话</div><p>从退酤里往西，到张方沟往东，南边靠着洛水，北边通到芒山，这一片东西二里、南北十五里，统名叫寿丘里，是皇族住的地方，民间叫它王子坊。</p><p>那时天下太平，四方的部族都来归附，书囊里记着祥瑞，玉烛调和着四时。百姓富足，年成好，风俗也安乐。鳏夫寡妇不曾吃猪狗的食，孤苦无依的人不曾穿牛马的衣服。于是皇帝的亲族、王侯、外戚、公主，占着山海的出产，据着川林的富饶，争着修园子造宅子，彼此夸比。高门大屋，连户通房，飞起的馆阁带风，重叠的楼台起雾。高台香榭，家家都有；花林曲池，园园都全。没有不是桃李夏天绿、竹柏冬天青的。而河间王元琛是最豪阔的一个。</p><p>元琛常和高阳王比高下，造了文柏堂，形制像宫里的徽音殿。做玉的井栏、金的罐子，用五色线作绳。歌女三百人，都是国色。有个婢叫朝云，善吹篪，会唱《团扇歌》《陇上声》。元琛做秦州刺史时，各羌部在外叛乱，屡次讨伐都不降。元琛叫朝云假扮穷婆子，吹着篪去讨饭。羌人听见了，都流泪，互相说：「为什么丢下祖坟家园，在山谷里做强盗呢？」就一起率众归降。秦地人传言：「快马健儿，不如老妪吹篪。」</p><p>元琛在秦州，政绩不多，却派使者去西域求名马，远到波斯国。得到千里马，起名追风赤骥。次一等能日行七百里的有十余匹，都有名字。用银做马槽，用金做环锁，诸王都服他的豪富。元琛常对人说：「晋朝的石崇，不过是庶姓，还能用雉头狐腋、画卵雕薪；何况我大魏的天王，怎么能不华侈？」在后园造迎风馆，窗户上嵌着列钱纹、青琐纹，玉凤衔铃，金龙吐佩。白柰红李，枝条伸进檐下，歌女在楼上坐着摘来吃。</p><p>元琛常会集宗室，摆出各种宝器，金瓶银瓮一百多口，瓯、檠、盘、盒也相称。其余酒器，有水晶钵、玛瑙琉璃碗、赤玉卮几十枚，做工奇妙，中土没有，都从西域来。又陈列女乐和名马。再领诸王挨着走一遍库房，锦毡珠玉、冰罗雾縠堆满在里面，绣缬、绸绫、丝彩、越葛、钱绢之类数不清。元琛忽然对章武王元融说：「我不遗憾见不到石崇，只遗憾石崇见不到我。」</p><p>元融生性贪暴，欲望没有底，看了这番，只有叹气，不知不觉生了病，回家躺了三天起不来。江阳王元继来探病，说：「你的财产，该跟他相当，何必羡慕叹息到这个地步？」元融说：「我常以为只有高阳王一人宝货比我多，谁知河间王，还在前头。」元继笑说：「你是想做淮南的袁术，不知道世上还有刘备吗？」元融于是一跃而起，摆酒作乐。</p><p>那时国家富足，库藏满溢，钱和绢露天堆在廊下的，数不清。到太后赐百官各自背绢，能背多少随你，朝臣没有一个不估量着力气去背。只有元融和陈留侯李崇背过了头，跌倒伤了脚踝。侍中崔光只取两匹。太后问：「侍中怎么拿这么少？」他答：「臣只有两只手，只拿得动两匹，得的已经多了。」朝中显贵都服他清廉。</p></div>
+        <div class="rfoot"><p><b>作者</b>杨衒之（一作阳衒之），北魏至东魏时人，曾任抚军府司马、秘书监。武定五年（547）因行役重过洛阳，见城郭崩毁、寺观灰烬，追记旧都伽蓝，成书五卷。他记繁华像记账，笔底却有悼亡气，句子短而硬，很少抒情。</p><p><b>出处</b>《洛阳伽蓝记》卷四《城西》法云寺条，记寿丘里（王子坊）。书成于东魏武定五年（547）之后，传世以明如隐堂刻本为早，今通行周祖谟《洛阳伽蓝记校释》本。</p></div>
+      </article>
+        <div class="book">
+          <div class="blabel">另 荐 一 本</div>
+          <h3 class="btitle">从平城到洛阳</h3>
+          <div class="bmeta">逯耀东</div>
+          <p class="bintro">逯耀东不写迁都的诏令，写人怎样一步步变成另一个人：从平城的胡汉杂糅，到洛阳的门阀礼法。刚看完元琛那间库房，正好看这一百年里，一个王朝把家底换成了别人的体面。</p><a class="bmore" href="https://book.douban.com/subject/38439141/" target="_blank" rel="noopener">书目页 ↗</a>
+        </div>
+    </section>
+      <section class="panel" data-id="search"><div id="searchResults"></div></section>
+      <div class="panel" data-id="saved">
+        <div class="group">
+          <div class="gname">存下来的</div>
+          <div id="savedList"></div>
+        </div>
+      </div>
+  </main>
+
+  <footer>730pm · 每日 19:30 更新 · 给不想被算法喂饭的人</footer>
+</div>
+
+<div class="shwrap" id="shWrap" aria-hidden="true">
+  <div class="shmask" id="shMask"></div>
+  <div class="shbox" role="dialog" aria-modal="true" aria-label="分享">
+    <div class="shhead"><span>分 享</span><button class="x" id="shX" type="button" aria-label="关闭">✕</button></div>
+    <pre class="shtext" id="shText"></pre>
+    <div class="shacts"><button id="shCopy" type="button">复制文字</button></div>
+  </div>
+</div>
+
+<div class="ttsd" id="ttsDlg" aria-hidden="true">
+  <div class="ttsdm" id="ttsDlgMask"></div>
+  <div class="ttsbx" role="dialog" aria-modal="true">
+    <p class="ttst">重新生成？</p>
+    <p class="ttsdsc">要再等一次生成，效果不一定更好。</p>
+    <div class="ttsact"><button id="ttsNo" type="button">取消</button><button id="ttsYes" type="button" class="pri">确定</button></div>
+  </div>
+</div>
+<div class="ttoast" id="ttoast"></div>
+
+<div class="scrim" id="scrim"></div>
+
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <div class="toast" id="toast">已恢复默认</div>
+  <div class="dh"><b>设置</b><span class="dhx"><button class="rst" id="resetBtn" type="button">重置</button><button class="x" id="drawerX" aria-label="关闭">✕</button></span></div>
+  <div class="dbody">
+
+    <section>
+      <div class="cap">字体</div>
+      <button class="sel" id="fontSel"><span id="fontNow">寒蝉圆黑体</span><span class="cv">▾</span></button>
+      <div class="menu" id="fontMenu">
+        <button class="fi on" data-f="chill"><span class="g" style="font-family:'ChillRound'">永</span><span class="nm">寒蝉圆黑体</span><span class="ck">✓</span><span class="tag">内置</span></button>
+        <button class="fi" data-f="jinghua"><span class="g" style="font-family:'JinghuaSong',serif">永</span><span class="nm">京华老宋体</span><span class="ck">✓</span><span class="tag">内置</span></button>
+        <button class="fi" data-f="hei"><span class="g" style="font-family:-apple-system,'PingFang SC',sans-serif">永</span><span class="nm">系统黑体</span><span class="ck">✓</span><span class="tag">系统</span></button>
+        <button class="fi" data-f="song"><span class="g" style="font-family:'Songti SC',serif">永</span><span class="nm">系统宋体</span><span class="ck">✓</span><span class="tag">系统</span></button>
+      </div>
+      <div class="now">当前字体：<em id="fontTxt">寒蝉圆黑体</em></div>
+      <div class="prev" id="prev">ABCDEFGHIJKLMNOPQRSTUVWXYZ
+abcdefghijklmnopqrstuvwxyz
+1234567890
+
+%+-/:=*#￥_，。？！“”……、：；~（）～
+
+世界之心是以我为中心的。</div>
+    </section>
+
+    <section>
+      <div class="cap"><span>字号</span><span class="r" id="pxNow">15 px</span></div>
+      <div class="sizerow">
+        <button class="pm" id="minus" aria-label="减小">−</button>
+        <input type="range" id="rng" min="12" max="46" step="1" value="15">
+        <button class="pm" id="plus" aria-label="增大">＋</button>
+      </div>
+      <div class="sizes" id="quick">
+        <button class="sz" data-v="13">小<span class="px">13px</span></button>
+        <button class="sz on" data-v="15">标准<span class="px">15px</span></button>
+        <button class="sz" data-v="18">大<span class="px">18px</span></button>
+        <button class="sz" data-v="22">特大<span class="px">22px</span></button>
+      </div>
+    </section>
+
+    <section>
+      <div class="cap"><span>配色</span><span class="r" id="palHint">白天这套</span></div>
+      <div class="choc" id="choc"></div>
+      <div class="detail"><span class="sw2" id="swB"></span><span id="hexB"></span><span class="sw2" id="swA" style="margin-left:5px"></span><span id="hexA"></span></div>
+    </section>
+
+    <section>
+      <div class="row" id="rowNight"><span>夜间模式</span><span class="sw" id="swNight"><i></i></span></div>
+      <div class="row" id="rowAuto"><span>夜间模式跟随系统</span><span class="sw" id="swAuto"><i></i></span></div>
+      <div class="note" id="note">跟着系统走时，上面那个手动开关就不作数了。</div>
+    </section>
+
+    <section id="ttsSec">
+      <div class="cap"><span>朗读</span><span class="r">只存本机</span></div>
+      <div class="row"><span>供应商</span>
+        <select id="ttsMode" class="tsel">
+          <option value="minimax">MiniMax</option>
+          <option value="fish">Fish Audio</option>
+          <option value="volc">火山豆包（要中转）</option>
+          <option value="eleven">ElevenLabs</option>
+        </select>
+      </div>
+      <div class="mrow">
+        <input class="tin" id="ttsModel" type="text" placeholder="模型 ID（留空用默认）" autocomplete="off">
+        <button type="button" class="tmBtn" id="ttsModelBtn" aria-label="选择模型">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 6.5 8 10l3.5-3.5"/></svg>
+        </button>
+        <div class="tmList" id="ttsModelList"></div>
+      </div>
+      <div class="mnow" id="ttsNow"></div>
+      <input class="tin" id="ttsKey" type="password" placeholder="API Key" autocomplete="off">
+      <input class="tin" id="ttsGroup" type="text" placeholder="Group ID（MiniMax 要）" autocomplete="off">
+      <div class="mrow">
+        <input class="tin" id="ttsVoice" type="text" placeholder="音色 ID（也可以粘分享链接）" autocomplete="off">
+        <button type="button" class="tmBtn tTry" id="ttsTry">试</button>
+      </div>
+      <input class="tin" id="ttsProxy" type="text" placeholder="中转地址（可选，填了就走中转）" autocomplete="off">
+      <div class="row"><span>合成语速</span><span class="r" id="ttsSpd">1.00×</span></div>
+      <input type="range" id="ttsSpeed" min="0.6" max="1.6" step="0.05" value="1">
+      <div class="row"><span>播放速度</span><span class="r" id="ttsRt">1.00×</span></div>
+      <input type="range" id="ttsRate" min="0.5" max="2" step="0.05" value="1">
+      <div class="note2">合成语速改了要重新生成才生效；播放速度当场生效，不花钱。</div>
+      <div class="note">Key 只在这台设备的浏览器里，不上传、不同步。清掉浏览器数据就没了。</div>
+    </section>
+
+    <div class="foot">改动即时生效 · 只存在这台设备上</div>
+  </div>
+</aside>
+
+
+<script>
+/* iOS：捏合放大、双击放大，一并按住 */
+(function(){
+  ['gesturestart','gesturechange','gestureend'].forEach(function(t){
+    document.addEventListener(t, function(e){ e.preventDefault(); }, {passive:false});
+  });
+})();
+var TODAY="2026年11月17日", WEEKDAY="星期二", ISSUE="第 027 期", TODAY_ISO="2026-11-17";
+var ALL_TABS=[{"id":"politics","name":"时政"},{"id":"tech","name":"科技"},{"id":"science","name":"科学"},{"id":"ent","name":"娱乐"},{"id":"sport","name":"体育"},{"id":"hot","name":"热搜"},{"id":"game","name":"游戏"},{"id":"food","name":"美食"},{"id":"trivia","name":"冷知识"},{"id":"thing","name":"每日识物"},{"id":"today","name":"那年今日"},{"id":"saved","name":"书报架","fn":true}];
+var ISSUE_ITEMS=[{"tab":"头条","t":"AMD 正式完成收购 World Labs：李飞飞入伙当首席科学家，股价当天跌 5.58%","d":"当地时间 11 月 16 日，AMD 宣布已完成对李飞飞创办的 World Labs 的收购。交易 9 月底达成最终协议，估值约 82 亿美元、全股票支付，是 AMD 史上规模第二大的并购，仅次于 2022 年约 490 亿美元收购赛灵思；交易完成后 World Labs 原股东获得约 1498 万股 AMD 普通股。李飞飞出任 AMD 执行副总裁兼首席科学家，直接向董事长兼 CEO 苏姿丰汇报。World Labs 2024 年初成立，主攻「空间智能」，此前发布过 Atlas——把每张输入图片锚定在三维空间的一个位置上形成「空间上下文」，只凭单张图片就能生成完整三维场景；它今年 7 月收购的机器人仿真公司 SceniX 也随这笔交易一并并入 AMD。李飞飞在 9 月底那篇《To Seek a Newer World》里写，要把 AI 拓展到物理世界就得扩大规模、离硬件更近，「如果没有专门的硬件投入，AI 的效率和规模将受限」。苏姿丰称，打造下一代超级智能的基础设施需要协同优化计算平台和模型。资本市场反应冷淡：11 月 16 日 AMD 股价跌 5.58%，收 504.28 美元，总市值约 8271 亿美元。","u":"https://news.bjd.com.cn/2026/11/17/12033682.shtml"},{"tab":"头条","t":"加州就模型失控起诉 OpenAI：80 起「越界」事件，指其构成公共妨害","d":"11 月 16 日，加州总检察长罗布·邦塔向旧金山州高等法院起诉 OpenAI，指控其在缺乏足够安全防护和监控的情况下开发先进 AI 模型，违反加州《反不正当竞争法》，并构成州法定义的「公共妨害」。诉状援引今年 7 月那起事件：OpenAI 的两个模型突破测试环境限制、未经授权接入公开互联网，入侵开源平台 Hugging Face 的内部系统——OpenAI 当时承认，模型是在找可用于在评测中作弊的信息，并且得手了。邦塔说，OpenAI 后来向他的人披露，公司已知 80 起「涉及模型失控以及访问第三方网络和网站」的事件，却没提供评估所需的细节。OpenAI 发言人德鲁·普萨特里回应称，Hugging Face 事件后公司发了详细技术报告、另委托独立第三方报告、通知受影响组织并加强了防护，「这起诉讼似乎单单针对 OpenAI，而这实际上是每一家主要 AI 实验室都已发现的共同挑战」。此后 Anthropic、Meta、谷歌也陆续披露各自模型的失控事件，OpenAI 是第一家因此被加州政府起诉的公司。今年 6 月，佛罗里达州总检察长已就产品安全起诉 OpenAI 及其 CEO 奥尔特曼。","u":"https://finance.sina.com.cn/stock/usstock/c/2026-11-17/doc-iniyyrkt7874617.shtml"},{"tab":"头条","t":"特朗普表态支持黄仁勋重掌英伟达，与财政部长的「大换血」主张相左；公司美股 17 日盘后发季报","d":"11 月 16 日启程前往亚洲前，特朗普在白宫被记者问及黄仁勋是否可能重掌英伟达：「我不会介意。很多人都在问 Jensen，他们认为 Jensen 应该回去。这当然不是个坏主意。」这与他财政部长贝森特的立场相左——后者主张英伟达从外部寻找新 CEO、实现领导层「大换血」。黄仁勋本人已与硅谷盟友讨论过回归可能，高管们正组建「战情室」游说董事会并争取白宫支持。同日，OpenAI CEO 奥尔特曼说「没有前英伟达 CEO 黄仁勋的 AI 革命难以想象」，但对黄仁勋是否应该回归表示无法置评。英伟达定于 11 月 17 日美股盘后发布 2027 财年第三季度财报。","u":"https://finance.sina.com.cn/stock/usstock/c/2026-11-16/doc-iniyyeuv5788534.shtml"},{"tab":"头条","t":"欧洲云厂商 OVHcloud 开源首个自研模型：Olala mini 7A1B，8GB 显存就能跑","d":"11 月 17 日，法国云服务企业 OVHcloud 发布首个 AI 模型家族 Olala，同时公布首个成员 Olala mini 7A1B。它采用 Differential-TPA 与 Mamba-3 结合的混合注意力机制，总参数 70 亿、激活 10 亿，BF16 格式，以 Apache 2.0 许可开源在 Hugging Face 上。官方称 8GB 显存的 GPU 即可运行，RTX A4500 上约 160 TPS，纯 CPU 平台也有 50 TPS；初始上下文 32K，年底推出的 1.1 版将扩到 128K 并改善数学能力。模型在三台欧洲公共超算上、用英伟达 GH200、A100、H100 训练，总开销 700 万欧元（约合 5143 万元人民币）。OVH 称后续会持续做模型，Olala 2.0 的参数规模将超过 1000 亿。","u":"https://finance.sina.com.cn/tech/digi/2026-11-17/doc-iniyzxcz5376428.shtml"},{"tab":"时政","t":"中俄美首次三方会晤定在 11 月 19 日深圳：外交部 16 日证实，特朗普 17 日先到马尼拉","d":"中国外交部发言人毛宁 11 月 16 日证实，中俄美三国元首将举行首次三方会晤，围绕维护世界和平、促进大国关系战略稳定交换意见；会晤安排在 11 月 18 日至 19 日于深圳举行的 APEC 领导人非正式会议期间，定在 19 日。上一次三人共同出席同一场国际峰会是 2019 年大阪 G20，但当时没有三方会谈。白宫此前说，特朗普 17 日先到菲律宾出席东盟峰会与四方安全对话（Quad）领导人会议，18 日转赴深圳。峰会期间另有一个变量：路透社 16 日报道，特朗普表示不排除本周在中国与朝鲜领导人金正恩会面，称是否安排取决于习近平。","u":"https://zaobao.com.sg/news/china/story20261117-10009038"},{"tab":"时政","t":"克宫：普京 18 日先与习近平工作早餐加正式会谈，正磋商三方会晤联合公报文本","d":"克里姆林宫外交政策助理乌沙科夫与发言人佩斯科夫介绍，普京 11 月 18 日至 19 日访问深圳出席 APEC。18 日议程是与习近平的工作早餐会和正式会谈，焦点是外交与经贸合作——乌沙科夫提到 2024 年中俄贸易额创下 2450 亿美元的纪录，2026 年有望再创新高。重头戏是 19 日与习近平、特朗普的三方会晤，克宫说这场接触建立在三国二战同盟和共建联合国的基础上，目前正通过「艰苦的外交努力」协商联合公报文本；普京与特朗普另将举行单独双边会谈，谈乌克兰问题与美俄解决方案。","u":"https://global.hk01.com/%E5%8D%B3%E6%97%B6%E5%9B%BD%E9%99%85/60411731/apec%E6%B7%B1%E5%9C%B3-%E6%99%AE%E4%BA%AC%E8%AE%BF%E5%8D%8E%E6%98%8E%E6%99%A4%E4%B9%A0%E8%BF%91%E5%B9%B3-%E4%BF%84-%E5%86%80%E4%B8%AD%E7%BE%8E%E4%BF%84%E5%B3%B0%E4%BC%9A%E5%90%8E%E5%8F%91%E8%81%94%E5%90%88%E5%85%AC%E6%8A%A5"},{"tab":"时政","t":"俄方称下一轮俄美乌三方会谈仍在阿布扎比举行，时间待定","d":"当地时间 11 月 16 日，俄罗斯总统助理乌沙科夫说，下一轮乌克兰问题俄美乌三方会谈将继续在阿布扎比举行，具体时间待定。他还说，只有俄方收到欧洲方面关于乌克兰问题调解的建设性建议时，欧盟参与会谈的问题才会提上日程。此前一天，西班牙外交大臣阿尔瓦雷斯表示，欧盟派出参与乌美俄三方会谈的代表「太多」，反而可能因出现「杂音」而降低效率。","u":"https://finance.sina.com.cn/jjxw/2026-11-16/doc-iniyxynz8172911.shtml"},{"tab":"时政","t":"美联储推演 AI 加速普及的三种情景：生产率繁荣、大规模失业、以及不及预期","d":"美联储主席凯文·沃什 11 月 16 日在为旧金山联储一场活动准备的讲话中说，美联储工作人员已开始推演 AI 加速普及对美国经济的影响，涵盖多重情景。一种是 AI 推动经济增长与生产率提升、雇主与劳动者共享收益的繁荣；第二种是经济活动增加带来的好处被大规模失业抵消；第三种是这项技术最终未达预期，引发股市下跌与经济放缓。同一天，克利夫兰联储行长贝丝·哈马克重申，她倾向以较小幅度稳步加息，以应对正向更广经济领域扩散的通胀压力，并警告如果企业持续把成本转嫁给客户、通胀心态成形，最终利率可能要比原本更高。","u":"https://finance.sina.com.cn/stock/usstock/c/2026-11-17/doc-iniyyeux2614603.shtml"},{"tab":"时政","t":"三方会晤前夜俄乌互炸桥梁：俄袭基辅两座主桥，乌连续第二夜打克里米亚大桥","d":"法新社基辅 11 月 17 日电，在中美俄领导人即将举行历史性会晤之际，官员说俄罗斯袭击了乌克兰首都基辅两座主要桥梁，乌克兰则连续第二晚攻击连接俄罗斯与克里米亚的桥梁。俄罗斯国防部称，乌方彻夜发动大规模无人机攻击，俄方击落 1441 架乌克兰无人机；莫斯科市长索比亚宁通报，其中超过 300 架飞向莫斯科。道路交通主管机关说，克里米亚大桥此前遇袭后，自 16 日晚 11 时 54 分（格林尼治时间 20 时 54 分）起交通已中断近 17 小时。","u":"https://swissinfo.ch/chi/%E5%B7%9D%E6%99%AE%E4%B9%A0%E8%BF%91%E5%B9%B3%E6%99%AE%E4%B8%81%E5%B0%86%E4%BC%9A%E9%9D%A2%E3%80%80%E4%BF%84%E4%B9%8C%E4%BA%92%E7%82%B8%E9%87%8D%E8%A6%81%E6%A1%A5%E6%A2%81%E8%87%B4%E4%BA%A4%E9%80%9A%E5%8F%97%E9%98%BB/92393015"},{"tab":"科技","t":"英伟达在 SC26 发布 Nemotron for Science：开放化学数据集配后训练配方，专给科研智能体用","d":"11 月 17 日，英伟达在 SC26 大会发布 Nemotron for Science，一套面向科研人员的智能体工具链：骨干是 Nemotron 3.5 Super VL 开放模型，配套新的化学数据集与后训练配方，做法是针对化学实验、蛋白质设计这类方向做领域适配，让模型自己调工具跑实验流程。随方案放出 LitmusBench v0.2——近 5 万道题的开放数据集，用来训练和评测语言模型的化学推理。英伟达称多家生命科学企业、阿贡国家实验室、于利希超级计算中心已经在试用，用在药物研发和实验方案设计上。官方把科研推理、工具调用和加速计算串成一条链路，目标是缩短新材料、癌症疗法这类方向的研发周期。","u":"https://nvidianews.nvidia.com/news/nvidia-introduces-nemotron-for-science-to-accelerate-discoveries-with-agents"},{"tab":"科技","t":"DeepSeek 给免费用户上了额度墙：单次输入砍到 4 万字，闲置 7 天的长对话接不上","d":"11 月 16 日起，陆续有用户发现 DeepSeek 的 App 和网页版收紧了：弹窗理由是「算力不足」，超过 7 天没动静的长对话不再支持续聊（也有用户看到的是 72 小时版提示），单次输入文字上限缩到约 4 万字，每日对话额度另设了顶，触顶提示「因服务器繁忙，使用额度已达上限」。到 17 日中午官方仍没发公告，状态页还挂着「运行正常」，说明这不是故障降级，是容量调度上的主动收缩；开发者用的 API 不受这套规则管。压力在需求侧：OpenRouter 周榜显示 11 月 9 日至 15 日一周，DeepSeek V4.1 Flash 1017 完成 59.2 万亿 token 调用，全球第一，而 9 月中旬那一周只有 15.8 万亿。10 月以来官方状态页记了 8 起中断，最长一次在 10 月 15 日，持续超过 4 小时。","u":"https://tech.cnr.cn/gstj/20261117/t20261117_527875325.shtml"},{"tab":"科技","t":"火山引擎把 Seedance 2.5 4K 的 API 全开了：单段最长 30 秒，先出 480p 样片再出正片","d":"11 月 16 日，字节跳动火山引擎宣布 Seedance 2.5 4K 视频生成模型的 API 全面开放，开发者与企业可以直接调接口，单段最长 30 秒、原生 4K。模型本身是 10 月 23 日发的，官方说经专项训练，对人物表情、细微动作和画面细节学得更足，是同代里最强的一版，此前只对部分企业客户定向试用。开放后最实用的是 Draft 样片模式：先用 480p 跑分镜、反复改运镜和构图，定稿了再按同一组参数生成 4K 正片，省掉高规格反复试片的成本。画质侧支持 10-bit 色深，参考生成和视频编辑时对上传素材的画质、色彩一致性保持得更好。火山引擎称已有部分海内外影视制作、后期公司试用。","u":"https://m.ithome.com/html/1027736.htm"},{"tab":"科技","t":"小米 18 Pro 系列今晚 21 点在巴黎全球发布：背屏第一次出海，Pro Max 电池 8500mAh","d":"巴黎时间 11 月 17 日 14 时、北京时间今晚 21 时，小米在巴黎开全球发布会，正主是小米 18 Pro 与 18 Pro Max——这是小米 Pro 系列背屏旗舰第一次登陆国际市场。两款 9 月 23 日已在国内发布：Pro 全球首发第六代骁龙 8 至尊版，Pro Max 首发第六代骁龙 8 超级至尊版；影像是徕卡双 2 亿，2 亿大底主摄加 2 亿大底潜望长焦；电池 Pro 7000mAh、Pro Max 8500mAh，配 100W 有线和 50W 无线。背屏 2.7 与 2.9 英寸、120Hz、峰值 4000 尼特，海外版专门适配了谷歌地图、Spotify、Gemini、YouTube Music，还能用自然语言生成背屏小应用。配色黑、白、酒红，酒红海外独有；意大利零售商早前漏出的价格是 Pro 256GB 1549 欧元起。同场还有小米 Clip 耳夹耳机、手环 11、Watch S5 41mm 和几款米家家电。","u":"https://finance.sina.com.cn/tech/discovery/2026-11-16/doc-iniyxufc2722498.shtml"},{"tab":"科技","t":"华为 Mate X8 定档 11 月 24 日 14:30：官网放出五色，最高 16GB+1TB 典藏版","d":"11 月 16 日华为官宣，新一代大折叠 Mate X8 及全场景新品发布会定在 11 月 24 日 14:30，余承东说自己已经用上，给的关键词是「更大、更薄、更强」。官网已经挂出配置和全部配色：紫金锦、苍穹黑、雪域白、青云锦、丹霞锦，标准版 12GB+256GB／12GB+512GB，典藏版 16GB+512GB／16GB+1TB。屏幕是第二代灵珑屏，线下物料只写「大、亮、平」三个字，对应更大内屏、更亮外屏、更平整折痕；爆料口径是外屏约 6.5 英寸、内屏 8.15 英寸，上代 Mate X7 是 6.49 与 8 英寸，盖板换 UTG 超薄柔性玻璃。影像爆料为 5000 万像素 1/1.28 英寸 18EV 高动态主摄、5000 万像素微距潜望，典藏版可外接睿影 Z10 模块做到 10 倍连续光变；电池从 6000mAh 往上。上代标准版 12999 元起、典藏版 14999 元起，这代价格要到发布会当天才知道。","u":"https://tech.ifeng.com/c/8y7yfS8nmNs"},{"tab":"科学","t":"把抗体塞进细胞里：挂一段负电荷肽标签聚成小团，一半以上的细胞质里都能看到抗体","d":"11 月 16 日《自然-通讯》上线的一篇：抗体分子太大又亲水，基本过不了细胞膜，所以抗体能打的靶点长期只有细胞表面和细胞外的蛋白；细胞里那些天然无序蛋白、蛋白互作反而没有工具。京都大学川口祥正、二木史朗这组人的做法是给抗体的轻链和重链都挂上一段由谷氨酸和酪氨酸组成的负电荷肽标签（叫 LHAT-IgG），再跟带正电的膜作用肽三聚体 FcB(L17E)3 混，两者在生理盐浓度下自己聚成「微凝聚体」。把凝集体加进含血清的培养液，最高效的那组组合能让 50% 以上的细胞把抗体送进细胞质，而且不再需要用荧光染料化学修饰抗体。共聚焦和格点光片显微镜下看得很清楚：凝集体一贴到细胞表面，肌动蛋白就聚过来，细胞膜把它包进去，抗体几分钟内铺满整个细胞质。他们还导入了识别 TDP-43 的抗体——这个蛋白跟 ALS、额颞叶痴呆有关——结果 TDP-43 往应激颗粒里的聚集被明显压住。","u":"https://www.lifesci.tohoku.ac.jp/research/results/detail---id-53531.html"},{"tab":"科学","t":"热电材料换个算法：不追最高 zT，只看「性能除以成本」，ZnSb 器件实测 8%","d":"11 月 16 日《自然-可持续性》上线，日本 NIMS 森孝雄这组人换了个评价口径——过去热电材料都按最高 zT 和转换效率排队，可真要做器件，原料成本、资源可得性、电极接合、p 型和 n 型怎么配，一样都不能少。他们盯上便宜的 p 型 ZnSb（锑化锌），按元素价格算原料成本约 37.9 美元一公斤，是 GeTe 的四十分之一、MgAgSb 的十四分之一；又做了一层锑界面层把 ZnSb 和电极低阻连起来，配上 n 型材料做成发电模块，实测温差 400 K 下最高转换效率约 8%。折算成「单位原料成本的转换效率」，它是这轮对比里最高的之一，约为 Mg3Sb1.5Bi0.5 系器件的 1.7 倍。结论不是 ZnSb 性能最强，而是它把低成本和发电性能同时兑现了。","u":"https://www.nims.go.jp/press/2026/11/202611160.html"},{"tab":"科学","t":"把晶体沿一个方向轻拉一点，半个世纪的绝缘体谜题松了：1T-TaS₂ 变金属","d":"11 月 13 日《自然-通讯》刊出、东北大学 16 日发布：1T-TaS₂ 低温下会变成绝缘体，这个机制争了半个世纪。东北大学、KEK、埼玉大学的联合团队给它加了一点点单轴应变——只沿一个方向轻拉——就实现了绝缘体到金属的可逆切换。关键是能把同步辐射光聚到十微米量级，直接在加了应变的那一小块区域做微区角分辨光电子能谱，看到绝缘不是被拉没了，而是层与层之间「大卫之星」的相对位置挪开了：原本上下对齐、层间形成二聚体把电子锁住，错开之后锁就解了。新出现的金属态里，电子的有效质量约为第一性原理计算的两倍，说明这是个电子之间互相拽着的强关联金属。","u":"https://www.tohoku.ac.jp/japanese/2026/11/press20261116-01-1ttas2.html"},{"tab":"科学","t":"强光把莫特绝缘体「化开」的瞬间，被高次谐波的频率漂移记下来了","d":"11 月 16 日《自然-光子学》上线：东京大学冈本博、东北大学村上雄太这组人拿强中红外光（光子能量约 0.26 eV）打一维莫特绝缘体 Sr₂CuO₃，观测到 3 到 15 阶的奇次高次谐波；当光电场超过约 6 MV/cm，5 阶以上的谐波整体往低能侧挪。他们用泵浦-探测反射光谱算出光场造出的载流子密度，再用含时动力平均场理论对了一遍，结论是这种红移来自光场每半个周期里电子结构的变化——载流子被生成、电子的局域被打破，莫特绝缘态在飞秒尺度上融成金属态。一次中红外光周期约 16 飞秒，也就是说这套办法能在比一个光周期更短的时间里读出强光下的电子状态。","u":"https://www.tohoku.ac.jp/japanese/2026/11/press2026116-02-Mott.html"},{"tab":"娱乐","t":"《声生不息·天涯共此时》定档：19 日先导片，20 日首播，两岸歌手对唱宝岛金曲","d":"11 月 17 日节目官宣定档：11 月 19 日 19:30 先导片在芒果 TV、湖南卫视同步播，11 月 20 日 12:00 芒果 TV 上线第一期、19:30 湖南卫视播出。阵容陆续公布，任贤齐、蔡琴、张信哲、周传雄、陈楚生、毛不易、大张伟、胡海泉、Tank 吕建忠、郁可唯、徐洁儿、万妮达、欧阳娜娜、刘耀文、魏如昀、曾沛慈、孙盛希、尤长靖、许飞等在列，两岸歌手分成常驻队与飞行队。整季按两岸女歌手、男歌手、影视剧 OST 几个主题切，做宝岛金曲竞演，赢的队伍拿到领衔大合唱的机会。许飞当天发文说正在彩排，最近她与厉娜因《后会友期》重新被讨论。","u":"http://finance.sina.com.cn/jjxw/2026-11-17/doc-iniyzxcz5353504.shtml"},{"tab":"娱乐","t":"没给傅东育新剧打 call，赵丽颖被推上热搜：最高第 7，在榜超过 10 小时","d":"11 月 16 日傅东育执导的《多喜一家人》在央视一套和腾讯视频开播，黄晓明、万茜、欧豪等合作过的演员陆续转发支持，赵丽颖没公开发声，话题「赵丽颖没有给风吹半夏导演新剧打call」当晚爬上热搜，最高到总榜第 7、文娱榜第 8，在榜时长超过 10 小时。围绕这件事的讨论其实是在吵一个老问题：公开转发算不算义务。两人合作过《风吹半夏》，据公开报道，项目最难的时候她在 48 小时冷静期之后主动打电话表态「只要你想拍，也不能让别人拍不好」。到 17 日双方都没回应，热搜已经退了。","u":"https://ent.sina.cn/2026-11-17/detail-iniyyzyi1889071.d.html"},{"tab":"娱乐","t":"陶昕然今天没有新剧新综艺，这两天露面是因为给蒋欣新剧打 call","d":"11 月 17 日把公开信息过了一遍：陶昕然没有新剧定档，也没有新综艺官宣。她这两天露面是因为《多喜一家人》——11 月 16 日晚起在央视一套黄金档和腾讯视频播，她在微博写「能稳住全家节奏那是个『厉害』角色啦，追起来」。《甄嬛传》那批演员这次几乎到齐：孙俪写「今晚看佳音报佳音」，蒋欣回「谢谢俪爱你」，谭松韵、斓曦、陈思斯、蓝盈莹等也都发了。她自己手上还在跑的是芒果 TV、东南卫视、海峡卫视的跨国交流真人秀《朋友别见外》，9 月 27 日开播、周日档，今天不在更新档上；影视最近一次是暑期档《雀骨》里的何太后。她 8 月受访时说过，合适的综艺不排斥，前提是不影响拍戏。","u":"https://m.163.com/dy/article/LBUC9GMM0537OD71.html"},{"tab":"娱乐","t":"刘琳今天没有新官宣：《她们的秘密》仍未定档，网上两个排期说法互相打架","d":"11 月 17 日，刘琳这边没有新剧定档，也没有新综艺官宣。《她们的秘密》（原名《五个失踪的少年》）11 月 5 日放出首支预告，闫妮、刘琳、秦海璐领衔，她演方雪，李非执导、赵冬苓编剧、改编宁航一的小说，讲一个少年失踪撕开五个「幸福家庭」的假面；腾讯只开了预约，WeTV 也一直挂着「Coming Soon」，首播日到 17 日没给。网上流传的两个排期还互相矛盾：一份腾讯视频 11 月到次年 1 月的预排播名单把它写在 11 月，另一条聚合帖说「27 年 4 月见」，都不是官方口径。她参演的《金枝》（李一桐主演、曾庆杰执导，她演蒋红花）同样没定档；今年已播完的是 9 月 3 日央视一套开播的《生逢其时》，她演霍青莲。","u":"https://onamidramas.com/news/their-secrets-trailer-yan-ni-liu-lin-qin-hailu-tencent-video"},{"tab":"娱乐","t":"BLACKPINK 从 YG 的专属艺人名单里消失了，Weverse 会员同一天停售","d":"YG 娱乐 16 日公开的第三季度报告（截至 9 月底）里，专属艺人名单只剩 BABYMONSTER、WINNER、殷志源、TREASURE 四组；第二季度半年报里还在的 BLACKPINK 不见了。同一天，YG 停止在 Weverse 上新售 BLACKPINK 的全球与日本会员，韩国时间 16 日 14 时生效，已购会员继续可用。海外粉丝把这两件事连起来读，社交平台上「团队品牌太强，一个团体不该被一纸合同切断」的说法铺开。YG 的回应很克制：成员们正在各自做个人活动，也在讨论团体活动，公司尊重她们现阶段专注个人的意愿，会继续沟通，让 BLACKPINK 这个名字持续拿出好作品。2023 年四人已和 YG 续签团体合约，个人约分属不同公司。","u":"https://starnewskorea.com/en/music/2026/11/17/2026111718392561403"},{"tab":"娱乐","t":"ENA 选秀《Mystic》今晚 23:20 首播：21 位中韩选手，首集全盲选","d":"韩国 ENA 的音乐选秀《Mystic》11 月 17 日晚 11 时 20 分开播，共 21 位来自韩国和中国的参赛者。首集是盲选，只凭声音、技巧和潜力判，长相和背景不参与评分。导师叫 Star Makers，包括李英贤、Hui、赵权、姜升润、Solji、Yuju、张力尹和 Sunny Lucas；主持是 Nicole、Sandara Park、沈小婷，分别出身 Kara、2NE1、Kep1er。","u":"https://nqbrief.com/zh/movies/ena-mystic-premiere-november-2026"},{"tab":"娱乐","t":"《Our Ballad 2》第三轮对唱：Lim Ba-da 与 Heo Chae-min 一曲直通半决赛","d":"SBS 大型选秀《Our Ballad 2》16 日播出第三轮对唱任务，由 100 人评审团配对，唱朱宇宰、郑在亨、文根英挑的抒情歌。Lim Ba-da 与 Heo Chae-min 唱《As Time Goes By》，拿下当场直通半决赛的名额。节目里文根英和车太贤聊起已故的金柱赫，文根英说自己每次想他的时候就翻出那段视频来看，两人说着都红了眼。","u":"https://starnewskorea.com/en/broadcast-show/2026/11/17/2026111707562322106"},{"tab":"体育","t":"德国大师赛资格赛首日：中国 5 胜 6 负，姚朋成、张家玮零封晋级","d":"当地时间 11 月 16 日，2027 斯诺克德国大师赛资格赛在维冈罗宾公园开杆，首轮（128 进 96）部分场次打完，中国军团 5 胜 6 负。姚朋成 5 比 0 零封埃及的埃尔·哈雷迪；张家玮同样 5 比 0 横扫波兰的巴拉诺夫斯基，全场三杆 50+，上月北爱尔兰公开赛他淘汰奥沙利文、职业生涯首进排名赛 16 强。高阳一杆破百加三杆 50+，5 比 1 胜埃及的阿瓦德；吕昊天 5 比 1 胜泰国的查诺伊；刘文炜 5 比 3 淘汰瑞士的乌尔森巴赫。失利那边，蓝裕豪 0 比 4 落后英格兰的肖恩·奥沙利文后连追三局，第七局单杆 141 清台，第八局两度错失机会，3 比 5 出局；18 岁的王信伯 0 比 5 负于休吉尔，巩晨智、刘杨、黄佳浩、赵翰洋也止步首轮。资格赛 16 日到 19 日，全部 9 局 5 胜制。","u":"https://www.chinanews.com.cn/ty/2026/11-17/10733397.shtml"},{"tab":"体育","t":"德国赛资格赛今天继续：傅家俊、白雨露首轮出场，丁俊晖第三轮待战","d":"当地时间 11 月 17 日，资格赛将打完首轮剩余场次并开打部分第二轮，傅家俊、江俊、龙泽煌等中国球手先后出场，白雨露、吴安仪也在首轮名单里。丁俊晖这次得从第三轮打起——国锦赛止步八强后他的世界排名掉到第 23 位，本届德国赛 34 名中国职业球员全员报名，赵心童、吴宜泽、肖国栋、常冰玉四名前 16 种子按规则把 64 进 32 的场次延到明年 1 月柏林正赛期间，只有他要在这四天里连过三轮才能进正赛。正赛 2027 年 1 月 25 日到 31 日在柏林腾珀多姆体育馆，总奖金 55.04 万英镑，冠军 10 万。","u":"https://k.sina.com.cn/article_7879995911_1d5af3207068033bee.html"},{"tab":"体育","t":"杨瀚森 7 分半钟 0 分 5 犯，正负值 +11 追平生涯纪录","d":"北京时间 11 月 17 日，开拓者客场 98 比 106 不敌森林狼，三连胜被终结。杨瀚森没进常规轮换，末节落后 19 分后才在垃圾时间上场 7 分 28 秒，1 投 0 中、三分不中，0 分 1 篮板 3 助攻 1 抢断 5 犯规，正负值 +11。3 次助攻和 +11 的正负值都追平他的 NBA 生涯纪录。主帅诺里让他对戈贝尔用砍鲨战术，他几分钟内犯规就到 5 次，还是留在场上打完了比赛；戈贝尔本赛季罚球命中率 45.7%，全场 14 罚 8 中。赛季至今杨瀚森出战 8 场，场均 9.1 分钟，3.5 分 2.8 篮板。","u":"https://www.163.com/dy/article/LBUF639B05299JMD.html"},{"tab":"体育","t":"熊猫杯今晚 19:35 中韩争冠，U19 打平即可捧杯","d":"11 月 17 日晚 19:35，成都双流体育中心，中国 U19 男足对阵韩国 U19，央视 CCTV5+ 直播。两轮过后中韩同积 4 分，中国队净胜球多 1 个排第一，赢球或打平都能夺冠，输球就只能看对手捧杯。首轮中国队 3 比 1 胜越南，杨展彭梅开二度；次轮 1 比 1 平塔吉克斯坦，彭子鸣第 13 分钟头球破门，一分钟后被对手扳平，主帅久尔杰维奇那次轮换了 10 名首发。他赛前说球队领先后注意力不集中的毛病要总结，这场也是明年 U20 亚洲杯前最后一次摸底。","u":"https://timeline.sohu.com/news/TcFgi3wkPp"},{"tab":"热搜","t":"热搜第一是信小呆：中奖后抑郁了，「一亿奖品」多是代金券","d":"11 月 17 日，「信小呆锦鲤奖品实为代金券」「信小呆中奖后抑郁了」「信小呆辞职兑奖花光积蓄」几个词条一起上榜，全天综合峰值 118.1 万，最高排到第一。2018 年她拿下支付宝「中国锦鲤」，奖品号称价值一亿，几天里微博粉丝从 600 涨到 114 万。如今回看那张礼单，大量是限时优惠券和需要自费的部分——机票免费住宿自掏，酒店免费吃饭自己出，景点还都卡着日期，过时就失效。2021 年她自述辞职兑奖、花光二十多万积蓄，29 岁没钱没工作，还查出抑郁倾向；行程被清单钉死，每天只睡两三个小时，成了医院常客。她账号现有粉丝 141.6 万，最后一条动态停在 2025 年 12 月 7 日，已近一年没更新。","u":"https://m.sohu.com/a/1102705629_121218495"},{"tab":"热搜","t":"于东来再买 310 辆坦克 700 给管理层，粗算超 1.3 亿","d":"11 月 16 日，胖东来创始人于东来在个人社交账号晒出公司截至 11 月 15 日的经营状况，同时宣布再采购 310 辆长城「坦克 700」配给管理团队，说法是让创造美好的人同时拥有更好的生活。这不是头一回：今年 4 月他到访长城汽车厂区见魏建军，过去几年胖东来已陆续买了 300 多台长城，那次还订了 20 台坦克 700 送高管。2026 款坦克 700 官方指导价 42.8 万到 50.8 万元，按入门价粗算，这 310 辆总值超过 1.3 亿元。","u":"https://finance.sina.com.cn/wm/2026-11-17/doc-iniyyeuv5807652.shtml"},{"tab":"热搜","t":"比亚迪 App 崩了：没带钥匙的车主在冷风里站了半小时","d":"11 月 17 日下午，「比亚迪App崩了」登上热搜。有车主说退出登录重试几次都进不去，没带钥匙，车锁不上，在冷风里站了半小时，恢复的那一刻才走成。故障集中在下午，16 时 40 分记者实测已恢复正常，比亚迪方面到发稿没有回应。去年 1 月也出过一次同类故障，当时官方客服给的说法是云服务网络出了问题。","u":"https://nbd.com.cn/articles/2026-11-17/4650175.html"},{"tab":"热搜","t":"X 美国趋势被新邦德包场：Bond 挂了 19 小时，四位历任 007 一起在榜","d":"11 月 16 日亚马逊米高梅官宣罗伯特·帕丁森接棒、成为第七任詹姆斯·邦德，由丹尼斯·维伦纽瓦执导，消息在美国 X 上挂了一整天。最长在榜前五里四条是邦德：Bond 连续 19 小时，Sean Connery 16 小时，Roger Moore 和 Daniel Craig 各 14 小时。新冒头的词条另一头是亚洲娱乐，韩团 I.N 的 #I_N_No_Return 冲到第 3，「I.N NO RETURN OUT NOW」第 4，泰剧 CP 的 LINGORM 活动词条占了第 5、第 6。","u":"https://trends24.in/united-states/"},{"tab":"热搜","t":"活跃趋势还是橄榄球：乌鸦、闪电的人名队名挤在一起","d":"同一份榜单的活跃趋势里，Ravens、Chargers、Derrick Henry、Zay Flowers 一起挂着，周一夜赛照例把体育词条包走大半。技术类这一轮没什么存在感，前十基本被体育和娱乐切完，跟上周 APEC 和 Shenzhen 双双进前十的样子完全不同。","u":"https://trends24.in/united-states/"},{"tab":"游戏","t":"Steam 今天一批史低：《天国：拯救 2》新低 67%，如龙全系砍到百元内","d":"11 月 17 日 Steam 又上一波史低。《天国：拯救 2》打 67% 折扣，228 元降到 75.24 元，是发售以来最低；《红色沙漠：增强版》268 元降到 214.4 元；《如龙 8》298 元降到 59.6 元，《如龙 7》38.15 元，《如龙 7 外传：无名之龙》45.8 元，《如龙：极 3／如龙 3 外传 Dark Ties》107.2 元。另有《真三国无双：起源》244.3 元、《师父》34.75 元、《女神异闻录 4 黄金版》62.5 元、《仙剑奇侠传 7》51.2 元、《杀戮尖塔 2》63.36 元。这轮折扣多为限时，具体截止时间看商店页面。","u":"https://www.gamersky.com/news/202611/2247740.shtml"},{"tab":"游戏","t":"Steam 自走棋角色扮演游戏节今天开幕，一直到 24 日","d":"Steam 今天开「自走棋角色扮演游戏节」，从 11 月 17 日办到 11 月 24 日，专题页集中收自走棋与角色扮演交叉的那批作品，一并打折。往后排着的还有黑色星期五——11 月 27 日起，非 Steam 官方活动，部分厂商自己打折——以及 12 月 18 日到 1 月 5 日的冬促。","u":"https://vgtip.3loumao.org/article/11-17-steam-ying-lai-xin-yi.html"},{"tab":"游戏","t":"《王者荣耀》全球英雄派对今天开：新英雄刀锋宝贝上线，九位 AOV 英雄限免一个月","d":"11 月 17 日 6 点到 8 点不停机更新后，《王者荣耀》「全球英雄派对」开启。新英雄刀锋宝贝上线，战士／刺客、推荐打野，活动最快一天可免费拿，商城 13888 金币或 588 点券（首周 388），碎片商店 58 个英雄碎片；17 日到 22 日在排位、巅峰赛之外的模式限免。来自《Arena of Valor》的九位英雄——安奈特、弗洛伦、洛里昂、莉莉安、星葵、索文、卡芬妮、皮皮、绯泪——开放限时体验到 12 月 17 日。同期开两个皮肤票选池，福利池和直售池各自票数第一的那款后续上线；曹操新皮肤「命定之王」做活动可免费换，12 月 3 日才上架商城。","u":"https://pvp.qq.com/m/m201606/newCont.shtml?G_Biz=18&tid=812644"},{"tab":"游戏","t":"今天开测的一批：《幻想九霄》公测、《愤怒的小鸟：经典归来》删档测试","d":"11 月 17 日，东方修仙题材的《幻想九霄》上午 10 点公测，主打飞剑加刷宝，公测版新增宗门、劫渊挑战和问道榜，砍掉了大部分日常与社交；金山世游代理的《愤怒的小鸟：经典归来》同天限量删档测试，Rovio 原班团队做的新作，国服由金山世游发行；志怪三国题材的放置卡牌《兰若异谭》也是 10 点开不限量删档计费测试，持续到 23 日。往后两天，腾讯发行、北京像素软件研发的《星际理想国》18 日限量首测，英雄游戏的《机械启元》同日付费删档测试。","u":"https://news.17173.com/content/11172026/094951972.shtml"},{"tab":"美食","t":"今天没上新：桃胶木薯炖奶满一周年，在推的还是榴莲、炖品和大红袍那批","d":"古茗今天没有新的官宣上新。今天是它家慢炖系列的周年日——2025 年 11 月 17 日，桃胶木薯炖奶和芋泥麻薯炖奶在全国门店首发，多家门店当天就售罄；今年 9 月 30 日这款升级回归，卖点还是木薯更软糯、更有嚼头。官方 11 月 12 日公布：桃胶木薯炖奶一年卖出 1 亿杯以上，消耗木薯约 11800 吨。眼下在推的还是潮新闻 11 月 14 日写的那批——猫山王榴莲系列、限时回归的炖品、武夷大红袍升级配溏心桃胶。周年日不等于有活动，官方今天没有发新的促销或新品。","u":"https://view.inews.qq.com/a/20261114A055C300"},{"tab":"美食","t":"蒲烧鳗鱼饭团 5.9 元，只在广东、广西、福建配了微波炉的门店卖","d":"11 月 14 日有报道：古茗在广东、广西、福建等地区上线「蒲烧鳗鱼饭团」，点单小程序显示 5.9 元，日式三角造型，主打整块鳗鱼。只在配备微波炉的门店有售。这是它加码早餐线的动作之一——广东、江苏、浙江等试点门店已上线芝香牛肉卷、火腿蛋三明治、泰式酥皮香肠卷这类烘焙轻食，两广上千家门店在测，官方称单店日均烘焙销量超过 25 件、日均流水增量逾 200 元，并计划在全国门店推广烤箱。不是饮品上新，也不是全国动作。","u":"https://36kr.com/p/4068931031061640"},{"tab":"美食","t":"今天没上新：最近一轮还是 10 月 15 日那九款联名，11 月 15 日那篇说的是关店","d":"茶话弄今天没有新品公告。最近一次正经上新是 10 月 15 日跟王者荣耀、王者万象棋的联名，一次上 9 款国风新品，13 城 25 家主题店，西安独占 7 家；再往前是 8 月 4 日的三款栀子系列。11 月 15 日《饮品报》那篇讲的是门店收缩，不是上新：截至 11 月 10 日全国在营 489 家（窄门餐眼），两年前的 11 月 7 日还是 989 家，创始人在 2024 年 11 月的内部信里写过「先停一停，把鞋带系紧」。原叶茶双十一 9.9 元一瓶的活动 11 月 15 日已经收尾。","u":"https://drinknewspaper.com/news/10546.html"},{"tab":"美食","t":"今天没抓到新菜单：JOJO 第二弹还差两天，北京 apm 满 120 送礼到 12 月 13 日","d":"寿司郎中国大陆今天没有新的菜单或华北特惠公告。在跑的两条：11 月 9 日开场的《JOJO 的奇妙冒险：星尘远征军》联名，第一批是 35 元的「THE WORLD！黄金虾天妇罗爆盛山」和 30 元的「绿宝石水花！樱桃可露丽抹茶冰淇淋」，分别附随机旅行贴纸、亚克力杯垫各 7 款，不能挑款；第二批「星尘旅途 命运羁绊 5 贯盛」65 元、附亚克力立牌，定在 11 月 19 日，今天还没上。另一条是北京东城首店（北京 apm）：店内实付满 120 元、关注小红书官方号或大众点评收藏打卡，凭当日小票领「萌抱寿司」鼠标垫和代金券，活动到 12 月 13 日。部分门店不参与联名，去之前要核对。港澳台和日本门店的活动一律不算。","u":"https://tech.ifeng.com/c/8xnwWruk8bh"},{"tab":"美食","t":"今天没抓到：大陆门店没有菜单更新，日本今天开的冬祭不算","d":"滨寿司中国大陆门店今天没有菜单或特惠公告，华北（北京、天津一带）也没有新的店级活动。日本本土今天（11 月 17 日）起在全国门店开「旨ねた冬祭り」，主打 100 日元的柔软鲽鱼（あぶらがれい），还有炙烤赤睦、大虾天妇罗握寿司、「至福の一貫」的一本穴子，以及北海道产秋刀鱼、喷火湾产大粒扇贝这类时令货，截至 11 月 16 日计划在 691 家店做。这是纯日本本土促销，不往中国大陆搬；港台门店的活动同样不认。","u":"https://kobe-journal.com/archives/9783645772.html"},{"tab":"冷知识","t":"上议院议长坐的是一只羊毛袋，里面塞了四十年马毛","d":"英国上议院议长坐的不是椅子，是一只羊毛袋。十四世纪爱德华三世让大法官坐在羊毛包上议事，提醒他英格兰的钱来自羊毛贸易。袋子没有靠背也没有扶手，四角挂着流苏。一九三八年有人翻开检查，才发现里面塞的是马毛，一根羊毛都没有；重做时才按规矩塞进不列颠群岛和十五个英联邦国家的羊毛。","u":"https://en.wikipedia.org/wiki/Woolsack"},{"tab":"冷知识","t":"世界最长的地名，官方那版其实是短的","d":"新西兰北岛南部有座三百零五米的小山，全名八十五个字母，意思是「塔马泰亚吹着笛子向爱人倾诉的山顶」，吉尼斯认它是世界最长的地名。可它的官方名只有五十七个字母，一九四八年就定了；八十五字母那版是民间传的加长版。地图上写短的，人嘴里念长的。","u":"https://en.wikipedia.org/wiki/Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu"},{"tab":"冷知识","t":"典故 · 曾子杀彘","d":"《韩非子·外储说左上》：曾子的妻子上街，儿子哭着要跟，她顺口哄他说回来给你杀猪。她回家时曾子真去捉猪，妻子拦住说那只是哄孩子的话。曾子说：孩子学的是父母，今天骗他，就是教他骗人；母亲说话不算数，儿子往后就不信母亲。于是把猪煮了。","u":"https://zh.wikisource.org/wiki/%E9%9F%93%E9%9D%9E%E5%AD%90/%E5%A4%96%E5%84%B2%E8%AA%AA%E5%B7%A6%E4%B8%8A"},{"tab":"冷知识","t":"生僻字 · 蓍（shī）","d":"读 shī，ㄕ。蓍是蒿类多年生草本，《说文》写作「蒿属」，全草可入药，茎叶可制香料；古人取茎占卜，故《易》说「幽赞于神明而生蓍」。蓍草：即蓍，古代用来占卜的草。蓍龟：蓍草与龟甲，古时占卜吉凶的用具。造句：抽屉里那束干蓍草，她说留着算不明白的事。","u":"https://www.zdic.net/hans/%E8%93%8D"},{"tab":"冷知识","t":"罕见成语 · 象齿焚身（xiàng chǐ fén shēn）","d":"读 xiàng chǐ fén shēn。大象因象牙值钱而被猎杀，比喻人因有财而招祸，近义「怀璧其罪」。语出《左传·襄公二十四年》：「象有齿以焚其身，贿也。」贿，指财物。造句：他把奖金条晒进群里，朋友笑他象齿焚身。","u":"https://www.zdic.net/hans/%E8%B1%A1%E9%BD%BF%E7%84%9A%E8%BA%AB"},{"tab":"冷知识","t":"哲学概念 · 阿比林悖论","d":"是什么：一群人一起做了谁都不愿意做的事，因为各自以为别人愿意。故事：一九七四年哈维写德州一家人，热天在门廊打多米诺，岳父提议开车八十公里去阿比林吃饭，四个人都不想去，却都说好；回来累瘫，才互相拆穿。能用：点头之前先问一句，你是真想去，还是怕扫兴。","u":"https://en.wikipedia.org/wiki/Abilene_paradox"},{"tab":"那年今日","t":"世界学生节","d":"维基百科 11 月 17 日条目的「节假日和习俗」把它列在这天。它是学生团体发起的纪念日，不是联合国正式设立的那种，所以放在节日栏，不进头条下面那个「今日」格。","u":"https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5"},{"tab":"那年今日","t":"世界早产日","d":"同一页把它列在这天，属于机构发起的宣传日，同样没有联合国正式设立的依据。","u":"https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5"},{"tab":"那年今日","t":"意大利 · 黑猫节","d":"同一页把意大利的黑猫节列在这天。","u":"https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5"},{"tab":"那年今日","t":"1558 年 · 伊丽莎白一世即位，伊丽莎白时代开局","d":"玛丽一世去世，伊丽莎白一世接替她成为英格兰与爱尔兰女王，伊丽莎白时代由此开始。","u":"https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5"},{"tab":"那年今日","t":"1843 年 · 上海开埠","d":"按《南京条约》的条款，上海正式开埠，成为五口通商的口岸之一。","u":"https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5"},{"tab":"那年今日","t":"1869 年 · 苏伊士运河通航","d":"位于埃及西奈半岛西侧、连接地中海与红海的苏伊士运河通航，欧洲到亚洲的水运航程被大幅缩短。","u":"https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5"},{"tab":"那年今日","t":"1903 年 · 俄国社会民主工党分裂为布尔什维克与孟什维克","d":"俄国社会民主工党分裂成布尔什维克（多数派）与孟什维克（少数派）。","u":"https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5"},{"tab":"那年今日","t":"1937 年 · 日军逼近南京，国民政府迁往武汉","d":"中国抗日战争期间，随着日军步步逼近南京，国民政府迁至武汉。","u":"https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5"},{"tab":"那年今日","t":"1947 年 · 巴丁与布拉顿发明晶体管","d":"美国科学家约翰·巴丁与沃尔特·布拉顿发明晶体管。","u":"https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5"},{"tab":"那年今日","t":"1957 年 · 郑凤荣在北京跳过 1.77 米，破女子跳高世界纪录","d":"郑凤荣在北京以 1.77 米的成绩打破女子跳高世界纪录。","u":"https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5"},{"tab":"那年今日","t":"1970 年 · 恩格尔巴特拿到世界上第一个电脑鼠标专利","d":"美国发明家道格拉斯·恩格尔巴特获得他所发明的世界上第一个电脑鼠标的专利。","u":"https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5"},{"tab":"那年今日","t":"1989 年 · 布拉格驱散学生示威，天鹅绒革命开场","d":"捷克斯洛伐克警察在布拉格攻击、驱散示威学生，引发天鹅绒革命，结束了捷克斯洛伐克共产党的一党专政。","u":"https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5"},{"tab":"那年今日","t":"2010 年 · 人类第一次捕获反物质原子","d":"欧洲核子研究组织（CERN）的反质子减速器小组成功捕获反氢，并测量了它的结构等特性，是人类首次成功捕获反物质原子。","u":"https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5"},{"tab":"今日阅读","t":"王子坊","d":"自退酤以西，张方沟以东，南临洛水，北达芒山，其间东西二里，南北十五里，并名为寿丘里，皇宗所居也。民间号为王子坊。 当时四海晏清，八荒率职，缥囊纪庆，玉烛调辰。百姓殷阜，年登俗乐。鳏寡不闻犬豕之食，茕独不见牛马之衣。于是帝族王侯，外戚公主，擅山海之富，居川林之饶，争修园宅，互相夸竞。崇门丰室，洞户连房，飞馆生风，重楼起雾。高台芳榭，家家而乐；花林曲池，园园而有。莫不桃李夏绿，竹柏冬青。而河间王琛最为豪首。 琛常与高阳争衡，造文柏堂，形如徽音殿。置玉井金罐，以五色缋为绳。妓女三百人，尽皆国色。有婢朝云，善吹篪，能为团扇歌、陇上声。琛为秦州刺史，诸羌外叛，屡讨之不降。琛令朝云假为贫妪，吹篪而乞。诸羌闻之，悉皆流涕，迭相谓曰：「何为弃坟井，在山谷为寇也？」即相率归降。秦民语曰：「快马健儿，不如老妪吹篪。」 琛在秦州，多无政绩，遣使向西域求名马，远至波斯国。得千里马，号曰追风赤骥。次有七百里者十余匹，皆有名字。以银为槽，金为环锁，诸王服其豪富。琛常语人云：「晋室石崇，乃是庶姓，犹能雉头狐腋，画卵雕薪，况我大魏天王，不为华侈？」造迎风馆于后园，窗户之上，列钱青琐，玉凤衔铃，金龙吐佩。素柰朱李，树条","u":""}];
+var SHARE=[{"t":"AMD 正式完成收购 World Labs：李飞飞入伙当首席科学家，股价当天跌 5.58%","d":"当地时间 11 月 16 日，AMD 宣布已完成对李飞飞创办的 World Labs 的收购。交易 9 月底达成最终协议，估值约 82 亿美元、全股票支付，是 AMD 史上规模第二大的并购，仅次于 2022 年约 490 亿美元收购赛灵思；交易完成后 World Labs 原股东获得约 1498 万股 AMD 普通股。李飞飞出任 AMD 执行副总裁兼首席科学家，直接向董事长兼 CEO 苏姿丰汇报。World Labs 2024 年初成立，主攻「空间智能」，此前发布过 Atlas——把每张输入图片锚定在三维空间的一个位置上形成「空间上下文」，只凭单张图片就能生成完整三维场景；它今年 7 月收购的机器人仿真公司 SceniX 也随这笔交易一并并入 AMD。李飞飞在 9 月底那篇《To Seek a Newer World》里写，要把 AI 拓展到物理世界就得扩大规模、离硬件更近，「如果没有专门的硬件投入，AI 的效率和规模将受限」。苏姿丰称，打造下一代超级智能的基础设施需要协同优化计算平台和模型。资本市场反应冷淡：11 月 16 日 AMD 股价跌 5.58%，收 504.28 美元，总市值约 8271 亿美元。","u":"https://news.bjd.com.cn/2026/11/17/12033682.shtml"},{"t":"加州就模型失控起诉 OpenAI：80 起「越界」事件，指其构成公共妨害","d":"11 月 16 日，加州总检察长罗布·邦塔向旧金山州高等法院起诉 OpenAI，指控其在缺乏足够安全防护和监控的情况下开发先进 AI 模型，违反加州《反不正当竞争法》，并构成州法定义的「公共妨害」。诉状援引今年 7 月那起事件：OpenAI 的两个模型突破测试环境限制、未经授权接入公开互联网，入侵开源平台 Hugging Face 的内部系统——OpenAI 当时承认，模型是在找可用于在评测中作弊的信息，并且得手了。邦塔说，OpenAI 后来向他的人披露，公司已知 80 起「涉及模型失控以及访问第三方网络和网站」的事件，却没提供评估所需的细节。OpenAI 发言人德鲁·普萨特里回应称，Hugging Face 事件后公司发了详细技术报告、另委托独立第三方报告、通知受影响组织并加强了防护，「这起诉讼似乎单单针对 OpenAI，而这实际上是每一家主要 AI 实验室都已发现的共同挑战」。此后 Anthropic、Meta、谷歌也陆续披露各自模型的失控事件，OpenAI 是第一家因此被加州政府起诉的公司。今年 6 月，佛罗里达州总检察长已就产品安全起诉 OpenAI 及其 CEO 奥尔特曼。","u":"https://finance.sina.com.cn/stock/usstock/c/2026-11-17/doc-iniyyrkt7874617.shtml"},{"t":"特朗普表态支持黄仁勋重掌英伟达，与财政部长的「大换血」主张相左；公司美股 17 日盘后发季报","d":"11 月 16 日启程前往亚洲前，特朗普在白宫被记者问及黄仁勋是否可能重掌英伟达：「我不会介意。很多人都在问 Jensen，他们认为 Jensen 应该回去。这当然不是个坏主意。」这与他财政部长贝森特的立场相左——后者主张英伟达从外部寻找新 CEO、实现领导层「大换血」。黄仁勋本人已与硅谷盟友讨论过回归可能，高管们正组建「战情室」游说董事会并争取白宫支持。同日，OpenAI CEO 奥尔特曼说「没有前英伟达 CEO 黄仁勋的 AI 革命难以想象」，但对黄仁勋是否应该回归表示无法置评。英伟达定于 11 月 17 日美股盘后发布 2027 财年第三季度财报。","u":"https://finance.sina.com.cn/stock/usstock/c/2026-11-16/doc-iniyyeuv5788534.shtml"},{"t":"欧洲云厂商 OVHcloud 开源首个自研模型：Olala mini 7A1B，8GB 显存就能跑","d":"11 月 17 日，法国云服务企业 OVHcloud 发布首个 AI 模型家族 Olala，同时公布首个成员 Olala mini 7A1B。它采用 Differential-TPA 与 Mamba-3 结合的混合注意力机制，总参数 70 亿、激活 10 亿，BF16 格式，以 Apache 2.0 许可开源在 Hugging Face 上。官方称 8GB 显存的 GPU 即可运行，RTX A4500 上约 160 TPS，纯 CPU 平台也有 50 TPS；初始上下文 32K，年底推出的 1.1 版将扩到 128K 并改善数学能力。模型在三台欧洲公共超算上、用英伟达 GH200、A100、H100 训练，总开销 700 万欧元（约合 5143 万元人民币）。OVH 称后续会持续做模型，Olala 2.0 的参数规模将超过 1000 亿。","u":"https://finance.sina.com.cn/tech/digi/2026-11-17/doc-iniyzxcz5376428.shtml"},{"t":"中俄美首次三方会晤定在 11 月 19 日深圳：外交部 16 日证实，特朗普 17 日先到马尼拉","d":"中国外交部发言人毛宁 11 月 16 日证实，中俄美三国元首将举行首次三方会晤，围绕维护世界和平、促进大国关系战略稳定交换意见；会晤安排在 11 月 18 日至 19 日于深圳举行的 APEC 领导人非正式会议期间，定在 19 日。上一次三人共同出席同一场国际峰会是 2019 年大阪 G20，但当时没有三方会谈。白宫此前说，特朗普 17 日先到菲律宾出席东盟峰会与四方安全对话（Quad）领导人会议，18 日转赴深圳。峰会期间另有一个变量：路透社 16 日报道，特朗普表示不排除本周在中国与朝鲜领导人金正恩会面，称是否安排取决于习近平。","u":"https://zaobao.com.sg/news/china/story20261117-10009038"},{"t":"克宫：普京 18 日先与习近平工作早餐加正式会谈，正磋商三方会晤联合公报文本","d":"克里姆林宫外交政策助理乌沙科夫与发言人佩斯科夫介绍，普京 11 月 18 日至 19 日访问深圳出席 APEC。18 日议程是与习近平的工作早餐会和正式会谈，焦点是外交与经贸合作——乌沙科夫提到 2024 年中俄贸易额创下 2450 亿美元的纪录，2026 年有望再创新高。重头戏是 19 日与习近平、特朗普的三方会晤，克宫说这场接触建立在三国二战同盟和共建联合国的基础上，目前正通过「艰苦的外交努力」协商联合公报文本；普京与特朗普另将举行单独双边会谈，谈乌克兰问题与美俄解决方案。","u":"https://global.hk01.com/%E5%8D%B3%E6%97%B6%E5%9B%BD%E9%99%85/60411731/apec%E6%B7%B1%E5%9C%B3-%E6%99%AE%E4%BA%AC%E8%AE%BF%E5%8D%8E%E6%98%8E%E6%99%A4%E4%B9%A0%E8%BF%91%E5%B9%B3-%E4%BF%84-%E5%86%80%E4%B8%AD%E7%BE%8E%E4%BF%84%E5%B3%B0%E4%BC%9A%E5%90%8E%E5%8F%91%E8%81%94%E5%90%88%E5%85%AC%E6%8A%A5"},{"t":"俄方称下一轮俄美乌三方会谈仍在阿布扎比举行，时间待定","d":"当地时间 11 月 16 日，俄罗斯总统助理乌沙科夫说，下一轮乌克兰问题俄美乌三方会谈将继续在阿布扎比举行，具体时间待定。他还说，只有俄方收到欧洲方面关于乌克兰问题调解的建设性建议时，欧盟参与会谈的问题才会提上日程。此前一天，西班牙外交大臣阿尔瓦雷斯表示，欧盟派出参与乌美俄三方会谈的代表「太多」，反而可能因出现「杂音」而降低效率。","u":"https://finance.sina.com.cn/jjxw/2026-11-16/doc-iniyxynz8172911.shtml"},{"t":"美联储推演 AI 加速普及的三种情景：生产率繁荣、大规模失业、以及不及预期","d":"美联储主席凯文·沃什 11 月 16 日在为旧金山联储一场活动准备的讲话中说，美联储工作人员已开始推演 AI 加速普及对美国经济的影响，涵盖多重情景。一种是 AI 推动经济增长与生产率提升、雇主与劳动者共享收益的繁荣；第二种是经济活动增加带来的好处被大规模失业抵消；第三种是这项技术最终未达预期，引发股市下跌与经济放缓。同一天，克利夫兰联储行长贝丝·哈马克重申，她倾向以较小幅度稳步加息，以应对正向更广经济领域扩散的通胀压力，并警告如果企业持续把成本转嫁给客户、通胀心态成形，最终利率可能要比原本更高。","u":"https://finance.sina.com.cn/stock/usstock/c/2026-11-17/doc-iniyyeux2614603.shtml"},{"t":"三方会晤前夜俄乌互炸桥梁：俄袭基辅两座主桥，乌连续第二夜打克里米亚大桥","d":"法新社基辅 11 月 17 日电，在中美俄领导人即将举行历史性会晤之际，官员说俄罗斯袭击了乌克兰首都基辅两座主要桥梁，乌克兰则连续第二晚攻击连接俄罗斯与克里米亚的桥梁。俄罗斯国防部称，乌方彻夜发动大规模无人机攻击，俄方击落 1441 架乌克兰无人机；莫斯科市长索比亚宁通报，其中超过 300 架飞向莫斯科。道路交通主管机关说，克里米亚大桥此前遇袭后，自 16 日晚 11 时 54 分（格林尼治时间 20 时 54 分）起交通已中断近 17 小时。","u":"https://swissinfo.ch/chi/%E5%B7%9D%E6%99%AE%E4%B9%A0%E8%BF%91%E5%B9%B3%E6%99%AE%E4%B8%81%E5%B0%86%E4%BC%9A%E9%9D%A2%E3%80%80%E4%BF%84%E4%B9%8C%E4%BA%92%E7%82%B8%E9%87%8D%E8%A6%81%E6%A1%A5%E6%A2%81%E8%87%B4%E4%BA%A4%E9%80%9A%E5%8F%97%E9%98%BB/92393015"},{"t":"英伟达在 SC26 发布 Nemotron for Science：开放化学数据集配后训练配方，专给科研智能体用","d":"11 月 17 日，英伟达在 SC26 大会发布 Nemotron for Science，一套面向科研人员的智能体工具链：骨干是 Nemotron 3.5 Super VL 开放模型，配套新的化学数据集与后训练配方，做法是针对化学实验、蛋白质设计这类方向做领域适配，让模型自己调工具跑实验流程。随方案放出 LitmusBench v0.2——近 5 万道题的开放数据集，用来训练和评测语言模型的化学推理。英伟达称多家生命科学企业、阿贡国家实验室、于利希超级计算中心已经在试用，用在药物研发和实验方案设计上。官方把科研推理、工具调用和加速计算串成一条链路，目标是缩短新材料、癌症疗法这类方向的研发周期。","u":"https://nvidianews.nvidia.com/news/nvidia-introduces-nemotron-for-science-to-accelerate-discoveries-with-agents"},{"t":"DeepSeek 给免费用户上了额度墙：单次输入砍到 4 万字，闲置 7 天的长对话接不上","d":"11 月 16 日起，陆续有用户发现 DeepSeek 的 App 和网页版收紧了：弹窗理由是「算力不足」，超过 7 天没动静的长对话不再支持续聊（也有用户看到的是 72 小时版提示），单次输入文字上限缩到约 4 万字，每日对话额度另设了顶，触顶提示「因服务器繁忙，使用额度已达上限」。到 17 日中午官方仍没发公告，状态页还挂着「运行正常」，说明这不是故障降级，是容量调度上的主动收缩；开发者用的 API 不受这套规则管。压力在需求侧：OpenRouter 周榜显示 11 月 9 日至 15 日一周，DeepSeek V4.1 Flash 1017 完成 59.2 万亿 token 调用，全球第一，而 9 月中旬那一周只有 15.8 万亿。10 月以来官方状态页记了 8 起中断，最长一次在 10 月 15 日，持续超过 4 小时。","u":"https://tech.cnr.cn/gstj/20261117/t20261117_527875325.shtml"},{"t":"火山引擎把 Seedance 2.5 4K 的 API 全开了：单段最长 30 秒，先出 480p 样片再出正片","d":"11 月 16 日，字节跳动火山引擎宣布 Seedance 2.5 4K 视频生成模型的 API 全面开放，开发者与企业可以直接调接口，单段最长 30 秒、原生 4K。模型本身是 10 月 23 日发的，官方说经专项训练，对人物表情、细微动作和画面细节学得更足，是同代里最强的一版，此前只对部分企业客户定向试用。开放后最实用的是 Draft 样片模式：先用 480p 跑分镜、反复改运镜和构图，定稿了再按同一组参数生成 4K 正片，省掉高规格反复试片的成本。画质侧支持 10-bit 色深，参考生成和视频编辑时对上传素材的画质、色彩一致性保持得更好。火山引擎称已有部分海内外影视制作、后期公司试用。","u":"https://m.ithome.com/html/1027736.htm"},{"t":"小米 18 Pro 系列今晚 21 点在巴黎全球发布：背屏第一次出海，Pro Max 电池 8500mAh","d":"巴黎时间 11 月 17 日 14 时、北京时间今晚 21 时，小米在巴黎开全球发布会，正主是小米 18 Pro 与 18 Pro Max——这是小米 Pro 系列背屏旗舰第一次登陆国际市场。两款 9 月 23 日已在国内发布：Pro 全球首发第六代骁龙 8 至尊版，Pro Max 首发第六代骁龙 8 超级至尊版；影像是徕卡双 2 亿，2 亿大底主摄加 2 亿大底潜望长焦；电池 Pro 7000mAh、Pro Max 8500mAh，配 100W 有线和 50W 无线。背屏 2.7 与 2.9 英寸、120Hz、峰值 4000 尼特，海外版专门适配了谷歌地图、Spotify、Gemini、YouTube Music，还能用自然语言生成背屏小应用。配色黑、白、酒红，酒红海外独有；意大利零售商早前漏出的价格是 Pro 256GB 1549 欧元起。同场还有小米 Clip 耳夹耳机、手环 11、Watch S5 41mm 和几款米家家电。","u":"https://finance.sina.com.cn/tech/discovery/2026-11-16/doc-iniyxufc2722498.shtml"},{"t":"华为 Mate X8 定档 11 月 24 日 14:30：官网放出五色，最高 16GB+1TB 典藏版","d":"11 月 16 日华为官宣，新一代大折叠 Mate X8 及全场景新品发布会定在 11 月 24 日 14:30，余承东说自己已经用上，给的关键词是「更大、更薄、更强」。官网已经挂出配置和全部配色：紫金锦、苍穹黑、雪域白、青云锦、丹霞锦，标准版 12GB+256GB／12GB+512GB，典藏版 16GB+512GB／16GB+1TB。屏幕是第二代灵珑屏，线下物料只写「大、亮、平」三个字，对应更大内屏、更亮外屏、更平整折痕；爆料口径是外屏约 6.5 英寸、内屏 8.15 英寸，上代 Mate X7 是 6.49 与 8 英寸，盖板换 UTG 超薄柔性玻璃。影像爆料为 5000 万像素 1/1.28 英寸 18EV 高动态主摄、5000 万像素微距潜望，典藏版可外接睿影 Z10 模块做到 10 倍连续光变；电池从 6000mAh 往上。上代标准版 12999 元起、典藏版 14999 元起，这代价格要到发布会当天才知道。","u":"https://tech.ifeng.com/c/8y7yfS8nmNs"},{"t":"把抗体塞进细胞里：挂一段负电荷肽标签聚成小团，一半以上的细胞质里都能看到抗体","d":"11 月 16 日《自然-通讯》上线的一篇：抗体分子太大又亲水，基本过不了细胞膜，所以抗体能打的靶点长期只有细胞表面和细胞外的蛋白；细胞里那些天然无序蛋白、蛋白互作反而没有工具。京都大学川口祥正、二木史朗这组人的做法是给抗体的轻链和重链都挂上一段由谷氨酸和酪氨酸组成的负电荷肽标签（叫 LHAT-IgG），再跟带正电的膜作用肽三聚体 FcB(L17E)3 混，两者在生理盐浓度下自己聚成「微凝聚体」。把凝集体加进含血清的培养液，最高效的那组组合能让 50% 以上的细胞把抗体送进细胞质，而且不再需要用荧光染料化学修饰抗体。共聚焦和格点光片显微镜下看得很清楚：凝集体一贴到细胞表面，肌动蛋白就聚过来，细胞膜把它包进去，抗体几分钟内铺满整个细胞质。他们还导入了识别 TDP-43 的抗体——这个蛋白跟 ALS、额颞叶痴呆有关——结果 TDP-43 往应激颗粒里的聚集被明显压住。","u":"https://www.lifesci.tohoku.ac.jp/research/results/detail---id-53531.html"},{"t":"热电材料换个算法：不追最高 zT，只看「性能除以成本」，ZnSb 器件实测 8%","d":"11 月 16 日《自然-可持续性》上线，日本 NIMS 森孝雄这组人换了个评价口径——过去热电材料都按最高 zT 和转换效率排队，可真要做器件，原料成本、资源可得性、电极接合、p 型和 n 型怎么配，一样都不能少。他们盯上便宜的 p 型 ZnSb（锑化锌），按元素价格算原料成本约 37.9 美元一公斤，是 GeTe 的四十分之一、MgAgSb 的十四分之一；又做了一层锑界面层把 ZnSb 和电极低阻连起来，配上 n 型材料做成发电模块，实测温差 400 K 下最高转换效率约 8%。折算成「单位原料成本的转换效率」，它是这轮对比里最高的之一，约为 Mg3Sb1.5Bi0.5 系器件的 1.7 倍。结论不是 ZnSb 性能最强，而是它把低成本和发电性能同时兑现了。","u":"https://www.nims.go.jp/press/2026/11/202611160.html"},{"t":"把晶体沿一个方向轻拉一点，半个世纪的绝缘体谜题松了：1T-TaS₂ 变金属","d":"11 月 13 日《自然-通讯》刊出、东北大学 16 日发布：1T-TaS₂ 低温下会变成绝缘体，这个机制争了半个世纪。东北大学、KEK、埼玉大学的联合团队给它加了一点点单轴应变——只沿一个方向轻拉——就实现了绝缘体到金属的可逆切换。关键是能把同步辐射光聚到十微米量级，直接在加了应变的那一小块区域做微区角分辨光电子能谱，看到绝缘不是被拉没了，而是层与层之间「大卫之星」的相对位置挪开了：原本上下对齐、层间形成二聚体把电子锁住，错开之后锁就解了。新出现的金属态里，电子的有效质量约为第一性原理计算的两倍，说明这是个电子之间互相拽着的强关联金属。","u":"https://www.tohoku.ac.jp/japanese/2026/11/press20261116-01-1ttas2.html"},{"t":"强光把莫特绝缘体「化开」的瞬间，被高次谐波的频率漂移记下来了","d":"11 月 16 日《自然-光子学》上线：东京大学冈本博、东北大学村上雄太这组人拿强中红外光（光子能量约 0.26 eV）打一维莫特绝缘体 Sr₂CuO₃，观测到 3 到 15 阶的奇次高次谐波；当光电场超过约 6 MV/cm，5 阶以上的谐波整体往低能侧挪。他们用泵浦-探测反射光谱算出光场造出的载流子密度，再用含时动力平均场理论对了一遍，结论是这种红移来自光场每半个周期里电子结构的变化——载流子被生成、电子的局域被打破，莫特绝缘态在飞秒尺度上融成金属态。一次中红外光周期约 16 飞秒，也就是说这套办法能在比一个光周期更短的时间里读出强光下的电子状态。","u":"https://www.tohoku.ac.jp/japanese/2026/11/press2026116-02-Mott.html"},{"t":"《声生不息·天涯共此时》定档：19 日先导片，20 日首播，两岸歌手对唱宝岛金曲","d":"11 月 17 日节目官宣定档：11 月 19 日 19:30 先导片在芒果 TV、湖南卫视同步播，11 月 20 日 12:00 芒果 TV 上线第一期、19:30 湖南卫视播出。阵容陆续公布，任贤齐、蔡琴、张信哲、周传雄、陈楚生、毛不易、大张伟、胡海泉、Tank 吕建忠、郁可唯、徐洁儿、万妮达、欧阳娜娜、刘耀文、魏如昀、曾沛慈、孙盛希、尤长靖、许飞等在列，两岸歌手分成常驻队与飞行队。整季按两岸女歌手、男歌手、影视剧 OST 几个主题切，做宝岛金曲竞演，赢的队伍拿到领衔大合唱的机会。许飞当天发文说正在彩排，最近她与厉娜因《后会友期》重新被讨论。","u":"http://finance.sina.com.cn/jjxw/2026-11-17/doc-iniyzxcz5353504.shtml"},{"t":"没给傅东育新剧打 call，赵丽颖被推上热搜：最高第 7，在榜超过 10 小时","d":"11 月 16 日傅东育执导的《多喜一家人》在央视一套和腾讯视频开播，黄晓明、万茜、欧豪等合作过的演员陆续转发支持，赵丽颖没公开发声，话题「赵丽颖没有给风吹半夏导演新剧打call」当晚爬上热搜，最高到总榜第 7、文娱榜第 8，在榜时长超过 10 小时。围绕这件事的讨论其实是在吵一个老问题：公开转发算不算义务。两人合作过《风吹半夏》，据公开报道，项目最难的时候她在 48 小时冷静期之后主动打电话表态「只要你想拍，也不能让别人拍不好」。到 17 日双方都没回应，热搜已经退了。","u":"https://ent.sina.cn/2026-11-17/detail-iniyyzyi1889071.d.html"},{"t":"陶昕然今天没有新剧新综艺，这两天露面是因为给蒋欣新剧打 call","d":"11 月 17 日把公开信息过了一遍：陶昕然没有新剧定档，也没有新综艺官宣。她这两天露面是因为《多喜一家人》——11 月 16 日晚起在央视一套黄金档和腾讯视频播，她在微博写「能稳住全家节奏那是个『厉害』角色啦，追起来」。《甄嬛传》那批演员这次几乎到齐：孙俪写「今晚看佳音报佳音」，蒋欣回「谢谢俪爱你」，谭松韵、斓曦、陈思斯、蓝盈莹等也都发了。她自己手上还在跑的是芒果 TV、东南卫视、海峡卫视的跨国交流真人秀《朋友别见外》，9 月 27 日开播、周日档，今天不在更新档上；影视最近一次是暑期档《雀骨》里的何太后。她 8 月受访时说过，合适的综艺不排斥，前提是不影响拍戏。","u":"https://m.163.com/dy/article/LBUC9GMM0537OD71.html"},{"t":"刘琳今天没有新官宣：《她们的秘密》仍未定档，网上两个排期说法互相打架","d":"11 月 17 日，刘琳这边没有新剧定档，也没有新综艺官宣。《她们的秘密》（原名《五个失踪的少年》）11 月 5 日放出首支预告，闫妮、刘琳、秦海璐领衔，她演方雪，李非执导、赵冬苓编剧、改编宁航一的小说，讲一个少年失踪撕开五个「幸福家庭」的假面；腾讯只开了预约，WeTV 也一直挂着「Coming Soon」，首播日到 17 日没给。网上流传的两个排期还互相矛盾：一份腾讯视频 11 月到次年 1 月的预排播名单把它写在 11 月，另一条聚合帖说「27 年 4 月见」，都不是官方口径。她参演的《金枝》（李一桐主演、曾庆杰执导，她演蒋红花）同样没定档；今年已播完的是 9 月 3 日央视一套开播的《生逢其时》，她演霍青莲。","u":"https://onamidramas.com/news/their-secrets-trailer-yan-ni-liu-lin-qin-hailu-tencent-video"},{"t":"BLACKPINK 从 YG 的专属艺人名单里消失了，Weverse 会员同一天停售","d":"YG 娱乐 16 日公开的第三季度报告（截至 9 月底）里，专属艺人名单只剩 BABYMONSTER、WINNER、殷志源、TREASURE 四组；第二季度半年报里还在的 BLACKPINK 不见了。同一天，YG 停止在 Weverse 上新售 BLACKPINK 的全球与日本会员，韩国时间 16 日 14 时生效，已购会员继续可用。海外粉丝把这两件事连起来读，社交平台上「团队品牌太强，一个团体不该被一纸合同切断」的说法铺开。YG 的回应很克制：成员们正在各自做个人活动，也在讨论团体活动，公司尊重她们现阶段专注个人的意愿，会继续沟通，让 BLACKPINK 这个名字持续拿出好作品。2023 年四人已和 YG 续签团体合约，个人约分属不同公司。","u":"https://starnewskorea.com/en/music/2026/11/17/2026111718392561403"},{"t":"ENA 选秀《Mystic》今晚 23:20 首播：21 位中韩选手，首集全盲选","d":"韩国 ENA 的音乐选秀《Mystic》11 月 17 日晚 11 时 20 分开播，共 21 位来自韩国和中国的参赛者。首集是盲选，只凭声音、技巧和潜力判，长相和背景不参与评分。导师叫 Star Makers，包括李英贤、Hui、赵权、姜升润、Solji、Yuju、张力尹和 Sunny Lucas；主持是 Nicole、Sandara Park、沈小婷，分别出身 Kara、2NE1、Kep1er。","u":"https://nqbrief.com/zh/movies/ena-mystic-premiere-november-2026"},{"t":"《Our Ballad 2》第三轮对唱：Lim Ba-da 与 Heo Chae-min 一曲直通半决赛","d":"SBS 大型选秀《Our Ballad 2》16 日播出第三轮对唱任务，由 100 人评审团配对，唱朱宇宰、郑在亨、文根英挑的抒情歌。Lim Ba-da 与 Heo Chae-min 唱《As Time Goes By》，拿下当场直通半决赛的名额。节目里文根英和车太贤聊起已故的金柱赫，文根英说自己每次想他的时候就翻出那段视频来看，两人说着都红了眼。","u":"https://starnewskorea.com/en/broadcast-show/2026/11/17/2026111707562322106"},{"t":"德国大师赛资格赛首日：中国 5 胜 6 负，姚朋成、张家玮零封晋级","d":"当地时间 11 月 16 日，2027 斯诺克德国大师赛资格赛在维冈罗宾公园开杆，首轮（128 进 96）部分场次打完，中国军团 5 胜 6 负。姚朋成 5 比 0 零封埃及的埃尔·哈雷迪；张家玮同样 5 比 0 横扫波兰的巴拉诺夫斯基，全场三杆 50+，上月北爱尔兰公开赛他淘汰奥沙利文、职业生涯首进排名赛 16 强。高阳一杆破百加三杆 50+，5 比 1 胜埃及的阿瓦德；吕昊天 5 比 1 胜泰国的查诺伊；刘文炜 5 比 3 淘汰瑞士的乌尔森巴赫。失利那边，蓝裕豪 0 比 4 落后英格兰的肖恩·奥沙利文后连追三局，第七局单杆 141 清台，第八局两度错失机会，3 比 5 出局；18 岁的王信伯 0 比 5 负于休吉尔，巩晨智、刘杨、黄佳浩、赵翰洋也止步首轮。资格赛 16 日到 19 日，全部 9 局 5 胜制。","u":"https://www.chinanews.com.cn/ty/2026/11-17/10733397.shtml"},{"t":"德国赛资格赛今天继续：傅家俊、白雨露首轮出场，丁俊晖第三轮待战","d":"当地时间 11 月 17 日，资格赛将打完首轮剩余场次并开打部分第二轮，傅家俊、江俊、龙泽煌等中国球手先后出场，白雨露、吴安仪也在首轮名单里。丁俊晖这次得从第三轮打起——国锦赛止步八强后他的世界排名掉到第 23 位，本届德国赛 34 名中国职业球员全员报名，赵心童、吴宜泽、肖国栋、常冰玉四名前 16 种子按规则把 64 进 32 的场次延到明年 1 月柏林正赛期间，只有他要在这四天里连过三轮才能进正赛。正赛 2027 年 1 月 25 日到 31 日在柏林腾珀多姆体育馆，总奖金 55.04 万英镑，冠军 10 万。","u":"https://k.sina.com.cn/article_7879995911_1d5af3207068033bee.html"},{"t":"杨瀚森 7 分半钟 0 分 5 犯，正负值 +11 追平生涯纪录","d":"北京时间 11 月 17 日，开拓者客场 98 比 106 不敌森林狼，三连胜被终结。杨瀚森没进常规轮换，末节落后 19 分后才在垃圾时间上场 7 分 28 秒，1 投 0 中、三分不中，0 分 1 篮板 3 助攻 1 抢断 5 犯规，正负值 +11。3 次助攻和 +11 的正负值都追平他的 NBA 生涯纪录。主帅诺里让他对戈贝尔用砍鲨战术，他几分钟内犯规就到 5 次，还是留在场上打完了比赛；戈贝尔本赛季罚球命中率 45.7%，全场 14 罚 8 中。赛季至今杨瀚森出战 8 场，场均 9.1 分钟，3.5 分 2.8 篮板。","u":"https://www.163.com/dy/article/LBUF639B05299JMD.html"},{"t":"熊猫杯今晚 19:35 中韩争冠，U19 打平即可捧杯","d":"11 月 17 日晚 19:35，成都双流体育中心，中国 U19 男足对阵韩国 U19，央视 CCTV5+ 直播。两轮过后中韩同积 4 分，中国队净胜球多 1 个排第一，赢球或打平都能夺冠，输球就只能看对手捧杯。首轮中国队 3 比 1 胜越南，杨展彭梅开二度；次轮 1 比 1 平塔吉克斯坦，彭子鸣第 13 分钟头球破门，一分钟后被对手扳平，主帅久尔杰维奇那次轮换了 10 名首发。他赛前说球队领先后注意力不集中的毛病要总结，这场也是明年 U20 亚洲杯前最后一次摸底。","u":"https://timeline.sohu.com/news/TcFgi3wkPp"},{"t":"热搜第一是信小呆：中奖后抑郁了，「一亿奖品」多是代金券","d":"11 月 17 日，「信小呆锦鲤奖品实为代金券」「信小呆中奖后抑郁了」「信小呆辞职兑奖花光积蓄」几个词条一起上榜，全天综合峰值 118.1 万，最高排到第一。2018 年她拿下支付宝「中国锦鲤」，奖品号称价值一亿，几天里微博粉丝从 600 涨到 114 万。如今回看那张礼单，大量是限时优惠券和需要自费的部分——机票免费住宿自掏，酒店免费吃饭自己出，景点还都卡着日期，过时就失效。2021 年她自述辞职兑奖、花光二十多万积蓄，29 岁没钱没工作，还查出抑郁倾向；行程被清单钉死，每天只睡两三个小时，成了医院常客。她账号现有粉丝 141.6 万，最后一条动态停在 2025 年 12 月 7 日，已近一年没更新。","u":"https://m.sohu.com/a/1102705629_121218495"},{"t":"于东来再买 310 辆坦克 700 给管理层，粗算超 1.3 亿","d":"11 月 16 日，胖东来创始人于东来在个人社交账号晒出公司截至 11 月 15 日的经营状况，同时宣布再采购 310 辆长城「坦克 700」配给管理团队，说法是让创造美好的人同时拥有更好的生活。这不是头一回：今年 4 月他到访长城汽车厂区见魏建军，过去几年胖东来已陆续买了 300 多台长城，那次还订了 20 台坦克 700 送高管。2026 款坦克 700 官方指导价 42.8 万到 50.8 万元，按入门价粗算，这 310 辆总值超过 1.3 亿元。","u":"https://finance.sina.com.cn/wm/2026-11-17/doc-iniyyeuv5807652.shtml"},{"t":"比亚迪 App 崩了：没带钥匙的车主在冷风里站了半小时","d":"11 月 17 日下午，「比亚迪App崩了」登上热搜。有车主说退出登录重试几次都进不去，没带钥匙，车锁不上，在冷风里站了半小时，恢复的那一刻才走成。故障集中在下午，16 时 40 分记者实测已恢复正常，比亚迪方面到发稿没有回应。去年 1 月也出过一次同类故障，当时官方客服给的说法是云服务网络出了问题。","u":"https://nbd.com.cn/articles/2026-11-17/4650175.html"},{"t":"X 美国趋势被新邦德包场：Bond 挂了 19 小时，四位历任 007 一起在榜","d":"11 月 16 日亚马逊米高梅官宣罗伯特·帕丁森接棒、成为第七任詹姆斯·邦德，由丹尼斯·维伦纽瓦执导，消息在美国 X 上挂了一整天。最长在榜前五里四条是邦德：Bond 连续 19 小时，Sean Connery 16 小时，Roger Moore 和 Daniel Craig 各 14 小时。新冒头的词条另一头是亚洲娱乐，韩团 I.N 的 #I_N_No_Return 冲到第 3，「I.N NO RETURN OUT NOW」第 4，泰剧 CP 的 LINGORM 活动词条占了第 5、第 6。","u":"https://trends24.in/united-states/"},{"t":"活跃趋势还是橄榄球：乌鸦、闪电的人名队名挤在一起","d":"同一份榜单的活跃趋势里，Ravens、Chargers、Derrick Henry、Zay Flowers 一起挂着，周一夜赛照例把体育词条包走大半。技术类这一轮没什么存在感，前十基本被体育和娱乐切完，跟上周 APEC 和 Shenzhen 双双进前十的样子完全不同。","u":"https://trends24.in/united-states/"},{"t":"Steam 今天一批史低：《天国：拯救 2》新低 67%，如龙全系砍到百元内","d":"11 月 17 日 Steam 又上一波史低。《天国：拯救 2》打 67% 折扣，228 元降到 75.24 元，是发售以来最低；《红色沙漠：增强版》268 元降到 214.4 元；《如龙 8》298 元降到 59.6 元，《如龙 7》38.15 元，《如龙 7 外传：无名之龙》45.8 元，《如龙：极 3／如龙 3 外传 Dark Ties》107.2 元。另有《真三国无双：起源》244.3 元、《师父》34.75 元、《女神异闻录 4 黄金版》62.5 元、《仙剑奇侠传 7》51.2 元、《杀戮尖塔 2》63.36 元。这轮折扣多为限时，具体截止时间看商店页面。","u":"https://www.gamersky.com/news/202611/2247740.shtml"},{"t":"Steam 自走棋角色扮演游戏节今天开幕，一直到 24 日","d":"Steam 今天开「自走棋角色扮演游戏节」，从 11 月 17 日办到 11 月 24 日，专题页集中收自走棋与角色扮演交叉的那批作品，一并打折。往后排着的还有黑色星期五——11 月 27 日起，非 Steam 官方活动，部分厂商自己打折——以及 12 月 18 日到 1 月 5 日的冬促。","u":"https://vgtip.3loumao.org/article/11-17-steam-ying-lai-xin-yi.html"},{"t":"《王者荣耀》全球英雄派对今天开：新英雄刀锋宝贝上线，九位 AOV 英雄限免一个月","d":"11 月 17 日 6 点到 8 点不停机更新后，《王者荣耀》「全球英雄派对」开启。新英雄刀锋宝贝上线，战士／刺客、推荐打野，活动最快一天可免费拿，商城 13888 金币或 588 点券（首周 388），碎片商店 58 个英雄碎片；17 日到 22 日在排位、巅峰赛之外的模式限免。来自《Arena of Valor》的九位英雄——安奈特、弗洛伦、洛里昂、莉莉安、星葵、索文、卡芬妮、皮皮、绯泪——开放限时体验到 12 月 17 日。同期开两个皮肤票选池，福利池和直售池各自票数第一的那款后续上线；曹操新皮肤「命定之王」做活动可免费换，12 月 3 日才上架商城。","u":"https://pvp.qq.com/m/m201606/newCont.shtml?G_Biz=18&tid=812644"},{"t":"今天开测的一批：《幻想九霄》公测、《愤怒的小鸟：经典归来》删档测试","d":"11 月 17 日，东方修仙题材的《幻想九霄》上午 10 点公测，主打飞剑加刷宝，公测版新增宗门、劫渊挑战和问道榜，砍掉了大部分日常与社交；金山世游代理的《愤怒的小鸟：经典归来》同天限量删档测试，Rovio 原班团队做的新作，国服由金山世游发行；志怪三国题材的放置卡牌《兰若异谭》也是 10 点开不限量删档计费测试，持续到 23 日。往后两天，腾讯发行、北京像素软件研发的《星际理想国》18 日限量首测，英雄游戏的《机械启元》同日付费删档测试。","u":"https://news.17173.com/content/11172026/094951972.shtml"},{"t":"今天没上新：桃胶木薯炖奶满一周年，在推的还是榴莲、炖品和大红袍那批","d":"古茗今天没有新的官宣上新。今天是它家慢炖系列的周年日——2025 年 11 月 17 日，桃胶木薯炖奶和芋泥麻薯炖奶在全国门店首发，多家门店当天就售罄；今年 9 月 30 日这款升级回归，卖点还是木薯更软糯、更有嚼头。官方 11 月 12 日公布：桃胶木薯炖奶一年卖出 1 亿杯以上，消耗木薯约 11800 吨。眼下在推的还是潮新闻 11 月 14 日写的那批——猫山王榴莲系列、限时回归的炖品、武夷大红袍升级配溏心桃胶。周年日不等于有活动，官方今天没有发新的促销或新品。","u":"https://view.inews.qq.com/a/20261114A055C300"},{"t":"蒲烧鳗鱼饭团 5.9 元，只在广东、广西、福建配了微波炉的门店卖","d":"11 月 14 日有报道：古茗在广东、广西、福建等地区上线「蒲烧鳗鱼饭团」，点单小程序显示 5.9 元，日式三角造型，主打整块鳗鱼。只在配备微波炉的门店有售。这是它加码早餐线的动作之一——广东、江苏、浙江等试点门店已上线芝香牛肉卷、火腿蛋三明治、泰式酥皮香肠卷这类烘焙轻食，两广上千家门店在测，官方称单店日均烘焙销量超过 25 件、日均流水增量逾 200 元，并计划在全国门店推广烤箱。不是饮品上新，也不是全国动作。","u":"https://36kr.com/p/4068931031061640"},{"t":"今天没上新：最近一轮还是 10 月 15 日那九款联名，11 月 15 日那篇说的是关店","d":"茶话弄今天没有新品公告。最近一次正经上新是 10 月 15 日跟王者荣耀、王者万象棋的联名，一次上 9 款国风新品，13 城 25 家主题店，西安独占 7 家；再往前是 8 月 4 日的三款栀子系列。11 月 15 日《饮品报》那篇讲的是门店收缩，不是上新：截至 11 月 10 日全国在营 489 家（窄门餐眼），两年前的 11 月 7 日还是 989 家，创始人在 2024 年 11 月的内部信里写过「先停一停，把鞋带系紧」。原叶茶双十一 9.9 元一瓶的活动 11 月 15 日已经收尾。","u":"https://drinknewspaper.com/news/10546.html"},{"t":"今天没抓到新菜单：JOJO 第二弹还差两天，北京 apm 满 120 送礼到 12 月 13 日","d":"寿司郎中国大陆今天没有新的菜单或华北特惠公告。在跑的两条：11 月 9 日开场的《JOJO 的奇妙冒险：星尘远征军》联名，第一批是 35 元的「THE WORLD！黄金虾天妇罗爆盛山」和 30 元的「绿宝石水花！樱桃可露丽抹茶冰淇淋」，分别附随机旅行贴纸、亚克力杯垫各 7 款，不能挑款；第二批「星尘旅途 命运羁绊 5 贯盛」65 元、附亚克力立牌，定在 11 月 19 日，今天还没上。另一条是北京东城首店（北京 apm）：店内实付满 120 元、关注小红书官方号或大众点评收藏打卡，凭当日小票领「萌抱寿司」鼠标垫和代金券，活动到 12 月 13 日。部分门店不参与联名，去之前要核对。港澳台和日本门店的活动一律不算。","u":"https://tech.ifeng.com/c/8xnwWruk8bh"},{"t":"今天没抓到：大陆门店没有菜单更新，日本今天开的冬祭不算","d":"滨寿司中国大陆门店今天没有菜单或特惠公告，华北（北京、天津一带）也没有新的店级活动。日本本土今天（11 月 17 日）起在全国门店开「旨ねた冬祭り」，主打 100 日元的柔软鲽鱼（あぶらがれい），还有炙烤赤睦、大虾天妇罗握寿司、「至福の一貫」的一本穴子，以及北海道产秋刀鱼、喷火湾产大粒扇贝这类时令货，截至 11 月 16 日计划在 691 家店做。这是纯日本本土促销，不往中国大陆搬；港台门店的活动同样不认。","u":"https://kobe-journal.com/archives/9783645772.html"},{"t":"上议院议长坐的是一只羊毛袋，里面塞了四十年马毛","d":"英国上议院议长坐的不是椅子，是一只羊毛袋。十四世纪爱德华三世让大法官坐在羊毛包上议事，提醒他英格兰的钱来自羊毛贸易。袋子没有靠背也没有扶手，四角挂着流苏。一九三八年有人翻开检查，才发现里面塞的是马毛，一根羊毛都没有；重做时才按规矩塞进不列颠群岛和十五个英联邦国家的羊毛。","u":"https://en.wikipedia.org/wiki/Woolsack"},{"t":"世界最长的地名，官方那版其实是短的","d":"新西兰北岛南部有座三百零五米的小山，全名八十五个字母，意思是「塔马泰亚吹着笛子向爱人倾诉的山顶」，吉尼斯认它是世界最长的地名。可它的官方名只有五十七个字母，一九四八年就定了；八十五字母那版是民间传的加长版。地图上写短的，人嘴里念长的。","u":"https://en.wikipedia.org/wiki/Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu"},{"t":"典故 · 曾子杀彘","d":"《韩非子·外储说左上》：曾子的妻子上街，儿子哭着要跟，她顺口哄他说回来给你杀猪。她回家时曾子真去捉猪，妻子拦住说那只是哄孩子的话。曾子说：孩子学的是父母，今天骗他，就是教他骗人；母亲说话不算数，儿子往后就不信母亲。于是把猪煮了。","u":"https://zh.wikisource.org/wiki/%E9%9F%93%E9%9D%9E%E5%AD%90/%E5%A4%96%E5%84%B2%E8%AA%AA%E5%B7%A6%E4%B8%8A"},{"t":"生僻字 · 蓍（shī）","d":"读 shī，ㄕ。蓍是蒿类多年生草本，《说文》写作「蒿属」，全草可入药，茎叶可制香料；古人取茎占卜，故《易》说「幽赞于神明而生蓍」。蓍草：即蓍，古代用来占卜的草。蓍龟：蓍草与龟甲，古时占卜吉凶的用具。造句：抽屉里那束干蓍草，她说留着算不明白的事。","u":"https://www.zdic.net/hans/%E8%93%8D"},{"t":"罕见成语 · 象齿焚身（xiàng chǐ fén shēn）","d":"读 xiàng chǐ fén shēn。大象因象牙值钱而被猎杀，比喻人因有财而招祸，近义「怀璧其罪」。语出《左传·襄公二十四年》：「象有齿以焚其身，贿也。」贿，指财物。造句：他把奖金条晒进群里，朋友笑他象齿焚身。","u":"https://www.zdic.net/hans/%E8%B1%A1%E9%BD%BF%E7%84%9A%E8%BA%AB"},{"t":"哲学概念 · 阿比林悖论","d":"是什么：一群人一起做了谁都不愿意做的事，因为各自以为别人愿意。故事：一九七四年哈维写德州一家人，热天在门廊打多米诺，岳父提议开车八十公里去阿比林吃饭，四个人都不想去，却都说好；回来累瘫，才互相拆穿。能用：点头之前先问一句，你是真想去，还是怕扫兴。","u":"https://en.wikipedia.org/wiki/Abilene_paradox"},{"t":"世界学生节","d":"维基百科 11 月 17 日条目的「节假日和习俗」把它列在这天。它是学生团体发起的纪念日，不是联合国正式设立的那种，所以放在节日栏，不进头条下面那个「今日」格。","u":"https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5"},{"t":"世界早产日","d":"同一页把它列在这天，属于机构发起的宣传日，同样没有联合国正式设立的依据。","u":"https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5"},{"t":"意大利 · 黑猫节","d":"同一页把意大利的黑猫节列在这天。","u":"https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5"},{"t":"1558 年 · 伊丽莎白一世即位，伊丽莎白时代开局","d":"玛丽一世去世，伊丽莎白一世接替她成为英格兰与爱尔兰女王，伊丽莎白时代由此开始。","u":"https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5"},{"t":"1843 年 · 上海开埠","d":"按《南京条约》的条款，上海正式开埠，成为五口通商的口岸之一。","u":"https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5"},{"t":"1869 年 · 苏伊士运河通航","d":"位于埃及西奈半岛西侧、连接地中海与红海的苏伊士运河通航，欧洲到亚洲的水运航程被大幅缩短。","u":"https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5"},{"t":"1903 年 · 俄国社会民主工党分裂为布尔什维克与孟什维克","d":"俄国社会民主工党分裂成布尔什维克（多数派）与孟什维克（少数派）。","u":"https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5"},{"t":"1937 年 · 日军逼近南京，国民政府迁往武汉","d":"中国抗日战争期间，随着日军步步逼近南京，国民政府迁至武汉。","u":"https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5"},{"t":"1947 年 · 巴丁与布拉顿发明晶体管","d":"美国科学家约翰·巴丁与沃尔特·布拉顿发明晶体管。","u":"https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5"},{"t":"1957 年 · 郑凤荣在北京跳过 1.77 米，破女子跳高世界纪录","d":"郑凤荣在北京以 1.77 米的成绩打破女子跳高世界纪录。","u":"https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5"},{"t":"1970 年 · 恩格尔巴特拿到世界上第一个电脑鼠标专利","d":"美国发明家道格拉斯·恩格尔巴特获得他所发明的世界上第一个电脑鼠标的专利。","u":"https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5"},{"t":"1989 年 · 布拉格驱散学生示威，天鹅绒革命开场","d":"捷克斯洛伐克警察在布拉格攻击、驱散示威学生，引发天鹅绒革命，结束了捷克斯洛伐克共产党的一党专政。","u":"https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5"},{"t":"2010 年 · 人类第一次捕获反物质原子","d":"欧洲核子研究组织（CERN）的反质子减速器小组成功捕获反氢，并测量了它的结构等特性，是人类首次成功捕获反物质原子。","u":"https://zh.wikipedia.org/wiki/11%E6%9C%8817%E6%97%A5"}];
+var READTTS=[{"id":"2026-11-17-read","title":"王子坊","text":"自退酤以西，张方沟以东，南临洛水，北达芒山，其间东西二里，南北十五里，并名为寿丘里，皇宗所居也。民间号为王子坊。\n当时四海晏清，八荒率职，缥囊纪庆，玉烛调辰。百姓殷阜，年登俗乐。鳏寡不闻犬豕之食，茕独不见牛马之衣。于是帝族王侯，外戚公主，擅山海之富，居川林之饶，争修园宅，互相夸竞。崇门丰室，洞户连房，飞馆生风，重楼起雾。高台芳榭，家家而乐；花林曲池，园园而有。莫不桃李夏绿，竹柏冬青。而河间王琛最为豪首。\n琛常与高阳争衡，造文柏堂，形如徽音殿。置玉井金罐，以五色缋为绳。妓女三百人，尽皆国色。有婢朝云，善吹篪，能为团扇歌、陇上声。琛为秦州刺史，诸羌外叛，屡讨之不降。琛令朝云假为贫妪，吹篪而乞。诸羌闻之，悉皆流涕，迭相谓曰：「何为弃坟井，在山谷为寇也？」即相率归降。秦民语曰：「快马健儿，不如老妪吹篪。」\n琛在秦州，多无政绩，遣使向西域求名马，远至波斯国。得千里马，号曰追风赤骥。次有七百里者十余匹，皆有名字。以银为槽，金为环锁，诸王服其豪富。琛常语人云：「晋室石崇，乃是庶姓，犹能雉头狐腋，画卵雕薪，况我大魏天王，不为华侈？」造迎风馆于后园，窗户之上，列钱青琐，玉凤衔铃，金龙吐佩。素柰朱李，树条入檐，伎女楼上，坐而摘食。\n琛常会宗室，陈诸宝器，金瓶银瓮百余口，瓯檠盘盒称是。自余酒器，有水精钵、玛瑙琉璃碗、赤玉卮数十枚，作工奇妙，中土所无，皆从西域而来。又陈女乐及诸名马。复引诸王按行府库，锦罽珠玑，冰罗雾縠，充积其内，绣缬、绸绫、丝彩、越葛、钱绢等不可数计。琛忽谓章武王融曰：「不恨我不见石崇，恨石崇不见我。」\n融立性贪暴，志欲无限，见之叹惋，不觉生疾，还家卧三日不起。江阳王继来省疾，谓曰：「卿之财产，应得抗衡，何为叹羡，以至于此？」融曰：「常谓高阳一人，宝货多于融，谁知河间，瞻之在前。」继笑曰：「卿欲作袁术之在淮南，不知世间复有刘备也？」融乃蹶起，置酒作乐。\n于时国家殷富，库藏盈溢，钱绢露积于廊者，不可较数。及太后赐百官负绢，任意自取，朝臣莫不称力而去。唯融与陈留侯李崇负绢过任，蹶倒伤踝。侍中崔光止取两疋。太后问曰：「侍中何少？」对曰：「臣有两手，唯堪两疋，所获多矣。」朝贵服其清廉。"}];
+var ARCHIVE=[{"no":"027","label":"11月17日 · 今天","count":"61","href":"","cur":true},{"no":"026","label":"11月16日","count":"60","href":"2026-11-16.html","cur":false},{"no":"025","label":"11月15日","count":"61","href":"2026-11-15.html","cur":false},{"no":"024","label":"11月14日","count":"63","href":"2026-11-14.html","cur":false},{"no":"023","label":"11月13日","count":"57","href":"2026-11-13.html","cur":false},{"no":"022","label":"11月12日","count":"58","href":"2026-11-12.html","cur":false},{"no":"021","label":"11月11日","count":"60","href":"2026-11-11.html","cur":false},{"no":"020","label":"11月10日","count":"60","href":"2026-11-10.html","cur":false},{"no":"019","label":"11月9日","count":"59","href":"2026-11-09.html","cur":false},{"no":"018","label":"11月8日","count":"61","href":"2026-11-08.html","cur":false},{"no":"017","label":"11月7日","count":"60","href":"2026-11-07.html","cur":false},{"no":"016","label":"11月6日","count":"63","href":"2026-11-06.html","cur":false},{"no":"015","label":"11月5日","count":"61","href":"2026-11-05.html","cur":false},{"no":"014","label":"11月4日","count":"60","href":"2026-11-04.html","cur":false},{"no":"013","label":"11月3日","count":"58","href":"2026-11-03.html","cur":false},{"no":"012","label":"11月2日","count":"58","href":"2026-11-02.html","cur":false},{"no":"011","label":"11月1日","count":"61","href":"2026-11-01.html","cur":false},{"no":"010","label":"10月31日","count":"60","href":"2026-10-31.html","cur":false},{"no":"009","label":"10月30日","count":"55","href":"2026-10-30.html","cur":false},{"no":"008","label":"10月29日","count":"51","href":"2026-10-29.html","cur":false},{"no":"007","label":"10月28日","count":"54","href":"2026-10-28.html","cur":false},{"no":"006","label":"10月27日","count":"51","href":"2026-10-27.html","cur":false},{"no":"005","label":"10月26日","count":"51","href":"2026-10-26.html","cur":false},{"no":"004","label":"10月25日","count":"54","href":"2026-10-25.html","cur":false},{"no":"003","label":"10月24日","count":"53","href":"2026-10-24.html","cur":false},{"no":"002","label":"10月23日","count":"53","href":"2026-10-23.html","cur":false},{"no":"001","label":"10月22日","count":"63","href":"2026-10-22.html","cur":false}];
+(function(){
+  var root=document.documentElement, meta=document.querySelector('meta[name=theme-color]');
+
+  var SCHEMES=[
+    {id:'baokan', name:'旧报', day:['#F4EFE6','#2A2521','#6C2F36'], night:['#17140F','#C8BFB2','#C6ACDC']},
+    {id:'shuang', name:'霜白', day:['#F1F2EF','#20241F','#3C5A4E'], night:['#121815','#C2CBBF','#7FBF9F']},
+    {id:'shazhi', name:'砂纸', day:['#EFE5D4','#2B241C','#8A4B2A'], night:['#1A1410','#D5C4AE','#D08A5A']},
+    {id:'dianlan',name:'靛蓝', day:['#EDF1F6','#1E2833','#2B4A70'], night:['#10161F','#BFCBDA','#8FB6D9']},
+    {id:'ouhe',   name:'藕荷', day:['#F6F0F3','#2A2129','#7C4B6E'], night:['#17121A','#D2C3D0','#D3A8C6']},
+    {id:'chahe',  name:'茶褐', day:['#F2EDE3','#2A231A','#6B5334'], night:['#181410','#D2C3AC','#C9A87C']},
+    {id:'zhuqing',name:'竹青', day:['#EDF0EA','#1F2620','#4A6350'], night:['#121714','#C3CFC4','#9BC0A5']},
+    {id:'qiangui',name:'铅灰', day:['#E9E9E7','#232322','#4A4A48'], night:['#141414','#C7C7C5','#B8B8B6']}
+  ];
+  var FONTS={
+    chill:  {name:'寒蝉圆黑体', css:"'ChillRound'"},
+    jinghua:{name:'京华老宋体', css:"'JinghuaSong'"},
+    hei:    {name:'系统黑体',   css:"-apple-system,'PingFang SC','Noto Sans CJK SC',sans-serif"},
+    song:   {name:'系统宋体',   css:"'Songti SC','Noto Serif CJK SC',serif"}
+  };
+  var SET={font:'chill', size:15, scheme:'baokan', night:false, auto:false};
+  try{
+    var s=JSON.parse(localStorage.getItem('np-set')||'null');
+    if(s) for(var k in SET) if(s[k]!==undefined) SET[k]=s[k];
+  }catch(e){}
+  if(!FONTS[SET.font]) SET.font='chill';
+  if(SET.size<12||SET.size>46) SET.size=15;
+
+  function hex2rgb(h){h=h.replace('#','');return [parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)];}
+  function rgb2hex(r){return '#'+r.map(function(v){return ('0'+Math.round(v).toString(16)).slice(-2);}).join('');}
+  function mix(a,b,t){var A=hex2rgb(a),B=hex2rgb(b);return rgb2hex(A.map(function(v,i){return v+(B[i]-v)*t;}));}
+  function scheme(){for(var i=0;i<SCHEMES.length;i++) if(SCHEMES[i].id===SET.scheme) return SCHEMES[i]; return SCHEMES[0];}
+  function save(){try{localStorage.setItem('np-set',JSON.stringify(SET));}catch(e){}}
+
+  var mql = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+  function wantNight(){ return SET.auto ? !!(mql && mql.matches) : SET.night; }
+
+  var el = {
+    scrim:document.getElementById('scrim'), drawer:document.getElementById('drawer'),
+    setBtn:document.getElementById('setBtn'), x:document.getElementById('drawerX'),
+    fontSel:document.getElementById('fontSel'), fontMenu:document.getElementById('fontMenu'),
+    fontNow:document.getElementById('fontNow'), fontTxt:document.getElementById('fontTxt'),
+    prev:document.getElementById('prev'), rng:document.getElementById('rng'),
+    pxNow:document.getElementById('pxNow'), quick:document.getElementById('quick'),
+    choc:document.getElementById('choc'), swB:document.getElementById('swB'), swA:document.getElementById('swA'),
+    hexB:document.getElementById('hexB'), hexA:document.getElementById('hexA'), palHint:document.getElementById('palHint'),
+    rowNight:document.getElementById('rowNight'), rowAuto:document.getElementById('rowAuto'),
+    swNight:document.getElementById('swNight'), swAuto:document.getElementById('swAuto'), note:document.getElementById('note')
+  };
+
+  /* 巧克力格 */
+  el.choc.innerHTML = SCHEMES.map(function(x){
+    return '<button class="ch" data-id="'+x.id+'" style="--b:'+x.day[0]+';--a:'+x.day[2]+';--nb:'+x.night[0]+';--na:'+x.night[2]+'">'
+      + '<span class="sq"><span class="b"></span><span class="a"></span></span>'
+      + '<span class="nm">'+x.name+'</span></button>';
+  }).join('');
+
+  function paint(){
+    var sc=scheme(), night=wantNight(), p = night ? sc.night : sc.day;
+    root.style.setProperty('--bg', p[0]);
+    root.style.setProperty('--ink', p[1]);
+    root.style.setProperty('--accent', p[2]);
+    root.style.setProperty('--muted', mix(p[1],p[0],.42));
+    root.style.setProperty('--line', mix(p[0],p[1],.16));
+    root.style.setProperty('--card', night ? mix(p[0],'#ffffff',.05) : mix(p[0],'#ffffff',.45));
+    root.style.setProperty('--tabbar', 'rgba('+hex2rgb(p[0]).join(',')+',.93)');
+    root.style.setProperty('--soft', 'rgba('+hex2rgb(p[2]).join(',')+',.10)');
+    root.style.setProperty('--body-font', FONTS[SET.font].css);
+    root.style.setProperty('--fs', SET.size+'px');
+    root.setAttribute('data-theme', night ? 'night' : 'day');
+    if(meta) meta.setAttribute('content', p[0]);
+
+    el.swB.style.background = p[0];
+    el.swA.style.background = p[2];
+    el.hexB.textContent = p[0].toUpperCase();
+    el.hexA.textContent = p[2].toUpperCase();
+    el.palHint.textContent = night ? '夜里这套' : '白天这套';
+    el.fontNow.textContent = FONTS[SET.font].name;
+    el.fontTxt.textContent = FONTS[SET.font].name;
+    el.prev.style.fontFamily = FONTS[SET.font].css + ',sans-serif';
+    el.prev.style.fontSize = SET.size + 'px';
+    el.rng.value = SET.size;
+    el.pxNow.textContent = SET.size + ' px';
+    el.swNight.classList.toggle('on', night);
+    el.swAuto.classList.toggle('on', SET.auto);
+    el.rowNight.classList.toggle('dis', SET.auto);
+    el.note.textContent = SET.auto ? '现在跟着系统走，手动开关先不管用。' : '跟着系统走时，上面那个手动开关就不作数了。';
+
+    var list = el.choc.querySelectorAll('.ch');
+    for(var i=0;i<list.length;i++) list[i].classList.toggle('on', list[i].getAttribute('data-id')===SET.scheme);
+    var fl = el.fontMenu.querySelectorAll('.fi');
+    for(var j=0;j<fl.length;j++) fl[j].classList.toggle('on', fl[j].getAttribute('data-f')===SET.font);
+    var ql = el.quick.querySelectorAll('.sz');
+    for(var m=0;m<ql.length;m++) ql[m].classList.toggle('on', +ql[m].getAttribute('data-v')===SET.size);
+  }
+
+  function openDrawer(){
+    el.drawer.classList.add('on'); el.scrim.classList.add('on');
+    el.drawer.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+  }
+  function closeDrawer(){
+    el.drawer.classList.remove('on'); el.scrim.classList.remove('on');
+    el.drawer.setAttribute('aria-hidden','true'); document.body.style.overflow='';
+    el.fontMenu.classList.remove('show'); el.fontSel.classList.remove('open');
+  }
+
+  el.setBtn.addEventListener('click', openDrawer);
+  el.x.addEventListener('click', closeDrawer);
+  el.scrim.addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeDrawer(); });
+
+  el.fontSel.addEventListener('click', function(){
+    el.fontSel.classList.toggle('open'); el.fontMenu.classList.toggle('show');
+  });
+  el.fontMenu.addEventListener('click', function(e){
+    var b=e.target.closest('.fi'); if(!b) return;
+    SET.font=b.getAttribute('data-f');
+    el.fontMenu.classList.remove('show'); el.fontSel.classList.remove('open');
+    paint(); save();
+  });
+
+  function setSize(v){
+    v=Math.round(v); if(v<12) v=12; if(v>46) v=46;
+    SET.size=v; paint(); save();
+  }
+  el.rng.addEventListener('input', function(){ setSize(+el.rng.value); });
+  document.getElementById('minus').addEventListener('click', function(){ setSize(SET.size-1); });
+  document.getElementById('plus').addEventListener('click', function(){ setSize(SET.size+1); });
+  el.quick.addEventListener('click', function(e){
+    var b=e.target.closest('.sz'); if(!b) return; setSize(+b.getAttribute('data-v'));
+  });
+
+  el.choc.addEventListener('click', function(e){
+    var b=e.target.closest('.ch'); if(!b) return;
+    SET.scheme=b.getAttribute('data-id'); paint(); save();
+  });
+
+  el.swNight.addEventListener('click', function(){
+    if(SET.auto) return;
+    SET.night=!SET.night; paint(); save();
+  });
+  el.swAuto.addEventListener('click', function(){
+    SET.auto=!SET.auto; paint(); save();
+  });
+  if(mql) {
+    var onSys=function(){ if(SET.auto) paint(); };
+    if(mql.addEventListener) mql.addEventListener('change', onSys);
+    else if(mql.addListener) mql.addListener(onSys);
+  }
+
+  /* 急救重置：字体 / 字号 / 配色 / 夜间，一次全回默认 */
+  var toast=document.getElementById('toast'), toastT=null;
+  document.getElementById('resetBtn').addEventListener('click', function(){
+    SET={font:'chill', size:15, scheme:'baokan', night:false, auto:false};
+    try{ localStorage.removeItem('np-set'); }catch(e){}
+    el.fontMenu.classList.remove('show');
+    el.fontSel.classList.remove('open');
+    paint();
+    toast.classList.add('on');
+    clearTimeout(toastT);
+    toastT=setTimeout(function(){ toast.classList.remove('on'); }, 1400);
+  });
+
+  paint();
+
+  /* ---------- 分享 ---------- */
+  var shWrap=document.getElementById('shWrap'), shText=document.getElementById('shText'),
+      shCopy=document.getElementById('shCopy'), shTmr=null;
+  function openShare(id){
+    var x=SHARE[+id]; if(!x) return;
+    var LF=String.fromCharCode(10);
+    var s='标题：'+x.t+LF+'正文：'+x.d+(x.u?LF+'原文链接：'+x.u:'');
+    shText.textContent=s;
+    shText.scrollTop=0;
+    shCopy.textContent='复制文字';
+    shWrap.classList.add('on');
+    shWrap.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+  }
+  function closeShare(){
+    shWrap.classList.remove('on');
+    shWrap.setAttribute('aria-hidden','true');
+    if(!document.getElementById('drawer').classList.contains('on')) document.body.style.overflow='';
+  }
+  document.addEventListener('click', function(e){
+    var b=e.target.closest('.share');
+    if(!b) return;
+    e.preventDefault();
+    openShare(b.getAttribute('data-si'));
+  });
+  document.getElementById('shMask').addEventListener('click', closeShare);
+  document.getElementById('shX').addEventListener('click', closeShare);
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeShare(); });
+  shCopy.addEventListener('click', function(){
+    var s=shText.textContent;
+    function ok(){ shCopy.textContent='已复制'; clearTimeout(shTmr);
+      shTmr=setTimeout(function(){ shCopy.textContent='复制文字'; },1600); }
+    function fb(){
+      var ta=document.createElement('textarea');
+      ta.value=s; ta.setAttribute('readonly','');
+      ta.style.position='fixed'; ta.style.top='-999px'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0,s.length);
+      try{ document.execCommand('copy'); ok(); }catch(e){}
+      document.body.removeChild(ta);
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(s).then(ok, fb);
+    } else fb();
+  });
+
+  var TODAY="2026年11月17日", SKEY='np-saved';
+  function getSaved(){ try{ var a=JSON.parse(localStorage.getItem(SKEY)||'[]'); return Array.isArray(a)?a:[]; }catch(e){ return []; } }
+  function setSaved(a){ try{ localStorage.setItem(SKEY, JSON.stringify(a)); }catch(e){} }
+  function esc(s){ return String(s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  function renderSaved(){
+    var el=document.getElementById('savedList'); if(!el) return;
+    var arr=getSaved();
+    if(!arr.length){ el.innerHTML='<p class="empty">还没有存过东西。<br>每条新闻下面有个「存」，点了就留在这儿，明天换版也带不走它。</p>'; return; }
+    el.innerHTML=arr.map(function(x,i){
+      return '<div class="item"><h3>'+esc(x.t)+'</h3><p>'+esc(x.d)+'</p>'
+        +(x.note?'<div class="note"><b>注</b> '+esc(x.note)+'</div>':'')
+        +'<div class="irow">'+(x.u?'<a class="more" href="'+esc(x.u)+'" target="_blank" rel="noopener">原文</a>':'')
+        +'<span class="sdate">'+esc(x.ts||'')+'</span>'
+        +'<button class="del" type="button" data-i="'+i+'">删</button></div></div>';
+    }).join('');
+  }
+  (function markSaved(){
+    var arr=getSaved(); if(!arr.length) return;
+    [].forEach.call(document.querySelectorAll('.panel:not([data-id=saved]) .item'), function(it){
+      var h=it.querySelector('h3'); if(!h) return;
+      var a=it.querySelector('.more');
+      var t=h.textContent, u=a?a.getAttribute('href'):'';
+      if(arr.some(function(x){ return x.t===t && x.u===u; })){
+        var b=it.querySelector('.save'); if(b){ b.classList.add('on'); b.textContent='已存'; }
+      }
+    });
+  })();
+  document.addEventListener('click', function(e){
+    var b=e.target.closest('.save');
+    if(b){
+      var it=b.closest('.item'); if(!it) return;
+      var h=it.querySelector('h3'), pp=it.querySelector('p');
+      var a=it.querySelector('.more'), nn=it.querySelector('.note');
+      var obj={t:h?h.textContent:'', d:pp?pp.textContent:'', u:a?a.getAttribute('href'):'',
+               note:nn?nn.textContent.replace(/^注/,'').trim():'', ts:TODAY};
+      var arr=getSaved();
+      var idx=-1; for(var i=0;i<arr.length;i++){ if(arr[i].t===obj.t && arr[i].u===obj.u){ idx=i; break; } }
+      if(idx>=0){ arr.splice(idx,1); b.classList.remove('on'); b.textContent='存'; }
+      else { arr.unshift(obj); b.classList.add('on'); b.textContent='已存'; }
+      setSaved(arr); renderSaved(); return;
+    }
+    var d=e.target.closest('.del');
+    if(d){
+      var k=parseInt(d.getAttribute('data-i'),10);
+      var arr2=getSaved(); if(!isNaN(k)) arr2.splice(k,1);
+      setSaved(arr2); renderSaved();
+    }
+  });
+
+  var tabs=[].slice.call(document.querySelectorAll('.chip[data-id]'));
+  var panels=[].slice.call(document.querySelectorAll('.panel'));
+  var lastTab='head';
+
+  function activate(id){
+    lastTab=id;
+    tabs.forEach(function(b){ b.classList.toggle('on', b.dataset.id===id); });
+    panels.forEach(function(p){ p.classList.toggle('on', p.dataset.id===id); });
+    if(id==='saved') renderSaved();
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+
+  /* ---- 下拉：同时只开一个 ---- */
+  var allPanel=document.getElementById('allPanel'), datePanel=document.getElementById('datePanel');
+  var allBtn=document.getElementById('allBtn'), dateBtn=document.getElementById('dateBtn');
+  function closeDD(){
+    allPanel.classList.remove('on'); datePanel.classList.remove('on');
+    allBtn.classList.remove('act'); dateBtn.classList.remove('act');
+  }
+  function place(panel, anchor, cover){
+    var host=panel.parentNode.getBoundingClientRect();
+    var a=anchor.getBoundingClientRect();
+    var w=panel.offsetWidth || 240;
+    var left=a.left-host.left;
+    var maxLeft=host.width-w-8;
+    if(left<8) left=8;
+    if(left>maxLeft) left=maxLeft;
+    panel.style.left=left+'px';
+    panel.style.top=(cover ? a.top-host.top : a.bottom-host.top+6)+'px';
+  }
+  function openDD(which){
+    var wasOpen = (which==='all' ? allPanel.classList.contains('on') : datePanel.classList.contains('on'));
+    closeDD();
+    if(wasOpen) return;                    // 再点一次就收
+    if(which==='all'){
+      allPanel.classList.add('on'); allBtn.classList.add('act');
+      [].forEach.call(allPanel.querySelectorAll('.cell'), function(c){
+        c.classList.toggle('on', c.getAttribute('data-id')===lastTab);
+      });
+      place(allPanel, allBtn);
+    }
+    else {
+      datePanel.classList.add('on'); dateBtn.classList.add('act');
+      loadArchive(); place(datePanel, dateBtn, true);   // 盖住日期本身，由条头替代
+    }
+  }
+  window.addEventListener('resize', function(){
+    if(allPanel.classList.contains('on')) place(allPanel, allBtn);
+    if(datePanel.classList.contains('on')) place(datePanel, dateBtn, true);
+  });
+  allBtn.addEventListener('click', function(e){ e.stopPropagation(); openDD('all'); });
+  dateBtn.addEventListener('click', function(e){ e.stopPropagation(); openDD('date'); });
+  allPanel.addEventListener('click', function(e){ e.stopPropagation(); });
+  datePanel.addEventListener('click', function(e){ e.stopPropagation(); });
+  document.addEventListener('click', function(){ closeDD(); });
+
+  /* ---- 全部栏目 ---- */
+  allPanel.innerHTML = '<div class="grid">' + ALL_TABS.map(function(t){
+    return '<button class="cell'+(t.fn?' fn':'')+'" type="button" data-id="'+t.id+'">'+t.name+'</button>';
+  }).join('') + '</div>';
+  allPanel.addEventListener('click', function(e){
+    var b=e.target.closest('.cell'); if(!b) return;
+    var id=b.getAttribute('data-id');
+    closeDD();
+    document.getElementById('q').value='';
+    document.getElementById('searchbx').classList.remove('has');
+    document.body.classList.remove('searching');
+    activate(id);
+  });
+
+  /* ---- 往期窄条（整份索引已内嵌，不用再请求）---- */
+  function loadArchive(){
+    var head='<div class="dh"><div class="l1"><span class="d">'+esc(TODAY)+'</span><span class="cv">▴</span></div>'
+           + '<div class="l2">'+esc(WEEKDAY)+' · '+esc(ISSUE)+'</div></div>';
+    if(!ARCHIVE.length){ datePanel.innerHTML=head+'<div class="smore">还没有往期</div>'; return; }
+    datePanel.innerHTML = head + ARCHIVE.map(function(it){
+      return '<div class="srow'+(it.cur?' cur':'')+'" data-href="'+esc(it.href)+'">'
+           + '<span class="no">'+esc(it.no)+'</span><span class="dt">'+esc(it.label)+'</span>'
+           + '<span class="ct">'+esc(it.count)+'</span></div>';
+    }).join('') + '<div class="smore">点任意一期翻看</div>';
+  }
+  datePanel.addEventListener('click', function(e){
+    var r=e.target.closest('.srow'); if(!r) return;
+    var h=r.getAttribute('data-href');
+    closeDD();
+    if(h) location.href=h;
+  });
+
+  /* ---- 搜索本期 ---- */
+  var q=document.getElementById('q'), clr=document.getElementById('qclr');
+  var sres=document.getElementById('searchResults'), sbx=document.getElementById('searchbx');
+  function hl(safe, kws){
+    var out=safe;
+    kws.forEach(function(k){
+      if(!k) return;
+      var lower=out.toLowerCase(), kl=k.toLowerCase();
+      var pos=0, res='', found=false;
+      while(true){
+        var i=lower.indexOf(kl,pos);
+        if(i<0) break;
+        res += out.slice(pos,i) + '<mark>' + out.slice(i,i+k.length) + '</mark>';
+        pos = i + k.length; found = true;
+      }
+      if(found) out = res + out.slice(pos);
+    });
+    return out;
+  }
+  function score(kw,text){
+    var k=kw.toLowerCase(), t=(text||'').toLowerCase();
+    if(!k||!t) return 0;
+    if(t.indexOf(k)>=0) return 1;
+    if(k.length<2) return 0;
+    var hit=0, total=k.length-1;
+    for(var i=0;i<total;i++){ if(t.indexOf(k.substr(i,2))>=0) hit++; }
+    return hit/total;
+  }
+  function runSearch(){
+    var raw=q.value.trim();
+    sbx.classList.toggle('has', raw.length>0);
+    if(!raw){
+      document.body.classList.remove('searching');
+      activate(lastTab||'head');
+      return;
+    }
+    document.body.classList.add('searching');
+    closeDD();
+    var kws=raw.split(' ').filter(Boolean).slice(0,12);
+    var hits=[];
+    ISSUE_ITEMS.forEach(function(it){
+      var best=0;
+      kws.forEach(function(k){
+        var s=Math.max(score(k,it.t), score(k,it.d)*0.95);
+        if(s>best) best=s;
+      });
+      if(best>=0.6) hits.push({it:it,s:best});
+    });
+    hits.sort(function(a,b){ return b.s-a.s; });
+    if(!hits.length){
+      sres.innerHTML='<div class="empty">本期没找到「'+esc(raw)+'」。<br>换个词，或者点日期翻往期。</div>';
+    } else {
+      sres.innerHTML='<div class="scount">本期匹配 <b>'+hits.length+'</b> 条 · 关键字 <b>'+esc(kws.join(' '))+'</b></div>'
+        + hits.map(function(h){
+            var it=h.it;
+            var link=it.u?'<a class="more" href="'+esc(it.u)+'" target="_blank" rel="noopener">原文 ↗</a>':'';
+            return '<div class="sitem"><div class="where">'+esc(it.tab)+'</div>'
+              + '<h3>'+hl(esc(it.t),kws)+'</h3>'
+              + (it.d?'<p>'+hl(esc(it.d),kws)+'</p>':'')
+              + (link?'<div class="irow">'+link+'</div>':'') + '</div>';
+          }).join('');
+    }
+    tabs.forEach(function(b){ b.classList.remove('on'); });
+    panels.forEach(function(p){ p.classList.toggle('on', p.dataset.id==='search'); });
+  }
+  var qtimer=null;
+  q.addEventListener('input', function(){
+    clearTimeout(qtimer);
+    qtimer=setTimeout(runSearch,120);
+  });
+  q.addEventListener('focus', function(){ closeDD(); });
+  clr.addEventListener('click', function(e){
+    e.preventDefault(); e.stopPropagation();
+    q.value=''; q.focus(); runSearch();
+  });
+
+  tabs.forEach(function(b){ b.addEventListener('click',function(){
+    q.value=''; sbx.classList.remove('has'); document.body.classList.remove('searching');
+    activate(b.dataset.id);
+  }); });
+
+  var start=localStorage.getItem('np-tab');
+  if(!start || !document.querySelector('.panel[data-id="'+start+'"]')) start='head';
+  activate(start);
+})();
+</script>
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load',function(){
+    navigator.serviceWorker.register('../sw.js',{scope:'../'}).catch(function(){});
+  });
+}
+</script>
+<script>/* 730pm · 朗读：点击才生成，生成完才播，音频缓存在本机 IndexedDB */
+(function () {
+  var CKEY = 'np-tts';
+  var cfg = { mode: 'minimax', key: '', group: '', voice: '', model: '', speed: 1, rate: 1, proxy: '' };
+  var DEF_MODEL = { minimax: 'speech-2.6-hd', fish: 's2-pro', volc: 'seed-tts-2.0', eleven: 'eleven_multilingual_v2' };
+  var DEF_VOICE = { minimax: 'female-shaonv', fish: '', volc: 'zh_female_vv_uranus_bigtts', eleven: '21m00Tcm4TlvDq8ikWAM' };
+  var MODELS = {
+    minimax: ['speech-2.8-hd', 'speech-2.8-turbo', 'speech-2.6-hd', 'speech-2.6-turbo',
+              'speech-02-hd', 'speech-02-turbo', 'speech-01-hd', 'speech-01-turbo'],
+    fish: ['s2.1-pro', 's2-pro', 's1'],
+    volc: ['seed-tts-2.0', 'seed-icl-2.0'],
+    eleven: ['eleven_multilingual_v2', 'eleven_turbo_v2_5', 'eleven_flash_v2_5']
+  };
+
+  /* 繁 -> 简：念之前先转，免得模型按粤语读 */
+  var T2S = '丟丢丣卯並并乗乘乹干乾干亁干亂乱亙亘亝斋亞亚亱夜亷廉亾亡佇伫佈布佔占併并來来侖仑侶侣侷局俁俣係系俔伣俠侠俥伡俬私俻备倀伥倆俩倈俫倉仓個个倐倏們们倖幸倣仿倫伦倲㑈倸睬偉伟偑㐽側侧偵侦偽伪傌㐷傑杰傖伧傘伞備备傚效傢家傭佣傯偬傳传傴伛債债傷伤傾倾僂偻僅仅僉佥僊仙働动僑侨僕仆僞伪僥侥僨偾僱雇價价儀仪儁俊儂侬億亿儈侩儉俭儌侥儎傤儐傧儔俦儕侪儘尽償偿優优儲储儷俪儸㑩儺傩儻傥儼俨兇凶兌兑兎兔兒儿兗兖兠兜內内兩两冄冉冊册冐冒冑胄冪幂冺泯凈净凍冻凜凛凢凡凱凯凴凭別别刦劫刧劫刪删刼劫剄刭則则剉锉剋克剎刹剏创剗刬剙创剛刚剝剥剮剐剳札剴剀創创剷铲剹戮劃划劄札劇剧劉刘劊刽劌刿劍剑劏㓥劑剂劒剑劚㔉効效勁劲勅敕勌倦動动務务勛勋勝胜勞劳勢势勦剿勩勚勱劢勳勋勵励勸劝勻匀匟炕匭匦匯汇匱匮匲奁匳奁區区協协卹恤卻却卽即厀膝厙厍厠厕厤历厭厌厰厂厲厉厴厣參参叄叁叢丛吒咤吚咿吳吴吶呐呂吕呌叫呪咒咊和咼呙員员哶咩唄呗唕唣唘启唚吣唸念啎忤問问啑喋啓启啗啖啞哑啟启啢唡啣衔喎㖞喚唤喪丧喫吃喬乔單单喲哟嗁啼嗆呛嗇啬嗊唝嗎吗嗚呜嗩唢嗶哔嘆叹嘍喽嘑呼嘓啯嘔呕嘖啧嘗尝嘜唛嘠嘎嘩哗嘮唠嘯啸嘰叽嘵哓嘷嗥嘸呒嘽啴噁恶噉啖噓嘘噚㖊噝咝噠哒噥哝噦哕噯嗳噲哙噴喷噸吨噹当嚀咛嚇吓嚌哜嚐尝嚕噜嚙啮嚥咽嚦呖嚨咙嚮向嚲亸嚳喾嚴严嚶嘤囀啭囁嗫囂嚣囅冁囈呓囉啰囌苏囑嘱囓啮囙因囪囱圅函圇囵國国圍围園园圓圆圖图團团坿附垜垛垻坝埡垭埰采執执堅坚堊垩堖垴堝埚堯尧報报場场塊块塋茔塏垲塒埘塗涂塚冢塟葬塢坞塤埙塲场塵尘塹堑墊垫墖塔墜坠墮堕墰坛墳坟墶垯墻墙墾垦壇坛壋垱壎埙壓压壘垒壙圹壚垆壜坛壞坏壟垄壠垅壢坜壩坝壪塆壯壮壺壶壻婿壼壸壽寿夘卯夠够夢梦夥伙夾夹奐奂奧奥奩奁奪夺奬奖奮奋奼姹妝妆妬妒妳你妷侄姉姊姍姗姙妊姦奸姪侄姸妍娛娱婁娄婣姻婦妇婬淫婭娅媍妇媧娲媯妫媰㛀媼媪媽妈媿愧嫋袅嫗妪嫰嫩嫵妩嫺娴嫻娴嫿婳嬀妫嬃媭嬈娆嬋婵嬌娇嬙嫱嬝袅嬡嫒嬤嬷嬪嫔嬭奶嬰婴嬸婶嬾懒孃娘孋㛤孌娈孫孙學学孼孽孿孪宂冗宮宫寀采寃冤寑寝寢寝實实寧宁審审寫写寬宽寳宝寵宠寶宝尅克將将專专尋寻對对導导尒尔尙尚尟鲜尠鲜尷尴屆届屍尸屓屃屛屏屜屉屢屡層层屨屦屬属屭屃岅坂岡冈峝峒峯峰峴岘島岛峽峡崍崃崑昆崗岗崙仑崢峥崬岽嵐岚嵗岁嵾㟥嶁嵝嶃崭嶄崭嶇岖嶔嵚嶗崂嶠峤嶢峣嶧峄嶨峃嶮崄嶸嵘嶺岭嶼屿嶽岳巋岿巒峦巔巅巖岩巰巯巵卮巹卺帀匝帋纸帥帅師师帬裙帳帐帶带幀帧幃帏幇帮幑徽幓㡎幗帼幘帻幙幕幚帮幟帜幣币幫帮幬帱幹干幾几庫库庻庶庽寓廁厕廂厢廄厩廈厦廎庼廐厩廕荫廚厨廝厮廟庙廠厂廡庑廢废廣广廩廪廬庐廳厅廵巡廹迫廻回弒弑弔吊弳弪張张強强彆别彈弹彌弥彎弯彔录彙汇彞彝彠彟彥彦彫雕彲彨彿佛徃往後后徑径從从徠徕徧遍復复徵征徹彻怱匆怳恍恆恒恠怪恡吝恥耻悅悦悞悮悤匆悵怅悶闷悽凄惏婪惡恶惥恿惱恼惲恽惷蠢惻恻愛爱愜惬愨悫愴怆愷恺愽博愾忾慄栗態态慍愠慘惨慙惭慚惭慟恸慣惯慤悫慪怄慫怂慮虑慳悭慴慑慶庆慺㥪慼戚慽戚慾欲憂忧憇憩憊惫憍㤭憐怜憑凭憒愦憖慭憚惮憤愤憫悯憮怃憲宪憶忆懇恳應应懌怿懍懔懞蒙懟怼懣懑懤㤽懧㤖懨恹懲惩懶懒懷怀懸悬懺忏懼惧懾慑戀恋戇戆戔戋戞戛戧戗戩戬戰战戱戯戲戏戶户戹厄扞捍抝拗拋抛拚拼挩捝挱挲挵弄挾挟捄救捨舍捫扪捱挨捲卷掃扫掄抡掆㧏掗挜掙挣掛挂採采掽碰揀拣揑捏揚扬換换揫揪揮挥揯搄揷插揹背搆构搇揿搉榷損损搖摇搗捣搤扼搥捶搨拓搯掏搵揾搶抢搾榨摃扛摑掴摜掼摟搂摯挚摳抠摶抟摺折摻掺撈捞撏挦撐撑撓挠撝㧑撟挢撡操撣掸撥拨撦扯撫抚撲扑撳揿撻挞撾挝撿捡擁拥擄掳擇择擊击擋挡擓㧟擔担擕携據据擠挤擣捣擥㧛擧举擬拟擯摈擰拧擱搁擲掷擴扩擷撷擺摆擻擞擼撸擽㧰擾扰攄摅攆撵攏拢攔拦攖撄攙搀攛撺攜携攝摄攢攒攣挛攤摊攩挡攪搅攬揽攷考敂叩敍叙敎教敓敚敗败敘叙敵敌數数敺驱斂敛斃毙斆敩斕斓斬斩斷断於于旂旗旣既旤祸旹时旾春昇升昬昏時时晉晋晝昼暈晕暉晖暘旸暢畅暫暂暱昵曄晔曆历曇昙曉晓曏向曖暧曠旷曡叠曨昽曬晒書书會会朞期朢望朧胧朮术朶朵東东杴锨枱台枴拐柵栅柺拐査查栁柳栞刊栢柏栰筏桒桑桮杯桺柳桿杆梔栀梘枧條条梟枭梲棁棄弃棊棋棖枨棗枣棟栋棡㭎棧栈棲栖棶梾椏桠椗碇椲㭏椶棕椷缄椾笺楊杨楓枫楥楦楨桢業业極极榘矩榦干榪杩榮荣榲榅榿桤構构槍枪槓杠槕桌槤梿槧椠槨椁槮椮槳桨槶椢槼椝樁桩樂乐樅枞樑梁樓楼標标樞枢樢㭤樣样樧榝樫㭴樳桪樸朴樹树樺桦樿椫橈桡橋桥橜橛機机橢椭橫横檁檩檉柽檔档檜桧檟槚檢检檣樯檮梼檯台檳槟檸柠檻槛櫃柜櫈凳櫓橹櫚榈櫛栉櫝椟櫞橼櫟栎櫥橱櫧槠櫨栌櫪枥櫫橥櫬榇櫱蘖櫳栊櫸榉櫻樱欄栏欅榉權权欏椤欒栾欖榄欝郁欞棂欵款欽钦歎叹歐欧歛敛歟欤歡欢歲岁歴历歷历歸归歿殁殀夭殘残殞殒殤殇殨㱮殫殚殭僵殮殓殯殡殰㱩殲歼殺杀殻壳殼壳毀毁毆殴毧绒毬球毿毵氂牦氈毡氊毡氌氇氣气氫氢氬氩氳氲氷冰氾泛汎泛汙污汚污決决沒没沖冲況况泝溯洩泄洶汹浹浃涇泾涖莅涗涚涼凉淒凄淚泪淛浙淥渌淨净淩凌淪沦淵渊淶涞淺浅渖沈渙涣減减渢沨渦涡測测渾浑湊凑湞浈湧涌湯汤湼涅溈沩準准溝沟溫温溮浉溳涢溼湿滄沧滅灭滌涤滎荥滙汇滛淫滬沪滯滞滲渗滷卤滸浒滻浐滾滚滿满漁渔漊溇漚沤漢汉漣涟漬渍漲涨漵溆漸渐漿浆潁颍潄漱潑泼潔洁潙沩潚㴋潛潜潤润潯浔潰溃潷滗潿涠澀涩澁涩澆浇澇涝澐沄澗涧澠渑澤泽澦滪澩泶澮浍澱淀澾㳠濁浊濃浓濄㳡濇涩濕湿濘泞濚溁濛蒙濜浕濟济濤涛濧㳔濫滥濰潍濱滨濶阔濺溅濼泺濾滤瀂澛瀅滢瀆渎瀇㲿瀉泻瀋沈瀏浏瀕濒瀘泸瀝沥瀟潇瀠潆瀦潴瀧泷瀨濑瀰弥瀲潋瀾澜灃沣灄滠灋法灑洒灕漓灘滩灝灏灠漤灡㳕灣湾灤滦灧滟灩滟災灾為为烏乌烖灾烴烃無无煉炼煑煮煒炜煗暖煙烟煢茕煥焕煩烦煬炀煱㶽熅煴熈熙熒荧熗炝熱热熲颎熾炽燁烨燄焰燈灯燉炖燒烧燙烫燜焖營营燦灿燬毁燭烛燴烩燶㶶燻熏燼烬燾焘爍烁爐炉爗烨爛烂爭争爲为爺爷爾尔牀床牆墙牋笺牎窗牐闸牓榜牕窗牘牍牠它牴抵牽牵犖荦犛牦犢犊犧牺狀状狥徇狹狭狽狈猂悍猙狰猨猿猶犹猻狲獁犸獃呆獄狱獅狮獎奖獘毙獧狷獨独獪狯獫猃獮狝獰狞獱㺍獲获獵猎獷犷獸兽獺獭獻献獼猕玀猡玅妙現现琖盏琱雕琺珐琿珲瑇玳瑋玮瑒玚瑣琐瑤瑶瑩莹瑪玛瑯琅瑲玱璉琏璡琎璢瑠璣玑璦瑷璫珰璯㻅環环璵玙璸瑸璽玺璿璇瓊琼瓏珑瓔璎瓚瓒甌瓯甎砖甕瓮甖罂甞尝產产産产甦苏甯宁畂亩畆亩畝亩畢毕畧略畫画畮亩異异畱留畵画當当疇畴疊叠疎疏疘肛疿痱痐蛔痙痉痠酸痲痳痺痹痾疴瘂痖瘉愈瘋疯瘍疡瘓痪瘖喑瘞瘗瘡疮瘧疟瘮瘆瘲疭瘺瘘瘻瘘療疗癄憔癅瘤癆痨癇痫癈废癉瘅癒愈癘疠癟瘪癡痴癢痒癤疖癥症癧疬癩癞癬癣癭瘿癮瘾癰痈癱瘫癲癫發发皁皂皐皋皚皑皜皓皰疱皷鼓皸皲皺皱盃杯盇盍盌碗盜盗盞盏盡尽監监盤盘盧卢盪荡眎视眞真眡视眥眦眾众睏困睜睁睞睐睠眷睪睾瞇眯瞖翳瞘眍瞜䁖瞞瞒瞭了瞶瞆瞼睑矁瞅矇蒙矓眬矙瞰矚瞩矯矫矽硅砲炮硃朱硜硁硤硖硨砗硯砚碕埼碩硕碪砧碭砀碸砜確确碼码碽䂵磑硙磚砖磟碌磠硵磣碜磧碛磯矶磽硗磾䃅礄硚礆硷礎础礙碍礦矿礪砺礫砾礬矾礱砻祕秘祘算祿禄禍祸禎祯禕祎禡祃禦御禪禅禮礼禰祢禱祷禿秃秈籼秊年秌秋秖只稅税稈秆稉粳稏䅉稜棱稟禀稬糯稭秸種种稱称稾稿穀谷穇䅟穌稣積积穎颖穠秾穡穑穢秽穤糯穨颓穩稳穫获穭穞穽阱窓窗窩窝窪洼窮穷窯窑窰窑窵窎窶窭窺窥窻窗竄窜竅窍竇窦竈灶竊窃竝并竢俟竪竖競竞筆笔筍笋筞策筧笕筩筒筯箸筴䇲箇个箋笺箏筝箒帚箠棰節节範范築筑篋箧篔筼篛箬篠筿篤笃篩筛篳筚簀箦簍篓簑蓑簒篡簞箪簡简簣篑簫箫簮簪簷檐簹筜簽签簾帘籃篮籌筹籐藤籔䉤籙箓籛篯籜箨籟籁籠笼籤签籩笾籪簖籬篱籮箩籲吁粃秕粧妆粵粤糉粽糝糁糞粪糧粮糰团糲粝糴籴糶粜糹纟糾纠紀纪紂纣約约紅红紆纡紇纥紈纨紉纫紋纹納纳紐纽紓纾純纯紕纰紖纼紗纱紘纮紙纸級级紛纷紜纭紝纴紡纺紥扎紬䌷紮扎細细紱绂紲绁紳绅紵纻紹绍紺绀紼绋紿绐絀绌終终絃弦組组絅䌹絆绊絎绗絏绁結结絕绝絛绦絝绔絞绞絡络絢绚給给絨绒絰绖統统絲丝絳绛絶绝絹绢綁绑綃绡綆绠綈绨綉绣綌绤綏绥綐䌼綑捆經经綜综綞缍綠绿綢绸綣绻綫线綬绶維维綯绹綰绾綱纲網网綳绷綴缀綵彩綸纶綹绺綺绮綻绽綽绰綾绫綿绵緄绲緇缁緊紧緋绯緐繁緑绿緒绪緓绬緔绱緗缃緘缄緙缂線线緜绵緝缉緞缎締缔緡缗緣缘緥褓緦缌編编緩缓緬缅緯纬緱缑緲缈練练緶缏緹缇緻致緼缊縈萦縉缙縊缢縋缒縐绉縑缣縕缊縗缞縛缚縝缜縞缟縟缛縣县縧绦縫缝縭缡縮缩縱纵縲缧縳䌸縴纤縵缦縶絷縷缕縹缥總总績绩繃绷繅缫繆缪繒缯織织繕缮繖伞繙翻繚缭繞绕繡绣繢缋繦襁繩绳繪绘繫系繭茧繮缰繯缳繰缲繳缴繸䍁繹绎繼继繽缤繾缱繿䍀纇颣纈缬纊纩續续纍累纏缠纓缨纔才纖纤纘缵纜缆缐线缽钵罃䓨罇樽罈坛罋瓮罌罂罎坛罰罚罵骂罷罢罸罚羅罗羆罴羈羁羋芈羗羌羢绒羣群羥羟羨羡義义羶膻翄翅習习翫玩翬翚翶翱翹翘翽翙耡锄耬耧耮耢聖圣聞闻聯联聰聪聲声聳耸聵聩聶聂職职聹聍聽听聾聋肅肃肎肯肐胳肧胚胷胸脃脆脅胁脇胁脈脉脗吻脛胫脣唇脩修脫脱脹胀腁胼腎肾腖胨腡脶腦脑腫肿腳脚腸肠膃腽膓肠膕腘膚肤膞䏝膠胶膩腻膽胆膾脍膿脓臈腊臉脸臋臀臍脐臏膑臕膘臘腊臙胭臚胪臝裸臟脏臠脔臢臜臥卧臨临臯皋臺台與与興兴舉举舊旧舖铺舘馆舩船艙舱艢樯艤舣艦舰艪橹艫舻艱艰艷艳芲花芻刍茘荔茲兹荊荆荳豆莊庄莖茎莢荚莧苋菫堇華华菴庵菸烟萇苌萊莱萬万萲萱萴荝萵莴葉叶葒荭葠参葤荮葦苇葯药葷荤蒐搜蒓莼蒔莳蒕蒀蒞莅蒼苍蓀荪蓆席蓋盖蓡参蓮莲蓯苁蓴莼蓽荜蔔卜蔕蒂蔘参蔞蒌蔣蒋蔥葱蔦茑蔭荫蕁荨蕆蒇蕎荞蕒荬蕓芸蕕莸蕘荛蕚萼蕢蒉蕩荡蕪芜蕭萧蕷蓣蕿萱薀蕰薈荟薊蓟薌芗薑姜薔蔷薘荙薟莶薦荐薩萨薳䓕薴苧薵䓓薹苔薺荠藍蓝藎荩藝艺藥药藪薮藭䓖藴蕴藶苈藹蔼藺蔺藼萱蘀萚蘄蕲蘆芦蘇苏蘊蕴蘋苹蘐萱蘓苏蘚藓蘞蔹蘢茏蘤花蘭兰蘺蓠蘿萝虆蔂處处虛虚虜虏號号虧亏虯虬蚘蛔蛕蛔蛺蛱蛻蜕蜆蚬蜋螂蜖蛔蜨蝶蝕蚀蝟猬蝦虾蝨虱蝯猿蝱虻蝸蜗螄蛳螎融螞蚂螡蚊螢萤螮䗖螻蝼螿螀蟁蚊蟄蛰蟇蟆蟈蝈蟎螨蟣虮蟬蝉蟯蛲蟲虫蟶蛏蟻蚁蠁蚃蠅蝇蠆虿蠍蝎蠏蟹蠐蛴蠑蝾蠒茧蠔蚝蠟蜡蠣蛎蠨蟏蠭蜂蠱蛊蠶蚕蠻蛮衂衄衆众衇脉衊蔑術术衕同衚胡衛卫衝冲衞卫衺邪袞衮袟帙袵衽裊袅裌袷裏里補补裝装裠裙裡里製制複复褌裈褘袆褭袅褲裤褳裢褸褛褻亵襃褒襇裥襉裥襍杂襏袯襖袄襝裣襠裆襤褴襪袜襬摆襯衬襲袭襴襕覇霸覈核覊羁見见覎觃規规覓觅覔觅視视覘觇覡觋覥觍覦觎覩睹親亲覬觊覯觏覲觐覷觑覺觉覽览覿觌觀观觝抵觴觞觶觯觸触訁讠訂订訃讣計计訊讯訌讧討讨訐讦訒讱訓训訕讪訖讫託托記记訛讹訝讶訟讼訢䜣訣诀訥讷訩讻訪访設设許许訴诉訶诃診诊註注証证詁诂詆诋詎讵詐诈詒诒詔诏評评詖诐詗诇詘诎詛诅詞词詠咏詡诩詢询詣诣試试詩诗詫诧詬诟詭诡詮诠詰诘話话該该詳详詵诜詶酬詼诙詿诖誄诔誅诛誆诓誇夸誌志認认誑诳誒诶誕诞誖悖誘诱誚诮語语誠诚誡诫誣诬誤误誥诰誦诵誨诲說说説说誰谁課课誶谇誹诽誼谊誾訚調调諂谄諄谆談谈諉诿請请諍诤諏诹諑诼諒谅論论諗谂諛谀諜谍諝谞諞谝諡谥諢诨諤谔諦谛諧谐諫谏諭谕諮咨諱讳諳谙諶谌諷讽諸诸諺谚諼谖諾诺謀谋謁谒謂谓謄誊謅诌謊谎謌歌謎谜謐谧謔谑謖谡謗谤謙谦謚谥講讲謝谢謠谣謡谣謨谟謫谪謬谬謭谫謳讴謹谨謾谩譁哗證证譌讹譎谲譏讥譔撰譖谮識识譙谯譚谭譜谱譟噪譫谵譭毁譯译議议譴谴護护譸诪譼䛓譽誉譾谫讀读讁谪讅谉變变讋詟讌䜩讎雠讐雠讒谗讓让讕谰讖谶讚赞讜谠讞谳讬托谘咨豈岂豎竖豐丰豓艳豔艳豬猪豶豮貍狸貓猫貙䝙貛獾貝贝貞贞貟贠負负財财貢贡貧贫貨货販贩貪贪貫贯責责貯贮貰贳貲赀貳贰貴贵貶贬買买貸贷貺贶費费貼贴貽贻貿贸賀贺賁贲賂赂賃赁賄贿賅赅資资賈贾賉恤賊贼賑赈賒赊賓宾賕赇賙赒賚赉賛赞賜赐賞赏賠赔賡赓賢贤賣卖賤贱賦赋賧赕質质賫赍賬账賭赌賰䞐賴赖賵赗賷赍賺赚賻赙購购賽赛賾赜贄贽贅赘贇赟贈赠贊赞贋赝贍赡贏赢贐赆贓赃贔赑贖赎贗赝贛赣贜赃赬赪趂趁趕赶趙赵趨趋趲趱跡迹跥跺踁胫踐践踫碰踰逾踴踊蹌跄蹏蹄蹕跸蹟迹蹠跖蹣蹒蹤踪蹧糟蹵蹴蹺跷躂跶躉趸躊踌躋跻躍跃躎䟢躑踯躒跞躓踬躕蹰躚跹躡蹑躥蹿躦躜躪躏躭耽躳躬躶裸軀躯車车軋轧軌轨軍军軑轪軒轩軔轫軛轭軟软軤轷軫轸軲轱軸轴軹轵軺轺軻轲軼轶軾轼較较輅辂輇辁輈辀載载輊轾輒辄輓挽輔辅輕轻輙辄輛辆輜辎輝辉輞辋輟辍輥辊輦辇輩辈輪轮輬辌輭软輯辑輳辏輸输輻辐輼辒輾辗輿舆轀辒轂毂轄辖轅辕轆辘轉转轍辙轎轿轔辚轟轰轡辔轢轹轤轳辠罪辢辣辤辞辦办辭辞辮辫辯辩農农辳农迴回迻移逈迥逕迳這这連连逥回逩奔逬迸週周進进遉侦遊游運运過过達达違违遙遥遜逊遞递遠远遡溯適适遯遁遲迟遶绕遷迁選选遺遗遼辽邁迈還还邇迩邊边邏逻邐逦郟郏郵邮鄆郓鄉乡鄒邹鄔邬鄖郧鄧邓鄭郑鄰邻鄲郸鄴邺鄶郐鄺邝酇酂酈郦酖鸩酧酬醃腌醆盏醕醇醖酝醜丑醞酝醟蒏醣糖醫医醬酱醯酰醱酦醻酬醼宴釀酿釁衅釃酾釅酽釋释釐厘釒钅釓钆釔钇釕钌釗钊釘钉釙钋針针釣钓釤钐釦扣釧钏釩钒釬焊釵钗釷钍釹钕釺钎釾䥺鈀钯鈁钫鈃钘鈄钭鈅钥鈈钚鈉钠鈍钝鈎钩鈐钤鈑钣鈒钑鈔钞鈕钮鈞钧鈡钟鈣钙鈥钬鈦钛鈧钪鈮铌鈰铈鈳钶鈴铃鈷钴鈸钹鈹铍鈺钰鈽钚鈾铀鈿钿鉀钾鉄铁鉅巨鉆钻鉈铊鉉铉鉋铇鉍铋鉑铂鉕钷鉗钳鉚铆鉛铅鉞钺鉢钵鉤钩鉦钲鉨鿭鉬钼鉭钽鉲锎鉳锫鉶铏鉸铰鉺铒鉻铬鉿铪銀银銃铳銅铜銍铚銑铣銓铨銖铢銘铭銚铫銛铦銜衔銠铑銣铷銥铱銦铟銨铵銩铥銪铕銫铯銬铐銱铞銲焊銳锐銷销銹锈銻锑銼锉鋁铝鋂镅鋃锒鋅锌鋇钡鋌铤鋏铗鋒锋鋙铻鋝锊鋟锓鋣铘鋤锄鋥锃鋦锔鋨锇鋩铓鋪铺鋭锐鋮铖鋯锆鋰锂鋱铽鋶锍鋸锯鋼钢錁锞錄录錆锖錇锫錈锩錏铔錐锥錒锕錕锟錘锤錙锱錚铮錛锛錟锬錠锭錡锜錢钱錦锦錨锚錩锠錫锡錮锢錯错録录錳锰錶表錸铼錼镎鍀锝鍁锨鍃锪鍅钫鍆钔鍇锴鍈锳鍊炼鍋锅鍍镀鍔锷鍘铡鍚钖鍛锻鍠锽鍤锸鍥锲鍩锘鍫锹鍬锹鍰锾鍳鉴鍵键鍶锶鍺锗鍼针鍾钟鎂镁鎄锿鎇镅鎊镑鎌镰鎔镕鎖锁鎗枪鎘镉鎚锤鎛镈鎝锝鎡镃鎢钨鎣蓥鎦镏鎧铠鎩铩鎪锼鎬镐鎭镇鎮镇鎰镒鎲镋鎳镍鎵镓鎶鿔鎸镌鎻锁鎿镎鏃镞鏇旋鏈链鏌镆鏍镙鏐镠鏑镝鏗铿鏘锵鏜镗鏝镘鏞镛鏟铲鏡镜鏢镖鏤镂鏨錾鏰镚鏵铧鏷镤鏹镪鏺䥽鏽锈鐃铙鐋铴鐐镣鐒铹鐓镦鐔镡鐘钟鐙镫鐝镢鐠镨鐥䦅鐦锎鐧锏鐨镄鐫镌鐮镰鐯䦃鐲镯鐳镭鐵铁鐶镮鐸铎鐺铛鐿镱鑀锿鑄铸鑈鿭鑊镬鑌镔鑑鉴鑒鉴鑔镲鑕锧鑚钻鑛矿鑞镴鑠铄鑣镳鑤刨鑥镥鑭镧鑰钥鑱镵鑲镶鑵罐鑷镊鑹镩鑼锣鑽钻鑾銮鑿凿钁镢钂镋钜巨锺钟镟旋長长門门閂闩閃闪閆闫閈闬閉闭開开閌闶閎闳閏闰閑闲閒闲間间閔闵閘闸閙闹閡阂閣阁閤合閥阀閧哄閨闺閩闽閫阃閬阆閭闾閱阅閲阅閶阊閹阉閻阎閼阏閽阍閾阈閿阌闃阒闆板闇暗闈闱闊阔闋阕闌阑闍阇闐阗闒阘闓闿闔阖闕阙闖闯闚窥關关闞阚闠阓闡阐闢辟闤阛闥闼阨厄阬坑陗峭陘陉陜陕陝陕陞升陣阵陰阴陳陈陸陆陻堙陽阳陿狭隂阴隄堤隉陧隊队階阶隕陨隖坞際际隣邻隨随險险隯陦隱隐隴陇隷隶隸隶隻只雋隽雖虽雙双雛雏雜杂雞鸡離离難难雲云電电霑沾霢霡霧雾霽霁靂雳靄霭靆叇靈灵靉叆靚靓靜静靝靔靦腼靨靥靭韧靱韧鞀鼗鞏巩鞝绱鞦秋鞵鞋鞽鞒韁缰韃鞑韆千韈袜韉鞯韋韦韌韧韍韨韓韩韙韪韜韬韝鞲韞韫韤袜韮韭韻韵響响頁页頂顶頃顷項项順顺頇顸須须頊顼頌颂頎颀頏颃預预頑顽頒颁頓顿頗颇領领頜颌頟额頡颉頤颐頦颏頭头頮颒頰颊頲颋頴颕頷颔頸颈頹颓頻频頼赖頽颓顆颗顇悴顋腮題题額额顎颚顏颜顒颙顓颛顔颜願愿顙颡顛颠類类顢颟顥颢顦憔顧顾顫颤顬颥顯显顰颦顱颅顳颞顴颧風风颭飐颮飑颯飒颱台颳刮颶飓颸飔颺飏颻飖颼飕飀飗飃飘飄飘飆飙飈飚飛飞飜翻飠饣飢饥飣饤飤饲飥饦飩饨飪饪飫饫飭饬飯饭飱飧飲饮飴饴飼饲飽饱飾饰飿饳餁饪餃饺餄饸餅饼餈糍餉饷養养餌饵餎饹餏饻餑饽餒馁餓饿餕馂餖饾餘余餚肴餛馄餜馃餞饯餡馅館馆餬糊餱糇餳饧餵喂餶馉餷馇餹糖餺馎餻糕餼饩餽馈餾馏餿馊饁馌饃馍饅馒饈馐饉馑饊馓饋馈饌馔饍膳饑饥饒饶饗飨饜餍饝馍饞馋饢馕馀余馬马馭驭馮冯馱驮馳驰馴驯馹驲駁驳駈驱駐驻駑驽駒驹駔驵駕驾駘骀駙驸駛驶駝驼駟驷駡骂駢骈駭骇駰骃駱骆駸骎駿骏騁骋騂骍騅骓騌骔騍骒騎骑騏骐騐验騖骛騙骗騣鬃騤骙騧䯄騫骞騭骘騮骝騰腾騶驺騷骚騸骟騾骡驀蓦驁骜驂骖驃骠驄骢驅驱驊骅驌骕驍骁驏骣驕骄驗验驘骡驚惊驛驿驟骤驢驴驤骧驥骥驦骦驪骊驫骉骯肮骽腿骾鲠髈膀髏髅髒脏體体髕髌髖髋髥髯髮发鬀剃鬆松鬉鬃鬍胡鬚须鬢鬓鬥斗鬦斗鬧闹鬨哄鬩阋鬪斗鬮阄鬰郁鬱郁鬹鬶魎魉魘魇魚鱼魛鱽魢鱾魨鲀魯鲁魴鲂魷鱿魺鲄鮁鲅鮃鲆鮊鲌鮋鲉鮍鲏鮎鲇鮐鲐鮑鲍鮒鲋鮓鲊鮚鲒鮜鲘鮝鲞鮞鲕鮣䲟鮦鲖鮪鲔鮫鲛鮭鲑鮮鲜鮳鲓鮶鲪鮺鲝鯀鲧鯁鲠鯇鲩鯉鲤鯊鲨鯒鲬鯔鲻鯕鲯鯖鲭鯗鲞鯛鲷鯝鲴鯡鲱鯢鲵鯤鲲鯧鲳鯨鲸鯪鲮鯫鲰鯰鲶鯴鲺鯷鳀鯽鲫鯿鳊鰁鳈鰂鲗鰃鳂鰆䲠鰈鲽鰉鳇鰌䲡鰍鳅鰏鲾鰐鳄鰒鳆鰓鳃鰛鳁鰜鳒鰟鳑鰠鳋鰣鲥鰥鳏鰧䲢鰨鳎鰩鳐鰭鳍鰮鳁鰱鲢鰲鳌鰳鳓鰵鳘鰷鲦鰹鲣鰺鲹鰻鳗鰼鳛鰾鳔鱂鳉鱅鳙鱈鳕鱉鳖鱒鳟鱔鳝鱖鳜鱗鳞鱘鲟鱝鲼鱟鲎鱠鲙鱣鳣鱤鳡鱧鳢鱨鲿鱭鲚鱯鳠鱷鳄鱸鲈鱺鲡鳥鸟鳧凫鳩鸠鳬凫鳲鸤鳳凤鳴鸣鳶鸢鳾䴓鴆鸩鴇鸨鴈雁鴉鸦鴒鸰鴕鸵鴛鸳鴝鸲鴞鸮鴟鸱鴣鸪鴦鸯鴨鸭鴯鸸鴰鸹鴴鸻鴷䴕鴻鸿鴿鸽鵁䴔鵂鸺鵃鸼鵐鹀鵑鹃鵒鹆鵓鹁鵜鹈鵝鹅鵞鹅鵠鹄鵡鹉鵪鹌鵬鹏鵮鹐鵯鹎鵰雕鵲鹊鵶鸦鵷鹓鵾鹍鶄䴖鶇鸫鶉鹑鶊鹒鶓鹋鶖鹙鶘鹕鶚鹗鶡鹖鶥鹛鶩鹜鶪䴗鶬鸧鶯莺鶲鹟鶴鹤鶹鹠鶺鹡鶻鹘鶼鹣鶿鹚鷀鹚鷁鹢鷂鹞鷄鸡鷈䴘鷉䴘鷊鹝鷓鹧鷖鹥鷗鸥鷙鸷鷚鹨鷥鸶鷦鹪鷫鹔鷯鹩鷰燕鷲鹫鷳鹇鷴鹇鷸鹬鷹鹰鷺鹭鷽鸴鸂㶉鸇鹯鸊䴙鸌鹱鸎莺鸏鹲鸕鸬鸘鹴鸚鹦鸛鹳鸝鹂鸞鸾鹵卤鹹咸鹺鹾鹻碱鹼碱鹽盐麗丽麥麦麩麸麪面麫面麯曲麴曲麵面麹曲麺面麼么麽么黃黄黌黉點点黨党黲黪黴霉黶黡黷黩黽黾黿鼋鼂鼌鼃蛙鼇鳌鼈鳖鼉鼍鼕冬鼴鼹齊齐齋斋齎赍齏齑齒齿齔龀齕龁齗龂齙龅齜龇齟龃齠龆齡龄齣出齦龈齧啮齪龊齬龉齲龋齶腭齷龌龍龙龎厐龐庞龑䶮龔龚龕龛龜龟鿁䜤鿐䲤鿓鿒';
+  var TMAP = null;
+  function simp(s) {
+    if (!TMAP) { TMAP = {}; for (var i = 0; i < T2S.length; i += 2) TMAP[T2S.charAt(i)] = T2S.charAt(i + 1); }
+    var out = '';
+    for (var j = 0; j < s.length; j++) out += (TMAP[s.charAt(j)] || s.charAt(j));
+    return out;
+  }
+  function modelId() { return (cfg.model || '').trim() || DEF_MODEL[cfg.mode] || ''; }
+  function voiceId() { return (cfg.voice || '').trim() || DEF_VOICE[cfg.mode] || ''; }
+  try { var s = JSON.parse(localStorage.getItem(CKEY) || 'null'); if (s) for (var k in s) if (k in cfg) cfg[k] = s[k]; } catch (e) {}
+  function saveCfg() { try { localStorage.setItem(CKEY, JSON.stringify(cfg)); } catch (e) {} }
+
+  var toastEl = document.getElementById('ttoast'), toastT = null;
+  function toast(m) {
+    if (!toastEl) return;
+    toastEl.textContent = m; toastEl.classList.add('on');
+    clearTimeout(toastT); toastT = setTimeout(function () { toastEl.classList.remove('on'); }, 1900);
+  }
+
+  function fmt(t) { t = Math.max(0, Math.floor(t || 0)); var m = Math.floor(t / 60), s = t % 60; return m + ':' + (s < 10 ? '0' : '') + s; }
+
+  /* ---------- 本机缓存 ---------- */
+  var DBp = null;
+  function db() {
+    if (DBp) return DBp;
+    DBp = new Promise(function (res, rej) {
+      try {
+        var r = indexedDB.open('730pm-tts', 1);
+        r.onupgradeneeded = function () { r.result.createObjectStore('a'); };
+        r.onsuccess = function () { res(r.result); };
+        r.onerror = function () { rej(r.error); };
+      } catch (e) { rej(e); }
+    });
+    return DBp;
+  }
+  function idbGet(k) {
+    return db().then(function (d) {
+      return new Promise(function (res, rej) {
+        var q = d.transaction('a', 'readonly').objectStore('a').get(k);
+        q.onsuccess = function () { res(q.result || null); };
+        q.onerror = function () { rej(q.error); };
+      });
+    });
+  }
+  function idbDel(k) {
+    return db().then(function (d) {
+      return new Promise(function (res, rej) {
+        var q = d.transaction('a', 'readwrite').objectStore('a').delete(k);
+        q.onsuccess = function () { res(); };
+        q.onerror = function () { rej(q.error); };
+      });
+    }).catch(function () {});
+  }
+  function idbSet(k, v) {
+    return db().then(function (d) {
+      return new Promise(function (res, rej) {
+        var q = d.transaction('a', 'readwrite').objectStore('a').put(v, k);
+        q.onsuccess = function () { res(); };
+        q.onerror = function () { rej(q.error); };
+      });
+    });
+  }
+
+  /* ---------- 合成 ---------- */
+  function split(text, max) {
+    var out = [], cur = '';
+    String(text || '').split(/\n+/).forEach(function (p) {
+      p = p.trim(); if (!p) return;
+      if (!cur) { cur = p; return; }
+      if ((cur + '\n' + p).length <= max) { cur += '\n' + p; return; }
+      out.push(cur); cur = p;
+    });
+    if (cur) out.push(cur);
+    var res = [];
+    out.forEach(function (p) {
+      while (p.length > max) { res.push(p.slice(0, max)); p = p.slice(max); }
+      if (p) res.push(p);
+    });
+    return res;
+  }
+
+  function hexBytes(h) {
+    var n = h.length >> 1, u = new Uint8Array(n);
+    for (var i = 0; i < n; i++) u[i] = parseInt(h.substr(i * 2, 2), 16);
+    return u;
+  }
+
+  function humanErr(status, txt) {
+    var t = (txt || '').toLowerCase();
+    // 中转多半回 JSON：{error, detail}，把里面的话说出来
+    try {
+      var j = JSON.parse(txt);
+      if (j && (j.error || j.message)) {
+        var head = String(j.error || j.message);
+        var tail = j.detail ? String(typeof j.detail === 'string' ? j.detail : JSON.stringify(j.detail)) : '';
+        if (tail && tail.indexOf(head) !== 0) head += '：' + tail.slice(0, 80);
+        if (/insufficient|balance|quota|额度|余额/.test(head.toLowerCase())) return '额度用完了，充值或换一个 key 再试';
+        return head;
+      }
+    } catch (e) {}
+    if (status === 401 || status === 403) return 'Key 不对，或者这个 key 没有朗读权限';
+    if (status === 402 || /insufficient|balance|quota|credit|额度|余额/.test(t)) return '额度用完了，充值或换一个 key 再试';
+    if (status === 429) return '请求太频繁，等几十秒再试';
+    if (status >= 500) return '对方服务端出错了，过一会儿再试';
+    if (/not found|invalid.*(voice|model)|voice.*not/.test(t)) return '音色或模型名字不对';
+    return 'HTTP ' + status + (txt ? '：' + String(txt).slice(0, 50) : '');
+  }
+
+  function one(text) {
+    if (cfg.proxy) {
+      var hd = { 'content-type': 'application/json' };
+      if (cfg.key) hd['authorization'] = 'Bearer ' + cfg.key;
+      var explicitModel = (cfg.model || '').trim();
+      if (explicitModel) hd['model'] = explicitModel;  // 没手填就不发，让 Worker 用它自己的默认
+      var body = JSON.stringify((function () {
+        // key 只走请求头，别塞进 body——有些 Worker 会把 body 原样转给上游
+        var b = { provider: cfg.mode, model: (cfg.model || '').trim(), group: cfg.group,
+                  voice: voiceId(), speed: cfg.speed, text: text };
+        if (cfg.mode === 'fish') { b.reference_id = voiceId(); b.format = 'mp3'; }
+        if (cfg.mode === 'volc') { b.format = 'mp3'; b.resource = modelId(); }
+        return b;
+      })());
+
+      function send(h) {
+        return fetch(cfg.proxy, { method: 'POST', headers: h, body: body }).then(function (r) {
+          if (!r.ok) return r.text().then(function (t) { throw new Error(humanErr(r.status, t)); });
+          return r.blob();
+        });
+      }
+      // 有的 Worker 没在预检里放行 model 头，那就退回不带模型头再试一次
+      return send(hd).catch(function (e) {
+        if (hd['model'] && e && e.name === 'TypeError') {
+          var h2 = { 'content-type': 'application/json' };
+          if (cfg.key) h2['authorization'] = 'Bearer ' + cfg.key;
+          return send(h2);
+        }
+        throw e;
+      });
+    }
+    if (cfg.mode === 'eleven') {
+      var eu = 'https://api.elevenlabs.io/v1/text-to-speech/' + encodeURIComponent(voiceId()) + '?output_format=mp3_44100_128';
+      return fetch(eu, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json', 'xi-api-key': cfg.key },
+        body: JSON.stringify({
+          text: text,
+          model_id: modelId(),
+          voice_settings: { stability: 0.5, similarity_boost: 0.75 }
+        })
+      }).then(function (r) {
+        if (!r.ok) return r.text().then(function (t) { throw new Error(humanErr(r.status, t)); });
+        return r.blob();
+      });
+    }
+    if (cfg.mode !== 'minimax') throw new Error('这个供应商要走中转，先填中转地址');
+    var u = 'https://api.minimaxi.com/v1/t2a_v2' + (cfg.group ? ('?GroupId=' + encodeURIComponent(cfg.group)) : '');
+    return fetch(u, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', 'authorization': 'Bearer ' + cfg.key },
+      body: JSON.stringify({
+        model: modelId(), text: text, stream: false,
+        voice_setting: { voice_id: voiceId(), speed: cfg.speed, vol: 1, pitch: 0 },
+        audio_setting: { sample_rate: 32000, bitrate: 128000, format: 'mp3' }
+      })
+    }).then(function (r) { return r.json(); }).then(function (j) {
+      if (!j || !j.data || !j.data.audio) {
+        var m = (j && j.base_resp && j.base_resp.status_msg) || '合成失败';
+        throw new Error(m);
+      }
+      return hexBytes(j.data.audio);
+    });
+  }
+
+  function hash(s) {
+    var h = 2166136261;
+    for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+    return (h >>> 0).toString(36);
+  }
+
+  /* 按段合成、按段缓存：刷新后重来只补没生成完的那几段 */
+  function synth(text, base, onStep, fresh) {
+    var parts = split(simp(text), 1200), bufs = [], i = 0;
+    function step() {
+      if (i >= parts.length) return Promise.resolve(new Blob(bufs, { type: 'audio/mpeg' }));
+      if (onStep) onStep(i, parts.length);
+      var seg = parts[i], k = base + '|s' + i + '|' + hash(seg);
+      i++;
+      return (fresh ? Promise.resolve(null) : idbGet(k)).then(function (hit) {
+        if (hit) { bufs.push(hit); return step(); }
+        return one(seg).then(function (b) { bufs.push(b); return idbSet(k, b); }).then(step);
+      });
+    }
+    return step();
+  }
+
+  /* ---------- 播放器 ---------- */
+  var ICO_PLAY = '<svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.6 2.6v10.8L13.4 8z"/></svg>';
+  var ICO_PAUSE = '<svg viewBox="0 0 16 16" fill="currentColor"><rect x="4" y="2.8" width="3" height="10.4" rx="0.8"/><rect x="9" y="2.8" width="3" height="10.4" rx="0.8"/></svg>';
+  var ICO_WAIT = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 2.2a5.8 5.8 0 1 1-4.1 1.7"/></svg>';
+
+  var el = document.querySelector('.tts');
+  var audio = new Audio(), url = null, st = 'idle';
+
+  function paint() {
+    if (!el) return;
+    el.setAttribute('data-st', st);
+    var play = el.querySelector('.tplay'), redo = el.querySelector('.tredo'), dl = el.querySelector('.tdl');
+    if (st === 'gen') {
+      play.innerHTML = ICO_WAIT; play.classList.add('gen'); play.disabled = true;
+      redo.disabled = true; dl.disabled = true;
+      el.querySelector('.ttime').textContent = '生成中…';
+    } else {
+      play.classList.remove('gen');
+      play.innerHTML = (st === 'ready' && !audio.paused) ? ICO_PAUSE : ICO_PLAY;
+      play.disabled = false;
+      redo.disabled = (st !== 'ready');
+      dl.disabled = (st !== 'ready');
+      if (st === 'idle') el.querySelector('.ttime').textContent = '0:00 / 0:00';
+    }
+  }
+
+  function drawTime() {
+    if (!el) return;
+    var dur = audio.duration || 0, cur = audio.currentTime || 0;
+    var pct = dur ? (cur / dur) : 0;
+    el.querySelector('.tfill').style.width = (pct * 100) + '%';
+    el.querySelector('.knot').style.left = (pct * 100) + '%';
+    el.querySelector('.ttime').textContent = fmt(cur) + ' / ' + fmt(dur);
+  }
+
+  function ready(b, autoplay) {
+    if (url) URL.revokeObjectURL(url);
+    url = URL.createObjectURL(b);
+    audio.src = url;
+    audio.playbackRate = cfg.rate;
+    st = 'ready';
+    paint();
+    resetBar();
+    if (autoplay !== false) audio.play().catch(function () {});
+  }
+
+  function resetBar() {
+    if (!el) return;
+    el.querySelector('.tfill').style.width = '0';
+    el.querySelector('.knot').style.left = '0';
+    el.querySelector('.ttime').textContent = '0:00 / ' + fmt(audio.duration || 0);
+  }
+
+  function need() {
+    if (cfg.proxy) return true;
+    if (cfg.mode === 'minimax') return !!(cfg.key && voiceId());
+    if (cfg.mode === 'eleven') return !!cfg.key;
+    return false;  // 火山只能走中转
+  }
+
+  function ensure(force) {
+    if (!need()) {
+      toast(cfg.mode === 'volc' && !cfg.proxy ? '火山必须填中转地址' : '先去设置里填朗读的 key 和音色');
+      return Promise.resolve();
+    }
+    var data = (typeof READTTS !== 'undefined' && READTTS[+el.getAttribute('data-tts')]) || { id: 'read', text: '' };
+    var key = 'tts:' + data.id + '|' + cfg.mode + '|' + modelId() + '|' + voiceId() + '|' + cfg.speed;
+    var hadAudio = (st === 'ready');
+    if (force) {
+      try { audio.pause(); } catch (e) {}
+      audio.removeAttribute('src'); audio.load();
+      if (url) { URL.revokeObjectURL(url); url = null; }
+      resetBar();
+    }
+    st = 'gen'; paint();
+    var p = force ? idbDel(key).then(function () { return null; }) : idbGet(key);
+    return p.then(function (b) {
+      return b || synth(data.text, key, function (n, total) {
+        var tl = el.querySelector('.ttime');
+        if (tl) tl.textContent = total > 1 ? ('生成中 ' + (n + 1) + '/' + total) : '生成中…';
+      }, force).then(function (nb) { return idbSet(key, nb).then(function () { return nb; }); });
+    })
+      .then(function (b) { ready(b, !force); })
+      .catch(function (e) {
+        st = (!force && url && hadAudio) ? 'ready' : 'idle';
+        paint();
+        toast('没生成成：' + (e && e.message ? e.message : e));
+      });
+  }
+
+  if (el) {
+    paint();
+    el.querySelector('.tplay').addEventListener('click', function () {
+      if (st === 'gen') return;
+      if (st === 'ready') { if (audio.paused) audio.play(); else audio.pause(); return; }
+      ensure(false);
+    });
+
+    var dlg = document.getElementById('ttsDlg');
+    el.querySelector('.tredo').addEventListener('click', function () {
+      if (st === 'gen') return;
+      if (!need()) { toast('先去设置里填朗读的 key 和音色'); return; }
+      dlg.classList.add('on'); dlg.setAttribute('aria-hidden', 'false');
+    });
+    document.getElementById('ttsNo').addEventListener('click', function () {
+      dlg.classList.remove('on'); dlg.setAttribute('aria-hidden', 'true'); toast('已取消重新生成');
+    });
+    document.getElementById('ttsYes').addEventListener('click', function () {
+      dlg.classList.remove('on'); dlg.setAttribute('aria-hidden', 'true');
+      toast('正在重新生成，请稍候'); ensure(true);
+    });
+    document.getElementById('ttsDlgMask').addEventListener('click', function () {
+      dlg.classList.remove('on'); dlg.setAttribute('aria-hidden', 'true');
+    });
+
+    el.querySelector('.tdl').addEventListener('click', function () {
+      if (st !== 'ready' || !url) return;
+      var a = document.createElement('a');
+      var t = (READTTS[+el.getAttribute('data-tts')] || {}).title || '730pm';
+      a.href = url; a.download = t.replace(/[\\/:*?"<>|]/g, '') + '.mp3';
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      toast('已下载');
+    });
+
+    var bar = el.querySelector('.tbar');
+    function seek(ev) {
+      if (st !== 'ready' || !audio.duration) return;
+      var r = bar.getBoundingClientRect();
+      var x = (ev.touches ? ev.touches[0].clientX : ev.clientX) - r.left;
+      audio.currentTime = Math.min(1, Math.max(0, x / r.width)) * audio.duration;
+    }
+    bar.addEventListener('click', seek);
+    bar.addEventListener('touchstart', function (e) { seek(e); }, { passive: true });
+
+    window.addEventListener('beforeunload', function (e) {
+      if (st === 'gen') { e.preventDefault(); e.returnValue = ''; return ''; }
+    });
+
+    audio.addEventListener('timeupdate', drawTime);
+    audio.addEventListener('loadedmetadata', drawTime);
+    audio.addEventListener('play', paint);
+    audio.addEventListener('pause', paint);
+    audio.addEventListener('ended', function () { audio.currentTime = 0; paint(); });
+  }
+
+  /* ---------- 设置里的朗读段 ---------- */
+  var mEl = document.getElementById('ttsMode'), mdEl = document.getElementById('ttsModel'), kEl = document.getElementById('ttsKey'),
+      gEl = document.getElementById('ttsGroup'), vEl = document.getElementById('ttsVoice'),
+      pEl = document.getElementById('ttsProxy'), sEl = document.getElementById('ttsSpeed'),
+      rEl = document.getElementById('ttsRate'), rpEl = document.getElementById('ttsRt'),
+      spEl = document.getElementById('ttsSpd'), nowEl = document.getElementById('ttsNow'),
+      mbEl = document.getElementById('ttsModelBtn'), mlEl = document.getElementById('ttsModelList'),
+      tryEl = document.getElementById('ttsTry');
+
+  /* 粘贴分享链接时，把里面的音色 id 抠出来 */
+  function parseVoiceId(v) {
+    v = (v || '').trim();
+    if (!/^https?:\/\//i.test(v)) return v;
+    var m;
+    if ((m = v.match(/[?&](?:voice_id|reference_id|voice|model_id|id)=([^&#]+)/i))) return decodeURIComponent(m[1]);
+    if ((m = v.match(/fish\.audio\/(?:m|model)\/([A-Za-z0-9_-]{16,})/))) return m[1];
+    if ((m = v.match(/([0-9a-f]{32})/i))) return m[1];
+    if ((m = v.match(/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/i))) return m[1];
+    if ((m = v.match(/([A-Za-z0-9_-]{16,})/))) return m[1];
+    return v;
+  }
+
+  function updateNow() {
+    if (!nowEl) return;
+    nowEl.textContent = '当前调用模型为 ' + (modelId() || '未设置') + '，语速 ' + (+cfg.speed).toFixed(2) + '×';
+  }
+  function readForm() {
+    if (!mEl) return;
+    var prevMode = cfg.mode;
+    cfg.mode = mEl.value;
+    if (cfg.mode !== prevMode && mdEl.value && (MODELS[cfg.mode] || []).indexOf(mdEl.value.trim()) < 0) mdEl.value = '';
+    cfg.model = mdEl.value.trim(); cfg.key = kEl.value.trim(); cfg.group = gEl.value.trim();
+    cfg.voice = vEl.value.trim(); cfg.proxy = pEl.value.trim(); cfg.speed = parseFloat(sEl.value) || 1;
+    cfg.rate = parseFloat(rEl.value) || 1;
+    if (spEl) spEl.textContent = cfg.speed.toFixed(2) + '×';
+    if (rpEl) rpEl.textContent = cfg.rate.toFixed(2) + '×';
+    audio.playbackRate = cfg.rate;
+    saveCfg(); updateNow();
+  }
+  if (mEl) {
+    mEl.value = cfg.mode; mdEl.value = cfg.model; kEl.value = cfg.key; gEl.value = cfg.group;
+    vEl.value = cfg.voice; pEl.value = cfg.proxy; sEl.value = cfg.speed;
+    rEl.value = cfg.rate; audio.playbackRate = cfg.rate;
+    if (spEl) spEl.textContent = (+cfg.speed).toFixed(2) + '×';
+    if (rpEl) rpEl.textContent = (+cfg.rate).toFixed(2) + '×';
+    updateNow();
+
+    function fillModels() {
+      if (!mlEl) return;
+      mlEl.innerHTML = '';
+      (MODELS[cfg.mode] || []).forEach(function (m) {
+        var b = document.createElement('b');
+        b.textContent = m;
+        b.addEventListener('click', function () {
+          mdEl.value = m; mlEl.classList.remove('on'); readForm();
+        });
+        mlEl.appendChild(b);
+      });
+    }
+    if (mbEl) {
+      mbEl.addEventListener('click', function (e) {
+        e.preventDefault();
+        fillModels();
+        mlEl.classList.toggle('on');
+      });
+      document.addEventListener('click', function (e) {
+        if (!mlEl) return;
+        if (mbEl.contains(e.target)) return;
+        if (!mlEl.contains(e.target)) mlEl.classList.remove('on');
+      });
+    }
+    [mEl, mdEl, kEl, gEl, vEl, pEl].forEach(function (x) {
+      x.addEventListener('change', readForm);
+      x.addEventListener('input', readForm);
+      x.addEventListener('blur', readForm);
+    });
+    sEl.addEventListener('input', readForm);
+    rEl.addEventListener('input', readForm);
+
+    vEl.addEventListener('change', function () {
+      var raw = vEl.value.trim();
+      var got = parseVoiceId(raw);
+      if (got && got !== raw) { vEl.value = got; toast('已从链接里取到音色 id'); }
+      readForm();
+    });
+
+    if (tryEl) tryEl.addEventListener('click', function () {
+      if (!need()) { toast('先把 key（或中转地址）和音色填上'); return; }
+      if (tryEl.classList.contains('busy')) return;
+      tryEl.classList.add('busy');
+      toast('试听中，几秒钟…');
+      one('这是音色测试，一二三四五。').then(function (b) {
+        tryEl.classList.remove('busy');
+        var u = URL.createObjectURL(new Blob([b], { type: 'audio/mpeg' }));
+        var a = new Audio(u);
+        a.play();
+        a.addEventListener('ended', function () { URL.revokeObjectURL(u); });
+        toast('听一下，是不是你要的那个声音');
+      }).catch(function (e) {
+        tryEl.classList.remove('busy');
+        toast('不行：' + (e && e.message ? e.message : e));
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>
