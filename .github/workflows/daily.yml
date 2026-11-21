@@ -1,0 +1,74 @@
+name: daily
+
+# 只手动触发。不跟着 push 跑，main 上的日常不受影响。
+on:
+  workflow_dispatch:
+    inputs:
+      only:
+        description: '只跑某个板块（thing / reading / trivia / food_today / tech_science_ent / sport_hot_game / head_oil_politics），留空跑全部'
+        required: false
+        default: ''
+      no_push:
+        description: '只生成，不推回仓库'
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 生成板块
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          DS_MODEL: deepseek-flash
+        run: |
+          set -e
+          if [ -n "${{ inputs.only }}" ]; then
+            python scripts/build_daily.py --only "${{ inputs.only }}" --no-push
+          else
+            python scripts/build_daily.py --no-push
+          fi
+
+      - name: 提交
+        if: ${{ inputs.no_push == false }}
+        run: |
+          set -e
+          git config user.name "730pm bot"
+          git config user.email "730pm-bot@users.noreply.github.com"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "没有改动"
+          else
+            git commit -m "daily: $(TZ=Asia/Shanghai date +%F)"
+            git push
+          fi
+
+      - name: 摘要
+        if: always()
+        run: |
+          echo "## 今天的数据" >> $GITHUB_STEP_SUMMARY
+          python - <<'PY' >> $GITHUB_STEP_SUMMARY
+          import json
+          d = json.load(open("data.json", encoding="utf-8"))
+          print(f"- 日期：{d.get('date')} {d.get('weekday')}")
+          for t in d.get("tabs", []):
+              n = sum(len(g.get("items") or []) for g in t.get("groups") or [])
+              if t.get("reading"): n = 1
+              if t.get("thing"): n = 1
+              print(f"- {t.get('name')}：{n} 条")
+          PY
