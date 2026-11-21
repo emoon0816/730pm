@@ -13,6 +13,9 @@ on:
         type: boolean
         required: false
         default: false
+  # 每天北京时间 19:00（UTC 11:00）
+  schedule:
+    - cron: '0 11 * * *'
 
 permissions:
   contents: write
@@ -45,7 +48,7 @@ jobs:
           fi
 
       - name: 提交
-        if: ${{ inputs.no_push == false }}
+        if: ${{ inputs.no_push != true }}
         run: |
           set -e
           git config user.name "730pm bot"
