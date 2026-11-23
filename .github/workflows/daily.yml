@@ -1,6 +1,7 @@
 name: daily
 
-# 只手动触发。不跟着 push 跑，main 上的日常不受影响。
+# 手动触发 + 每 15 分钟"敲门"。真正的生成只在「今天还没出」且「过了北京时间 19:00」时发生，
+# 这样 GitHub 的 cron 延迟/丢任务不会让报纸断更。
 on:
   workflow_dispatch:
     inputs:
@@ -13,9 +14,8 @@ on:
         type: boolean
         required: false
         default: false
-  # 每天北京时间 19:00（UTC 11:00）
   schedule:
-    - cron: '0 11 * * *'
+    - cron: '*/15 * * * *'
 
 permissions:
   contents: write
@@ -25,7 +25,45 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      run: ${{ steps.decide.outputs.run }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: 决定今天要不要出报
+        id: decide
+        run: |
+          set -e
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "手动触发，直接跑"
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          python3 - <<'PY'
+          import json, os, datetime
+          tz = datetime.timezone(datetime.timedelta(hours=8))
+          now = datetime.datetime.now(tz)
+          today = f"{now.year}年{now.month}月{now.day}日"
+          window = 19 <= now.hour <= 21
+          done = False
+          try:
+              d = json.load(open("data.json", encoding="utf-8"))
+              done = (d.get("date") or "").strip() == today
+          except Exception as e:
+              print("读 data.json 失败:", e)
+          run = window and not done
+          print(f"now={now:%Y-%m-%d %H:%M} today={today} window={window} done={done} run={run}")
+          with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+              f.write("run=true\n" if run else "run=false\n")
+          PY
+
   build:
+    needs: check
+    if: needs.check.outputs.run == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:
@@ -46,6 +84,9 @@ jobs:
           else
             python scripts/build_daily.py --no-push
           fi
+
+      - name: 归档
+        run: python archive.py
 
       - name: 提交
         if: ${{ inputs.no_push != true }}
