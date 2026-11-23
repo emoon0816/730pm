@@ -85,8 +85,10 @@ jobs:
             python scripts/build_daily.py --no-push
           fi
 
-      - name: 归档
-        run: python archive.py
+      - name: 归档并重建历史页
+        run: |
+          python archive.py
+          python build.py
 
       - name: 提交
         if: ${{ inputs.no_push != true }}
