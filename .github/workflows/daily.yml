@@ -14,8 +14,9 @@ on:
         type: boolean
         required: false
         default: false
-  schedule:
-    - cron: '0 * * * *'
+  # schedule 已停用（改由服务器 Hermes cron 跑），保留手动触发
+  # schedule:
+  #   - cron: '0 * * * *'
 
 permissions:
   contents: write
