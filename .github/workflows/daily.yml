@@ -15,7 +15,7 @@ on:
         required: false
         default: false
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '0 * * * *'
 
 permissions:
   contents: write
@@ -48,7 +48,7 @@ jobs:
           tz = datetime.timezone(datetime.timedelta(hours=8))
           now = datetime.datetime.now(tz)
           today = f"{now.year}年{now.month}月{now.day}日"
-          window = 19 <= now.hour <= 21
+          window = 19 <= now.hour <= 22
           done = False
           try:
               d = json.load(open("data.json", encoding="utf-8"))
